@@ -5,13 +5,15 @@ import Sidebar from "./sidebar/Sidebar";
 
 function AppLayout() {
   return (
-    <div className="container">
+    <>
       <Header />
-      <Sidebar />
-      <main className="main">
-        <Outlet />
-      </main>
-    </div>
+      <div className="container">
+        <Sidebar />
+        <main className="main">
+          <Outlet />
+        </main>
+      </div>
+    </>
   );
 }
 export default AppLayout;
