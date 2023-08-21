@@ -11,19 +11,20 @@ const Header = () => {
           <span className="bild">Online Library</span>
         </NavLink>
       </div>
-      <div>
-        <span className="bell">
+      <div className="headerRight">
+        <div className="bell">
           <FaBell />
-        </span>
-        <span>
+        </div>
+        <div className="border"></div>
+        <div className="bell">
           <FaPlus />
-        </span>
+        </div>
         <NavLink to="./dashboard">
           <span className="bild">bildstudio</span>
         </NavLink>
-        <span>
+        <div>
           <FaBookReader />
-        </span>
+        </div>
       </div>
     </header>
 
