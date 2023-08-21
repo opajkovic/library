@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaBookReader, FaBell, FaPlus } from "react-icons/fa";
-import "./AppLayout.css";
+import "./header.css";
 
 function Header() {
   return (

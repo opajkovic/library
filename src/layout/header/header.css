@@ -1,0 +1,15 @@
+
+.header {
+    background-color: orangered;
+    padding: 2rem;
+    grid-column: 1/-1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .flexItem {
+    display: flex;
+    align-items: center;
+    /* gap: 1rem; */
+  }
+  

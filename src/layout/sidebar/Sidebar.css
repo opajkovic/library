@@ -1,0 +1,48 @@
+.sidebar {
+    background-color: aliceblue;
+    padding: 0;
+    padding-top: 3.2rem ;
+    border-right: 1px solid grey;
+    grid-row: 2 / -1;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 82px); 
+    overflow-x: auto;
+    transition: width .5s;
+  }
+  .closed{
+    width: 90px;
+  }
+  .open{
+    width: 300px;
+  }
+  .faBars, .faTimes{
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-size: 30px;
+    margin-left: 20px;
+  }
+  ul{
+    list-style: none;
+  }
+  .extendArrows{
+    margin-left: 100%;
+  }
+  .navLink p{
+    display: flex;
+    align-items: center;
+  }
+  .expandText{
+    text-align: right;
+    margin-right: 50px;
+  }
+  .expandText p{
+    margin: 5px 0;
+    cursor: pointer;
+  }
+  .openExpand{
+    display: block;
+  }
+  .closedExpand{
+    display: none;
+  }

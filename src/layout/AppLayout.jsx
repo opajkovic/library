@@ -1,16 +1,16 @@
-// import { Outlet } from "react-router-dom";
-import Header from "./Header";
-import Sidebar from "./Sidebar";
+import { Outlet } from "react-router-dom";
+import Header from "./header/Header";
 import "./AppLayout.css";
+import Sidebar from "./sidebar/Sidebar";
 
 function AppLayout() {
   return (
     <div className="container">
       <Header />
       <Sidebar />
-      {/* <main className="main">
+      <main className="main">
         <Outlet />
-      </main> */}
+      </main>
     </div>
   );
 }

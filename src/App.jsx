@@ -7,7 +7,7 @@ function App() {
       <Routes>
         <Route element={<AppLayout />}>
           <Route index element={<Navigate replace to="/dashboard" />} />
-          <Route path="/dashboard" element={<>Zdravo\</>} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Route>
         {/* <Route path="*" element={<PageNotFound />} /> */}
       </Routes>

@@ -1,0 +1,15 @@
+.navLink{
+    padding: 20px;
+    display: flex;
+    grid-gap: 10px;
+    align-items: center;
+    text-decoration: none;
+}
+.navLink:hover{
+    background-color: rgb(211, 211, 211);
+    opacity: .8;
+    cursor: pointer;
+}
+.icon{
+    font-size: 25px;
+}
