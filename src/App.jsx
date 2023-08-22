@@ -5,8 +5,8 @@ import Settings from "./pages/settings/Settings";
 import Librarians from "./pages/librarians/Librarians";
 import Authors from "./pages/authors/Authors";
 import Student from "./pages/student/Student";
-import RecordsOfBooks from "./pages/recordsOfBooks/RecordsOfBooks";
 import RentingBooks from "./pages/rentingBooks/rentingBooks";
+import Books from "./pages/books/Books";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
           <Route index element={<Navigate replace to="/dashboard" />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/student" element={<Student />} />
-          <Route path="/recordsOfBooks" element={<RecordsOfBooks />} />
+          <Route path="/books" element={<Books />} />
           <Route path="/authors" element={<Authors />} />
           <Route path="/rentingBooks" element={<RentingBooks />} />
           <Route path="/settings" element={<Settings />} />

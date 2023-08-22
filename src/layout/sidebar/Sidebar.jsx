@@ -46,7 +46,7 @@ function Sidebar({route}) {
           <NavItem isOpen={isOpen} active={(route == "student") ? true : false} path="student" text="Ucenik" icon={<FaUsers  className={(route == "student") ? "icon activeIcon" : "icon"} />} />
         </li>
         <li>
-          <NavItem isOpen={isOpen} active={(route == "recordsOfBooks") ? true : false} path="recordsOfBooks" text="Knjige" icon={<FaCopy  className={(route == "recordsOfBooks") ? "icon activeIcon" : "icon"} />} />
+          <NavItem isOpen={isOpen} active={(route == "books") ? true : false} path="books" text="Knjige" icon={<FaCopy  className={(route == "books") ? "icon activeIcon" : "icon"} />} />
         </li>
         <li>
           <NavItem isOpen={isOpen} active={(route == "authors") ? true : false} path="authors" text="Autori" icon={<FaAddressBook  className={(route == "authors") ? "icon activeIcon" : "icon"} />} />

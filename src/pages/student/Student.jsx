@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useOutletContext } from 'react-router'
+import PageTitle from '../../components/pageTitle/PageTitle'
 
 export default function Student() {
     const {setRoute} = useOutletContext()
@@ -7,6 +8,9 @@ export default function Student() {
       setRoute('student')
     },[])
   return (
-    <div>Ucenik</div>
+    <div>
+      <PageTitle title="Ucenik" />
+    </div>
   )
 }
+ 

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useOutletContext } from 'react-router'
+import PageTitle from '../../components/pageTitle/PageTitle'
 
 export default function RentingBooks() {
 
@@ -9,6 +10,8 @@ export default function RentingBooks() {
     },[])
 
   return (
-    <div>IzdateKnjige</div>
+    <div>
+      <PageTitle title="Izdavanje Knjiga" />
+    </div>
   )
 }

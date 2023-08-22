@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useOutletContext } from 'react-router'
+import PageTitle from '../../components/pageTitle/PageTitle'
 
 export default function Settings() {
 
@@ -9,6 +10,7 @@ export default function Settings() {
     },[])
 
   return (
-    <div>Settings</div>
+    <div>
+    <PageTitle title="Settings" /></div>
   )
 }
