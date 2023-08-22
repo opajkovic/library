@@ -1,7 +1,7 @@
 .sidebar {
     background-color: aliceblue;
     padding: 0;
-    padding-top: 3.2rem ;
+    padding-top: 2rem ;
     border-right: 1px solid grey;
     grid-row: 2 / -1;
     display: flex;
@@ -9,6 +9,7 @@
     height: calc(100vh - 82px); 
     overflow-x: auto;
     transition: width .5s;
+    position: fixed;
   }
   .closed{
     width: 90px;
@@ -29,20 +30,33 @@
     margin-left: 100%;
   }
   .navLink p{
+    color: black;
     display: flex;
     align-items: center;
+  }
+  .icon{
+    color: gray;
   }
   .expandText{
     text-align: right;
     margin-right: 50px;
+    transition: all 0.5s;
+    text-overflow: hidden;
+    overflow: hidden;
   }
   .expandText p{
     margin: 5px 0;
     cursor: pointer;
   }
   .openExpand{
-    display: block;
+    /* display: block; */
+    height: 100px;
+  }
+  .openAnimation{
+    height: 100px;
   }
   .closedExpand{
-    display: none;
+    /* display: none; */
+    height: 0px;
+    text-overflow: initial;
   }

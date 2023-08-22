@@ -1,6 +1,6 @@
 
 .header {
-    background-color: orangered;
+    background-color: var(--primary);
     padding: 2rem;
     grid-column: 1/-1;
     display: flex;
