@@ -5,4 +5,5 @@
 .title {
   border-bottom: 1px solid var(--grey-400);
   padding-bottom: 2rem;
+  width: 100%;
 }

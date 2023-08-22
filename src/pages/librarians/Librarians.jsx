@@ -5,7 +5,7 @@ import { useEffect } from "react";
 const Librarians = () => {
   const {setRoute} = useOutletContext()
   useEffect(()=>{
-    setRoute('bibliotekari')
+    setRoute('librarians')
   },[])
   return (
     <div className="flex">

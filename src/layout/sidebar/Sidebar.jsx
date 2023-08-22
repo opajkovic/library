@@ -40,7 +40,7 @@ function Sidebar({route}) {
           <NavItem isOpen={isOpen} active={(route == "dashboard") ? true : false} path="dashboard" text="Dashborad" icon={<FaTachometerAlt className={(route == "dashboard") ? "icon activeIcon" : "icon"}/>} />
         </li>
         <li>
-          <NavItem isOpen={isOpen} active={(route == "bibliotekari") ? true : false} path="bibliotekari" text="Bibliotekari" icon={<FaAddressBook  className={(route == "bibliotekari") ? "icon activeIcon" : "icon"} />} />
+          <NavItem isOpen={isOpen} active={(route == "librarians") ? true : false} path="librarians" text="Bibliotekari" icon={<FaAddressBook  className={(route == "librarians ") ? "icon activeIcon" : "icon"} />} />
         </li>
         <li>
           <NavItem isOpen={isOpen} active={(route == "ucenik") ? true : false} path="ucenik" text="Ucenik" icon={<FaUsers  className={(route == "ucenik") ? "icon activeIcon" : "icon"} />} />
