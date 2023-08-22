@@ -1,12 +1,12 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/dashboard/Dashboard";
 import AppLayout from "./layout/AppLayout";
-import Ucenik from "./pages/ucenik/Ucenik";
-import EvidencijaKnjiga from "./pages/evidencijaKnjiga/EvidencijaKnjiga";
-import Autori from "./pages/autori/Autori";
-import IzdateKnjige from "./pages/izdateKnjige/IzdateKnjige";
 import Settings from "./pages/settings/Settings";
 import Librarians from "./pages/librarians/Librarians";
+import Authors from "./pages/authors/Authors";
+import Student from "./pages/student/Student";
+import RecordsOfBooks from "./pages/recordsOfBooks/RecordsOfBooks";
+import RentingBooks from "./pages/rentingBooks/rentingBooks";
 
 function App() {
   return (
@@ -15,10 +15,10 @@ function App() {
         <Route element={<AppLayout />}>
           <Route index element={<Navigate replace to="/dashboard" />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/ucenik" element={<Ucenik />} />
-          <Route path="/evidencijaKnjiga" element={<EvidencijaKnjiga />} />
-          <Route path="/autori" element={<Autori />} />
-          <Route path="/izdateKnjige" element={<IzdateKnjige />} />
+          <Route path="/student" element={<Student />} />
+          <Route path="/recordsOfBooks" element={<RecordsOfBooks />} />
+          <Route path="/authors" element={<Authors />} />
+          <Route path="/rentingBooks" element={<RentingBooks />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/librarians" element={<Librarians />} />
         </Route>

@@ -40,19 +40,19 @@ function Sidebar({route}) {
           <NavItem isOpen={isOpen} active={(route == "dashboard") ? true : false} path="dashboard" text="Dashborad" icon={<FaTachometerAlt className={(route == "dashboard") ? "icon activeIcon" : "icon"}/>} />
         </li>
         <li>
-          <NavItem isOpen={isOpen} active={(route == "librarians") ? true : false} path="librarians" text="Bibliotekari" icon={<FaAddressBook  className={(route == "librarians ") ? "icon activeIcon" : "icon"} />} />
+          <NavItem isOpen={isOpen} active={(route == "librarians") ? true : false} path="librarians" text="Bibliotekari" icon={<FaAddressBook  className={(route == "librarians") ? "icon activeIcon" : "icon"} />} />
         </li>
         <li>
-          <NavItem isOpen={isOpen} active={(route == "ucenik") ? true : false} path="ucenik" text="Ucenik" icon={<FaUsers  className={(route == "ucenik") ? "icon activeIcon" : "icon"} />} />
+          <NavItem isOpen={isOpen} active={(route == "student") ? true : false} path="student" text="Ucenik" icon={<FaUsers  className={(route == "student") ? "icon activeIcon" : "icon"} />} />
         </li>
         <li>
-          <NavItem isOpen={isOpen} active={(route == "evidencijaKnjiga") ? true : false} path="evidencijaKnjiga" text="Knjige" icon={<FaCopy  className={(route == "evidencijaKnjiga") ? "icon activeIcon" : "icon"} />} />
+          <NavItem isOpen={isOpen} active={(route == "recordsOfBooks") ? true : false} path="recordsOfBooks" text="Knjige" icon={<FaCopy  className={(route == "recordsOfBooks") ? "icon activeIcon" : "icon"} />} />
         </li>
         <li>
-          <NavItem isOpen={isOpen} active={(route == "autori") ? true : false} path="autori" text="Autori" icon={<FaAddressBook  className={(route == "autori") ? "icon activeIcon" : "icon"} />} />
+          <NavItem isOpen={isOpen} active={(route == "authors") ? true : false} path="authors" text="Autori" icon={<FaAddressBook  className={(route == "authors") ? "icon activeIcon" : "icon"} />} />
         </li>
         <li>
-          <NavItem isOpen={isOpen} active={(route == "izdateKnjige") ? true : false} path="izdateKnjige" text="Izdavanje Knjiga" icon={<FaExchangeAlt  className={(route == "izdateKnjige") ? "icon activeIcon" : "icon"} />} />
+          <NavItem isOpen={isOpen} active={(route == "rentingBooks") ? true : false} path="rentingBooks" text="Izdavanje Knjiga" icon={<FaExchangeAlt  className={(route == "rentingBooks") ? "icon activeIcon" : "icon"} />} />
         </li>
         <li>
         <div className='navLink' onClick={changeExpand}>

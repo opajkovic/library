@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import { useOutletContext } from 'react-router'
 
-export default function evidencijaKnjiga() {
+export default function Student() {
     const {setRoute} = useOutletContext()
     useEffect(()=>{
-      setRoute('evidencijaKnjiga')
+      setRoute('student')
     },[])
   return (
-    <div>EvidencijaKnjiga</div>
+    <div>Ucenik</div>
   )
 }

@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react'
 import { useOutletContext } from 'react-router'
 
-export default function IzdateKnjige() {
-
+export default function Authors() {
     const {setRoute} = useOutletContext()
     useEffect(()=>{
-      setRoute('izdateKnjige')
+      setRoute('authors')
     },[])
-
   return (
-    <div>IzdateKnjige</div>
+    <div>autori</div>
   )
 }
