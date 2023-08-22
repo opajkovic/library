@@ -9,7 +9,7 @@ function AppLayout() {
   let [route, setRoute] = useState('/')
 
   return (
-    <div className="container">
+    <>
       <Header />
       <main className="main">
         <Sidebar route={route} />

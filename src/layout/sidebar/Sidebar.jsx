@@ -1,4 +1,4 @@
-import "./Sidebar.css"
+import "./Sidebar.css";
 import {
   FaTachometerAlt,
   FaBars,
@@ -10,7 +10,7 @@ import {
   FaCog,
   FaTimes,
   FaAngleRight,
-  FaAngleDown
+  FaAngleDown,
 } from "react-icons/fa";
 import NavItem from "../../components/navItem/navItem";
 import { useEffect, useState } from "react";
@@ -21,11 +21,11 @@ function Sidebar({route}) {
   var [isExtendOpen, setIsExtendOpen] = useState(false)
 
   let changeExpand = () => {
-    if(isExtendOpen == false){
-      setIsOpen(true)
+    if (isExtendOpen == false) {
+      setIsOpen(true);
     }
-    setIsExtendOpen(isExtendOpen => !isExtendOpen )
-  }
+    setIsExtendOpen((isExtendOpen) => !isExtendOpen);
+  };
 
   useEffect(()=>{
     setIsOpen(false)
