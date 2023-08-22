@@ -1,6 +1,12 @@
+import { useOutletContext } from "react-router";
 import "./librarians.css";
+import { useEffect } from "react";
 
 const Librarians = () => {
+  const {setRoute} = useOutletContext()
+  useEffect(()=>{
+    setRoute('bibliotekari')
+  },[])
   return (
     <div className="flex">
       <div className="title">

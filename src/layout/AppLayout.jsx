@@ -16,8 +16,7 @@ function AppLayout() {
         <div className="outlet">
         <Outlet context={{setRoute}} />
         </div>
-      </main>
-    </div>
+      </main></>
   );
 }
 export default AppLayout;
