@@ -47,3 +47,13 @@
   gap: 1rem;
   align-items: center;
 }
+.modalBox{
+  cursor: pointer;
+  position: relative;
+}
+.modalHeader{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

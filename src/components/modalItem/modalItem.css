@@ -1,0 +1,16 @@
+.modalItem{
+    display: flex;
+    align-items: center;
+    width: 150px;
+    padding: 10px 15px;
+    grid-gap: 20px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.modalItem:hover{
+    background-color: rgb(196, 196, 196);
+    opacity: .7;
+}
+.modalIcon{
+    font-size: 15px;
+}
