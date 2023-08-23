@@ -16,7 +16,7 @@ export default function Dashboard() {
         <ActivityList />
         <div>
           <ReservationList />
-          <Chart />
+          {/* <Chart /> */}
         </div>
       </div>
     </div>
