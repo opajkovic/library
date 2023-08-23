@@ -2,11 +2,10 @@ import { Outlet } from "react-router-dom";
 import Header from "./header/Header";
 import "./AppLayout.css";
 import Sidebar from "./sidebar/Sidebar";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function AppLayout() {
-
-  let [route, setRoute] = useState('/')
+  let [route, setRoute] = useState("/");
 
   return (
     <>
@@ -14,9 +13,10 @@ function AppLayout() {
       <main className="main">
         <Sidebar route={route} />
         <div className="outlet">
-        <Outlet context={{setRoute}} />
+          <Outlet context={{ setRoute }} />
         </div>
-      </main></>
+      </main>
+    </>
   );
 }
 export default AppLayout;

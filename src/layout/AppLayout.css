@@ -1,9 +1,7 @@
 .main {
   display: flex;
 }
-.container {
-}
-.outlet{
+.outlet {
   margin-top: 80px;
   margin-left: 90px;
   width: 100%;
