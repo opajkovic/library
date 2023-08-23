@@ -12,8 +12,10 @@ import {
   FaAngleRight,
   FaAngleDown,
 } from "react-icons/fa";
-import NavItem from "../../components/navItem/navItem";
+
+
 import { useEffect, useState } from "react";
+import NavItem from "./navItem/NavItem";
 
 function Sidebar({route}) {
 

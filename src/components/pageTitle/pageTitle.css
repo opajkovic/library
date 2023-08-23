@@ -1,6 +1,9 @@
 .pageTitle{
     padding: 30px 0px 30px 0px;
     border-bottom: 2px solid rgb(199, 199, 199);
+    position: fixed;
+    width: 100%;
+    z-index: -1;
 }
 .pageTitle .titleH{
     margin-left: 50px;

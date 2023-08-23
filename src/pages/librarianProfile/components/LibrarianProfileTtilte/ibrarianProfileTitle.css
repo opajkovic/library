@@ -1,0 +1,33 @@
+.LPtitle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    padding: 20px 30px;
+    border-bottom: 1px solid black;
+    position: fixed;
+    width: calc(100% - 90px);
+    z-index: 0;
+}
+.LPtitle .left{
+    display: flex;
+    flex-direction: column;
+    grid-gap: 10px;
+}
+.left .subtitle{
+    display: flex;
+    grid-gap: 10px;
+}
+.LPtitle .right{
+    display: flex;
+    grid-gap: 20px;
+}   
+.izmijeni{
+    cursor: pointer;
+    display: flex;
+    grid-gap: 5px;
+    align-items: center;
+}
+.moduleBox{
+    cursor: pointer;
+}

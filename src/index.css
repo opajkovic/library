@@ -22,4 +22,12 @@ body {
 }
 a {
   text-decoration: none;
+  color: unset;
+}
+a:hover{
+  cursor: pointer;
+  opacity: .8;
+}
+.moduleBox{
+  position: relative;
 }

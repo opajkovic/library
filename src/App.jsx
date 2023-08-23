@@ -8,6 +8,7 @@ import Student from "./pages/student/Student";
 import RentingBooks from "./pages/rentingBooks/rentingBooks";
 import Books from "./pages/books/Books";
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
+import LibrarianProfile from "./pages/librarianProfile/LibrarianProfile";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/rentingBooks" element={<RentingBooks />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/librarians" element={<Librarians />} />
+          <Route path="/LibrarianProfile/:id" element={<LibrarianProfile />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
