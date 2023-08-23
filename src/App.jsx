@@ -7,6 +7,7 @@ import Authors from "./pages/authors/Authors";
 import Student from "./pages/student/Student";
 import RentingBooks from "./pages/rentingBooks/rentingBooks";
 import Books from "./pages/books/Books";
+import PageNotFound from "./pages/pageNotFound/PageNotFound";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
           <Route path="/settings" element={<Settings />} />
           <Route path="/librarians" element={<Librarians />} />
         </Route>
-        {/* <Route path="*" element={<PageNotFound />} /> */}
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
   );
