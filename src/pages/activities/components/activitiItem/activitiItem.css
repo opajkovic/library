@@ -1,0 +1,27 @@
+.activitiItem{
+    display: flex;
+    grid-gap: 20px;
+    align-items: center;
+    padding: 5px;
+}
+.activitiItem .img img{
+    height: 60px;
+    border-radius: 50%;
+}
+span{
+    padding-left: 0;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    grid-gap: 5px;
+}
+.details .librarianName{
+    color: var(--secondary);
+}
+.studentName{
+    color: var(--secondary);
+}
+.showDetails{
+    color: var(--secondary);
+}

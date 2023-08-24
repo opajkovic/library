@@ -1,10 +1,10 @@
 import React from 'react'
-import ProfileTitle from './components/LibrarianProfileTtilte/LibrarianProfileTitle'
+import ProfileTitle from '../../layout/profileTitle/ProfileTitle'
 
 export default function LibrarianProfile() {
   return (
     <div className='Librarian'>
-        <ProfileTitle />
+        <ProfileTitle linkOne={'Svi Bibliotekari'} linkOnePath={'/librarians'} linkTwoPath={'/librarians/'} />
     </div>
   )
 }
