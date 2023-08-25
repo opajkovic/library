@@ -1,0 +1,28 @@
+.ReservationItem{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid rgb(181, 181, 181);
+    /* grid-gap: 10%; */
+}
+.ReservationItem .studentInfo{
+    display: flex;
+    align-items: center;
+    grid-gap: 3px;
+}
+.ReservationItem .studentInfo img{
+    border-radius: 50%;
+    height: 30px;
+}
+.ReservationItem .status{
+    display: flex;
+    grid-gap: 10px;
+}
+.ReservationItem .status svg{
+    cursor: pointer;
+}
+.ReservationItem .status svg:hover{
+    opacity: .7;
+}

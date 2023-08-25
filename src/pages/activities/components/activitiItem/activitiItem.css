@@ -1,8 +1,9 @@
 .activitiItem{
     display: flex;
-    grid-gap: 20px;
+    grid-gap: 10px;
     align-items: center;
     padding: 5px;
+    font-size: 13px;
 }
 .activitiItem .img img{
     height: 60px;
