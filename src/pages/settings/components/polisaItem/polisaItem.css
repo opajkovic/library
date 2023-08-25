@@ -1,0 +1,25 @@
+.polisaItem{
+    display: flex;
+    padding: 30px;
+    grid-gap: 30px;
+    border-bottom: 1px solid gray;
+    width: 100%;
+}
+.polisaItem .text{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    grid-gap: 20px;
+    max-width: 500px;
+}
+.polisaItem .text h3{
+    font-size: 20px;
+}
+.polisaItem .inputDiv{
+    display: flex;
+    align-items: center;
+    grid-gap: 10px;
+}
+.polisaItem .inputDiv input{
+    padding: 10px;
+}

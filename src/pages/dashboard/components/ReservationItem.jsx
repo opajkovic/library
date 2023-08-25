@@ -9,7 +9,7 @@ export default function ReservationItem() {
     <div className='ReservationItem'>
         <div className="studentInfo">
             <img src={imagee} alt="student" />
-            <Link>Pero Perovic</Link>
+            <Link to='/students/1'>Pero Perovic</Link>
         </div>
         <Link className="book">Ep o Gilgamesu</Link>
         <div className="date">05.11.2023</div>

@@ -22,8 +22,8 @@ const Header = () => {
   return (
     <header className="header">
       <div>
-        <FaBookReader />
         <NavLink onClick={closeModals}  to="./dashboard">
+        <FaBookReader />
           <span className="bild">Online Library</span>
         </NavLink>
       </div>
@@ -41,8 +41,8 @@ const Header = () => {
             <ModalItem icon={<FaAddressBook />} text={"Autor"} />
           </div>} /> : <></>}
         </div>
-        <NavLink to="./dashboard">
-          <span className="bild">bildstudio</span>
+        <NavLink to="/dashboard">
+          <span className="bild">DataDesing</span>
         </NavLink>
         <div className="modalBox">
           <FaBookReader onClick={()=>{changeModal(setModalProfileShow,modalProfileShow)}} />

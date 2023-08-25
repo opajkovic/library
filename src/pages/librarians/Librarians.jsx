@@ -10,7 +10,6 @@ const Librarians = () => {
   const { setRoute } = useOutletContext();
   useEffect(() => {
     setRoute("librarians");
-    // eslint-disable-next-line
   }, []);
   return (
     <>
