@@ -11,7 +11,7 @@ export default function ActivitiItem() {
         </div>
         <div className="info">
             <p className="title">IZDAVANJE KNJIGE - 4 days ago</p>
-            <p className="details"><Link to={`librarians/2`} className="librarianName">Valentina K. </Link>
+            <p className="details"><Link to={`/librarians/2`} className="librarianName">Valentina K. </Link>
                 je izdala knjigu <Link to={'/books/1'} ><b>Tom Sojer</b></Link><Link to={`/students/2`} className="studentName"> Peru Perovic </Link>
                 dana <b>21.02.2023</b>, <Link to={'/rentedBooks/2'} className='showDetails'>pogledaj detaljnije {'>>'}</Link>
             </p>
