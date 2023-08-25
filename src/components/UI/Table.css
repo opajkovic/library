@@ -1,11 +1,13 @@
 #table {
-    width:100%;
+    width:95%;
     border-collapse: collapse;
+    margin: 1.5rem auto;
+    font-size: 0.9rem;
 }
 #table td, 
 #table th {
     border: 1px solid var(--grey-200);
-    padding: 10px;
+    padding: 15px 25px;
     text-align: left;
 }
 #table th {
@@ -14,4 +16,16 @@
 th input,
 td input {
     margin-right: 1rem;
+}
+table tr:hover {
+    background-color:var(--grey-100);
+}
+.arrow {
+    cursor: pointer;
+    padding: 15px;
+    font-size: 25px;
+}
+.dots {
+    font-size: 25px;
+    cursor: pointer;
 }

@@ -1,18 +1,28 @@
 import "./Table.css";
+import {BsThreeDotsVertical} from "react-icons/bs";
+import {ImArrowDown2} from "react-icons/im";
 import photo from "../../assets/profileStudent.jpg";
 
 const Table = () => {
+
+  const handleDots = () => {
+
+  }
   return (
     <table id="table">
+      <thead>
       <tr>
         <th>
           <input type="checkbox" />
-          Ime i prezime
+          Ime i prezime 
+          <ImArrowDown2 className="icons"/>
         </th>
         <th>Email</th>
         <th>Tip korisnika</th>
         <th>Zadnji pristup sistemu</th>
       </tr>
+      </thead>
+      <tbody>
       <tr>
         <td>
           <input type="checkbox" />
@@ -20,7 +30,9 @@ const Table = () => {
         </td>
         <td>valentina.kascelan@domain...</td>
         <td>Bibliotekar</td>
-        <td>Prije 10 sati</td>
+        <td className="flex-between">Prije 10 sati 
+        <BsThreeDotsVertical className="dots" onClick={handleDots}/>
+        </td>
       </tr>
       <tr>
         <td>
@@ -29,7 +41,9 @@ const Table = () => {
         </td>
         <td>valentina.kascelan@domain...</td>
         <td>Bibliotekar</td>
-        <td>Prije 10 sati</td>
+        <td className="flex-between">Prije 10 sati
+        <BsThreeDotsVertical className="dots" onClick={handleDots}/>
+        </td>
       </tr>
       <tr>
         <td>
@@ -38,8 +52,11 @@ const Table = () => {
         </td>
         <td>valentina.kascelan@domain...</td>
         <td>Bibliotekar</td>
-        <td>Prije 10 sati</td>
+        <td className="flex-between">Prije 10 sati
+        <BsThreeDotsVertical className="dots" onClick={handleDots}/>
+        </td>
       </tr>
+      </tbody>
     </table>
   );
 };
