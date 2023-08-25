@@ -17,7 +17,7 @@ const Librarians = () => {
         <PageTitle title="Bibliotekari" />
       </div>
       <div className="container">
-        <Button type="button" primary="btn btn-primary">
+        <Button type="button" btn="btn btn-primary">
           <FaPlus />
           <span>New librarian</span>
         </Button>
