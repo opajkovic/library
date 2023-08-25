@@ -11,7 +11,7 @@
     transition: width .5s;
     position: fixed;
     margin-top: 80px;
-    z-index: 2;
+    z-index: 3;
   }
   .closed{
     width: 90px;

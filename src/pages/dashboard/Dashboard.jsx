@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useOutletContext } from "react-router";
 import PageTitle from "../../components/pageTitle/PageTitle";
-import ReservationList from "./ReservationList";
-import ActivityList from "./ActivityList";
+import ReservationList from "./layouts/ReservationList";
+import ActivityList from "./layouts/ActivityList";
+import './dashboard.css'
 
 export default function Dashboard() {
   const { setRoute } = useOutletContext();
@@ -12,11 +13,10 @@ export default function Dashboard() {
   return (
     <div>
       <PageTitle title="Dashboard" />
-      <div>
+      <div className="contentD">
         <ActivityList />
-        <div>
+        <div className="rightSide">
           <ReservationList />
-          {/* <Chart /> */}
         </div>
       </div>
     </div>

@@ -1,0 +1,17 @@
+.reservationList{
+    width: 100%;
+}
+.reservationList .subTitle{
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+.reservationList .list{
+    display: flex;
+    flex-direction: column;
+}
+.reservationList .showAll{
+    color: var(--secondary);
+    text-align: right;
+    margin-top: 10px;
+}
