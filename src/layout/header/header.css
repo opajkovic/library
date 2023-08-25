@@ -23,14 +23,15 @@
 
 .bell {
   display: flex;
-  justify-content: center;
-  align-items: center;
   width: 46px;
   height: 46px;
   padding: 0.5rem;
   border-radius: 50%;
   background-color: #606fc7;
   cursor: pointer;
+}
+.bell svg{
+  margin: auto;
 }
 .border {
   border-right: 1px solid white;
@@ -49,7 +50,7 @@
 }
 .modalBox{
   cursor: pointer;
-  position: relative;
+  /* position: relative; */
 }
 .modalHeader{
   display: flex;

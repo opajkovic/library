@@ -34,7 +34,7 @@ const Header = () => {
         <div className="border"></div>
         <div className="bell modalBox">
           <FaPlus onClick={()=>{changeModal(setModalPlus, modalPlus)}} />
-          {modalPlus ? <Modal component={<div>
+          {modalPlus ? <Modal setModalClose={setModalPlus} component={<div>
             <ModalItem icon={<FaRegAddressBook />} text={"Bibliotekar"} />
             <ModalItem icon={<FaUsers />} text={"Ucenik"} />
             <ModalItem icon={<FaCopy />} text={"Knjiga"} />
@@ -46,7 +46,7 @@ const Header = () => {
         </NavLink>
         <div className="modalBox">
           <FaBookReader onClick={()=>{changeModal(setModalProfileShow,modalProfileShow)}} />
-          {modalProfileShow ? <Modal className="a " component={<div className="modalHeader">
+          {modalProfileShow ? <Modal setModalClose={setModalProfileShow} className="a " component={<div className="modalHeader">
             <ModalItem closeModals={closeModals} icon={<FaFile className="modalIcon" />} text={"Profile"} path={`/librarians/2`} />
             <ModalItem closeModals={closeModals} icon={<FaSignOutAlt className="modalIcon" />} text={"Log out"} />
           </div>} /> : <></>}

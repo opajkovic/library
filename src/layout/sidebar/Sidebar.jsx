@@ -33,8 +33,10 @@ function Sidebar({route}) {
     setIsOpen(false)
     setIsExtendOpen(false)
   },[window.location.href])
+  
   return (
     <aside className={isOpen ? "sidebar open" : "sidebar closed"}>
+      <div onClick={()=>{setIsOpen(false)}} className={isOpen ? "selfClose" : ""}></div>
       <nav>
       {isOpen ? <FaTimes className="faTimes" onClick={()=>{setIsOpen(false)}} />  :<FaBars className="faBars" onClick={()=>{setIsOpen(true)}} />}
       <ul>
