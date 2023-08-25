@@ -28,7 +28,7 @@ export default function ProfileTitle({linkOne,linkOnePath, linkTwoPath}) {
         <Link to={`/izmijeniPodatke`} className="izmijeni"><FaEdit />Izmeni podatke</Link>
         <div className="moduleBox">
           <FaEllipsisV onClick={()=>{setOpenModule(!openModule)}} />
-          {openModule ? <Modal component={<div>
+          {openModule ? <Modal setModalClose={setOpenModule} component={<div>
             <ModalItem closeModals={closeModals} path={''} icon={<FaTrash />} text={'Izbrisi korisnika'} />
           </div>} /> : <></>}
         </div>

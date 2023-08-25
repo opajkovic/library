@@ -1,6 +1,7 @@
 import React from "react";
 import "./ActivityList.css";
-import ActivitiItem from "../../activities/components/activitiItem/ActivitiItem";
+import { Link } from "react-router-dom";
+import ActivitiItem from "../../../activities/components/activitiItem/ActivitiItem";
 
 export default function ActivityList() {
   return (
@@ -13,7 +14,7 @@ export default function ActivityList() {
         <ActivitiItem />
         <ActivitiItem />
         <ActivitiItem />
-      <button className="showBtn">SHOW</button>
+      <Link to='/activities'><button className="showBtn">SHOW</button></Link>
       </div>
     </div>
   )

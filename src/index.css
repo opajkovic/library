@@ -48,7 +48,7 @@ a:hover {
   opacity: 0.8;
 }
 .moduleBox {
-  position: relative;
+  /* position: relative; */
 }
 .flex-center {
   display: flex;

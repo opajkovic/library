@@ -22,8 +22,8 @@ const Header = () => {
   return (
     <header className="header">
       <div>
-        <FaBookReader />
         <NavLink onClick={closeModals}  to="./dashboard">
+        <FaBookReader />
           <span className="bild">Online Library</span>
         </NavLink>
       </div>
@@ -34,19 +34,19 @@ const Header = () => {
         <div className="border"></div>
         <div className="bell modalBox">
           <FaPlus onClick={()=>{changeModal(setModalPlus, modalPlus)}} />
-          {modalPlus ? <Modal component={<div>
+          {modalPlus ? <Modal setModalClose={setModalPlus} component={<div>
             <ModalItem icon={<FaRegAddressBook />} text={"Bibliotekar"} />
             <ModalItem icon={<FaUsers />} text={"Ucenik"} />
             <ModalItem icon={<FaCopy />} text={"Knjiga"} />
             <ModalItem icon={<FaAddressBook />} text={"Autor"} />
           </div>} /> : <></>}
         </div>
-        <NavLink to="./dashboard">
-          <span className="bild">bildstudio</span>
+        <NavLink to="/dashboard">
+          <span className="bild">DataDesing</span>
         </NavLink>
         <div className="modalBox">
           <FaBookReader onClick={()=>{changeModal(setModalProfileShow,modalProfileShow)}} />
-          {modalProfileShow ? <Modal className="a " component={<div className="modalHeader">
+          {modalProfileShow ? <Modal setModalClose={setModalProfileShow} className="a " component={<div className="modalHeader">
             <ModalItem closeModals={closeModals} icon={<FaFile className="modalIcon" />} text={"Profile"} path={`/librarians/2`} />
             <ModalItem closeModals={closeModals} icon={<FaSignOutAlt className="modalIcon" />} text={"Log out"} />
           </div>} /> : <></>}

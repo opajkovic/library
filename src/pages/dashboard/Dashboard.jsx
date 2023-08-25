@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useOutletContext } from "react-router";
 import PageTitle from "../../components/pageTitle/PageTitle";
-import ReservationList from "./layouts/ReservationList";
-import ActivityList from "./layouts/ActivityList";
+import ReservationList from "./layouts/reservationList/ReservationList";
 import './dashboard.css'
+import ActivityList from "./layouts/activiryList/ActivityList";
 
 export default function Dashboard() {
   const { setRoute } = useOutletContext();

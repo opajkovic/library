@@ -1,6 +1,6 @@
 import React from "react";
 import "./ReservationList.css";
-import ReservationItem from "../components/ReservationItem";
+import ReservationItem from "../../components/ReservationItem";
 import { FaCalendarAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -17,7 +17,7 @@ export default function ReservationList() {
       <Link>
         <div className="showAll">
         <FaCalendarAlt />
-        Prikazi sve
+          <Link to='/rentingBooks'>Prikazi sve</Link>
         </div>
       </Link>
     </div>
