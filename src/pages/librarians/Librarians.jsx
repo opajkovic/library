@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Button from "../../components/UI/Button";
 import { FaPlus } from "react-icons/fa";
+import Table from "../../components/UI/Table";
 
 const Librarians = () => {
   const { setRoute } = useOutletContext();
@@ -21,6 +22,7 @@ const Librarians = () => {
           <FaPlus />
           <span>New librarian</span>
         </Button>
+        <Table />
       </div>
     </>
   );

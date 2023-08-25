@@ -1,0 +1,17 @@
+#table {
+    width:100%;
+    border-collapse: collapse;
+}
+#table td, 
+#table th {
+    border: 1px solid var(--grey-200);
+    padding: 10px;
+    text-align: left;
+}
+#table th {
+    background-color: var(--grey-100);
+}
+th input,
+td input {
+    margin-right: 1rem;
+}
