@@ -1,6 +1,6 @@
 import './kategorije.css'
 import PageTitle from '../../../../components/pageTitle/PageTitle'
-// import Menu from '../../layouts/menu/Menu'
+import Menu from '../../layouts/menu/Menu'
 import { useOutletContext } from 'react-router';
 import Button from "../../../../components/UI/Button"
 import { FaPlus } from "react-icons/fa";
@@ -30,7 +30,7 @@ export default function Kategorije() {
     <>
     <div>
     <PageTitle title="Settings" />
-    {/* <Menu selectedSettings={'kategorije'} /> */}
+    <Menu selectedSettings={'kategorije'} />
     <div className='container'>
     <Button type="button" btn="btn btn-primary">
           <FaPlus />
