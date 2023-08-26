@@ -1,6 +1,6 @@
 import "./Table.css";
 import {BsThreeDotsVertical} from "react-icons/bs";
-import {ImArrowDown2} from "react-icons/im";
+import {FaLongArrowAltDown} from "react-icons/fa";
 import photo from "../../assets/profileStudent.jpg";
 
 const Table = () => {
@@ -15,7 +15,7 @@ const Table = () => {
         <th>
           <input type="checkbox" />
           Ime i prezime 
-          <ImArrowDown2 className="icons"/>
+          <sub><FaLongArrowAltDown className="arrow"/></sub>
         </th>
         <th>Email</th>
         <th>Tip korisnika</th>
