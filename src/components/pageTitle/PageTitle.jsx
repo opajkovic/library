@@ -1,12 +1,13 @@
-import React from 'react'
-import './pageTitle.css'
+import React from "react";
+import "./pageTitle.css";
 
-export default function PageTitle({title}) {
-  return (<div className="bigdiv">
-    <div className='pageTitle'>
-        <h1 className='titleH'>{title}</h1>
+export default function PageTitle({ title }) {
+  return (
+    <div className="bigdiv">
+      <div className="pageTitle">
+        <h1 className="titleH">{title}</h1>
+      </div>
+      <div className="padding"></div>
     </div>
-    <div className="padding"></div>
-    </div>
-  )
+  );
 }

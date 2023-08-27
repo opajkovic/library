@@ -4,22 +4,23 @@ import { FaLongArrowAltDown } from "react-icons/fa";
 import photo from "../../assets/profileStudent.jpg";
 import Input from "./Input";
 
-const Table = ({ headers, tableData }) => {
+const Table = ({ headers, tableData, mainHeader, lastHeader }) => {
   const handleDots = () => {};
   return (
-    <table id="table">
+    <table className="table-container">
       <thead>
         <tr>
           <th>
             <Input input={{ type: "checkbox", className: "table-checkbox" }} />
-            Ime i prezime
+            {mainHeader}
             <sub>
               <FaLongArrowAltDown className="arrow" />
             </sub>
           </th>
-          {headers.map((item, index) => (
+          {headers && headers.map((item, index) => (
             <th key={index}>{item}</th>
           ))}
+          {lastHeader && <th> {lastHeader}</th>}
         </tr>
       </thead>
       <tbody>
@@ -31,12 +32,15 @@ const Table = ({ headers, tableData }) => {
               />
               {item.name}
             </td>
-            <td>{item.email}</td>
-            <td>{item.role}</td>
-            <td className="flex-between">
-              {item.lastAccess}
-              <BsThreeDotsVertical className="dots" onClick={handleDots} />
-            </td>
+            {headers && headers.map((header, columnIndex) => (
+              <td key={columnIndex}>{item[header.split(" ").join("")]}</td>
+            ))}
+            {lastHeader && (
+              <td className="flex-between">
+                {item.lastHeader}
+                <BsThreeDotsVertical className="dots" onClick={handleDots} />
+              </td>
+            )}
           </tr>
         ))}
       </tbody>

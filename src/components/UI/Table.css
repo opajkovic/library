@@ -1,26 +1,26 @@
-#table {
+.table-container {
   border-collapse: collapse;
-  margin-left: 1.5rem;
   font-size: 0.9rem;
   box-shadow: 0.5rem 0.5rem 0.5rem rgba(128, 128, 128, 0.527);
+  width: 100%;
 }
 
-#table tr {
+.table-container tr {
   display: flex;
   flex-direction: row;
 }
 
-#table td,
-#table th {
+.table-container td,
+.table-container th {
   border: 1px solid var(--grey-200);
-  padding: 15px 25px;
+  padding: 1rem 1.5rem;
   text-align: left;
   display: flex;
   align-items: center;
-  width: 25rem;
+  flex: 1;
 }
 
-#table th {
+.table-container th {
   background-color: var(--grey-100);
   display: flex;
   flex-direction: row;
@@ -33,14 +33,14 @@ td input {
   margin-right: 1rem;
 }
 
-table tr:hover {
+.table-container tr:hover {
   background-color: var(--grey-100);
 }
 
 .arrow {
   cursor: pointer;
   margin-left: 1rem;
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 .arrow:hover {
