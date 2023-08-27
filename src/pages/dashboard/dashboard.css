@@ -1,8 +1,10 @@
-.contentD{
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    grid-gap: 30px;
-}.rightSide{
-    width: 100%;
+.contentD {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1.5rem 4rem 2rem 2rem;
+}
+
+.rightSide {
+  width: 30%;
 }

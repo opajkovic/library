@@ -2,23 +2,26 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    padding: 10px 0;
+    min-width: 20vw;
+    padding: 1rem 0;
     border-bottom: 1px solid rgb(181, 181, 181);
     /* grid-gap: 10%; */
+    font-size: 0.85rem;
 }
 .ReservationItem .studentInfo{
     display: flex;
     align-items: center;
-    grid-gap: 3px;
+    grid-gap: 0.4rem;
+    font-weight: 500;
 }
 .ReservationItem .studentInfo img{
     border-radius: 50%;
-    height: 30px;
+    width: 2rem;
 }
 .ReservationItem .status{
     display: flex;
-    grid-gap: 10px;
+    flex-direction: row;
+    gap: 10px;
 }
 .ReservationItem .status svg{
     cursor: pointer;

@@ -24,7 +24,7 @@ const Header = () => {
       <div>
         <NavLink onClick={closeModals}  to="./dashboard">
         <FaBookReader />
-          <span className="bild">Online Library</span>
+          <span className="bild">Online biblioteka</span>
         </NavLink>
       </div>
       <div className="headerRight">

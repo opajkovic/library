@@ -1,18 +1,23 @@
 .activityList{
     /* max-width: 40vw; */
-    min-width: 40vw;
+    width: 45%;
 }
+
 .activityList .subTitle{
-    font-size: 20px;
-    margin-bottom: 30px;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
 }
+
 .list{
     display: flex;
     flex-direction: column;
-    grid-gap: 15px;
+    grid-gap: 1rem;
 }
+
 .showBtn{
     cursor: pointer;
     width: 100%;
-    padding: 7px;
+    padding: 0.5rem;
+    max-width: 650px;
 }

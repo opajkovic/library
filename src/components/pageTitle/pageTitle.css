@@ -1,19 +1,19 @@
-.bigdiv{
-    position: relative;
+.bigdiv {
+  position: relative;
 }
-.pageTitle{
-    padding: 30px 0px 30px 0px;
-    border-bottom: 2px solid rgb(199, 199, 199);
-    position: fixed;
-    width: 100%;
-    z-index: -1;
-    font-size: 24px;
-    background-color: white;
-    z-index: 2;
+.pageTitle {
+  padding: 1.5rem 0;
+  border-bottom: 2px solid rgb(199, 199, 199);
+  position: fixed;
+  width: 100%;
+  z-index: -1;
+  font-size: 2rem;
+  background-color: white;
+  z-index: 2;
 }
-.pageTitle .titleH{
-    margin-left: 50px;
-    font-weight: 600;
-}.padding{
-    padding-top: 90px;
+.pageTitle .titleH {
+  margin-left: 2rem;
+}
+.padding {
+  padding-top: 6rem;
 }

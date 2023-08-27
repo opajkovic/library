@@ -1,28 +1,37 @@
-.activitiItem{
-    display: flex;
-    grid-gap: 10px;
-    align-items: center;
-    padding: 5px;
-    font-size: 13px;
+.activitiItem {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  padding: 5px;
+  font-size: 0.85rem;
 }
-.activitiItem .img img{
-    height: 60px;
-    border-radius: 50%;
+.activitiItem .img img {
+  height: 60px;
+  border-radius: 50%;
 }
-span{
-    padding-left: 0;
+span {
+  padding-left: 0;
 }
-.info{
-    display: flex;
-    flex-direction: column;
-    grid-gap: 5px;
+.info {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 0.4rem;
 }
-.details .librarianName{
-    color: var(--secondary);
+.details .librarianName {
+  color: var(--secondary);
+  font-weight: 500;
+  margin-right: 0.2rem;
 }
-.studentName{
-    color: var(--secondary);
+.studentName {
+  color: var(--secondary);
+  font-weight: 500;
+  margin-right: 0.2rem;
 }
-.showDetails{
-    color: var(--secondary);
+.showDetails {
+  color: var(--secondary);
+  font-weight: 500;
+}
+
+.showBtn {
+  max-width: 650px;
 }
