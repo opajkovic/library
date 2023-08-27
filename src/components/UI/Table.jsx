@@ -1,61 +1,44 @@
 import "./Table.css";
-import {BsThreeDotsVertical} from "react-icons/bs";
-import {FaLongArrowAltDown} from "react-icons/fa";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import { FaLongArrowAltDown } from "react-icons/fa";
 import photo from "../../assets/profileStudent.jpg";
+import Input from "./Input";
 
-const Table = () => {
-
-  const handleDots = () => {
-
-  }
+const Table = ({ headers, tableData }) => {
+  const handleDots = () => {};
   return (
     <table id="table">
       <thead>
-      <tr>
-        <th>
-          <input type="checkbox" />
-          Ime i prezime 
-          <sub><FaLongArrowAltDown className="arrow"/></sub>
-        </th>
-        <th>Email</th>
-        <th>Tip korisnika</th>
-        <th>Zadnji pristup sistemu</th>
-      </tr>
+        <tr>
+          <th>
+            <Input input={{ type: "checkbox", className: "table-checkbox" }} />
+            Ime i prezime
+            <sub>
+              <FaLongArrowAltDown className="arrow" />
+            </sub>
+          </th>
+          {headers.map((item, index) => (
+            <th key={index}>{item}</th>
+          ))}
+        </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>
-          <input type="checkbox" />
-          Valentina Kascelan
-        </td>
-        <td>valentina.kascelan@domain...</td>
-        <td>Bibliotekar</td>
-        <td className="flex-between">Prije 10 sati 
-        <BsThreeDotsVertical className="dots" onClick={handleDots}/>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <input type="checkbox" />
-          Valentina Kascelan
-        </td>
-        <td>valentina.kascelan@domain...</td>
-        <td>Bibliotekar</td>
-        <td className="flex-between">Prije 10 sati
-        <BsThreeDotsVertical className="dots" onClick={handleDots}/>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <input type="checkbox" />
-          Valentina Kascelan
-        </td>
-        <td>valentina.kascelan@domain...</td>
-        <td>Bibliotekar</td>
-        <td className="flex-between">Prije 10 sati
-        <BsThreeDotsVertical className="dots" onClick={handleDots}/>
-        </td>
-      </tr>
+        {tableData.map((item, index) => (
+          <tr key={index}>
+            <td>
+              <Input
+                input={{ type: "checkbox", className: "table-checkbox" }}
+              />
+              {item.name}
+            </td>
+            <td>{item.email}</td>
+            <td>{item.role}</td>
+            <td className="flex-between">
+              {item.lastAccess}
+              <BsThreeDotsVertical className="dots" onClick={handleDots} />
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );

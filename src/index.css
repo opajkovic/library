@@ -86,6 +86,7 @@ a:hover {
 }
 .btn-primary {
   background-color: var(--primary);
+  margin-bottom: 2rem;
 }
 .btn-danger {
   background-color: var(--red-700);

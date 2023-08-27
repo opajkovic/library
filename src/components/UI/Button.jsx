@@ -1,8 +1,9 @@
 import "./Button.css";
 
 const Button = (props) => {
+  const btnClass = `button-div ${props.className}`;
   return (
-    <div className="button">
+    <div className={btnClass}>
     <button type={props.type} className={props.btn} onClick={props.onClick}>
       {props.children}
     </button>

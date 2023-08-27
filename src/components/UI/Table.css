@@ -1,31 +1,63 @@
 #table {
-    width:95%;
-    border-collapse: collapse;
-    margin: 1.5rem auto;
-    font-size: 0.9rem;
+  border-collapse: collapse;
+  margin-left: 1.5rem;
+  font-size: 0.9rem;
+  box-shadow: 0.5rem 0.5rem 0.5rem rgba(128, 128, 128, 0.527);
 }
-#table td, 
+
+#table tr {
+  display: flex;
+  flex-direction: row;
+}
+
+#table td,
 #table th {
-    border: 1px solid var(--grey-200);
-    padding: 15px 25px;
-    text-align: left;
+  border: 1px solid var(--grey-200);
+  padding: 15px 25px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  width: 25rem;
 }
+
 #table th {
-    background-color: var(--grey-100);
+  background-color: var(--grey-100);
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
 }
+
 th input,
 td input {
-    margin-right: 1rem;
+  margin-right: 1rem;
 }
+
 table tr:hover {
-    background-color:var(--grey-100);
+  background-color: var(--grey-100);
 }
+
 .arrow {
-    cursor: pointer;
-    margin-left: 1rem;
-    font-size: 20px;
+  cursor: pointer;
+  margin-left: 1rem;
+  font-size: 20px;
 }
+
+.arrow:hover {
+  scale: 1.2;
+}
+
 .dots {
-    font-size: 25px;
-    cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.dots:hover {
+  cursor: pointer;
+  scale: 1.2;
+}
+
+.table-checkbox {
+  display: flex;
+  flex-direction: row;
+  gap: 0.1rem;
 }
