@@ -4,6 +4,7 @@ import PageTitle from "../../components/pageTitle/PageTitle";
 import ReservationList from "./layouts/reservationList/ReservationList";
 import './dashboard.css'
 import ActivityList from "./layouts/activiryList/ActivityList";
+import Chart from "../../components/UI/Chart";
 
 export default function Dashboard() {
   const { setRoute } = useOutletContext();
@@ -17,6 +18,7 @@ export default function Dashboard() {
         <ActivityList />
         <div className="rightSide">
           <ReservationList />
+          <Chart />
         </div>
       </div>
     </div>

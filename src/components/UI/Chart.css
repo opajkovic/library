@@ -1,0 +1,9 @@
+.chart-wrapper h1 {
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  padding: 1.5rem 0;
+}
+
+.apexcharts-text {
+  font-size: 0.8rem;
+}

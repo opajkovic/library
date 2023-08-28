@@ -17,9 +17,7 @@ const Table = ({ headers, tableData, mainHeader, lastHeader }) => {
               <FaLongArrowAltDown className="arrow" />
             </sub>
           </th>
-          {headers && headers.map((item, index) => (
-            <th key={index}>{item}</th>
-          ))}
+          {headers && headers.map((item, index) => <th key={index}>{item}</th>)}
           {lastHeader && <th> {lastHeader}</th>}
         </tr>
       </thead>
@@ -32,9 +30,10 @@ const Table = ({ headers, tableData, mainHeader, lastHeader }) => {
               />
               {item.name}
             </td>
-            {headers && headers.map((header, columnIndex) => (
-              <td key={columnIndex}>{item[header.split(" ").join("")]}</td>
-            ))}
+            {headers &&
+              headers.map((header, columnIndex) => (
+                <td key={columnIndex}>{item[header.split(" ").join("")]}</td>
+              ))}
             {lastHeader && (
               <td className="flex-between">
                 {item.lastHeader}
