@@ -1,72 +1,95 @@
 .sidebar {
-    background-color: aliceblue;
-    padding: 0;
-    padding-top: 2rem ;
-    border-right: 1px solid grey;
-    grid-row: 2 / -1;
-    display: flex;
-    flex-direction: column;
-    height: calc(100vh - 82px); 
-    overflow-x: auto;
-    transition: width .5s;
-    position: fixed;
-    margin-top: 80px;
-    z-index: 3;
-  }
-  .closed{
-    width: 90px;
-  }
-  .open{
-    width: 300px;
-  }
-  .faBars, .faTimes{
-    cursor: pointer;
-    margin-bottom: 10px;
-    font-size: 30px;
-    margin-left: 20px;
-  }
-  ul{
-    list-style: none;
-  }
-  .extendArrows{
-    margin-left: 100%;
-  }
-  .navLink p{
-    color: black;
-    display: flex;
-    align-items: center;
-  }
-  .icon{
-    color: gray;
-  }
-  .expandText{
-    text-align: right;
-    margin-right: 50px;
-    transition: all 0.5s;
-    text-overflow: hidden;
-    overflow: hidden;
-  }
-  .expandText p{
-    margin: 5px 0;
-    cursor: pointer;
-  }
-  .openExpand{
-    /* display: block; */
-    height: 100px;
-  }
-  .openAnimation{
-    height: 100px;
-  }
-  .closedExpand{
-    /* display: none; */
-    height: 0px;
-    text-overflow: initial;
-  }
-  .selfClose{
-    position: fixed;
-    top: 0;
-    left: 300px;
-    width: 100%;
-    height: 100vh;
-    z-index: 2;
-  }
+  background-color: aliceblue;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  flex-direction: column;
+  height: calc(100vh - 82px);
+  overflow-x: auto;
+  transition: width 0.5s;
+  position: fixed;
+  margin-top: 5rem;
+  z-index: 3;
+  border: 0;
+}
+
+.sidebar nav {
+  width: 100%;
+  height: 5.5rem;
+  border-bottom: 1px solid var(--grey-200);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin-bottom: 2rem;
+}
+
+.sidebar ul {
+  width: 100%;
+  padding: 1rem;
+  list-style: none;
+}
+
+.closed {
+  width: 90px;
+}
+
+.open {
+  width: 300px;
+}
+
+.faBars,
+.faTimes {
+  cursor: pointer;
+  font-size: 1.8rem;
+}
+
+.faBars,
+.faTimes,
+.navLink svg {
+  margin-left: 0.5rem;
+}
+
+.extendArrows {
+  margin-left: 100%;
+}
+.navLink p {
+  color: black;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  color: gray;
+}
+.expandText {
+  text-align: right;
+  margin-right: 50px;
+  transition: all 0.5s;
+  text-overflow: hidden;
+  overflow: hidden;
+}
+.expandText p {
+  margin: 0.3rem 0;
+  cursor: pointer;
+}
+.openExpand {
+  /* display: block; */
+  height: 100px;
+}
+.openAnimation {
+  height: 100px;
+}
+.closedExpand {
+  /* display: none; */
+  height: 0px;
+  text-overflow: initial;
+}
+.selfClose {
+  position: fixed;
+  top: 0;
+  left: 300px;
+  width: 100%;
+  height: 100vh;
+  z-index: 2;
+}

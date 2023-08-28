@@ -9,7 +9,6 @@ const Chart = () => {
           {
             x: "Izdate knjige",
             y: 73,
-            className: "bar-1",
           },
           {
             x: "Rezervisane knjige",

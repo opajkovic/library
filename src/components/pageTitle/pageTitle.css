@@ -3,11 +3,11 @@
 }
 .pageTitle {
   padding: 1.5rem 0;
-  border-bottom: 2px solid rgb(199, 199, 199);
   position: fixed;
   width: 100%;
   z-index: -1;
   font-size: 2rem;
+  line-height: 2rem;
   background-color: white;
   z-index: 2;
 }
@@ -15,5 +15,6 @@
   margin-left: 2rem;
 }
 .padding {
-  padding-top:  88px;
+  padding-top: calc(5.5rem - 1px);
+  border-bottom: 1px solid var(--grey-200);
 }

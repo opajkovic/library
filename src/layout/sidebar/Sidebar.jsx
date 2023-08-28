@@ -38,7 +38,8 @@ function Sidebar({route}) {
     <aside className={isOpen ? "sidebar open" : "sidebar closed"}>
       <div onClick={()=>{setIsOpen(false)}} className={isOpen ? "selfClose" : ""}></div>
       <nav>
-      {isOpen ? <FaTimes className="faTimes" onClick={()=>{setIsOpen(false)}} />  :<FaBars className="faBars" onClick={()=>{setIsOpen(true)}} />}
+      {isOpen ? <FaTimes className="faTimes" onClick={()=>{setIsOpen(false)}} />  :<FaBars className="faBars" onClick={()=>{setIsOpen(true)}} />}  
+      </nav>
       <ul>
         <li>
           <NavItem isOpen={isOpen} active={(route == "dashboard") ? true : false} path="dashboard" text="Dashborad" icon={<FaTachometerAlt className={(route == "dashboard") ? "icon activeIcon" : "icon"}/>} />
@@ -73,7 +74,7 @@ function Sidebar({route}) {
           <NavItem isOpen={isOpen} active={(route == "settings") ? true : false} path="settings" text="Settings" icon={<FaCog  className={(route == "settings") ? "icon activeIcon" : "icon"} />} />
         </li>
       </ul>
-    </nav>
+  
     </aside>
   );
 }

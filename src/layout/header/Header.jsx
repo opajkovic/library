@@ -42,7 +42,7 @@ const Header = () => {
           </div>} /> : <></>}
         </div>
         <NavLink to="/dashboard">
-          <span className="bild">DataDesing</span>
+          <span className="bild">DataDesign</span>
         </NavLink>
         <div className="modalBox">
           <FaBookReader onClick={()=>{changeModal(setModalProfileShow,modalProfileShow)}} />
