@@ -46,7 +46,7 @@ export default function Students() {
 
   const { setRoute } = useOutletContext();
   useEffect(() => {
-    setRoute("student");
+    setRoute("students");
   }, []);
   return (
     <>

@@ -3,7 +3,7 @@
     border: 1px solid black;
     border-radius: 3px;
     background-color: var(--white);
-    transform: translate(-90%, 10%);
+    transform: translate(-90%, 5%);
     color: black;
     text-align: left;
 }

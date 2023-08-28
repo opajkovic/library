@@ -8,6 +8,9 @@
     cursor: pointer;
     text-align: left;
 }
+.modalItem svg{
+    margin: unset;
+}
 .modalItem:hover{
     background-color: rgb(196, 196, 196);
     opacity: .7;

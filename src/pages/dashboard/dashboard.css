@@ -3,8 +3,10 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 1.5rem 4rem 2rem 2rem;
+  grid-gap: 30px;
 }
 
 .rightSide {
-  width: 30%;
+  width: 100%;
+  max-width: 500px;
 }

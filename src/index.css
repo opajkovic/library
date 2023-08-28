@@ -47,9 +47,9 @@ a:hover {
   cursor: pointer;
   opacity: 0.8;
 }
-.moduleBox {
+/* .moduleBox { */
   /* position: relative; */
-}
+/* } */
 .flex-center {
   display: flex;
   justify-content: center;

@@ -22,7 +22,7 @@
 }
 
 .bell {
-  display: flex;
+  text-align: center;
   width: 46px;
   height: 46px;
   padding: 0.5rem;
@@ -31,7 +31,7 @@
   cursor: pointer;
 }
 .bell svg{
-  margin: auto;
+  margin-top: 2px;
 }
 .border {
   border-right: 1px solid white;
