@@ -14,12 +14,12 @@ export default function ReservationList() {
         <ReservationItem />
         <ReservationItem />
       </div>
-      <Link>
+      <div>
         <div className="showAll">
           <FaCalendarAlt />
           <Link to="/rentingBooks">Prikazi sve</Link>
         </div>
-      </Link>
+      </div>
     </div>
   );
 }
