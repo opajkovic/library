@@ -63,7 +63,7 @@ export default function Kategorije() {
           </Button>
           <Table
             mainHeader="Nova kategorija"
-            lastAccess="Opis"
+            lastHeader="Opis"
             tableData={categories}
           />
         </div>
