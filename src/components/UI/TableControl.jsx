@@ -2,6 +2,7 @@ import Button from "./Button";
 import { FaPlus, FaSearch } from "react-icons/fa";
 import Input from "./Input";
 import "./TableControl.css";
+import Select from "./Select";
 
 const TableControl = (props) => {
   return (
@@ -10,7 +11,7 @@ const TableControl = (props) => {
         <FaPlus />
         <span> {props.title} </span>
       </Button>
-
+      <Select />
       <div className="input-div">
         <span>
           <FaSearch className="search-icon" />

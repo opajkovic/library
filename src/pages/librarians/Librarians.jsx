@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
+import Select from "../../components/UI/Select";
 
 const Librarians = () => {
   const DUMMY_TABLE_DATA = [

@@ -6,6 +6,7 @@ import Button from "../../../../components/UI/Button";
 import { FaPlus } from "react-icons/fa";
 import { useEffect } from "react";
 import Table from "../../../../components/UI/Table";
+import TableControl from "../../../../components/UI/TableControl";
 
 const categories = [
   {
@@ -56,10 +57,7 @@ export default function Kategorije() {
       <PageTitle title="Settings" />
       <Menu selectedSettings={"kategorije"} />
       <div className="category-wrapper">
-        <Button type="button" btn="btn btn-primary">
-          <FaPlus />
-          <span>Nova kategorija</span>
-        </Button>
+        <TableControl title="Nova kategorija" />
         <Table
           mainHeader="Nova kategorija"
           lastHeader="Opis"

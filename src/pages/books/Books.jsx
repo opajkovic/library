@@ -3,6 +3,7 @@ import { useOutletContext } from "react-router";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
+import Select from "../../components/UI/Select";
 
 const DUMMY_TABLE_DATA = [
   {

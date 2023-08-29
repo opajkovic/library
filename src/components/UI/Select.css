@@ -1,0 +1,17 @@
+.select-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.select-wrapper label {
+  margin: 0 0.5rem 0 0;
+}
+
+.select-wrapper span {
+    font-weight: 500;
+    margin-left: 0.5rem;
+}

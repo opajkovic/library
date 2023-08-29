@@ -5,6 +5,7 @@ import Button from "../../components/UI/Button";
 import Table from "../../components/UI/Table";
 import { FaPlus } from "react-icons/fa";
 import TableControl from "../../components/UI/TableControl";
+import Select from "../../components/UI/Select";
 
 export default function Students() {
   const DUMMY_TABLE_DATA = [

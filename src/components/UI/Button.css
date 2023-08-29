@@ -1,3 +1,7 @@
 span {
   margin-left: 0.8rem;
 }
+
+.button-div{
+  white-space: nowrap;
+}
