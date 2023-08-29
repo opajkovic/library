@@ -2,8 +2,6 @@ import "./kategorije.css";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
 import Menu from "../../layouts/menu/Menu";
 import { useOutletContext } from "react-router";
-import Button from "../../../../components/UI/Button";
-import { FaPlus } from "react-icons/fa";
 import { useEffect } from "react";
 import Table from "../../../../components/UI/Table";
 import TableControl from "../../../../components/UI/TableControl";
@@ -51,7 +49,6 @@ export default function Kategorije() {
     setRoute("settings");
   }, []);
 
-  const handleDots = () => {};
   return (
     <div>
       <PageTitle title="Settings" />
@@ -59,7 +56,7 @@ export default function Kategorije() {
       <div className="category-wrapper">
         <TableControl title="Nova kategorija" />
         <Table
-          mainHeader="Nova kategorija"
+          mainHeader="Kategorija"
           lastHeader="Opis"
           tableData={categories}
           headers=""

@@ -29,10 +29,18 @@ const Table = ({ headers, tableData, mainHeader, lastHeader }) => {
         {tableData.map((item, index) => (
           <tr key={index}>
             <td>
-              <Input
-                input={{ type: "checkbox", className: "table-checkbox" }}
-              />
-              {item.name}
+              <div className="left-container">
+                <Input
+                  input={{ type: "checkbox", className: "table-checkbox" }}
+                />
+                {item.name}
+              </div>
+              {lastHeader === "" && (
+                <BsThreeDotsVertical
+                  className="main-header-dots"
+                  onClick={handleDots}
+                />
+              )}
             </td>
             {headers &&
               headers.map((header, columnIndex) => (

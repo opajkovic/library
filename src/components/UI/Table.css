@@ -21,6 +21,10 @@
   flex: 1;
 }
 
+.table-container td {
+  justify-content: space-between;
+}
+
 .table-container th {
   background-color: var(--grey-100);
   display: flex;
@@ -48,11 +52,13 @@ td input {
   scale: 1.2;
 }
 
-.dots {
+.dots,
+.main-header-dots {
   font-size: 1.2rem;
 }
 
-.dots:hover {
+.dots:hover,
+.main-header-dots:hover {
   cursor: pointer;
   scale: 1.2;
 }
@@ -73,4 +79,9 @@ td input {
   color: var(--grey-200);
   font-weight: 500;
   font-size: 0.9rem;
+}
+
+.left-container {
+  display: flex;
+  flex-direction: row;
 }
