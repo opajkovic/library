@@ -1,8 +1,9 @@
 import "./Table.css";
-import { BsThreeDotsVertical } from "react-icons/bs";
-import { FaLongArrowAltDown } from "react-icons/fa";
-import photo from "../../assets/profileStudent.jpg";
-import Input from "./Input";
+import Thead from "./table components/Thead";
+import FirstDataCell from "./table components/FirstDataCell";
+import MiddleDataCell from "./table components/MiddleDataCell";
+import LastDataCell from "./table components/LastDataCell";
+import SearchTableInputs from "./table components/SearchTableInputs";
 
 const Table = ({ headers, tableData, mainHeader, lastHeader }) => {
   const handleDots = () => {};
@@ -12,58 +13,28 @@ const Table = ({ headers, tableData, mainHeader, lastHeader }) => {
 
   return (
     <table className="table-container">
-      <thead>
-        <tr>
-          <th>
-            <Input input={{ type: "checkbox", className: "table-checkbox" }} />
-            {mainHeader}
-            <sub>
-              <FaLongArrowAltDown className="arrow" />
-            </sub>
-          </th>
-          {headers && headers.map((item, index) => <th key={index}>{item}</th>)}
-          {lastHeader && <th> {lastHeader}</th>}
-        </tr>
-      </thead>
+      <Thead
+        headers={headers}
+        mainHeader={mainHeader}
+        lastHeader={lastHeader}
+      />
       <tbody>
         {tableData.map((item, index) => (
           <tr key={index}>
-            <td>
-              <div className="left-container">
-                <Input
-                  input={{ type: "checkbox", className: "table-checkbox" }}
-                />
-                {item.name}
-              </div>
-              {lastHeader === "" && (
-                <BsThreeDotsVertical
-                  className="main-header-dots"
-                  onClick={handleDots}
-                />
-              )}
-            </td>
-            {headers &&
-              headers.map((header, columnIndex) => (
-                <td key={columnIndex}>{item[header.split(" ").join("")]}</td>
-              ))}
-            {lastHeader && (
-              <td className="flex-between">
-                {item.lastHeader}
-                <BsThreeDotsVertical className="dots" onClick={handleDots} />
-              </td>
-            )}
+            <FirstDataCell
+              item={item}
+              handleDots={handleDots}
+              lastHeader={lastHeader}
+            />
+            <MiddleDataCell item={item} headers={headers} />
+            <LastDataCell
+              item={item}
+              lastHeader={lastHeader}
+              handleDots={handleDots}
+            />
           </tr>
         ))}
-        <tr>
-          {combinedArray.map((item) => (
-            <td key={item}>
-              <input
-                className="category-search"
-                placeholder={`Pretraži ${item}`}
-              />
-            </td>
-          ))}
-        </tr>
+        <SearchTableInputs combinedArray={combinedArray} />
       </tbody>
     </table>
   );
