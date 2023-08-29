@@ -3,10 +3,9 @@ import "./povez.css";
 import Menu from "../../layouts/menu/Menu";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
 import { useOutletContext } from "react-router";
-import Table from "../../../../components/UI/Table";
-import TableControl from "../../../../components/UI/TableControl";
+import SettingsTable from "../../components/SettingsTable";
 
-const categories = [
+const DUMMY_DATA = [
   {
     id: 1,
     name: "Kožni",
@@ -34,15 +33,13 @@ export default function Povez() {
     <div>
       <PageTitle title="Settings" />
       <Menu selectedSettings={"povez"} />
-      <div className="category-wrapper">
-        <TableControl title="Novi povez" />
-        <Table
-          mainHeader="Povez"
-          tableData={categories}
-          headers=""
-          lastHeader=""
-        />
-      </div>
+      <SettingsTable
+        title="Novi povez"
+        mainHeader="Povez"
+        tableData={DUMMY_DATA}
+        headers=""
+        lastHeader=""
+      />
     </div>
   );
 }

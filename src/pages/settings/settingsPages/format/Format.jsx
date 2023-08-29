@@ -5,8 +5,9 @@ import PageTitle from "../../../../components/pageTitle/PageTitle";
 import { useOutletContext } from "react-router";
 import Table from "../../../../components/UI/Table";
 import TableControl from "../../../../components/UI/TableControl";
+import SettingsTable from "../../components/SettingsTable";
 
-const categories = [
+const DUMMY_DATA = [
   {
     id: 1,
     name: "A3",
@@ -34,15 +35,13 @@ export default function Format() {
     <div>
       <PageTitle title="Settings" />
       <Menu selectedSettings={"format"} />
-      <div className="category-wrapper">
-        <TableControl title="Novi format" />
-        <Table
-          mainHeader="Format"
-          tableData={categories}
-          headers=""
-          lastHeader=""
-        />
-      </div>
+      <SettingsTable
+        title="Novi format"
+        mainHeader="Format"
+        tableData={DUMMY_DATA}
+        headers=""
+        lastHeader=""
+      />
     </div>
   );
 }

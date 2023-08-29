@@ -3,10 +3,9 @@ import "./zanrovi.css";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
 import Menu from "../../layouts/menu/Menu";
 import { useOutletContext } from "react-router";
-import Table from "../../../../components/UI/Table";
-import TableControl from "../../../../components/UI/TableControl";
+import SettingsTable from "../../components/SettingsTable";
 
-const categories = [
+const DUMMY_DATA = [
   {
     id: 1,
     name: "Autobiografija",
@@ -34,15 +33,13 @@ export default function Zanrovi() {
     <div>
       <PageTitle title="Settings" />
       <Menu selectedSettings={"zanrovi"} />
-      <div className="category-wrapper">
-        <TableControl title="Novi žanr" />
-        <Table
-          mainHeader="Žanr"
-          tableData={categories}
-          headers=""
-          lastHeader=""
-        />
-      </div>
+      <SettingsTable
+        title="Novi žanr"
+        mainHeader="Žanr"
+        tableData={DUMMY_DATA}
+        headers=""
+        lastHeader=""
+      />
     </div>
   );
 }

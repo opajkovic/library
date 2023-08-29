@@ -3,10 +3,9 @@ import "./izdavac.css";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
 import Menu from "../../layouts/menu/Menu";
 import { useOutletContext } from "react-router";
-import Table from "../../../../components/UI/Table";
-import TableControl from "../../../../components/UI/TableControl";
+import SettingsTable from "../../components/SettingsTable";
 
-const categories = [
+const DUMMY_DATA = [
   {
     id: 1,
     name: "Arto",
@@ -34,15 +33,13 @@ export default function Izdavac() {
     <div>
       <PageTitle title="Settings" />
       <Menu selectedSettings={"izdavac"} />
-      <div className="category-wrapper">
-        <TableControl title="Novi izdavač" />
-        <Table
-          mainHeader="Izdavač"
-          tableData={categories}
-          headers=""
-          lastHeader=""
-        />
-      </div>
+      <SettingsTable
+        title="Novi izdavač"
+        mainHeader="Izdavač"
+        tableData={DUMMY_DATA}
+        headers=""
+        lastHeader=""
+      />
     </div>
   );
 }

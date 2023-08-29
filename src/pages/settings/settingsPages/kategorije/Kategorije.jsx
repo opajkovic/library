@@ -3,10 +3,9 @@ import PageTitle from "../../../../components/pageTitle/PageTitle";
 import Menu from "../../layouts/menu/Menu";
 import { useOutletContext } from "react-router";
 import { useEffect } from "react";
-import Table from "../../../../components/UI/Table";
-import TableControl from "../../../../components/UI/TableControl";
+import SettingsTable from "../../components/SettingsTable";
 
-const categories = [
+const DUMMY_DATA = [
   {
     id: 1,
     name: "Hrana i pice",
@@ -53,15 +52,13 @@ export default function Kategorije() {
     <div>
       <PageTitle title="Settings" />
       <Menu selectedSettings={"kategorije"} />
-      <div className="category-wrapper">
-        <TableControl title="Nova kategorija" />
-        <Table
-          mainHeader="Kategorija"
-          lastHeader="Opis"
-          tableData={categories}
-          headers=""
-        />
-      </div>
+      <SettingsTable
+        title="Nova Kategorija"
+        mainHeader="Kategorija"
+        lastHeader="Opis"
+        tableData={DUMMY_DATA}
+        headers=""
+      />
     </div>
   );
 }

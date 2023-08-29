@@ -3,10 +3,9 @@ import "./pismo.css";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
 import Menu from "../../layouts/menu/Menu";
 import { useOutletContext } from "react-router";
-import Table from "../../../../components/UI/Table";
-import TableControl from "../../../../components/UI/TableControl";
+import SettingsTable from "../../components/SettingsTable";
 
-const categories = [
+const DUMMY_DATA = [
   {
     id: 1,
     name: "Ćirlica",
@@ -26,15 +25,13 @@ export default function Pismo() {
     <div>
       <PageTitle title="Settings" />
       <Menu selectedSettings={"pismo"} />
-      <div className="category-wrapper">
-        <TableControl title="Novo pismo" />
-        <Table
-          mainHeader="Pismo"
-          tableData={categories}
-          headers=""
-          lastHeader=""
-        />
-      </div>
+      <SettingsTable
+        title="Novo pismo"
+        mainHeader="Pismo"
+        tableData={DUMMY_DATA}
+        headers=""
+        lastHeader=""
+      />
     </div>
   );
 }
