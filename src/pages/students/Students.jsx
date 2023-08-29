@@ -54,7 +54,7 @@ export default function Students() {
   return (
     <>
       <PageTitle title="Učenici" />
-      <div className="pageTableWrapper">
+      <div className="page-wrapper">
 
         <TableControl title="Novi ucenik" />
         <Table

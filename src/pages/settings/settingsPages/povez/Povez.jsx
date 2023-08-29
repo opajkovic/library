@@ -32,7 +32,7 @@ export default function Povez() {
   return (
     <div>
       <PageTitle title="Settings" />
-      <div className="pageTableWrapper">
+      <div className="page-wrapper">
 
       <Menu selectedSettings={"povez"} />
       <SettingsTable

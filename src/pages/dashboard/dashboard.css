@@ -5,9 +5,17 @@
   padding: 1.5rem 4rem 2rem 2rem;
   grid-gap: 30px;
   width: 100%;
+  min-width: 1400px;
 }
 
 .rightSide {
   width: 100%;
   max-width: 550px;
+}
+
+@media (max-width: 1400px){
+  .contentD {
+    width: calc(100vw - 90px);
+    min-width: unset;
+  }
 }

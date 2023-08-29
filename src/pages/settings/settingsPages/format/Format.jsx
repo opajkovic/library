@@ -34,7 +34,7 @@ export default function Format() {
   return (
     <div>
       <PageTitle title="Settings" />
-      <div className="pageTableWrapper">
+      <div className="page-wrapper">
 
       <Menu selectedSettings={"format"} />
       <SettingsTable

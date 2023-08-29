@@ -3,8 +3,7 @@
   font-size: 0.9rem;
   box-shadow: 0.5rem 0.5rem 0.5rem rgba(128, 128, 128, 0.527);
   width: 100%;
-  /* min-width: calc(1400px - 7rem); */
-  max-width: 85vw;
+  min-width: calc(1400px - 7rem);
 }
 
 .table-container tr {
@@ -85,4 +84,20 @@ td input {
 .left-container {
   display: flex;
   flex-direction: row;
+}
+
+@media (max-width: 1400px) {
+  .table-container {
+    min-width: unset;
+  }
+
+  .table-container tbody tr {
+    margin: 0;
+  }
+
+  .table-container td,
+  .table-container th {
+    padding: 0.8rem 1rem;
+    font-size: 0.8rem;
+  }
 }

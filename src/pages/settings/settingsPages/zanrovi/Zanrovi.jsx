@@ -32,7 +32,7 @@ export default function Zanrovi() {
   return (
     <div>
       <PageTitle title="Settings" />
-      <div className="pageTableWrapper">
+      <div className="page-wrapper">
 
       <Menu selectedSettings={"zanrovi"} />
       <SettingsTable
