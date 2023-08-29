@@ -11,6 +11,7 @@
   margin-top: 5rem;
   z-index: 3;
   border: 0;
+  padding: 0;
 }
 
 .sidebar nav {
@@ -47,7 +48,7 @@
 .faBars,
 .faTimes,
 .navLink svg {
-  margin-left: 0.5rem;
+  margin-left: 0.8rem;
 }
 
 .extendArrows {
@@ -57,6 +58,7 @@
   color: black;
   display: flex;
   align-items: center;
+  margin: 0 0 0 1rem;
 }
 
 .icon {

@@ -4,6 +4,7 @@ import PageTitle from "../../components/pageTitle/PageTitle";
 import Button from "../../components/UI/Button";
 import Table from "../../components/UI/Table";
 import { FaPlus } from "react-icons/fa";
+import TableControl from "../../components/UI/TableControl";
 
 export default function Students() {
   const DUMMY_TABLE_DATA = [
@@ -51,11 +52,8 @@ export default function Students() {
   return (
     <>
       <PageTitle title="Učenici" />
-      <div className="librarians-wrapper">
-        <Button type="button" btn="btn btn-primary">
-          <FaPlus />
-          <span> Novi ucenik </span>
-        </Button>
+      <div className="page-wrapper">
+        <TableControl title="Novi ucenik" />
         <Table
           mainHeader="Ime i prezime"
           headers={["email", "role"]}

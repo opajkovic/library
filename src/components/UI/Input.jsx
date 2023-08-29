@@ -1,17 +1,16 @@
 import "./Input.css";
 
 const Input = (props) => {
-  const { title, label, id, type, name, defaultValue, className } = props.input;
+  const {label, type, name, defaultValue, className, placeholder, inputClass } = props.input;
   return (
-    <div className={`${className ? className : "input"}`}>
-      <label htmlFor={title}>
-        {label}
-      </label>
+    <div className={className}>
+      <label htmlFor={inputClass}>{label}</label>
       <input
-        id={title}
+        className={inputClass}
         type={type}
-        name={title}
+        name={name}
         defaultValue={defaultValue}
+        placeholder={placeholder}
         required
       />
     </div>

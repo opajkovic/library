@@ -6,6 +6,7 @@
     text-decoration: none;
     width: 100%;
 }
+
 .navLink:hover{
     background-color: rgb(211, 211, 211);
     opacity: .8;

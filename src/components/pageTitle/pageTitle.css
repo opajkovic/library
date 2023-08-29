@@ -1,8 +1,9 @@
 .bigdiv {
   position: relative;
 }
-.pageTitle {
-  padding: 1.5rem 0;
+
+.pageTitle h1{
+  padding: 1.5rem 2rem;
   position: fixed;
   width: 100%;
   z-index: -1;
@@ -11,9 +12,7 @@
   background-color: white;
   z-index: 2;
 }
-.pageTitle .titleH {
-  margin-left: 2rem;
-}
+
 .padding {
   padding-top: calc(5.5rem - 1px);
   border-bottom: 1px solid var(--grey-200);

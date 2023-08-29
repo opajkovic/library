@@ -1,10 +1,8 @@
 import { useOutletContext } from "react-router";
-import "./librarians.css";
 import { useEffect } from "react";
 import PageTitle from "../../components/pageTitle/PageTitle";
-import Button from "../../components/UI/Button";
-import { FaPlus } from "react-icons/fa";
 import Table from "../../components/UI/Table";
+import TableControl from "../../components/UI/TableControl";
 
 const Librarians = () => {
   const DUMMY_TABLE_DATA = [
@@ -36,11 +34,8 @@ const Librarians = () => {
   return (
     <>
       <PageTitle title="Bibliotekari" />
-      <div className="librarians-wrapper">
-        <Button type="button" btn="btn btn-primary">
-          <FaPlus />
-          <span> Novi bibliotekar </span>
-        </Button>
+      <div className="page-wrapper">
+        <TableControl title="Novi bibliotekar" />
         <Table
           mainHeader="Ime i prezime"
           headers={["email", "role"]}

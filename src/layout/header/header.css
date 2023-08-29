@@ -1,4 +1,4 @@
-.flexItem{
+.flexItem {
   display: flex;
   align-items: center;
 }
@@ -22,17 +22,17 @@
 }
 
 .bell {
-  text-align: center;
   width: 46px;
   height: 46px;
   padding: 0.5rem;
   border-radius: 50%;
   background-color: #606fc7;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.bell svg{
-  margin-top: 2px;
-}
+
 .border {
   border-right: 1px solid white;
   padding: 1px;
@@ -48,11 +48,11 @@
   gap: 1rem;
   align-items: center;
 }
-.modalBox{
+.modalBox {
   cursor: pointer;
   /* position: relative; */
 }
-.modalHeader{
+.modalHeader {
   display: flex;
   flex-direction: column;
   justify-content: center;

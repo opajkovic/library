@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { useOutletContext } from "react-router";
 import PageTitle from "../../components/pageTitle/PageTitle";
-import Button from "../../components/UI/Button";
 import Table from "../../components/UI/Table";
-import { FaPlus } from "react-icons/fa";
+import TableControl from "../../components/UI/TableControl";
 
 const DUMMY_TABLE_DATA = [
   {
@@ -60,11 +59,8 @@ export default function Books() {
   return (
     <>
       <PageTitle title="Knjige" />
-      <div className="librarians-wrapper">
-        <Button type="button" btn="btn btn-primary">
-          <FaPlus />
-          <span> Nova knjiga </span>
-        </Button>
+      <div className="page-wrapper">
+        <TableControl title="Nova knjiga" />
         <Table
           mainHeader="Naziv knjige"
           headers={[

@@ -52,22 +52,20 @@ export default function Kategorije() {
 
   const handleDots = () => {};
   return (
-    <>
-      <div>
-        <PageTitle title="Settings" />
-        <Menu selectedSettings={"kategorije"} />
-        <div className="category-wrapper">
-          <Button type="button" btn="btn btn-primary">
-            <FaPlus />
-            <span>Nova kategorija</span>
-          </Button>
-          <Table
-            mainHeader="Nova kategorija"
-            lastHeader="Opis"
-            tableData={categories}
-          />
-        </div>
+    <div>
+      <PageTitle title="Settings" />
+      <Menu selectedSettings={"kategorije"} />
+      <div className="category-wrapper">
+        <Button type="button" btn="btn btn-primary">
+          <FaPlus />
+          <span>Nova kategorija</span>
+        </Button>
+        <Table
+          mainHeader="Nova kategorija"
+          lastHeader="Opis"
+          tableData={categories}
+        />
       </div>
-    </>
+    </div>
   );
 }

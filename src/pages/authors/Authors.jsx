@@ -4,6 +4,7 @@ import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
 import Button from "../../components/UI/Button";
 import { FaPlus } from "react-icons/fa";
+import TableControl from "../../components/UI/TableControl";
 
 const DUMMY_AUTHOR_DATA = [
   {
@@ -41,11 +42,8 @@ export default function Authors() {
   return (
     <>
       <PageTitle title="Autori" />
-      <div className="librarians-wrapper">
-        <Button type="button" btn="btn btn-primary">
-          <FaPlus />
-          <span> Novi autor </span>
-        </Button>
+      <div className="page-wrapper">
+        <TableControl title="Novi autor" />
         <Table
           mainHeader="Naziv autora"
           lastHeader="Opis"
