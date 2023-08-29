@@ -60,7 +60,8 @@ export default function Books() {
   return (
     <>
       <PageTitle title="Knjige" />
-      <div className="page-wrapper">
+      <div className="pageTableWrapper">
+
         <TableControl title="Nova knjiga" />
         <Table
           mainHeader="Naziv knjige"

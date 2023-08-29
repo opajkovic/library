@@ -24,6 +24,8 @@ export default function Pismo() {
   return (
     <div>
       <PageTitle title="Settings" />
+      <div className="pageTableWrapper">
+
       <Menu selectedSettings={"pismo"} />
       <SettingsTable
         title="Novo pismo"
@@ -32,6 +34,7 @@ export default function Pismo() {
         headers=""
         lastHeader=""
       />
+      </div>
     </div>
   );
 }

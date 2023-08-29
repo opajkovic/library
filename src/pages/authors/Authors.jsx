@@ -41,7 +41,7 @@ export default function Authors() {
   return (
     <>
       <PageTitle title="Autori" />
-      <div className="page-wrapper">
+      <div className="pageTableWrapper">
         <TableControl title="Novi autor" />
         <Table
           mainHeader="Naziv autora"

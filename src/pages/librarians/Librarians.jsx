@@ -5,6 +5,7 @@ import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
 import Select from "../../components/UI/Select";
 import Pagination from "../../components/UI/Pagination";
+import './librarians.css'
 
 const Librarians = () => {
   const DUMMY_TABLE_DATA = [
@@ -34,9 +35,10 @@ const Librarians = () => {
   }, []);
 
   return (
-    <>
+    <div >
       <PageTitle title="Bibliotekari" />
-      <div className="page-wrapper">
+      <div className="pageTableWrapper">
+
         <TableControl title="Novi bibliotekar" />
         <Table
           mainHeader="Ime i prezime"
@@ -46,7 +48,7 @@ const Librarians = () => {
         />
         <Pagination items={DUMMY_TABLE_DATA} />
       </div>
-    </>
+    </div>
   );
 };
 

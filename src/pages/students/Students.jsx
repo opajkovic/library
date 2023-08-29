@@ -54,7 +54,8 @@ export default function Students() {
   return (
     <>
       <PageTitle title="Učenici" />
-      <div className="page-wrapper">
+      <div className="pageTableWrapper">
+
         <TableControl title="Novi ucenik" />
         <Table
           mainHeader="Ime i prezime"

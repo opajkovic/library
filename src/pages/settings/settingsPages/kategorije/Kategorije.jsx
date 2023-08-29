@@ -52,6 +52,8 @@ export default function Kategorije() {
   return (
     <div>
       <PageTitle title="Settings" />
+      <div className="pageTableWrapper">
+
       <Menu selectedSettings={"kategorije"} />
       <SettingsTable
         title="Nova Kategorija"
@@ -60,6 +62,7 @@ export default function Kategorije() {
         tableData={DUMMY_DATA}
         headers=""
       />
+      </div>
     </div>
   );
 }

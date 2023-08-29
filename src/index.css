@@ -23,6 +23,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  max-width: 100vw;
 }
 body {
   font-family: var(--font-family);
@@ -100,11 +101,6 @@ a:hover {
 .btn-succes:hover {
   background-color: var(--green-300);
 }
-
-.page-wrapper {
-  width: 100%;
-  min-width: 1400px;
-  display: flex;
-  flex-direction: column;
-  padding: 0 5rem 0 2rem;
+.pageTableWrapper{
+  padding-left: 30px;
 }

@@ -32,6 +32,8 @@ export default function Povez() {
   return (
     <div>
       <PageTitle title="Settings" />
+      <div className="pageTableWrapper">
+
       <Menu selectedSettings={"povez"} />
       <SettingsTable
         title="Novi povez"
@@ -40,6 +42,7 @@ export default function Povez() {
         headers=""
         lastHeader=""
       />
+      </div>
     </div>
   );
 }

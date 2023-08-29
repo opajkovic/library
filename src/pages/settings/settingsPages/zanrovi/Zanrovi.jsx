@@ -32,6 +32,8 @@ export default function Zanrovi() {
   return (
     <div>
       <PageTitle title="Settings" />
+      <div className="pageTableWrapper">
+
       <Menu selectedSettings={"zanrovi"} />
       <SettingsTable
         title="Novi žanr"
@@ -40,6 +42,7 @@ export default function Zanrovi() {
         headers=""
         lastHeader=""
       />
+      </div>
     </div>
   );
 }

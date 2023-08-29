@@ -32,6 +32,8 @@ export default function Izdavac() {
   return (
     <div>
       <PageTitle title="Settings" />
+      <div className="pageTableWrapper">
+
       <Menu selectedSettings={"izdavac"} />
       <SettingsTable
         title="Novi izdavač"
@@ -40,6 +42,7 @@ export default function Izdavac() {
         headers=""
         lastHeader=""
       />
+      </div>
     </div>
   );
 }
