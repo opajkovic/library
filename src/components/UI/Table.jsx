@@ -6,6 +6,10 @@ import Input from "./Input";
 
 const Table = ({ headers, tableData, mainHeader, lastHeader }) => {
   const handleDots = () => {};
+  const combinedArray = [...[mainHeader], ...headers, ...[lastHeader]].filter(
+    (item) => item !== ""
+  );
+
   return (
     <table className="table-container">
       <thead>
@@ -42,6 +46,16 @@ const Table = ({ headers, tableData, mainHeader, lastHeader }) => {
             )}
           </tr>
         ))}
+        <tr>
+          {combinedArray.map((item) => (
+            <td key={item}>
+              <input
+                className="category-search"
+                placeholder={`Pretraži ${item}`}
+              />
+            </td>
+          ))}
+        </tr>
       </tbody>
     </table>
   );

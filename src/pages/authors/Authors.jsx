@@ -48,6 +48,7 @@ export default function Authors() {
           mainHeader="Naziv autora"
           lastHeader="Opis"
           tableData={DUMMY_AUTHOR_DATA}
+          headers=""
         />
       </div>
     </>

@@ -64,6 +64,7 @@ export default function Kategorije() {
           mainHeader="Nova kategorija"
           lastHeader="Opis"
           tableData={categories}
+          headers=""
         />
       </div>
     </div>

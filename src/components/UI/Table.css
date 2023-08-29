@@ -34,7 +34,7 @@ td input {
   margin-right: 1rem;
 }
 
-.table-container tr:hover {
+.table-container tr:not(:last-child):hover {
   background-color: var(--grey-100);
 }
 
@@ -61,4 +61,16 @@ td input {
   display: flex;
   flex-direction: row;
   gap: 0.1rem;
+}
+
+.category-search {
+  width: 100%;
+  outline: none;
+  border: 0;
+}
+
+.category-search::placeholder {
+  color: var(--grey-200);
+  font-weight: 500;
+  font-size: 0.9rem;
 }
