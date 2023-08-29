@@ -1,0 +1,27 @@
+.pagination-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: right;
+    margin-top: 2rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.pagination li {
+  margin: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+}
+
+.pagination li.active {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+}

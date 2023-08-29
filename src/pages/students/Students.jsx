@@ -6,6 +6,7 @@ import Table from "../../components/UI/Table";
 import { FaPlus } from "react-icons/fa";
 import TableControl from "../../components/UI/TableControl";
 import Select from "../../components/UI/Select";
+import Pagination from "../../components/UI/Pagination";
 
 export default function Students() {
   const DUMMY_TABLE_DATA = [
@@ -61,6 +62,7 @@ export default function Students() {
           lastHeader="Poslednji pristup sistemu"
           tableData={DUMMY_TABLE_DATA}
         />
+        <Pagination items={DUMMY_TABLE_DATA} />
       </div>
     </>
   );

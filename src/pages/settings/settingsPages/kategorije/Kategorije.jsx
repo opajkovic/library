@@ -4,6 +4,7 @@ import Menu from "../../layouts/menu/Menu";
 import { useOutletContext } from "react-router";
 import { useEffect } from "react";
 import SettingsTable from "../../components/SettingsTable";
+import Pagination from "../../../../components/UI/Pagination";
 
 const DUMMY_DATA = [
   {

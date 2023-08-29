@@ -4,6 +4,7 @@ import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
 import Select from "../../components/UI/Select";
+import Pagination from "../../components/UI/Pagination";
 
 const Librarians = () => {
   const DUMMY_TABLE_DATA = [
@@ -43,6 +44,7 @@ const Librarians = () => {
           lastHeader="Poslednji pristup sistemu"
           tableData={DUMMY_TABLE_DATA}
         />
+        <Pagination items={DUMMY_TABLE_DATA} />
       </div>
     </>
   );

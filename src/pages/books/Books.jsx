@@ -3,7 +3,7 @@ import { useOutletContext } from "react-router";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
-import Select from "../../components/UI/Select";
+import Pagination from "../../components/UI/Pagination";
 
 const DUMMY_TABLE_DATA = [
   {
@@ -75,6 +75,7 @@ export default function Books() {
           lastHeader="Ukupna količina"
           tableData={DUMMY_TABLE_DATA}
         />
+        <Pagination items={DUMMY_TABLE_DATA} />
       </div>
     </>
   );

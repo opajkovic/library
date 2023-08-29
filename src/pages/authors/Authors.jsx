@@ -2,9 +2,8 @@ import React, { useEffect } from "react";
 import { useOutletContext } from "react-router";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
-import Button from "../../components/UI/Button";
-import { FaPlus } from "react-icons/fa";
 import TableControl from "../../components/UI/TableControl";
+import Pagination from "../../components/UI/Pagination";
 
 const DUMMY_AUTHOR_DATA = [
   {
@@ -50,6 +49,7 @@ export default function Authors() {
           tableData={DUMMY_AUTHOR_DATA}
           headers=""
         />
+        <Pagination items={DUMMY_AUTHOR_DATA} />
       </div>
     </>
   );
