@@ -37,6 +37,7 @@ span {
   max-width: 650px;
 }
 
-.title, .details{
+.title,
+.details {
   margin: 0;
 }

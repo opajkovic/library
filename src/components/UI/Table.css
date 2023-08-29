@@ -3,7 +3,7 @@
   font-size: 0.9rem;
   box-shadow: 0.5rem 0.5rem 0.5rem rgba(128, 128, 128, 0.527);
   width: 100%;
-  min-width: 1400px;
+  min-width: calc(1400px - 7rem);
 }
 
 .table-container tr {
