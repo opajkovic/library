@@ -104,3 +104,6 @@ a:hover {
 .pageTableWrapper{
   padding-left: 30px;
 }
+p{
+  margin-bottom: unset;
+}

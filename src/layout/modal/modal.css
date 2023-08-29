@@ -6,6 +6,12 @@
     transform: translate(-90%, 5%);
     color: black;
     text-align: left;
+    background-color: white;
+    top: unset !important;
+    left: unset !important;
+    display: unset !important;
+    width: unset;
+    height: unset;
 }
 .closeModal{
     position: absolute;

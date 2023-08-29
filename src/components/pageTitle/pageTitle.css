@@ -14,6 +14,6 @@
 }
 
 .padding {
-  padding-top: calc(5.5rem - 1px);
+  padding-top: 79px;
   border-bottom: 1px solid var(--grey-200);
 }
