@@ -1,20 +1,23 @@
 import "./Dropdown.css";
 import { FaRegEdit, FaRegFile, FaTrash } from "react-icons/fa";
 
-const Dropdown = () => {
+const Dropdown = ({ options }) => {
+  console.log(options);
   return (
     <td className="dropdown-wrapper">
-      <p>
-        <FaRegFile />
-        <span>Pogledaj detalje</span>
-      </p>
+      {options.first !== "" && (
+        <p>
+          <FaRegFile />
+          <span>{options.first}</span>
+        </p>
+      )}
       <p>
         <FaRegEdit />
-        <span>Izmijeni korisnika</span>
+        <span>{options.second}</span>
       </p>
       <p>
         <FaTrash />
-        <span>Izbrisi korisnika</span>
+        <span>{options.third}</span>
       </p>
     </td>
   );

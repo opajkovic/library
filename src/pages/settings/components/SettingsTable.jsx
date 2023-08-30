@@ -12,6 +12,7 @@ export default function SettingsTable(props) {
         lastHeader={props.lastHeader}
         tableData={props.tableData}
         headers={props.headers}
+        options={props.options}
       />
       <Pagination items={props.tableData} />
     </div>

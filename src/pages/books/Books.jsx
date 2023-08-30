@@ -61,7 +61,6 @@ export default function Books() {
     <>
       <PageTitle title="Knjige" />
       <div className="page-wrapper">
-
         <TableControl title="Nova knjiga" />
         <Table
           mainHeader="Naziv knjige"
@@ -75,6 +74,11 @@ export default function Books() {
           ]}
           lastHeader="Ukupna količina"
           tableData={DUMMY_TABLE_DATA}
+          options={{
+            first: "Pogledaj detalje",
+            second: "izmijeni knjigu",
+            third: "Izbriši knjigu",
+          }}
         />
         <Pagination items={DUMMY_TABLE_DATA} />
       </div>

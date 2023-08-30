@@ -48,6 +48,11 @@ export default function Authors() {
           lastHeader="Opis"
           tableData={DUMMY_AUTHOR_DATA}
           headers=""
+          options={{
+            first: "Pogledaj detalje",
+            second: "izmijeni autora",
+            third: "Izbriši autora",
+          }}
         />
         <Pagination items={DUMMY_AUTHOR_DATA} />
       </div>

@@ -33,6 +33,11 @@ export default function Pismo() {
         tableData={DUMMY_DATA}
         headers=""
         lastHeader=""
+        options={{
+          first: "",
+          second: "izmijeni pismo",
+          third: "Izbriši pismo",
+        }}
       />
       </div>
     </div>

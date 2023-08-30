@@ -43,6 +43,11 @@ export default function Format() {
         tableData={DUMMY_DATA}
         headers=""
         lastHeader=""
+        options={{
+          first: "",
+          second: "izmijeni format",
+          third: "Izbriši format",
+        }}
       />
       </div>
     </div>

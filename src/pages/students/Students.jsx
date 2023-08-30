@@ -62,6 +62,11 @@ export default function Students() {
           headers={["email", "role"]}
           lastHeader="Poslednji pristup sistemu"
           tableData={DUMMY_TABLE_DATA}
+          options={{
+            first: "Pogledaj detalje",
+            second: "izmijeni učenika",
+            third: "Izbriši učenika",
+          }}
         />
         <Pagination items={DUMMY_TABLE_DATA} />
       </div>

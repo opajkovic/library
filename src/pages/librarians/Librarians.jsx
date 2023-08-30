@@ -45,6 +45,11 @@ const Librarians = () => {
           headers={["email", "role"]}
           lastHeader="Poslednji pristup sistemu"
           tableData={DUMMY_TABLE_DATA}
+          options={{
+            first: "Pogledaj detalje",
+            second: "izmijeni korisnika",
+            third: "Izbriši korisnika",
+          }}
         />
         <Pagination items={DUMMY_TABLE_DATA} />
       </div>

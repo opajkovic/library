@@ -41,6 +41,11 @@ export default function Zanrovi() {
         tableData={DUMMY_DATA}
         headers=""
         lastHeader=""
+        options={{
+          first: "",
+          second: "izmijeni žanr",
+          third: "Izbriši žanr",
+        }}
       />
       </div>
     </div>

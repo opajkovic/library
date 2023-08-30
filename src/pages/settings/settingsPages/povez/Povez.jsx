@@ -41,6 +41,11 @@ export default function Povez() {
         tableData={DUMMY_DATA}
         headers=""
         lastHeader=""
+        options={{
+          first: "",
+          second: "izmijeni povez",
+          third: "Izbriši povez",
+        }}
       />
       </div>
     </div>

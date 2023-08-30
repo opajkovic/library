@@ -61,6 +61,11 @@ export default function Kategorije() {
         lastHeader="Opis"
         tableData={DUMMY_DATA}
         headers=""
+        options={{
+          first: "",
+          second: "izmijeni kategoriju",
+          third: "Izbriši kategoriju",
+        }}
       />
       </div>
     </div>

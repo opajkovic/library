@@ -41,6 +41,11 @@ export default function Izdavac() {
         tableData={DUMMY_DATA}
         headers=""
         lastHeader=""
+        options={{
+          first: "",
+          second: "izmijeni izdavača",
+          third: "Izbriši izdavača",
+        }}
       />
       </div>
     </div>
