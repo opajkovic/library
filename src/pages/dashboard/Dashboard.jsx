@@ -16,7 +16,7 @@ export default function Dashboard() {
       <PageTitle title="Dashboard" />
       <div className="contentD">
         <ActivityList />
-        <div className="rightSide">
+        <div className="right-side">
           <ReservationList />
           <Chart />
         </div>

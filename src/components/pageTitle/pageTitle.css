@@ -5,7 +5,7 @@
 }
 
 .pageTitle h1 {
-  padding: 2rem 3rem;
+  padding: 1.5rem 2rem;
   position: fixed;
   width: 100%;
   z-index: -1;
@@ -13,17 +13,9 @@
   line-height: 2rem;
   background-color: white;
   z-index: 2;
-  border-bottom: 1px solid gray;
 }
-.paddingMenu{
-  padding-top: 96px;
-}
-.padding {
-<<<<<<< HEAD
-  /* padding-top: 79px; */
-=======
->>>>>>> 703515592c41775d41ef62f1921befb863a216e3
+
+.paddingMenu {
   padding-top: calc(5.5rem - 1px);
   border-bottom: 1px solid var(--grey-200);
 }
-
