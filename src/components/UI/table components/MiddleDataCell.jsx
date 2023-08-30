@@ -1,7 +1,7 @@
 import "../Table.css";
 
 const MiddleDataCell = ({ item, headers }) => {
-  console.log(item)
+  // console.log(item)
   return (
     headers &&
     headers.map((header, columnIndex) => (

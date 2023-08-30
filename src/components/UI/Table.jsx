@@ -4,9 +4,19 @@ import FirstDataCell from "./table components/FirstDataCell";
 import MiddleDataCell from "./table components/MiddleDataCell";
 import LastDataCell from "./table components/LastDataCell";
 import SearchTableInputs from "./table components/SearchTableInputs";
+import { useState } from "react";
+import { FaRegEdit, FaRegFile, FaTrash } from "react-icons/fa";
 
 const Table = ({ headers, tableData, mainHeader, lastHeader }) => {
-  const handleDots = () => {};
+  const [showModal, setShowModal] = useState(false);
+  const [row, setRow] = useState(null);
+  const [selectedData, setSelectedData] = useState(null);
+
+  const handleDots = (index) => {
+    setShowModal(!showModal);
+    setRow(index);
+    console.log(showModal, row);
+  };
   const combinedArray = [...[mainHeader], ...headers, ...[lastHeader]].filter(
     (item) => item !== ""
   );
@@ -28,7 +38,7 @@ const Table = ({ headers, tableData, mainHeader, lastHeader }) => {
             <tr key={index}>
               <FirstDataCell
                 item={item}
-                handleDots={handleDots}
+                handleDots={() => handleDots(index)}
                 lastHeader={lastHeader}
                 mainHeader={mainHeader}
               />
@@ -36,8 +46,26 @@ const Table = ({ headers, tableData, mainHeader, lastHeader }) => {
               <LastDataCell
                 item={item}
                 lastHeader={lastHeader}
-                handleDots={handleDots}
+                handleDots={() => handleDots(index)}
               />
+              {showModal && row == index && (
+                <div className="dropDot">
+                  <div className="dropDot-content">
+                    <p>
+                      <FaRegFile />
+                      <span>Pogledaj detalje</span>
+                    </p>
+                    <p>
+                      <FaRegEdit />
+                      <span>Izmijeni korisnika</span>
+                    </p>
+                    <p>
+                      <FaTrash />
+                      <span>Izbrisi korisnika</span>
+                    </p>
+                  </div>
+                </div>
+              )}
             </tr>
           ))
         )}
