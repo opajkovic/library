@@ -24,9 +24,9 @@ export default function Pismo() {
   return (
     <div>
       <PageTitle title="Settings" />
-      <div className="page-wrapper">
 
       <Menu selectedSettings={"pismo"} />
+      <div className="page-wrapper">
       <SettingsTable
         title="Novo pismo"
         mainHeader="Pismo"

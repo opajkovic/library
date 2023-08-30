@@ -32,9 +32,9 @@ export default function Zanrovi() {
   return (
     <div>
       <PageTitle title="Settings" />
-      <div className="page-wrapper">
 
       <Menu selectedSettings={"zanrovi"} />
+      <div className="page-wrapper">
       <SettingsTable
         title="Novi žanr"
         mainHeader="Žanr"

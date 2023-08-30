@@ -15,13 +15,16 @@
   color: var(--secondary);
   border-bottom: 3px solid var(--secondary);
 }
-.paddingMenu {
+.paddingSettingsMenu {
   padding-top: 62px;
 }
 
+<<<<<<< HEAD
 @media (max-width: 1400px) {
   .menu {
     width: calc(100vw - 90px);
   }
 }
 
+=======
+>>>>>>> 703515592c41775d41ef62f1921befb863a216e3

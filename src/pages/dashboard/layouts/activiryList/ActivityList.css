@@ -1,6 +1,5 @@
 .activityList{
-    /* max-width: 40vw; */
-    width: 45%;
+    width: 100%;
 }
 
 .activityList .subTitle{

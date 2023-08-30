@@ -32,9 +32,9 @@ export default function Izdavac() {
   return (
     <div>
       <PageTitle title="Settings" />
-      <div className="page-wrapper">
 
       <Menu selectedSettings={"izdavac"} />
+      <div className="page-wrapper">
       <SettingsTable
         title="Novi izdavač"
         mainHeader="Izdavač"
