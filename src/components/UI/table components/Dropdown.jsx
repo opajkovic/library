@@ -1,14 +1,14 @@
 import "./Dropdown.css";
 import { FaRegEdit, FaRegFile, FaTrash } from "react-icons/fa";
 
-const Dropdown = ({ options }) => {
+const Dropdown = ({ options, onClick }) => {
   console.log(options);
   return (
     <td className="dropdown-wrapper">
       {options.first !== "" && (
         <p>
           <FaRegFile />
-          <span>{options.first}</span>
+          <span onClick={onClick}>{options.first}</span>
         </p>
       )}
       <p>

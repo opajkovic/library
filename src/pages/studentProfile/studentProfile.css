@@ -1,0 +1,67 @@
+.student-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 7rem 2rem 0 2rem;
+}
+
+.user-info ul {
+  list-style: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.user-info li {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-weight: 500;
+}
+
+.student-info-wrapper span {
+  margin: 0;
+  font-weight: 300;
+}
+
+.link-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.link-wrapper h1 {
+  padding: 0.5rem;
+  width: fit-content;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.active-header {
+  border-top: 1px solid var(--grey-200);
+  border-left: 1px solid var(--grey-200);
+  border-right: 1px solid var(--grey-200);
+}
+
+.user-info {
+  display: flex;
+  flex-direction: row;
+  gap: 10rem;
+  padding: 2rem 0 0 0;
+}
+
+.user-image {
+  border: 1px solid var(--grey-200);
+  width: 300px;
+  height: fit-content;
+}
+
+.user-image img {
+  width: 100%;
+}
+
+.profile-evidence {
+  display: flex;
+  width: 70%;
+}

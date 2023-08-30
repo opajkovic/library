@@ -24,6 +24,7 @@ import Izdavac from "./pages/settings/settingsPages/izdavac/Izdavac";
 import Povez from "./pages/settings/settingsPages/povez/Povez";
 import Format from "./pages/settings/settingsPages/format/Format";
 import Pismo from "./pages/settings/settingsPages/pismo/Pismo";
+import ProfileEvidence from "./pages/studentProfile/ProfileEvidence";
 
 function App() {
   return (
@@ -75,6 +76,8 @@ function App() {
           <Route path="/activities" element={<Activities />} />
           <Route path="/librarians/:id" element={<LibrarianProfile />} />
           <Route path="/students/:id" element={<StudentProfile />} />
+          <Route path="/students/:id/evidencija" element={<ProfileEvidence />} />
+          
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>

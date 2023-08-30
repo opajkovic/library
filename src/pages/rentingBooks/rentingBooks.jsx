@@ -9,14 +9,14 @@ import Pagination from "../../components/UI/Pagination";
 
 const DUMMY_TABLE_DATA = [];
 
-export default function RentingBooks() {
+export default function RentingBooks(props) {
   const { setRoute } = useOutletContext();
   useEffect(() => {
     setRoute("rentingBooks");
   }, []);
 
   return (
-    <div>
+    <div className={props.className}>
       <PageTitle title="Izdavanje Knjiga" />
       <div className="bottom-container">
         <RentingOptions />

@@ -7,7 +7,14 @@ import SearchTableInputs from "./table components/SearchTableInputs";
 import { useState } from "react";
 import Dropdown from "./table components/Dropdown";
 
-const Table = ({ headers, tableData, mainHeader, lastHeader, options }) => {
+const Table = ({
+  headers,
+  tableData,
+  mainHeader,
+  lastHeader,
+  options,
+  onClick,
+}) => {
   const [showModal, setShowModal] = useState(false);
   const [row, setRow] = useState(null);
 
@@ -51,7 +58,9 @@ const Table = ({ headers, tableData, mainHeader, lastHeader, options }) => {
                 lastHeader={lastHeader}
                 handleDots={() => handleDots(index)}
               />
-              {showModal && row === index && <Dropdown options={options}/>}
+              {showModal && row === index && (
+                <Dropdown options={options} onClick={() => onClick(item.id)} />
+              )}
             </tr>
           ))
         )}

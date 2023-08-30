@@ -1,33 +1,39 @@
-.LPtitle{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    padding: 20px 30px;
-    border-bottom: 1px solid black;
-    position: fixed;
-    width: calc(100% - 90px);
-    z-index: 0;
+.LPtitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem 0.75rem 2rem;
+  padding-top: calc(0.95rem - 3px);
+  border-bottom: 1px solid var(--grey-200);
+  position: fixed;
+  width: calc(100% - 90px);
+  z-index: 0;
 }
-.LPtitle .left{
-    display: flex;
-    flex-direction: column;
-    grid-gap: 10px;
+.LPtitle .left {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 10px;
 }
-.left .subtitle{
-    display: flex;
-    grid-gap: 10px;
+.left .subtitle {
+  display: flex;
+  grid-gap: 10px;
 }
-.LPtitle .right{
-    display: flex;
-    grid-gap: 20px;
-}   
-.izmijeni{
-    cursor: pointer;
-    display: flex;
-    grid-gap: 5px;
-    align-items: center;
+.LPtitle .right {
+  display: flex;
+  grid-gap: 1.25rem;
 }
-.moduleBox{
-    cursor: pointer;
+.izmijeni {
+  cursor: pointer;
+  display: flex;
+  grid-gap: 5px;
+  align-items: center;
+}
+.moduleBox {
+  cursor: pointer;
+}
+
+.name {
+  font-size: 1.8rem;
+  line-height: 1.8rem;
+  margin: 0;
 }
