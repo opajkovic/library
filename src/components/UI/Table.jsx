@@ -5,18 +5,21 @@ import MiddleDataCell from "./table components/MiddleDataCell";
 import LastDataCell from "./table components/LastDataCell";
 import SearchTableInputs from "./table components/SearchTableInputs";
 import { useState } from "react";
-import { FaRegEdit, FaRegFile, FaTrash } from "react-icons/fa";
+import Dropdown from "./table components/Dropdown";
 
 const Table = ({ headers, tableData, mainHeader, lastHeader }) => {
   const [showModal, setShowModal] = useState(false);
   const [row, setRow] = useState(null);
-  const [selectedData, setSelectedData] = useState(null);
 
   const handleDots = (index) => {
-    setShowModal(!showModal);
+    setShowModal(true);
     setRow(index);
-    console.log(showModal, row);
+    setTimeout(() => {
+      setShowModal(false);
+    }, [2000]);
+    // console.log(showModal, row);
   };
+
   const combinedArray = [...[mainHeader], ...headers, ...[lastHeader]].filter(
     (item) => item !== ""
   );
@@ -48,24 +51,7 @@ const Table = ({ headers, tableData, mainHeader, lastHeader }) => {
                 lastHeader={lastHeader}
                 handleDots={() => handleDots(index)}
               />
-              {showModal && row == index && (
-                <div className="dropDot">
-                  <div className="dropDot-content">
-                    <p>
-                      <FaRegFile />
-                      <span>Pogledaj detalje</span>
-                    </p>
-                    <p>
-                      <FaRegEdit />
-                      <span>Izmijeni korisnika</span>
-                    </p>
-                    <p>
-                      <FaTrash />
-                      <span>Izbrisi korisnika</span>
-                    </p>
-                  </div>
-                </div>
-              )}
+              {showModal && row === index && <Dropdown />}
             </tr>
           ))
         )}

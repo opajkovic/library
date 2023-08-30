@@ -93,6 +93,10 @@ td input {
   justify-content: center !important;
 }
 
+.flex-between {
+  position: relative;
+}
+
 @media (max-width: 1400px) {
   .table-container {
     min-width: unset;
@@ -107,29 +111,4 @@ td input {
     padding: 0.8rem 1rem;
     font-size: 0.8rem;
   }
-}
-.dropDot {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 10;
-  border-radius: 3px;
-  background-color: var(--white);
-  transform: translate(270%, 10%);
-  color: inherit;
-  text-align: left;
-}
-.dropDot-content {
-  background-color: white;
-  padding: 1rem;
-  border-radius: 5px;
-}
-.dropDot-content p {
-  padding-bottom: 1rem;
-  padding-right: 2rem;
-}
-.dropDot-content p:hover {
-  color: var(--secondary);
 }

@@ -11,8 +11,7 @@
   min-width: 550px;
 }
 
-
-@media (max-width: 1400px){
+@media (max-width: 1400px) {
   .right-side {
     width: 45%;
     min-width: 400px;
