@@ -7,6 +7,7 @@ import RentingOptions from "../rentingBooks/components/RentingOptions";
 import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
 import Pagination from "../../components/UI/Pagination";
+import BottomContainer from "../rentingBooks/components/BottomContainer";
 
 const DUMMY_TABLE_DATA = [];
 
@@ -24,25 +25,16 @@ export default function ProfileEvidence() {
       />
       <div className="student-info-wrapper">
         <LinkWrapper />
-        <div className="bottom-container">
-          <RentingOptions />
-          <div className="table-wrapper">
-            <TableControl title="Nova knjiga" hide="true" />
-            <Table
-              mainHeader=""
-              headers={[
-                "Naziv knjige",
-                "Izdato učeniku",
-                "Datum izdavanja",
-                "Trenutno zadržavanje knjiga",
-                "Knjigu izdao",
-              ]}
-              lastHeader=""
-              tableData={DUMMY_TABLE_DATA}
-            />
-            <Pagination items={DUMMY_TABLE_DATA} />
-          </div>
-        </div>
+        <BottomContainer
+          title="Nova knjiga"
+          headers={[
+            "Naziv knjige",
+            "Izdato učeniku",
+            "Datum izdavanja",
+            "Trenutno zadržavanje knjiga",
+            "Knjigu izdao",
+          ]}
+        />
       </div>
     </div>
   );
