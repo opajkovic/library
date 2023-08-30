@@ -1,4 +1,5 @@
 .table-container {
+  height: fit-content;
   border-collapse: collapse;
   font-size: 0.9rem;
   box-shadow: 0.5rem 0.5rem 0.5rem rgba(128, 128, 128, 0.527);
@@ -84,6 +85,12 @@ td input {
 .left-container {
   display: flex;
   flex-direction: row;
+}
+
+.blank-case {
+  text-align: center;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 @media (max-width: 1400px) {

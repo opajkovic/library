@@ -7,10 +7,12 @@ import Select from "./Select";
 const TableControl = (props) => {
   return (
     <div className="table-control">
-      <Button type="button" btn="btn btn-primary">
-        <FaPlus />
-        <span> {props.title} </span>
-      </Button>
+      {!props.hide && (
+        <Button type="button" btn="btn btn-primary">
+          <FaPlus />
+          <span> {props.title} </span>
+        </Button>
+      )}
       <Select />
       <div className="input-div">
         <span>

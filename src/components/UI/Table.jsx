@@ -19,21 +19,28 @@ const Table = ({ headers, tableData, mainHeader, lastHeader }) => {
         lastHeader={lastHeader}
       />
       <tbody>
-        {tableData.map((item, index) => (
-          <tr key={index}>
-            <FirstDataCell
-              item={item}
-              handleDots={handleDots}
-              lastHeader={lastHeader}
-            />
-            <MiddleDataCell item={item} headers={headers} />
-            <LastDataCell
-              item={item}
-              lastHeader={lastHeader}
-              handleDots={handleDots}
-            />
+        {tableData.length === 0 ? (
+          <tr>
+            <td className="blank-case">No items found</td>
           </tr>
-        ))}
+        ) : (
+          tableData.map((item, index) => (
+            <tr key={index}>
+              <FirstDataCell
+                item={item}
+                handleDots={handleDots}
+                lastHeader={lastHeader}
+                mainHeader={mainHeader}
+              />
+              <MiddleDataCell item={item} headers={headers} />
+              <LastDataCell
+                item={item}
+                lastHeader={lastHeader}
+                handleDots={handleDots}
+              />
+            </tr>
+          ))
+        )}
         <SearchTableInputs combinedArray={combinedArray} />
       </tbody>
     </table>

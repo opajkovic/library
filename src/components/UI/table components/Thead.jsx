@@ -6,13 +6,15 @@ const Thead = ({ headers, mainHeader, lastHeader }) => {
   return (
     <thead>
       <tr>
-        <th>
-          <Input input={{ type: "checkbox", className: "table-checkbox" }} />
-          {mainHeader}
-          <sub>
-            <FaLongArrowAltDown className="arrow" />
-          </sub>
-        </th>
+        {mainHeader !== "" && (
+          <th>
+            <Input input={{ type: "checkbox", className: "table-checkbox" }} />
+            {mainHeader}
+            <sub>
+              <FaLongArrowAltDown className="arrow" />
+            </sub>
+          </th>
+        )}
         {headers && headers.map((item, index) => <th key={index}>{item}</th>)}
         {lastHeader && <th> {lastHeader}</th>}
       </tr>

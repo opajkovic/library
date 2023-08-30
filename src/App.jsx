@@ -5,7 +5,14 @@ import Polisa from "./pages/settings/Polisa";
 import Librarians from "./pages/librarians/Librarians";
 import Authors from "./pages/authors/Authors";
 import Students from "./pages/students/Students";
+
 import RentingBooks from "./pages/rentingBooks/rentingBooks";
+import ReturnedBooks from "./pages/rentingBooks/layouts/returnedBooks";
+import WrittenOffBooks from "./pages/rentingBooks/layouts/writtenOffBooks";
+import InExcessBooks from "./pages/rentingBooks/layouts/inExcessBooks";
+import ActiveReservations from "./pages/rentingBooks/layouts/activeReservation";
+import ArchivedReservations from "./pages/rentingBooks/layouts/archivedReservations";
+
 import Books from "./pages/books/Books";
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
 import LibrarianProfile from "./pages/librarianProfile/LibrarianProfile";
@@ -28,7 +35,33 @@ function App() {
           <Route path="/students" element={<Students />} />
           <Route path="/books" element={<Books />} />
           <Route path="/authors" element={<Authors />} />
-          <Route path="/rentingBooks" element={<RentingBooks />} />
+
+          {/* Izdavanje knjiga routes */}
+          <Route
+            path="/rentingBooks/izdate-knjige"
+            element={<RentingBooks />}
+          />
+          <Route
+            path="/rentingBooks/vracene-knjige"
+            element={<ReturnedBooks />}
+          />
+          <Route
+            path="/rentingBooks/otpisane-knjige"
+            element={<WrittenOffBooks />}
+          />
+          <Route
+            path="/rentingBooks/knjige-u-prekoracenju"
+            element={<InExcessBooks />}
+          />
+          <Route
+            path="/rentingBooks/aktivne-rezervacije"
+            element={<ActiveReservations />}
+          />
+          <Route
+            path="/rentingBooks/arhivirane-rezervacije"
+            element={<ArchivedReservations />}
+          />
+
           {/* settings routes */}
           <Route path="/settings" element={<Polisa />} />
           <Route path="/settings/categories" element={<Kategorije />} />
@@ -41,7 +74,7 @@ function App() {
           <Route path="/librarians" element={<Librarians />} />
           <Route path="/activities" element={<Activities />} />
           <Route path="/librarians/:id" element={<LibrarianProfile />} />
-          <Route path="/students/:id" element={<StudentProfile />}  />
+          <Route path="/students/:id" element={<StudentProfile />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>

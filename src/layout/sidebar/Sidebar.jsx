@@ -57,7 +57,7 @@ function Sidebar({route}) {
           <NavItem isOpen={isOpen} active={(route == "authors") ? true : false} path="authors" text="Autori" icon={<FaAddressBook  className={(route == "authors") ? "icon activeIcon" : "icon"} />} />
         </li>
         <li>
-          <NavItem isOpen={isOpen} active={(route == "rentingBooks") ? true : false} path="rentingBooks" text="Izdavanje Knjiga" icon={<FaExchangeAlt  className={(route == "rentingBooks") ? "icon activeIcon" : "icon"} />} />
+          <NavItem isOpen={isOpen} active={(route == "rentingBooks") ? true : false} path="rentingBooks/izdate-knjige" text="Izdavanje Knjiga" icon={<FaExchangeAlt  className={(route == "rentingBooks") ? "icon activeIcon" : "icon"} />} />
         </li>
         <li>
         <div className='navLink' onClick={changeExpand}>

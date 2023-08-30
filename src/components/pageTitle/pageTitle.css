@@ -15,7 +15,7 @@
 }
 
 .padding {
-  /* padding-top: 79px; // Stavio si 79px bez razloga a tako ne radi border-bottom...*/
+  /* padding-top: 79px; */
   padding-top: calc(5.5rem - 1px);
   border-bottom: 1px solid var(--grey-200);
 }

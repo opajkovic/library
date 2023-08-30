@@ -1,6 +1,13 @@
-.activities{
-    /* min-height: 200vh; */
+.activities {
+  /* min-height: 200vh; */
 }
-.content{
-    margin-top: 80px;
+.content {
+  margin-top: 80px;
+}
+
+.activity-wrapper {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }

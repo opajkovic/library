@@ -2,9 +2,9 @@ import "../Table.css";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Input from "../Input";
 
-const FirstDataCell = ({ item, handleDots, lastHeader }) => {
+const FirstDataCell = ({ item, handleDots, lastHeader, mainHeader}) => {
   return (
-    <td>
+    mainHeader !== "" && <td>
       <div className="left-container">
         <Input input={{ type: "checkbox", className: "table-checkbox" }} />
         {item.name}
