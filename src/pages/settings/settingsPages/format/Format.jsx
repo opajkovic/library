@@ -34,9 +34,9 @@ export default function Format() {
   return (
     <div>
       <PageTitle title="Settings" />
-      <div className="pageTableWrapper">
 
       <Menu selectedSettings={"format"} />
+      <div className="page-wrapper">
       <SettingsTable
         title="Novi format"
         mainHeader="Format"

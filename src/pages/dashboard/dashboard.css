@@ -4,10 +4,8 @@
   justify-content: space-between;
   padding: 1.5rem 4rem 2rem 2rem;
   grid-gap: 30px;
-  width: 100%;
 }
 
 .rightSide {
   width: 100%;
-  max-width: 550px;
 }

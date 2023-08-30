@@ -1,20 +1,21 @@
-.menu{
-    display: flex;
-    grid-gap: 70px;
-    padding: 0 20px;
-    position: fixed;
-    border-bottom: 1px solid gray;
-    width: 100%;
-    align-items: center;
-    background-color: white;
+.menu {
+  display: flex;
+  grid-gap: 70px;
+  position: fixed;
+  border-bottom: 1px solid gray;
+  padding: 0 2rem;
+  width: 100%;
+  align-items: center;
+  background-color: white;
 }
-.menu .linkMenu{
-    padding: 20px 0;
+.menu .linkMenu {
+  padding: 1.25rem 0;
 }
-.menu .selectedLinkMenu{
-    color: var(--secondary);
-    border-bottom: 3px solid var(--secondary);
+.menu .selectedLinkMenu {
+  color: var(--secondary);
+  border-bottom: 3px solid var(--secondary);
 }
-.paddingMenu{
-    padding-top: 62px;
+.paddingSettingsMenu {
+  padding-top: 62px;
 }
+

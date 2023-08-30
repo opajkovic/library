@@ -14,7 +14,7 @@ export default function Menu({selectedSettings}) {
         <Link className={(selectedSettings == 'format') ? 'linkMenu selectedLinkMenu' :'linkMenu'} to= '/settings/format'>Format</Link>
         <Link className={(selectedSettings == 'pismo') ? 'linkMenu selectedLinkMenu' :'linkMenu'} to= '/settings/pismo'>Pismo</Link>
     </div>
-    <div className="paddingMenu"></div>
+    <div className="paddingSettingsMenu"></div>
     </div>
   )
 }

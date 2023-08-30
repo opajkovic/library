@@ -37,7 +37,7 @@ const Librarians = () => {
   return (
     <div >
       <PageTitle title="Bibliotekari" />
-      <div className="pageTableWrapper">
+      <div className="page-wrapper">
 
         <TableControl title="Novi bibliotekar" />
         <Table

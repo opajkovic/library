@@ -7,7 +7,7 @@ export default function PageTitle({ title }) {
       <div className="pageTitle">
         <h1 className="titleH">{title}</h1>
       </div>
-      <div className="padding"></div>
+      <div className="paddingMenu"></div>
     </div>
   );
 }

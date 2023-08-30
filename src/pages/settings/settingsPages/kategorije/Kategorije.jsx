@@ -52,9 +52,9 @@ export default function Kategorije() {
   return (
     <div>
       <PageTitle title="Settings" />
-      <div className="pageTableWrapper">
 
       <Menu selectedSettings={"kategorije"} />
+      <div className="page-wrapper">
       <SettingsTable
         title="Nova Kategorija"
         mainHeader="Kategorija"
