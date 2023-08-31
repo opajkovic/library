@@ -3,7 +3,7 @@ import ActivityList from "../../dashboard/layouts/activiryList/ActivityList";
 
 export default function RightSide() {
   return (
-    <div className="right-side">
+    <div className="right-side-info">
       <div className="book-count">
         <ul>
           <li>
