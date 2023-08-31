@@ -15,6 +15,8 @@ export default function AuthorProfile() {
         linkOne={"Svi autori"}
         linkOnePath={"/authors"}
         linkTwoPath={`/authors/`}
+        change={true}
+        deleteMssg={true}
       />
       <AuthorInfo />
     </div>

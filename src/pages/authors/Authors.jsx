@@ -44,7 +44,7 @@ export default function Authors() {
   }, []);
   return (
     <>
-      <PageTitle title="Autori" />
+      <PageTitle title="Autori"/>
       <div className="page-wrapper">
         <TableControl title="Novi autor" />
         <Table

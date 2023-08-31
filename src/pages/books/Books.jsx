@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useOutletContext } from "react-router";
+import { useOutletContext, useNavigate } from "react-router";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
@@ -60,6 +60,10 @@ const forth = [
 ];
 
 export default function Books() {
+  const navigate = useNavigate();
+  const clickHandler = (id)=>{
+    navigate(`/books/${id}`)
+  }
   const { setRoute } = useOutletContext();
   useEffect(() => {
     setRoute("books");
@@ -87,6 +91,7 @@ export default function Books() {
             third: "Izbriši knjigu",
             forth: {forth},
           }}
+          onClick={clickHandler}
         />
         <Pagination items={DUMMY_TABLE_DATA} />
       </div>

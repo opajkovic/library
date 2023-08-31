@@ -16,6 +16,9 @@ export default function StudentProfile() {
         linkOne={"Svi Studenti"}
         linkOnePath={"/students"}
         linkTwoPath={`/students/`}
+        change={true}
+        reset={true}
+        deleteMssg={true}
       />
       <div className="student-info-wrapper">
         <LinkWrapper />

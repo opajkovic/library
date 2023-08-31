@@ -14,6 +14,7 @@ import ActiveReservations from "./pages/rentingBooks/layouts/activeReservation";
 import ArchivedReservations from "./pages/rentingBooks/layouts/archivedReservations";
 
 import Books from "./pages/books/Books";
+import BookInfo from "./pages/bookInformations/BookInfo";
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
 import LibrarianProfile from "./pages/librarianProfile/LibrarianProfile";
 import StudentProfile from "./pages/studentProfile/StudentProfile";
@@ -42,9 +43,12 @@ function App() {
         <Route element={<AppLayout />}>
           <Route index element={<Navigate replace to="/dashboard" />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/students" element={<Students />} />
+       
           <Route path="/books" element={<Books />} />
+          <Route path="/books/:id" element={<BookInfo />} />
 
+
+          {/* Author routes */}
           <Route path="/authors" element={<Authors />} />
           <Route path="/authors/:id" element={<AuthorProfile />} />
 
@@ -88,6 +92,7 @@ function App() {
           <Route path="/librarians/:id" element={<LibrarianProfile />} />
 
           {/* student profile routes */}
+          <Route path="/students" element={<Students />} />
           <Route path="/students/:id" element={<StudentProfile />} />
           <Route path="/students/:id/evidencija/izdate-knjige" element={<ProfileEvidenceRented />} />
           <Route path="/students/:id/evidencija/vracene-knjige" element={<ProfileEvidenceReturned />} />

@@ -1,4 +1,4 @@
-.LPtitle {
+.title-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,23 +9,29 @@
   z-index: 0;
 }
 
-.LPtitle span {
+.title-wrapper span {
   margin: 0;
 }
-.LPtitle .left {
+.title-wrapper .left {
   display: flex;
   flex-direction: column;
   grid-gap: 10px;
+}
+
+.title-wrapper img {
+  position: absolute;
+  height: 5.5rem;
 }
 .left .subtitle {
   display: flex;
   grid-gap: 0.2rem;
 }
-.LPtitle .right {
+.title-wrapper .right {
   display: flex;
   grid-gap: 1.25rem;
 }
-.izmijeni {
+.reset-password,
+.change-info {
   cursor: pointer;
   display: flex;
   grid-gap: 5px;
@@ -48,4 +54,11 @@
   height: 1rem;
   color: var(--secondary);
   font-weight: 300;
+}
+
+.margined {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 7rem;
 }

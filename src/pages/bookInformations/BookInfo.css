@@ -1,0 +1,44 @@
+.head-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.book-spec {
+  display: flex;
+  flex-direction: row;
+  gap: 20rem;
+  padding: 2rem;
+}
+
+.book-spec ul {
+  display: flex;
+  flex-direction: column;
+  list-style: 0;
+  margin: 0;
+  gap: 2rem;
+}
+
+.book-spec li {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-weight: 500;
+}
+
+.book-spec span {
+  margin: 0;
+  font-weight: 300 !important;
+}
+
+.book-description {
+  width: 40%;
+  min-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.book-description span {
+  text-decoration: underline;
+}

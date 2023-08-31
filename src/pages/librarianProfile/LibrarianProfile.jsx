@@ -14,6 +14,9 @@ export default function LibrarianProfile() {
         linkOne={"Svi bibliotekari"}
         linkOnePath={"/librarians"}
         linkTwoPath={`/librarians/`}
+        change={true}
+        reset={true}
+        deleteMssg={true}
       />
       <div className="student-info-wrapper">
         <UserInfo />
