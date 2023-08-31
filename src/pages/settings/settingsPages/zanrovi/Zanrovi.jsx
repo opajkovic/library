@@ -45,6 +45,7 @@ export default function Zanrovi() {
           first: "",
           second: "izmijeni žanr",
           third: "Izbriši žanr",
+          forth: "",
         }}
       />
       </div>

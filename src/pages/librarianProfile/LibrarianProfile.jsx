@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react'
-import ProfileTitle from '../../layout/profileTitle/ProfileTitle'
-import { useOutletContext } from 'react-router';
+import React, { useEffect } from "react";
+import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
+import { useOutletContext } from "react-router";
+import UserInfo from "../studentProfile/components/UserInfo";
 
 export default function LibrarianProfile() {
   const { setRoute } = useOutletContext();
@@ -8,8 +9,15 @@ export default function LibrarianProfile() {
     setRoute("librarians");
   }, []);
   return (
-    <div className='Librarian'>
-        <ProfileTitle linkOne={'Svi Bibliotekari'} linkOnePath={'/librarians'} linkTwoPath={'/librarians/'} />
+    <div>
+      <ProfileTitle
+        linkOne={"Svi bibliotekari"}
+        linkOnePath={"/librarians"}
+        linkTwoPath={`/librarians/`}
+      />
+      <div className="student-info-wrapper">
+        <UserInfo />
+      </div>
     </div>
-  )
+  );
 }

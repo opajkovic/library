@@ -52,6 +52,13 @@ const DUMMY_TABLE_DATA = [
   },
 ];
 
+const forth = [
+  "otpiši knjigu",
+  "Izdaj knjigu",
+  "Vrati knjigu",
+  "Rezerviši knjigu",
+];
+
 export default function Books() {
   const { setRoute } = useOutletContext();
   useEffect(() => {
@@ -78,6 +85,7 @@ export default function Books() {
             first: "Pogledaj detalje",
             second: "izmijeni knjigu",
             third: "Izbriši knjigu",
+            forth: {forth},
           }}
         />
         <Pagination items={DUMMY_TABLE_DATA} />

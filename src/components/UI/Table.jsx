@@ -23,7 +23,7 @@ const Table = ({
     setRow(index);
     setTimeout(() => {
       setShowModal(false);
-    }, [2000]);
+    }, [3000]);
   };
 
   const combinedArray = [...[mainHeader], ...headers, ...[lastHeader]].filter(

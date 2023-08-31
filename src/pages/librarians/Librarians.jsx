@@ -1,44 +1,49 @@
-import { useOutletContext } from "react-router";
+import { useOutletContext, useNavigate } from "react-router";
 import { useEffect } from "react";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
-import Select from "../../components/UI/Select";
 import Pagination from "../../components/UI/Pagination";
-import './librarians.css'
+import "./librarians.css";
+
+const DUMMY_TABLE_DATA = [
+  {
+    id: 1,
+    name: "Valentina Kašćelan",
+    email: "valentina.kascelan@domain...",
+    role: "Bibliotekar",
+    lastHeader: "Prije 10 sati",
+  },
+  {
+    id: 2,
+    name: "Valentina Kašćelan",
+    email: "valentina.kascelan@domain...",
+    role: "Bibliotekar",
+    lastHeader: "Prije 10 sati",
+  },
+  {
+    id: 3,
+    name: "Valentina Kašćelan",
+    email: "valentina.kascelan@domain...",
+    role: "Bibliotekar",
+    lastHeader: "Prije 10 sati",
+  },
+];
 
 const Librarians = () => {
-  const DUMMY_TABLE_DATA = [
-    {
-      name: "Valentina Kašćelan",
-      email: "valentina.kascelan@domain...",
-      role: "Bibliotekar",
-      lastHeader: "Prije 10 sati",
-    },
-    {
-      name: "Valentina Kašćelan",
-      email: "valentina.kascelan@domain...",
-      role: "Bibliotekar",
-      lastHeader: "Prije 10 sati",
-    },
-    {
-      name: "Valentina Kašćelan",
-      email: "valentina.kascelan@domain...",
-      role: "Bibliotekar",
-      lastHeader: "Prije 10 sati",
-    },
-  ];
-
+  const navigate = useNavigate();
+  const clickHandler = (id) => {
+    navigate(`/librarians/${id}`);
+  };
   const { setRoute } = useOutletContext();
   useEffect(() => {
     setRoute("librarians");
   }, []);
 
   return (
-    <div >
+    <div>
       <PageTitle title="Bibliotekari" />
       <div className="page-wrapper">
-
         <TableControl title="Novi bibliotekar" />
         <Table
           mainHeader="Ime i prezime"
@@ -47,9 +52,11 @@ const Librarians = () => {
           tableData={DUMMY_TABLE_DATA}
           options={{
             first: "Pogledaj detalje",
-            second: "izmijeni korisnika",
-            third: "Izbriši korisnika",
+            second: "Izmijeni",
+            third: "Izbriši",
+            forth:""
           }}
+          onClick={clickHandler}
         />
         <Pagination items={DUMMY_TABLE_DATA} />
       </div>

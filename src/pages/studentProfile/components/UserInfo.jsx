@@ -10,7 +10,7 @@ const DUMMY_DATA = [
     username: "Morgan 123",
     numberOfLogins: 0,
     lastSeen: null,
-    image: null,
+    image: "https://i.ytimg.com/vi/C_uiwbaokCQ/maxresdefault.jpg",
   },
 ];
 
@@ -30,7 +30,7 @@ export default function UserInfo() {
         <li>
           <span> JMBG </span> {item.JMBG}
         </li>
-        <li>
+        <li className="email-info">
           <span> Email </span> {item.email}
         </li>
         <li>

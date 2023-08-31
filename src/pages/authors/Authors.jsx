@@ -56,6 +56,7 @@ export default function Authors() {
             first: "Pogledaj detalje",
             second: "izmijeni autora",
             third: "Izbriši autora",
+            forth: ""
           }}
           onClick={clickHandler}
         />

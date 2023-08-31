@@ -68,6 +68,7 @@ export default function Students() {
             first: "Pogledaj detalje",
             second: "izmijeni učenika",
             third: "Izbriši učenika",
+            forth: ""
           }}
           onClick={clickHandler}
         />

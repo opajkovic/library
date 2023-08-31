@@ -45,6 +45,7 @@ export default function Povez() {
           first: "",
           second: "izmijeni povez",
           third: "Izbriši povez",
+          forth: "",
         }}
       />
       </div>

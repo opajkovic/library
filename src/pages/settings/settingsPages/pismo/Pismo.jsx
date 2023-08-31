@@ -37,6 +37,7 @@ export default function Pismo() {
           first: "",
           second: "izmijeni pismo",
           third: "Izbriši pismo",
+          forth: "",
         }}
       />
       </div>

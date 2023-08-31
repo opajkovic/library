@@ -5,9 +5,7 @@ import { useOutletContext } from "react-router";
 import LinkWrapper from "./components/LinkWrapper";
 import UserInfo from "./components/UserInfo";
 
-
 export default function StudentProfile() {
-
   const { setRoute } = useOutletContext();
   useEffect(() => {
     setRoute("students");
@@ -17,7 +15,7 @@ export default function StudentProfile() {
       <ProfileTitle
         linkOne={"Svi Studenti"}
         linkOnePath={"/students"}
-        linkTwoPath={"/students/"}
+        linkTwoPath={`/students/`}
       />
       <div className="student-info-wrapper">
         <LinkWrapper />

@@ -35,18 +35,19 @@ export default function Izdavac() {
 
       <Menu selectedSettings={"izdavac"} />
       <div className="page-wrapper">
-      <SettingsTable
-        title="Novi izdavač"
-        mainHeader="Izdavač"
-        tableData={DUMMY_DATA}
-        headers=""
-        lastHeader=""
-        options={{
-          first: "",
-          second: "izmijeni izdavača",
-          third: "Izbriši izdavača",
-        }}
-      />
+        <SettingsTable
+          title="Novi izdavač"
+          mainHeader="Izdavač"
+          tableData={DUMMY_DATA}
+          headers=""
+          lastHeader=""
+          options={{
+            first: "",
+            second: "izmijeni izdavača",
+            third: "Izbriši izdavača",
+            forth: "",
+          }}
+        />
       </div>
     </div>
   );

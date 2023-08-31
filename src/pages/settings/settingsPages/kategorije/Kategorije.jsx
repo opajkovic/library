@@ -55,18 +55,19 @@ export default function Kategorije() {
 
       <Menu selectedSettings={"kategorije"} />
       <div className="page-wrapper">
-      <SettingsTable
-        title="Nova Kategorija"
-        mainHeader="Kategorija"
-        lastHeader="Opis"
-        tableData={DUMMY_DATA}
-        headers=""
-        options={{
-          first: "",
-          second: "izmijeni kategoriju",
-          third: "Izbriši kategoriju",
-        }}
-      />
+        <SettingsTable
+          title="Nova Kategorija"
+          mainHeader="Kategorija"
+          lastHeader="Opis"
+          tableData={DUMMY_DATA}
+          headers=""
+          options={{
+            first: "",
+            second: "izmijeni kategoriju",
+            third: "Izbriši kategoriju",
+            forth: "",
+          }}
+        />
       </div>
     </div>
   );

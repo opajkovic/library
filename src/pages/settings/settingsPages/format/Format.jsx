@@ -37,18 +37,19 @@ export default function Format() {
 
       <Menu selectedSettings={"format"} />
       <div className="page-wrapper">
-      <SettingsTable
-        title="Novi format"
-        mainHeader="Format"
-        tableData={DUMMY_DATA}
-        headers=""
-        lastHeader=""
-        options={{
-          first: "",
-          second: "izmijeni format",
-          third: "Izbriši format",
-        }}
-      />
+        <SettingsTable
+          title="Novi format"
+          mainHeader="Format"
+          tableData={DUMMY_DATA}
+          headers=""
+          lastHeader=""
+          options={{
+            first: "",
+            second: "izmijeni format",
+            third: "Izbriši format",
+            forth: "",
+          }}
+        />
       </div>
     </div>
   );
