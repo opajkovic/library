@@ -33,6 +33,7 @@ import ProfileEvidenceArchived from "./pages/studentProfile/layouts/ProfileEvide
 import ProfileEvidenceRented from "./pages/studentProfile/layouts/ProfileEvidenceRented";
 import Singup from "./pages/singup/Singup";
 import Login from "./pages/login/Login";
+import AuthorProfile from "./pages/authorProfile/AuthorProfile";
 
 function App() {
   return (
@@ -43,7 +44,9 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/students" element={<Students />} />
           <Route path="/books" element={<Books />} />
+
           <Route path="/authors" element={<Authors />} />
+          <Route path="/authors/:id" element={<AuthorProfile />} />
 
           {/* Izdavanje knjiga routes */}
           <Route

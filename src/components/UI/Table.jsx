@@ -24,7 +24,6 @@ const Table = ({
     setTimeout(() => {
       setShowModal(false);
     }, [2000]);
-    // console.log(showModal, row);
   };
 
   const combinedArray = [...[mainHeader], ...headers, ...[lastHeader]].filter(

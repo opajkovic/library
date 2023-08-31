@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useOutletContext } from "react-router";
+import { useNavigate, useOutletContext } from "react-router";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
@@ -34,6 +34,10 @@ const DUMMY_AUTHOR_DATA = [
 ];
 
 export default function Authors() {
+  const navigate = useNavigate();
+  const clickHandler = (id)=>{
+    navigate(`/authors/${id}`)
+  }
   const { setRoute } = useOutletContext();
   useEffect(() => {
     setRoute("authors");
@@ -53,6 +57,7 @@ export default function Authors() {
             second: "izmijeni autora",
             third: "Izbriši autora",
           }}
+          onClick={clickHandler}
         />
         <Pagination items={DUMMY_AUTHOR_DATA} />
       </div>

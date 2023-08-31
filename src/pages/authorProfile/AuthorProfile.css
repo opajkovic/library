@@ -1,0 +1,28 @@
+.author-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 8rem 2rem 0 2rem;
+  list-style: none;
+  margin: 0;
+  gap: 3rem;
+}
+
+.author-info-wrapper li {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  line-height: 1.4rem;
+  width: 40%;
+  min-width: 500px;
+  font-weight: 500;
+  color: var(--grey-900);
+}
+
+.author-info-wrapper span {
+  margin: 0;
+  letter-spacing: 0.1rem;
+  text-decoration: underline;
+  color: var(--grey-400);
+  font-weight: 300;
+}
