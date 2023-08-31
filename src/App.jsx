@@ -25,6 +25,8 @@ import Povez from "./pages/settings/settingsPages/povez/Povez";
 import Format from "./pages/settings/settingsPages/format/Format";
 import Pismo from "./pages/settings/settingsPages/pismo/Pismo";
 import ProfileEvidence from "./pages/studentProfile/ProfileEvidence";
+import Singup from "./pages/singup/Singup";
+import Login from "./pages/login/Login";
 
 function App() {
   return (
@@ -88,6 +90,8 @@ function App() {
           
         </Route>
         <Route path="*" element={<PageNotFound />} />
+        <Route path="/singup" element={<Singup />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );

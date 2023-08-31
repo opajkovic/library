@@ -1,0 +1,67 @@
+.singup{
+    min-width: 100vw;
+    min-height: 100vh;
+    background: #2c3e50;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #3498db, #2c3e50);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3498db, #2c3e50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.singupSection{
+    display: flex;
+    align-items: center;
+    grid-gap: 20%;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+}
+.singupSection .register h1{
+    font-size: 25px;
+}
+.singupSection .register .inputs {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 0.5rem;
+    margin-top: 30px;
+    color: black;
+}
+.singupSection .register .inputs .input {
+    display: flex;
+    align-items: center;
+    background-color: rgb(215, 215, 215);
+    padding: 8px 5px;
+    border-radius: 20px;
+    border: 2px solid transparent;
+}
+.inputs .input .icon{
+    width: 100px;
+    color: rgb(98, 98, 98);
+    font-size: 15px;
+}
+.input input{
+    border: none;
+    background-color: transparent;
+    font-size: 15px;
+}
+.input input:focus{
+    border: none;
+    outline: none;
+}
+/* .inputs .input input:focus{
+    border-bottom: 1px solid black;
+} */
+.registerBtn{
+    padding: 0.5rem;
+    background-color: rgb(7, 138, 7);
+    border: none;
+    border-radius: 20px;
+    color: white;
+}
+.registerBtn:hover{
+    opacity: .8;
+}
+.diffPage{
+    font-size: 12px;
+    text-align: center;
+}

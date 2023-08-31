@@ -48,7 +48,7 @@ const Header = () => {
           <FaBookReader onClick={()=>{changeModal(setModalProfileShow,modalProfileShow)}} />
           {modalProfileShow ? <Modal setModalClose={setModalProfileShow} className="a " component={<div className="modalHeader">
             <ModalItem closeModals={closeModals} icon={<FaFile className="modalIcon" />} text={"Profile"} path={`/librarians/2`} />
-            <ModalItem closeModals={closeModals} icon={<FaSignOutAlt className="modalIcon" />} text={"Log out"} />
+            <ModalItem closeModals={closeModals} icon={<FaSignOutAlt className="modalIcon" />} text={"Log out"} path={'/login'} />
           </div>} /> : <></>}
         </div>
       </div>
