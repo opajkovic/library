@@ -3,13 +3,15 @@ import "./BookInfo.css";
 import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
 import { useOutletContext } from "react-router";
 import Titles from "./components/Titlles";
-import Specification from "./components/Specification";
 import RightSide from "./components/RightSide";
+import Informations from "./components/Informations";
+import Specification from "./components/Specifications";
+import Multimedia from "./components/Multimedia";
 
-export default function BookInfo() {
+export default function BookInfo({ specification, multimedia }) {
   const { setRoute } = useOutletContext();
   useEffect(() => {
-    setRoute("books");
+    setRoute("/books/:id/specifikacija");
   }, []);
   return (
     <div className="book-container">
@@ -25,7 +27,9 @@ export default function BookInfo() {
       <div className="bottom-wrapper">
         <div>
           <Titles />
-          <Specification />
+          {specification && <Specification />}
+          {multimedia && <Multimedia />}
+          {!specification && !multimedia && <Informations />}
         </div>
         <RightSide />
       </div>

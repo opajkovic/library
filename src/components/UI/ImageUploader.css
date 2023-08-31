@@ -1,0 +1,17 @@
+.custom-file {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 13rem;
+  padding: 0;
+}
+
+.custom-file img {
+  width: 13rem;
+  cursor: pointer;
+  border: 1px solid var(--grey-200);
+}
+
+.custom-file-input {
+  display: none;
+}

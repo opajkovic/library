@@ -1,42 +1,44 @@
-import "./Titles.css"
+import "./Titles.css";
 import { useParams } from "react-router";
 import { NavLink } from "react-router-dom";
 
 export default function Titles() {
   const params = useParams();
 
-  const isActive = window.location.pathname.includes(
-    `/students/${params.id}/evidencija`
-  );
-
   return (
     <div className="title-bar-wrapper">
       <NavLink
-        to={`/students/${params.id}`}
+        to={`/books/${params.id}`}
         className={({ isActive }) => {
-          return isActive ? "active-header" : undefined;
+          return isActive ? "active-page" : undefined;
         }}
         end
       >
         <h1> Osnovni detalji </h1>
       </NavLink>
       <NavLink
-        to={`/students/${params.id}/evidencija/izdate-knjige`}
-        className={isActive ? "active-header" : undefined}
+        to={`/books/${params.id}/specifikacija`}
+        className={({ isActive }) => {
+          return isActive ? "active-page" : undefined;
+        }}
         end
       >
         <h1> Specifikacija </h1>
       </NavLink>
       <NavLink
-        to={`/students/${params.id}/evidencija/izdate-knjige`}
-        className={isActive ? "active-header" : undefined}
+        to={`/books/${params.id}/evidencija/evidencija-iznajmljivanja`}
+        className={({ isActive }) => {
+          return isActive ? "active-page" : undefined;
+        }}
         end
       >
         <h1> Evidencija iznajmljivanja </h1>
       </NavLink>
       <NavLink
-        to={`/students/${params.id}/evidencija/izdate-knjige`}
-        className={isActive ? "active-header" : undefined}
+        to={`/books/${params.id}/multimedija`}
+        className={({ isActive }) => {
+          return isActive ? "active-page" : undefined;
+        }}
         end
       >
         <h1> Multimedija </h1>

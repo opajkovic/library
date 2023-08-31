@@ -14,7 +14,10 @@ import ActiveReservations from "./pages/rentingBooks/layouts/activeReservation";
 import ArchivedReservations from "./pages/rentingBooks/layouts/archivedReservations";
 
 import Books from "./pages/books/Books";
-import BookInfo from "./pages/bookInformations/BookInfo";
+import BookInfo from "./pages/bookInformations/BookInfo"; 
+import BookSpecification from "./pages/bookInformations/layouts/BookSpecification";
+import BookMultimedia from "./pages/bookInformations/layouts/BookMultimedia";
+
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
 import LibrarianProfile from "./pages/librarianProfile/LibrarianProfile";
 import StudentProfile from "./pages/studentProfile/StudentProfile";
@@ -46,6 +49,8 @@ function App() {
        
           <Route path="/books" element={<Books />} />
           <Route path="/books/:id" element={<BookInfo />} />
+          <Route path="/books/:id/specifikacija" element={<BookSpecification />} />
+          <Route path="/books/:id/multimedija" element={<BookMultimedia />} />
 
 
           {/* Author routes */}

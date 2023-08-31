@@ -13,7 +13,7 @@ const DUMMY_DATA = [
   },
 ];
 
-export default function Specification() {
+export default function Informations() {
   return DUMMY_DATA.map((item, index) => (
     <div className="book-spec" key={index}>
       <ul>
