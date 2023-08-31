@@ -24,7 +24,13 @@ import Izdavac from "./pages/settings/settingsPages/izdavac/Izdavac";
 import Povez from "./pages/settings/settingsPages/povez/Povez";
 import Format from "./pages/settings/settingsPages/format/Format";
 import Pismo from "./pages/settings/settingsPages/pismo/Pismo";
-import ProfileEvidence from "./pages/studentProfile/ProfileEvidence";
+
+import ProfileEvidenceReturned from "./pages/studentProfile/layouts/ProfileEvidenceReturned";
+import ProfileEvidenceWrittenOff from "./pages/studentProfile/layouts/ProfileEvidenceWrittenOff";
+import ProfileEvidenceExcess from "./pages/studentProfile/layouts/ProfileEvidenceExcess";
+import ProfileEvidenceReserved from "./pages/studentProfile/layouts/ProfileEvidenceReserved";
+import ProfileEvidenceArchived from "./pages/studentProfile/layouts/ProfileEvidenceArhived";
+import ProfileEvidenceRented from "./pages/studentProfile/layouts/ProfileEvidenceRented";
 
 function App() {
   return (
@@ -78,13 +84,12 @@ function App() {
 
           {/* student profile routes */}
           <Route path="/students/:id" element={<StudentProfile />} />
-          <Route path="/students/:id/evidencija" element={<ProfileEvidence />} />
-          <Route path="/students/:id/evidencija/izdate-knjige" element={<ProfileEvidence />} />
-          <Route path="/students/:id/evidencija/vracene-knjige" element={<ProfileEvidence />} />
-          <Route path="/students/:id/evidencija/otpisane-knjige" element={<ProfileEvidence />} />
-          <Route path="/students/:id/evidencija/knjige-u-prekoracenju" element={<ProfileEvidence />} />
-          <Route path="/students/:id/evidencija/aktivne-rezervacije" element={<ProfileEvidence />} />
-          <Route path="/students/:id/evidencija/arhivirane-rezervacije" element={<ProfileEvidence />} />
+          <Route path="/students/:id/evidencija/izdate-knjige" element={<ProfileEvidenceRented />} />
+          <Route path="/students/:id/evidencija/vracene-knjige" element={<ProfileEvidenceReturned />} />
+          <Route path="/students/:id/evidencija/otpisane-knjige" element={<ProfileEvidenceWrittenOff />} />
+          <Route path="/students/:id/evidencija/knjige-u-prekoracenju" element={<ProfileEvidenceExcess />} />
+          <Route path="/students/:id/evidencija/aktivne-rezervacije" element={<ProfileEvidenceReserved />} />
+          <Route path="/students/:id/evidencija/arhivirane-rezervacije" element={<ProfileEvidenceArchived />} />
           
         </Route>
         <Route path="*" element={<PageNotFound />} />
