@@ -4,6 +4,7 @@ import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
 import { useOutletContext } from "react-router";
 import Titles from "./components/Titlles";
 import Specification from "./components/Specification";
+import RightSide from "./components/RightSide";
 
 export default function BookInfo() {
   const { setRoute } = useOutletContext();
@@ -11,7 +12,7 @@ export default function BookInfo() {
     setRoute("books");
   }, []);
   return (
-    <div>
+    <div className="book-container">
       <ProfileTitle
         linkOne={"Sve knjige"}
         linkOnePath={"/books"}
@@ -21,11 +22,12 @@ export default function BookInfo() {
         deleteMssg={true}
         booksSpecial={true}
       />
-      <div>
+      <div className="bottom-wrapper">
         <div>
           <Titles />
           <Specification />
         </div>
+        <RightSide />
       </div>
     </div>
   );

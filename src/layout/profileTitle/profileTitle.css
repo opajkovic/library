@@ -6,7 +6,8 @@
   border-bottom: 1px solid var(--grey-200);
   position: fixed;
   width: calc(100% - 90px);
-  z-index: 0;
+  z-index: 99;
+  background-color: white;
 }
 
 .title-wrapper span {
@@ -20,7 +21,7 @@
 
 .title-wrapper img {
   position: absolute;
-  height: 5.5rem;
+  height: 5.4rem;
 }
 .left .subtitle {
   display: flex;
@@ -28,13 +29,14 @@
 }
 .title-wrapper .right {
   display: flex;
-  grid-gap: 1.25rem;
+  flex-direction: row;
+  gap: 1.25rem;
 }
 .reset-password,
 .change-info {
   cursor: pointer;
   display: flex;
-  grid-gap: 5px;
+  gap: 5px;
   align-items: center;
 }
 .moduleBox {
@@ -61,4 +63,18 @@
   flex-direction: column;
   gap: 10px;
   margin-left: 7rem;
+}
+
+@media (max-width: 1400px) {
+  .title-wrapper {
+    width: calc(100vw - 90px);
+  }
+
+  .right {
+    gap: 0.2rem;
+  }
+  .right p,
+  .right a {
+    font-size: 0.8rem;
+  }
 }

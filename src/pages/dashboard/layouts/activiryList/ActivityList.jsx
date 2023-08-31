@@ -3,19 +3,21 @@ import "./ActivityList.css";
 import { Link } from "react-router-dom";
 import ActivitiItem from "../../../activities/components/activitiItem/ActivitiItem";
 
-export default function ActivityList() {
+export default function ActivityList({ hideTitle }) {
   return (
     <div className="activityList">
-      <h2 className="subTitle">Aktivnosti</h2>
-      <div className="list">
+      {!hideTitle && <h2 className="subtitle">Aktivnosti</h2>}
+      <div className={hideTitle ? "book-activities" : "list"}>
         <ActivitiItem />
         <ActivitiItem />
         <ActivitiItem />
         <ActivitiItem />
         <ActivitiItem />
         <ActivitiItem />
-      <Link to='/activities'><button className="showBtn">SHOW</button></Link>
+        <Link to="/activities">
+          <button className="showBtn">SHOW</button>
+        </Link>
       </div>
     </div>
-  )
+  );
 }
