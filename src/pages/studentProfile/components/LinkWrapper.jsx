@@ -5,6 +5,8 @@ import { NavLink } from "react-router-dom";
 export default function LinkWrapper() {
   const params = useParams();
 
+  const isActive = window.location.pathname.includes(`/students/${params.id}/evidencija`);
+
   return (
     <div className="link-wrapper">
       <NavLink
@@ -17,10 +19,8 @@ export default function LinkWrapper() {
         <h1> Osnovni detalji </h1>
       </NavLink>
       <NavLink
-        to={`/students/${params.id}/evidencija`}
-        className={({ isActive }) => {
-          return isActive ? "active-header" : undefined;
-        }}
+        to={`/students/${params.id}/evidencija/izdate-knjige`}
+        className={isActive ? "active-header" : undefined}
         end
       >
         <h1> Evidencija iznajmljivanja </h1>

@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { BsBook } from "react-icons/bs";
 
 export default function RentingOptions(props) {
+
   const titles = [
     {
       name: "Izdate Knjige",
@@ -21,9 +22,7 @@ export default function RentingOptions(props) {
     },
     {
       name: "Knjige u prekoračenju",
-      path: props.paths
-        ? props.paths[3]
-        : "/rentingBooks/knjige-u-prekoracenju",
+      path: props.paths ? props.paths[3] : "/rentingBooks/knjige-u-prekoracenju",
       image: <BsBook />,
     },
     {
@@ -33,9 +32,7 @@ export default function RentingOptions(props) {
     },
     {
       name: "Arhivirane rezervacije",
-      path: props.paths
-        ? props.paths[5]
-        : "/rentingBooks/arhivirane-rezervacije",
+      path: props.paths ? props.paths[5] : "/rentingBooks/arhivirane-rezervacije",
       image: <BsBook />,
     },
   ];
