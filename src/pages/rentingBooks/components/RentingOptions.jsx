@@ -2,36 +2,40 @@ import "./RentingOptions.css";
 import { NavLink } from "react-router-dom";
 import { BsBook } from "react-icons/bs";
 
-export default function RentingOptions() {
+export default function RentingOptions(props) {
   const titles = [
     {
       name: "Izdate Knjige",
-      path: "/rentingBooks/izdate-knjige",
+      path: props.paths ? props.paths[0] : "/rentingBooks/izdate-knjige",
       image: <BsBook />,
     },
     {
       name: "Vraćene knjige",
-      path: "/rentingBooks/vracene-knjige",
+      path: props.paths ? props.paths[1] : "/rentingBooks/vracene-knjige",
       image: <BsBook />,
     },
     {
       name: "Otpisane knjige",
-      path: "/rentingBooks/otpisane-knjige",
+      path: props.paths ? props.paths[2] : "/rentingBooks/otpisane-knjige",
       image: <BsBook />,
     },
     {
       name: "Knjige u prekoračenju",
-      path: "/rentingBooks/knjige-u-prekoracenju",
+      path: props.paths
+        ? props.paths[3]
+        : "/rentingBooks/knjige-u-prekoracenju",
       image: <BsBook />,
     },
     {
       name: "Aktivne rezervacije",
-      path: "/rentingBooks/aktivne-rezervacije",
+      path: props.paths ? props.paths[4] : "/rentingBooks/aktivne-rezervacije",
       image: <BsBook />,
     },
     {
       name: "Arhivirane rezervacije",
-      path: "/rentingBooks/arhivirane-rezervacije",
+      path: props.paths
+        ? props.paths[5]
+        : "/rentingBooks/arhivirane-rezervacije",
       image: <BsBook />,
     },
   ];

@@ -1,17 +1,12 @@
 import React, { useEffect } from "react";
 import "./studentProfile.css";
 import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
-import { useOutletContext } from "react-router";
+import { useOutletContext, useParams } from "react-router";
 import LinkWrapper from "./components/LinkWrapper";
-import RentingOptions from "../rentingBooks/components/RentingOptions";
-import Table from "../../components/UI/Table";
-import TableControl from "../../components/UI/TableControl";
-import Pagination from "../../components/UI/Pagination";
 import BottomContainer from "../rentingBooks/components/BottomContainer";
 
-const DUMMY_TABLE_DATA = [];
-
 export default function ProfileEvidence() {
+  const params = useParams();
   const { setRoute } = useOutletContext();
   useEffect(() => {
     setRoute("students");
@@ -33,6 +28,14 @@ export default function ProfileEvidence() {
             "Datum izdavanja",
             "Trenutno zadržavanje knjiga",
             "Knjigu izdao",
+          ]}
+          paths={[
+            `/students/${params.id}/evidencija/izdate-knjige`,
+            `/students/${params.id}/evidencija/vracene-knjige`,
+            `/students/${params.id}/evidencija/otpisane-knjige`,
+            `/students/${params.id}/evidencija/knjige-u-prekoracenju`,
+            `/students/${params.id}/evidencija/aktivne-rezervacije`,
+            `/students/${params.id}/evidencija/arhivirane-rezervacije`,
           ]}
         />
       </div>

@@ -75,8 +75,16 @@ function App() {
           <Route path="/librarians" element={<Librarians />} />
           <Route path="/activities" element={<Activities />} />
           <Route path="/librarians/:id" element={<LibrarianProfile />} />
+
+          {/* student profile routes */}
           <Route path="/students/:id" element={<StudentProfile />} />
           <Route path="/students/:id/evidencija" element={<ProfileEvidence />} />
+          <Route path="/students/:id/evidencija/izdate-knjige" element={<ProfileEvidence />} />
+          <Route path="/students/:id/evidencija/vracene-knjige" element={<ProfileEvidence />} />
+          <Route path="/students/:id/evidencija/otpisane-knjige" element={<ProfileEvidence />} />
+          <Route path="/students/:id/evidencija/knjige-u-prekoracenju" element={<ProfileEvidence />} />
+          <Route path="/students/:id/evidencija/aktivne-rezervacije" element={<ProfileEvidence />} />
+          <Route path="/students/:id/evidencija/arhivirane-rezervacije" element={<ProfileEvidence />} />
           
         </Route>
         <Route path="*" element={<PageNotFound />} />

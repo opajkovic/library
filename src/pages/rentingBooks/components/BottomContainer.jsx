@@ -9,7 +9,7 @@ const DUMMY_TABLE_DATA = [];
 export default function BottomContainer(props) {
   return (
     <div className="bottom-container">
-      <RentingOptions />
+      <RentingOptions paths={props.paths}/>
       <div className="table-wrapper">
         <TableControl title={props.title} hide="true" />
         <Table
