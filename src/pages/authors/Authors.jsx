@@ -4,6 +4,7 @@ import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
 import Pagination from "../../components/UI/Pagination";
+import { FaEdit, FaFile, FaTrash } from "react-icons/fa";
 
 const DUMMY_AUTHOR_DATA = [
   {
@@ -34,10 +35,6 @@ const DUMMY_AUTHOR_DATA = [
 ];
 
 export default function Authors() {
-  const navigate = useNavigate();
-  const clickHandler = (id)=>{
-    navigate(`/authors/${id}`)
-  }
   const { setRoute } = useOutletContext();
   useEffect(() => {
     setRoute("authors");
@@ -52,13 +49,19 @@ export default function Authors() {
           lastHeader="Opis"
           tableData={DUMMY_AUTHOR_DATA}
           headers=""
-          options={{
-            first: "Pogledaj detalje",
-            second: "izmijeni autora",
-            third: "Izbriši autora",
-            forth: ""
-          }}
-          onClick={clickHandler}
+          options={[{
+            text: "Pogledaj detalje",
+            icon: <FaFile />,
+            path: "/librarians/1",
+          },{
+            text: "Izmijeni autora",
+            icon: <FaEdit />,
+            path: "/librarians/1",
+          },{
+            text: "Izbrisi autora",
+            icon: <FaTrash />,
+            path: "/librarians/1",
+          },]}
         />
         <Pagination items={DUMMY_AUTHOR_DATA} />
       </div>

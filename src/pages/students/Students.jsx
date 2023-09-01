@@ -4,6 +4,7 @@ import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
 import Pagination from "../../components/UI/Pagination";
+import { FaEdit, FaFile, FaTrash } from "react-icons/fa";
 
 const DUMMY_TABLE_DATA = [
   {
@@ -45,11 +46,6 @@ const DUMMY_TABLE_DATA = [
 
 
 export default function Students() {
-  const navigate = useNavigate();
-  const clickHandler = (id)=>{
-    navigate(`/students/${id}`)
-  }
-
   const { setRoute } = useOutletContext();
   useEffect(() => {
     setRoute("students");
@@ -64,13 +60,19 @@ export default function Students() {
           headers={["email", "role"]}
           lastHeader="Poslednji pristup sistemu"
           tableData={DUMMY_TABLE_DATA}
-          options={{
-            first: "Pogledaj detalje",
-            second: "izmijeni učenika",
-            third: "Izbriši učenika",
-            forth: ""
-          }}
-          onClick={clickHandler}
+          options={[{
+            text: "Pogledaj detalje",
+            icon: <FaFile />,
+            path: "/librarians/1",
+          },{
+            text: "Izmijeni korisnika",
+            icon: <FaEdit />,
+            path: "/librarians/1",
+          },{
+            text: "Izbrisi korisnika",
+            icon: <FaTrash />,
+            path: "/librarians/1",
+          },]}
         />
         <Pagination items={DUMMY_TABLE_DATA} />
       </div>

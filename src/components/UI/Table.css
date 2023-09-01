@@ -93,10 +93,14 @@ td input {
   justify-content: center !important;
 }
 
-.flex-between {
+/* .flex-between {
   position: relative;
+} */
+.modalItemChange{
+  padding: 5px 10px;
+  min-width: 150px;
+  font-size: 12px;
 }
-
 @media (max-width: 1400px) {
   .table-container {
     min-width: unset;

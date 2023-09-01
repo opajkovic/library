@@ -5,6 +5,7 @@ import { useOutletContext } from "react-router";
 import { useEffect } from "react";
 import SettingsTable from "../../components/SettingsTable";
 import Pagination from "../../../../components/UI/Pagination";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 const DUMMY_DATA = [
   {
@@ -61,12 +62,18 @@ export default function Kategorije() {
           lastHeader="Opis"
           tableData={DUMMY_DATA}
           headers=""
-          options={{
-            first: "",
-            second: "izmijeni kategoriju",
-            third: "Izbriši kategoriju",
-            forth: "",
-          }}
+          options={[
+            {
+              text: "Izmijeni kategoriju",
+              icon: <FaEdit />,
+              path: ""
+            },
+            {
+              text: "Izbrisi kategoriju",
+              icon: <FaTrash />,
+              path: ""
+            },
+          ]}
         />
       </div>
     </div>

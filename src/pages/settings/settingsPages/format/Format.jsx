@@ -6,6 +6,7 @@ import { useOutletContext } from "react-router";
 import Table from "../../../../components/UI/Table";
 import TableControl from "../../../../components/UI/TableControl";
 import SettingsTable from "../../components/SettingsTable";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 const DUMMY_DATA = [
   {
@@ -43,12 +44,18 @@ export default function Format() {
           tableData={DUMMY_DATA}
           headers=""
           lastHeader=""
-          options={{
-            first: "",
-            second: "izmijeni format",
-            third: "Izbriši format",
-            forth: "",
-          }}
+          options={[
+            {
+              text: "Izmijeni format",
+              icon: <FaEdit />,
+              path: ""
+            },
+            {
+              text: "Izbrisi format",
+              icon: <FaTrash />,
+              path: ""
+            },
+          ]}
         />
       </div>
     </div>

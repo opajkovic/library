@@ -4,6 +4,7 @@ import Menu from "../../layouts/menu/Menu";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
 import { useOutletContext } from "react-router";
 import SettingsTable from "../../components/SettingsTable";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 const DUMMY_DATA = [
   {
@@ -41,12 +42,18 @@ export default function Povez() {
         tableData={DUMMY_DATA}
         headers=""
         lastHeader=""
-        options={{
-          first: "",
-          second: "izmijeni povez",
-          third: "Izbriši povez",
-          forth: "",
-        }}
+        options={[
+          {
+            text: "Izmijeni povez",
+            icon: <FaEdit />,
+            path: ""
+          },
+          {
+            text: "Izbrisi povez",
+            icon: <FaTrash />,
+            path: ""
+          },
+        ]}
       />
       </div>
     </div>

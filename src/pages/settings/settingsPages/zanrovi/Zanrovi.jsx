@@ -4,6 +4,7 @@ import PageTitle from "../../../../components/pageTitle/PageTitle";
 import Menu from "../../layouts/menu/Menu";
 import { useOutletContext } from "react-router";
 import SettingsTable from "../../components/SettingsTable";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 const DUMMY_DATA = [
   {
@@ -41,12 +42,18 @@ export default function Zanrovi() {
         tableData={DUMMY_DATA}
         headers=""
         lastHeader=""
-        options={{
-          first: "",
-          second: "izmijeni žanr",
-          third: "Izbriši žanr",
-          forth: "",
-        }}
+        options={[
+          {
+            text: "Izmijeni zanr",
+            icon: <FaEdit />,
+            path: ""
+          },
+          {
+            text: "Izbrisi zanr",
+            icon: <FaTrash />,
+            path: ""
+          },
+        ]}
       />
       </div>
     </div>

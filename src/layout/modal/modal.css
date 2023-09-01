@@ -1,7 +1,7 @@
 .modal{
     position: absolute;
-    border: 1px solid black;
-    border-radius: 3px;
+    border: 1px solid rgb(153, 153, 153);
+    border-radius: 5px;
     background-color: var(--white);
     transform: translate(-90%, 5%);
     color: black;
@@ -14,11 +14,11 @@
     height: unset;
 }
 .closeModal{
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
 }
 
 .modal p {

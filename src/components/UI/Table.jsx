@@ -5,26 +5,18 @@ import MiddleDataCell from "./table components/MiddleDataCell";
 import LastDataCell from "./table components/LastDataCell";
 import SearchTableInputs from "./table components/SearchTableInputs";
 import { useState } from "react";
-import Dropdown from "./table components/Dropdown";
+import { FaRegAddressBook } from "react-icons/fa";
 
 const Table = ({
   headers,
   tableData,
   mainHeader,
   lastHeader,
-  options,
-  onClick,
+  options
 }) => {
   const [showModal, setShowModal] = useState(false);
-  const [row, setRow] = useState(null);
+  const [row, setRow] = useState(1);
 
-  const handleDots = (index) => {
-    setShowModal(true);
-    setRow(index);
-    setTimeout(() => {
-      setShowModal(false);
-    }, [3000]);
-  };
 
   const combinedArray = [...[mainHeader], ...headers, ...[lastHeader]].filter(
     (item) => item !== ""
@@ -47,19 +39,16 @@ const Table = ({
             <tr key={index}>
               <FirstDataCell
                 item={item}
-                handleDots={() => handleDots(index)}
                 lastHeader={lastHeader}
                 mainHeader={mainHeader}
+                options={options}
               />
               <MiddleDataCell item={item} headers={headers} />
               <LastDataCell
                 item={item}
                 lastHeader={lastHeader}
-                handleDots={() => handleDots(index)}
+                options={options}
               />
-              {showModal && row === index && (
-                <Dropdown options={options} onClick={() => onClick(item.id)} />
-              )}
             </tr>
           ))
         )}

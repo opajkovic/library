@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import { useOutletContext, useNavigate } from "react-router";
+import { useOutletContext } from "react-router";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
 import Pagination from "../../components/UI/Pagination";
+import { FaCalendar, FaEdit, FaHandScissors, FaLevelUpAlt, FaRedo, FaRegFile, FaTrash } from "react-icons/fa";
 
 const DUMMY_TABLE_DATA = [
   {
@@ -60,10 +61,6 @@ const forth = [
 ];
 
 export default function Books() {
-  const navigate = useNavigate();
-  const clickHandler = (id)=>{
-    navigate(`/books/${id}`)
-  }
   const { setRoute } = useOutletContext();
   useEffect(() => {
     setRoute("books");
@@ -85,13 +82,35 @@ export default function Books() {
           ]}
           lastHeader="Ukupna količina"
           tableData={DUMMY_TABLE_DATA}
-          options={{
-            first: "Pogledaj detalje",
-            second: "izmijeni knjigu",
-            third: "Izbriši knjigu",
-            forth: {forth},
-          }}
-          onClick={clickHandler}
+          options={[{
+            text: "Pogledaj detalje",
+            icon: <FaRegFile />,
+            url: "/books/1"
+          },{
+            text: "Izmijeni knjigu",
+            icon: <FaEdit />,
+            url: "/books/1"
+          },{
+            text: "Otpisi knjigu",
+            icon: <FaLevelUpAlt />,
+            url: "/books/1"
+          },{
+            text: "Izdaj knjigu",
+            icon: <FaHandScissors />,
+            url: "/books/1"
+          },{
+            text: "Vrati knjigu",
+            icon: <FaRedo />,
+            url: "/books/1"
+          },{
+            text: "Rezervisi knjigu",
+            icon: <FaCalendar />,
+            url: "/books/1"
+          },{
+            text: "Izbrisi knjigu",
+            icon: <FaTrash />,
+            url: "/books/1"
+          },]}
         />
         <Pagination items={DUMMY_TABLE_DATA} />
       </div>
