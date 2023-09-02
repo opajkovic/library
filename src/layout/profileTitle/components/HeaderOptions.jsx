@@ -82,9 +82,7 @@ export default function HeaderOptions({
               </div>
             }
           />
-        ) : (
-          <></>
-        )}
+        ) : null}
       </div>
     </div>
   );

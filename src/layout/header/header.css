@@ -59,7 +59,7 @@
   align-items: center;
 }
 
-.heading-modal{
+.heading-modal {
   position: absolute;
   border: 1px solid rgb(153, 153, 153);
   border-radius: 5px;
@@ -70,8 +70,20 @@
   background-color: white;
 }
 
-@media(max-width:1400px){
-  .header{
+.profile-modal {
+  position: absolute;
+  border: 1px solid rgb(153, 153, 153);
+  border-radius: 5px;
+  background-color: var(--white);
+  color: black;
+  text-align: left;
+  right: 3rem;
+  bottom: -5rem;
+  background-color: white;
+}
+
+@media (max-width: 1400px) {
+  .header {
     width: 100vw;
     min-width: unset;
   }

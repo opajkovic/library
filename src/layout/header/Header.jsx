@@ -1,19 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
-import {
-  FaBookReader,
-  FaBell,
-  FaPlus,
-  FaFile,
-  FaSignOutAlt,
-  FaCopy,
-  FaRegAddressBook,
-  FaUsers,
-  FaAddressBook,
-} from "react-icons/fa";
+import { FaBookReader, FaBell } from "react-icons/fa";
 import "./header.css";
-import Modal from "../modal/Modal";
 import { useState } from "react";
-import ModalItem from "../modal/modalItem/ModalItem";
+import ModalBox from "./components/ModalBox";
+import BellModalBox from "./components/BellModalBox";
 
 const Header = () => {
   const [modalProfileShow, setModalProfileShow] = useState(false);
@@ -31,70 +21,37 @@ const Header = () => {
 
   return (
     <header className="header">
-      <div>
-        <NavLink onClick={closeModals} to="./dashboard">
-          <FaBookReader />
-          <span className="bild">Online biblioteka</span>
-        </NavLink>
-      </div>
+      <NavLink onClick={closeModals} to="./dashboard">
+        <FaBookReader />
+        <span className="bild">Online biblioteka</span>
+      </NavLink>
+
       <div className="headerRight">
         <Link onClick={closeModals} to={"/activities"} className="bell">
           <FaBell />
         </Link>
         <div className="border"></div>
-        <div className="bell modalBox">
-          <FaPlus
-            onClick={() => {
-              changeModal(setModalPlus, modalPlus);
-            }}
-          />
-          {modalPlus ? (
-            <Modal
-              className="heading-modal"
-              setModalClose={() => closeModals()}
-              component={
-                <div>
-                  <ModalItem icon={<FaRegAddressBook />} text={"Bibliotekar"} />
-                  <ModalItem icon={<FaUsers />} text={"Ucenik"} />
-                  <ModalItem icon={<FaCopy />} text={"Knjiga"} />
-                  <ModalItem icon={<FaAddressBook />} text={"Autor"} />
-                </div>
-              }
-            />
-          ) : null}
-        </div>
+
+        <BellModalBox
+          modalPlus={modalPlus}
+          changeModal={() => {
+            changeModal(setModalPlus, modalPlus);
+          }}
+          setModalClose={() => closeModals}
+        />
+
         <NavLink to="/dashboard">
           <span className="bild">DataDesign</span>
         </NavLink>
-        <div className="modalBox">
-          <FaBookReader
-            onClick={() => {
-              changeModal(setModalProfileShow, modalProfileShow);
-            }}
-          />
-          {modalProfileShow ? (
-            <Modal
-              setModalClose={() => closeModals()}
-              className="heading-modal"
-              component={
-                <div className="modalHeader">
-                  <ModalItem
-                    closeModals={closeModals}
-                    icon={<FaFile className="modalIcon" />}
-                    text={"Profile"}
-                    path={`/librarians/2`}
-                  />
-                  <ModalItem
-                    closeModals={closeModals}
-                    icon={<FaSignOutAlt className="modalIcon" />}
-                    text={"Log out"}
-                    path={"/login"}
-                  />
-                </div>
-              }
-            />
-          ) : null}
-        </div>
+
+        <ModalBox
+          changeModal={() => {
+            changeModal(setModalProfileShow, modalProfileShow);
+          }}
+          modalProfileShow={modalProfileShow}
+          setModalClose={() => closeModals()}
+          closeModals={closeModals}
+        />
       </div>
     </header>
   );
