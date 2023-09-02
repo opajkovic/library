@@ -9,20 +9,24 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 const DUMMY_DATA = [
   {
     id: 1,
-    name: "Arto",
+    Izdavac: "Arto",
   },
   {
     id: 2,
-    name: "Balbelo",
+    Izdavac: "Balbelo",
   },
   {
     id: 3,
-    name: "Cid",
+    Izdavac: "Cid",
   },
   {
     id: 4,
-    name: "Cosmo",
+    Izdavac: "Cosmo",
   },
+];
+
+const headers = [
+  { headerName: "Izdavac", sort: true, dropdown: true },
 ];
 
 export default function Izdavac() {
@@ -38,10 +42,8 @@ export default function Izdavac() {
       <div className="page-wrapper">
         <SettingsTable
           title="Novi izdavač"
-          mainHeader="Izdavač"
           tableData={DUMMY_DATA}
-          headers=""
-          lastHeader=""
+          headers={headers}
           options={[
             {
               text: "Izmijeni izdavaca",

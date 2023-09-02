@@ -4,46 +4,51 @@ import Menu from "../../layouts/menu/Menu";
 import { useOutletContext } from "react-router";
 import { useEffect } from "react";
 import SettingsTable from "../../components/SettingsTable";
-import Pagination from "../../../../components/UI/Pagination";
 import { FaEdit, FaTrash } from "react-icons/fa";
 
 const DUMMY_DATA = [
   {
     id: 1,
-    name: "Hrana i pice",
-    lastHeader: "Lorem ipsum dolor sit amet consectetur adipising eli,",
+    Novakategorija: "Hrana i pice",
+    Opis: "Lorem ipsum dolor sit amet consectetur adipising eli,",
   },
   {
     id: 2,
-    name: "Djecije knjige",
-    lastHeader: "Lorem ipsum dolor sit amet consectetur adipising eli,",
+    Novakategorija: "Djecije knjige",
+    Opis: "Lorem ipsum dolor sit amet consectetur adipising eli,",
   },
   {
     id: 3,
-    name: "Istorija",
-    lastHeader: "Lorem ipsum dolor sit amet consectetur adipising eli,",
+    Novakategorija: "Istorija",
+    Opis: "Lorem ipsum dolor sit amet consectetur adipising eli,",
   },
   {
     id: 4,
-    name: "Skolske knjige",
-    lastHeader: "Lorem ipsum dolor sit amet consectetur adipising eli,",
+    Novakategorija: "Skolske knjige",
+    Opis: "Lorem ipsum dolor sit amet consectetur adipising eli,",
   },
   {
     id: 5,
-    name: "Nauka, priroda i matematika",
-    lastHeader: "Lorem ipsum dolor sit amet consectetur adipising eli,",
+    Novakategorija: "Nauka, priroda i matematika",
+    Opis: "Lorem ipsum dolor sit amet consectetur adipising eli,",
   },
   {
     id: 6,
-    name: "Pravo",
-    lastHeader: "Lorem ipsum dolor sit amet consectetur adipising eli,",
+    Novakategorija: "Pravo",
+    Opis: "Lorem ipsum dolor sit amet consectetur adipising eli,",
   },
   {
     id: 7,
-    name: "Hrana i pice",
-    lastHeader: "Lorem ipsum dolor sit amet consectetur adipising eli,",
+    Novakategorija: "Hrana i pice",
+    Opis: "Lorem ipsum dolor sit amet consectetur adipising eli,",
   },
 ];
+
+const headers = [
+  { headerName: "Nova kategorija", sort: true, dropdown: false },
+  { headerName: "Opis", sort: false, dropdown: true },
+];
+
 export default function Kategorije() {
   const { setRoute } = useOutletContext();
   useEffect(() => {
@@ -58,20 +63,18 @@ export default function Kategorije() {
       <div className="page-wrapper">
         <SettingsTable
           title="Nova Kategorija"
-          mainHeader="Kategorija"
-          lastHeader="Opis"
+          headers={headers}
           tableData={DUMMY_DATA}
-          headers=""
           options={[
             {
               text: "Izmijeni kategoriju",
               icon: <FaEdit />,
-              path: ""
+              path: "",
             },
             {
               text: "Izbrisi kategoriju",
               icon: <FaTrash />,
-              path: ""
+              path: "",
             },
           ]}
         />

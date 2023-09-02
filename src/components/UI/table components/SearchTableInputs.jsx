@@ -1,11 +1,11 @@
 import "../Table.css";
 
-const SearchTableInputs = ({ combinedArray }) => {
+const SearchTableInputs = ({ headers }) => {
   return (
     <tr>
-      {combinedArray.map((item) => (
-        <td key={item}>
-          <input className="category-search" placeholder={`Pretraži ${item}`} />
+      {headers.map((item, index) => (
+        <td key={index}>
+          <input className="category-search" placeholder={`Pretraži ${item.headerName}`} />
         </td>
       ))}
     </tr>

@@ -2,21 +2,25 @@ import "../Table.css";
 import { FaLongArrowAltDown } from "react-icons/fa";
 import Input from "../Input";
 
-const Thead = ({ headers, mainHeader, lastHeader }) => {
+const Thead = ({ headers }) => {
   return (
     <thead>
       <tr>
-        {mainHeader !== "" && (
-          <th>
-            <Input input={{ type: "checkbox", className: "table-checkbox" }} />
-            {mainHeader}
-            <sub>
-              <FaLongArrowAltDown className="arrow" />
-            </sub>
+        {headers.map((item, index) => (
+          <th key={index}>
+            {item.sort && (
+              <Input
+                input={{ type: "checkbox", className: "table-checkbox" }}
+              />
+            )}
+            {item.headerName}
+            {item.sort && (
+              <sub>
+                <FaLongArrowAltDown className="arrow" />
+              </sub>
+            )}
           </th>
-        )}
-        {headers && headers.map((item, index) => <th key={index}>{item}</th>)}
-        {lastHeader && <th> {lastHeader}</th>}
+        ))}
       </tr>
     </thead>
   );

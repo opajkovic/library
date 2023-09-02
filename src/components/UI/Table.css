@@ -23,7 +23,8 @@
 }
 
 .table-container td {
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  position: relative;
 }
 
 .table-container th {
@@ -93,9 +94,11 @@ td input {
   justify-content: center !important;
 }
 
-/* .flex-between {
-  position: relative;
-} */
+.dots {
+  position: absolute;
+  right: 1rem;
+}
+
 .modalItemChange{
   padding: 5px 10px;
   min-width: 150px;

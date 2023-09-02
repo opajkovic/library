@@ -9,13 +9,15 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 const DUMMY_DATA = [
   {
     id: 1,
-    name: "Ćirlica",
+    Pismo: "Ćirlica",
   },
   {
     id: 2,
-    name: "Latinica",
+    Pismo: "Latinica",
   },
 ];
+
+const headers = [{ headerName: "Pismo", sort: true, dropdown: true }];
 
 export default function Pismo() {
   const { setRoute } = useOutletContext();
@@ -28,25 +30,23 @@ export default function Pismo() {
 
       <Menu selectedSettings={"pismo"} />
       <div className="page-wrapper">
-      <SettingsTable
-        title="Novo pismo"
-        mainHeader="Pismo"
-        tableData={DUMMY_DATA}
-        headers=""
-        firstHeaderOptions={true}
-        options={[
-          {
-            text: "Izmijeni pismo",
-            icon: <FaEdit />,
-            path: ""
-          },
-          {
-            text: "Izbrisi pismo",
-            icon: <FaTrash />,
-            path: ""
-          },
-        ]}
-      />
+        <SettingsTable
+          title="Novo pismo"
+          tableData={DUMMY_DATA}
+          headers={headers}
+          options={[
+            {
+              text: "Izmijeni pismo",
+              icon: <FaEdit />,
+              path: "",
+            },
+            {
+              text: "Izbrisi pismo",
+              icon: <FaTrash />,
+              path: "",
+            },
+          ]}
+        />
       </div>
     </div>
   );

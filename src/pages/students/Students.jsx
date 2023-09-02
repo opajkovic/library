@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useNavigate, useOutletContext } from "react-router";
+import { useOutletContext } from "react-router";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
@@ -9,41 +9,47 @@ import { FaEdit, FaFile, FaTrash } from "react-icons/fa";
 const DUMMY_TABLE_DATA = [
   {
     id: 1,
-    name: "Pero Perović",
-    email: "	pero.perovic@domain.net",
-    role: "	Ucenik",
-    lastHeader: "	Prije 10 sati",
+    Imeiprezime: "Pero Perović",
+    email: "pero.perovic@domain.net",
+    role: "Ucenik",
+    Poslednjipristupsistemu: "Prije 10 sati",
   },
   {
     id: 2,
-    name: "Sebastijan Nikolić",
+    Imeiprezime: "Sebastijan Nikolić",
     email: "sebo.nikolic@domain.net",
     role: "Ucenik",
-    lastHeader: "Prije 2 dana",
+    Poslednjipristupsistemu: "Prije 2 dana",
   },
   {
     id: 3,
-    name: "Makarona Žarković",
-    email: "	mara.bubamara@domain.net",
-    role: "	Ucenik",
-    lastHeader: "	Prije 10 sati",
+    Imeiprezime: "Makarona Žarković",
+    email: "mara.bubamara@domain.net",
+    role: "Ucenik",
+    Poslednjipristupsistemu: "Prije 10 sati",
   },
   {
     id: 4,
-    name: "Kristijano Palikuća",
+    Imeiprezime: "Kristijano Palikuća",
     email: "callmekristyxxx@domain.net",
     role: "Ucenik",
-    lastHeader: "Prije 2 dana",
+    Poslednjipristupsistemu: "Prije 2 dana",
   },
   {
     id: 5,
-    name: "Rihana Kalimperović",
+    Imeiprezime: "Rihana Kalimperović",
     email: "rijana.kali@domain.net",
     role: "Ucenik",
-    lastHeader: "Prije 2 dana",
+    Poslednjipristupsistemu: "Prije 2 dana",
   },
 ];
 
+const headers = [
+  { headerName: "Ime i prezime", sort: true, dropdown: false },
+  { headerName: "email", sort: false, dropdown: false },
+  { headerName: "role", sort: false, dropdown: false },
+  { headerName: "Poslednji pristup sistemu", sort: false, dropdown: true },
+];
 
 export default function Students() {
   const { setRoute } = useOutletContext();
@@ -56,9 +62,7 @@ export default function Students() {
       <div className="page-wrapper">
         <TableControl title="Novi ucenik" />
         <Table
-          mainHeader="Ime i prezime"
-          headers={["email", "role"]}
-          lastHeader="Poslednji pristup sistemu"
+          headers={headers}
           tableData={DUMMY_TABLE_DATA}
           options={[{
             text: "Pogledaj detalje",

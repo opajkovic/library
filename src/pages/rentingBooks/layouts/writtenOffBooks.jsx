@@ -10,20 +10,19 @@ export default function WrittenOffBooks() {
     setRoute("rentingBooks");
   }, []);
 
+  const headers = [
+    { headerName: "Naziv knjige", sort: false, dropdown: false },
+    { headerName: "Izdato učeniku", sort: false, dropdown: false },
+    { headerName: "Datum izdavanja", sort: false, dropdown: false },
+    { headerName: "Datum otpisivanja", sort: false, dropdown: false },
+    { headerName: "Zadržavanje knjige", sort: false, dropdown: false },
+    { headerName: "Knjigu otpisao", sort: false, dropdown: true },
+  ];
+
   return (
     <div>
       <PageTitle title="Izdavanje Knjiga" />
-      <BottomContainer
-        title="Nova knjiga"
-        headers={[
-          "Naziv knjige",
-          "Izdato učeniku",
-          "Datum izdavanja",
-          "Datum otpisivanja",
-          "Zadržavanje knjige",
-          "Knjigu otpisao",
-        ]}
-      />
+      <BottomContainer title="Nova knjiga" headers={headers} />
     </div>
   );
 }

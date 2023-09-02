@@ -9,21 +9,23 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 const DUMMY_DATA = [
   {
     id: 1,
-    name: "Kožni",
+    Povez: "Kožni",
   },
   {
     id: 2,
-    name: "Meki",
+    Povez: "Meki",
   },
   {
     id: 3,
-    name: "Poluplatneni",
+    Povez: "Poluplatneni",
   },
   {
     id: 4,
-    name: "Tvrdi",
+    Povez: "Tvrdi",
   },
 ];
+
+const headers = [{ headerName: "Povez", sort: true, dropdown: true }];
 
 export default function Povez() {
   const { setRoute } = useOutletContext();
@@ -36,25 +38,23 @@ export default function Povez() {
 
       <Menu selectedSettings={"povez"} />
       <div className="page-wrapper">
-      <SettingsTable
-        title="Novi povez"
-        mainHeader="Povez"
-        tableData={DUMMY_DATA}
-        headers=""
-        lastHeader=""
-        options={[
-          {
-            text: "Izmijeni povez",
-            icon: <FaEdit />,
-            path: ""
-          },
-          {
-            text: "Izbrisi povez",
-            icon: <FaTrash />,
-            path: ""
-          },
-        ]}
-      />
+        <SettingsTable
+          title="Novi povez"
+          tableData={DUMMY_DATA}
+          headers={headers}
+          options={[
+            {
+              text: "Izmijeni povez",
+              icon: <FaEdit />,
+              path: "",
+            },
+            {
+              text: "Izbrisi povez",
+              icon: <FaTrash />,
+              path: "",
+            },
+          ]}
+        />
       </div>
     </div>
   );

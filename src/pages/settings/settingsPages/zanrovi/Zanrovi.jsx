@@ -9,21 +9,23 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 const DUMMY_DATA = [
   {
     id: 1,
-    name: "Autobiografija",
+    Zanr: "Autobiografija",
   },
   {
     id: 2,
-    name: "Enciklopedija",
+    Zanr: "Enciklopedija",
   },
   {
     id: 3,
-    name: "Fantazija",
+    Zanr: "Fantazija",
   },
   {
     id: 4,
-    name: "Komedija",
+    Zanr: "Komedija",
   },
 ];
+
+const headers = [{ headerName: "Zanr", sort: true, dropdown: true }];
 
 export default function Zanrovi() {
   const { setRoute } = useOutletContext();
@@ -36,25 +38,23 @@ export default function Zanrovi() {
 
       <Menu selectedSettings={"zanrovi"} />
       <div className="page-wrapper">
-      <SettingsTable
-        title="Novi žanr"
-        mainHeader="Žanr"
-        tableData={DUMMY_DATA}
-        headers=""
-        lastHeader=""
-        options={[
-          {
-            text: "Izmijeni zanr",
-            icon: <FaEdit />,
-            path: ""
-          },
-          {
-            text: "Izbrisi zanr",
-            icon: <FaTrash />,
-            path: ""
-          },
-        ]}
-      />
+        <SettingsTable
+          title="Novi žanr"
+          tableData={DUMMY_DATA}
+          headers={headers}
+          options={[
+            {
+              text: "Izmijeni zanr",
+              icon: <FaEdit />,
+              path: "",
+            },
+            {
+              text: "Izbrisi zanr",
+              icon: <FaTrash />,
+              path: "",
+            },
+          ]}
+        />
       </div>
     </div>
   );

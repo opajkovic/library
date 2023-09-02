@@ -10,18 +10,20 @@ export default function ActiveReservations() {
     setRoute("rentingBooks");
   }, []);
 
+  const headers = [
+    { headerName: "Naziv knjige", sort: false, dropdown: false },
+    { headerName: "Datum rezervacije", sort: false, dropdown: false },
+    { headerName: "Rezervacija ističe", sort: false, dropdown: false },
+    { headerName: "Rezervaciju podnio", sort: false, dropdown: false },
+    { headerName: "Status", sort: false, dropdown: true },
+  ];
+
   return (
     <div>
       <PageTitle title="Izdavanje Knjiga" />
       <BottomContainer
         title="Nova knjiga"
-        headers={[
-          "Naziv knjige",
-          "Datum rezervacije",
-          "Rezervacija ističe",
-          "Rezervaciju podnio",
-          "Status",
-        ]}
+        headers={headers}
       />
     </div>
   );

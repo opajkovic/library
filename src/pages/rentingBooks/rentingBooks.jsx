@@ -10,19 +10,18 @@ export default function RentingBooks(props) {
     setRoute("rentingBooks");
   }, []);
 
+  const headers = [
+    { headerName: "Naziv knjige", sort: false, dropdown: false },
+    { headerName: "Izdato učeniku", sort: false, dropdown: false },
+    { headerName: "Datum izdavanja", sort: false, dropdown: false },
+    { headerName: "Trenutno zadržavanje knjiga", sort: false, dropdown: false },
+    { headerName: "Knjigu izdao", sort: false, dropdown: true },
+  ];
+
   return (
     <div className={props.className}>
       <PageTitle title="Izdavanje Knjiga" />
-      <BottomContainer
-        title="Nova knjiga"
-        headers={[
-          "Naziv knjige",
-          "Izdato učeniku",
-          "Datum izdavanja",
-          "Trenutno zadržavanje knjiga",
-          "Knjigu izdao",
-        ]}
-      />
+      <BottomContainer title="Nova knjiga" headers={headers} />
     </div>
   );
 }
