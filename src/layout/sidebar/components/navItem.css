@@ -12,13 +12,13 @@
     opacity: .8;
     cursor: pointer;
 }
-.navLinkActive{
+.navLink.active{
     background-color: rgb(211, 211, 211);
     opacity: .8;
 }
 .icon{
     font-size: 25px;
 }
-.activeIcon{
+.navLink.active{
     color:  var(--primary);
 }
