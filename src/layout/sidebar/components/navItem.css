@@ -19,6 +19,6 @@
 .icon{
     font-size: 25px;
 }
-.navLink.active{
+.navLink.active svg{
     color:  var(--primary);
 }
