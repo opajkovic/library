@@ -20,6 +20,7 @@
   display: flex;
   align-items: center;
   flex: 1;
+  white-space: wrap;
 }
 
 .table-container td {
@@ -115,7 +116,12 @@ td input {
 
   .table-container td,
   .table-container th {
-    padding: 0.8rem 1rem;
+    padding: 0.5rem 0.5rem;
     font-size: 0.8rem;
+  }
+
+  .arrow {
+    margin-left: 0.3rem;
+    font-size: 1rem;
   }
 }

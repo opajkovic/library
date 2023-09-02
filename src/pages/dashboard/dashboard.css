@@ -16,4 +16,8 @@
     width: 45%;
     min-width: 400px;
   }
+
+  .contentD {
+    padding: 1.5rem 2rem;
+  }
 }

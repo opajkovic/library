@@ -1,5 +1,5 @@
 import "../BookInfo.css";
-import ActivityList from "../../dashboard/layouts/activiryList/ActivityList";
+import ActivityList from "../../dashboard/layouts/activityList/ActivityList";
 
 export default function RightSide() {
   return (
