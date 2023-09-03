@@ -17,7 +17,7 @@
     opacity: .8;
 }
 .icon{
-    font-size: 25px;
+    font-size: 1.5rem;
 }
 .navLink.active svg{
     color:  var(--primary);

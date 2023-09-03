@@ -83,6 +83,7 @@ export default function Books() {
       <div className="page-wrapper">
         <TableControl title="Nova knjiga" />
         <Table
+          path="/books"
           headers={headers}
           tableData={DUMMY_TABLE_DATA}
           options={[

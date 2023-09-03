@@ -19,3 +19,10 @@
 .paddingMenu {
   padding-top: calc(5.5rem - 1px);
 }
+
+
+@media(max-width:1400px){
+  .pageTitle h1{
+    width: calc(100vw - 90px);
+  }
+}

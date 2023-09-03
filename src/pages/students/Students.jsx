@@ -62,21 +62,26 @@ export default function Students() {
       <div className="page-wrapper">
         <TableControl title="Novi ucenik" />
         <Table
+          path="/students"
           headers={headers}
           tableData={DUMMY_TABLE_DATA}
-          options={[{
-            text: "Pogledaj detalje",
-            icon: <FaFile />,
-            path: "/librarians/1",
-          },{
-            text: "Izmijeni korisnika",
-            icon: <FaEdit />,
-            path: "/librarians/1",
-          },{
-            text: "Izbrisi korisnika",
-            icon: <FaTrash />,
-            path: "/librarians/1",
-          },]}
+          options={[
+            {
+              text: "Pogledaj detalje",
+              icon: <FaFile />,
+              path: "/librarians/1",
+            },
+            {
+              text: "Izmijeni korisnika",
+              icon: <FaEdit />,
+              path: "/librarians/1",
+            },
+            {
+              text: "Izbrisi korisnika",
+              icon: <FaTrash />,
+              path: "/librarians/1",
+            },
+          ]}
         />
         <Pagination items={DUMMY_TABLE_DATA} />
       </div>

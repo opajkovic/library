@@ -50,6 +50,7 @@ const Librarians = () => {
       <div className="page-wrapper">
         <TableControl title="Novi bibliotekar" />
         <Table
+          path="/librarians"
           headers={headers}
           tableData={DUMMY_TABLE_DATA}
           options={[

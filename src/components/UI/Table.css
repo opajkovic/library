@@ -76,6 +76,7 @@ td input {
   width: 100%;
   outline: none;
   border: 0;
+  margin: 0;
 }
 
 .category-search::placeholder {
@@ -87,6 +88,11 @@ td input {
 .left-container {
   display: flex;
   flex-direction: row;
+}
+
+.left-container a:hover{
+  color: var(--primary) !important;
+  font-weight: 500;
 }
 
 .blank-case {
@@ -123,5 +129,9 @@ td input {
   .arrow {
     margin-left: 0.3rem;
     font-size: 1rem;
+  }
+
+  .category-search::placeholder {
+    font-size: 0.7rem;
   }
 }
