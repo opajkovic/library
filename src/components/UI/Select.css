@@ -15,3 +15,9 @@
     font-weight: 500;
     margin-left: 0.5rem;
 }
+
+@media(max-width:1400px){
+  .select-wrapper{
+    font-size: 0.8rem;
+  }
+}

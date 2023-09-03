@@ -50,6 +50,7 @@ export default function Authors() {
       <div className="page-wrapper">
         <TableControl title="Novi autor" />
         <Table
+          path="/authors"
           tableData={DUMMY_AUTHOR_DATA}
           headers={headers}
           options={[

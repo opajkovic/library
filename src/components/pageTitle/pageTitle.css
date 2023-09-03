@@ -5,17 +5,24 @@
 }
 
 .pageTitle h1 {
-  padding: 1.5rem 2rem;
+  padding: calc(1.75rem - 0.5px) 2rem;
   position: fixed;
   width: 100%;
-  z-index: -1;
   font-size: 2rem;
   line-height: 2rem;
   background-color: white;
   z-index: 2;
+  border-bottom: 1px solid var(--grey-200);
+  margin: 0;
 }
 
 .paddingMenu {
   padding-top: calc(5.5rem - 1px);
-  border-bottom: 1px solid var(--grey-200);
+}
+
+
+@media(max-width:1400px){
+  .pageTitle h1{
+    width: calc(100vw - 90px);
+  }
 }

@@ -10,15 +10,16 @@
 }
 
 .table-global-search {
-  width: 200px;
+  width: 14rem;
   display: flex;
   align-items: flex-end;
+  padding: 0;
 }
 
 .form-control {
   border: 0;
   outline: none;
-  padding: 0 0.5rem;
+  padding: 0;
 }
 
 .input-div {
@@ -41,5 +42,19 @@
 @media (max-width: 1400px) {
   .table-control {
     min-width: unset;
+  }
+
+  .table-global-search {
+    width: 10rem;
+  }
+
+  .form-control {
+    font-size: 0.8rem;
+  }
+
+  .btn.btn-primary {
+    padding: 0.25rem 0;
+    width: 12rem;
+    font-size: 0.8rem;
   }
 }

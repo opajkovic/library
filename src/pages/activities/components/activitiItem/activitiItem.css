@@ -6,7 +6,7 @@
   font-size: 0.85rem;
 }
 .activitiItem .img img {  
-  width: 80px;
+  width: 5rem;
   border-radius: 50%;
 }
 span {
@@ -40,4 +40,10 @@ span {
 .title,
 .details {
   margin: 0;
+}
+
+@media (max-width: 1400px){
+  .activitiItem .img img {  
+    width: 4rem;
+  }
 }
