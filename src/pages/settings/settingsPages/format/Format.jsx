@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import "./format.css";
 import Menu from "../../layouts/menu/Menu";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
-import { useOutletContext } from "react-router";
+import { useNavigate, useOutletContext } from "react-router";
 import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
 
@@ -29,9 +29,14 @@ const headers = [{ headerName: "Format", sort: true, dropdown: true }];
 
 export default function Format() {
   const { setRoute } = useOutletContext();
+  const navigate = useNavigate();
   useEffect(() => {
     setRoute("settings");
   }, []);
+
+  const handleClick = () => {
+    navigate("./new");
+  };
   return (
     <div>
       <PageTitle title="Settings" />
@@ -54,6 +59,7 @@ export default function Format() {
               path: "",
             },
           ]}
+          onClick={handleClick}
         />
       </div>
     </div>

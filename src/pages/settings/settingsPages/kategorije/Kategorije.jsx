@@ -1,7 +1,7 @@
 import "./kategorije.css";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
 import Menu from "../../layouts/menu/Menu";
-import { useOutletContext } from "react-router";
+import { useOutletContext, useNavigate } from "react-router";
 import { useEffect } from "react";
 import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
@@ -51,9 +51,14 @@ const headers = [
 
 export default function Kategorije() {
   const { setRoute } = useOutletContext();
+  const navigate = useNavigate();
   useEffect(() => {
     setRoute("settings");
   }, []);
+
+  const handleClick = () => {
+    navigate("./new");
+  };
 
   return (
     <div>
@@ -77,6 +82,7 @@ export default function Kategorije() {
               path: "",
             },
           ]}
+          onClick={handleClick}
         />
       </div>
     </div>

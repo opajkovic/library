@@ -6,7 +6,7 @@ import Pagination from "../../../components/UI/Pagination";
 export default function SettingsTable(props) {
   return (
     <div className="settings-table-wrapper">
-      <TableControl title={props.title} />
+      <TableControl title={props.title} onClick={props.onClick} />
       <Table
         mainHeader={props.mainHeader}
         lastHeader={props.lastHeader}

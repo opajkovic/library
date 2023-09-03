@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./pismo.css";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
 import Menu from "../../layouts/menu/Menu";
-import { useOutletContext } from "react-router";
+import { useNavigate, useOutletContext } from "react-router";
 import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
 
@@ -21,9 +21,15 @@ const headers = [{ headerName: "Pismo", sort: true, dropdown: true }];
 
 export default function Pismo() {
   const { setRoute } = useOutletContext();
+  const navigate = useNavigate();
   useEffect(() => {
     setRoute("settings");
   }, []);
+
+  const handleClick = () => {
+    navigate("./new");
+  };
+
   return (
     <div>
       <PageTitle title="Settings" />
@@ -46,6 +52,7 @@ export default function Pismo() {
               path: "",
             },
           ]}
+          onClick={handleClick}
         />
       </div>
     </div>

@@ -8,7 +8,7 @@ const TableControl = (props) => {
   return (
     <div className="table-control">
       {!props.hide && (
-        <Button type="button" btn="btn btn-primary">
+        <Button type="button" btn="btn btn-primary" onClick={props.onClick}>
           <FaPlus />
           <span> {props.title} </span>
         </Button>

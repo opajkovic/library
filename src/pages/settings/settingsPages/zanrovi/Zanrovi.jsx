@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import "./zanrovi.css";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
 import Menu from "../../layouts/menu/Menu";
-import { useOutletContext } from "react-router";
+import { useNavigate, useOutletContext } from "react-router";
 import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
 
@@ -29,9 +29,15 @@ const headers = [{ headerName: "Zanr", sort: true, dropdown: true }];
 
 export default function Zanrovi() {
   const { setRoute } = useOutletContext();
+  const navigate = useNavigate();
   useEffect(() => {
     setRoute("settings");
   }, []);
+
+  const handleClick = () => {
+    navigate("./new");
+  };
+
   return (
     <div>
       <PageTitle title="Settings" />
@@ -54,6 +60,7 @@ export default function Zanrovi() {
               path: "",
             },
           ]}
+          onClick={handleClick}
         />
       </div>
     </div>

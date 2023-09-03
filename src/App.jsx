@@ -14,7 +14,7 @@ import ActiveReservations from "./pages/rentingBooks/layouts/activeReservation";
 import ArchivedReservations from "./pages/rentingBooks/layouts/archivedReservations";
 
 import Books from "./pages/books/Books";
-import BookInfo from "./pages/bookInformations/BookInfo"; 
+import BookInfo from "./pages/bookInformations/BookInfo";
 import BookSpecification from "./pages/bookInformations/layouts/BookSpecification";
 import BookMultimedia from "./pages/bookInformations/layouts/BookMultimedia";
 
@@ -28,6 +28,11 @@ import Izdavac from "./pages/settings/settingsPages/izdavac/Izdavac";
 import Povez from "./pages/settings/settingsPages/povez/Povez";
 import Format from "./pages/settings/settingsPages/format/Format";
 import Pismo from "./pages/settings/settingsPages/pismo/Pismo";
+import NovaKategorija from "./pages/settings/settingsPages/kategorije/NovaKategorija";
+import NoviPovez from "./pages/settings/settingsPages/povez/NoviPovez";
+import NovoPismo from "./pages/settings/settingsPages/pismo/NovoPismo";
+import NoviIzdavac from "./pages/settings/settingsPages/izdavac/NoviIzdavac";
+import NoviFormat from "./pages/settings/settingsPages/format/NoviFormat";
 
 import ProfileEvidenceReturned from "./pages/studentProfile/layouts/ProfileEvidenceReturned";
 import ProfileEvidenceWrittenOff from "./pages/studentProfile/layouts/ProfileEvidenceWrittenOff";
@@ -38,6 +43,7 @@ import ProfileEvidenceRented from "./pages/studentProfile/layouts/ProfileEvidenc
 import Singup from "./pages/singup/Singup";
 import Login from "./pages/login/Login";
 import AuthorProfile from "./pages/authorProfile/AuthorProfile";
+import NoviZanr from "./pages/settings/settingsPages/zanrovi/NoviZanr";
 
 function App() {
   return (
@@ -46,12 +52,14 @@ function App() {
         <Route element={<AppLayout />}>
           <Route index element={<Navigate replace to="/dashboard" />} />
           <Route path="/dashboard" element={<Dashboard />} />
-       
+
           <Route path="/books" element={<Books />} />
           <Route path="/books/:id" element={<BookInfo />} />
-          <Route path="/books/:id/specifikacija" element={<BookSpecification />} />
+          <Route
+            path="/books/:id/specifikacija"
+            element={<BookSpecification />}
+          />
           <Route path="/books/:id/multimedija" element={<BookMultimedia />} />
-
 
           {/* Author routes */}
           <Route path="/authors" element={<Authors />} />
@@ -86,11 +94,17 @@ function App() {
           {/* settings routes */}
           <Route path="/settings" element={<Polisa />} />
           <Route path="/settings/categories" element={<Kategorije />} />
+          <Route path="/settings/categories/new" element={<NovaKategorija />} />
           <Route path="/settings/zanrovi" element={<Zanrovi />} />
+          <Route path="/settings/zanrovi/new" element={<NoviZanr />} />
           <Route path="/settings/izdavac" element={<Izdavac />} />
           <Route path="/settings/povez" element={<Povez />} />
+          <Route path="/settings/povez/new" element={<NoviPovez />} />
           <Route path="/settings/format" element={<Format />} />
           <Route path="/settings/pismo" element={<Pismo />} />
+          <Route path="/settings/pismo/new" element={<NovoPismo />} />
+          <Route path="/settings/izdavac/new" element={<NoviIzdavac />} />
+          <Route path="/settings/format/new" element={<NoviFormat />} />
 
           <Route path="/librarians" element={<Librarians />} />
           <Route path="/activities" element={<Activities />} />
@@ -99,13 +113,30 @@ function App() {
           {/* student profile routes */}
           <Route path="/students" element={<Students />} />
           <Route path="/students/:id" element={<StudentProfile />} />
-          <Route path="/students/:id/evidencija/izdate-knjige" element={<ProfileEvidenceRented />} />
-          <Route path="/students/:id/evidencija/vracene-knjige" element={<ProfileEvidenceReturned />} />
-          <Route path="/students/:id/evidencija/otpisane-knjige" element={<ProfileEvidenceWrittenOff />} />
-          <Route path="/students/:id/evidencija/knjige-u-prekoracenju" element={<ProfileEvidenceExcess />} />
-          <Route path="/students/:id/evidencija/aktivne-rezervacije" element={<ProfileEvidenceReserved />} />
-          <Route path="/students/:id/evidencija/arhivirane-rezervacije" element={<ProfileEvidenceArchived />} />
-          
+          <Route
+            path="/students/:id/evidencija/izdate-knjige"
+            element={<ProfileEvidenceRented />}
+          />
+          <Route
+            path="/students/:id/evidencija/vracene-knjige"
+            element={<ProfileEvidenceReturned />}
+          />
+          <Route
+            path="/students/:id/evidencija/otpisane-knjige"
+            element={<ProfileEvidenceWrittenOff />}
+          />
+          <Route
+            path="/students/:id/evidencija/knjige-u-prekoracenju"
+            element={<ProfileEvidenceExcess />}
+          />
+          <Route
+            path="/students/:id/evidencija/aktivne-rezervacije"
+            element={<ProfileEvidenceReserved />}
+          />
+          <Route
+            path="/students/:id/evidencija/arhivirane-rezervacije"
+            element={<ProfileEvidenceArchived />}
+          />
         </Route>
         <Route path="*" element={<PageNotFound />} />
         <Route path="/singup" element={<Singup />} />
