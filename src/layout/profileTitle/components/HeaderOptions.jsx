@@ -19,6 +19,7 @@ export default function HeaderOptions({
   change,
   deleteMssg,
   booksSpecial,
+  setModalPassword
 }) {
   let [openModule, setOpenModule] = useState(false);
 
@@ -28,7 +29,7 @@ export default function HeaderOptions({
   return (
     <div className="right">
       {reset && (
-        <p className="reset-password">
+        <p onClick={()=>{setModalPassword(true)}} className="reset-password">
           <FaRedo />
           Resetuj sifru
         </p>
