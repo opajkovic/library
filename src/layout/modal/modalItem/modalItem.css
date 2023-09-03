@@ -1,21 +1,28 @@
-.modalItem{
-    display: flex;
-    align-items: center;
-    min-width: 200px;
-    width: auto;
-    padding: 10px 15px;
-    grid-gap: 20px;
-    font-size: 15px;
-    cursor: pointer;
-    text-align: left;
+.modalItem {
+  display: flex;
+  align-items: center;
+  min-width: 200px;
+  width: auto;
+  padding: 0.5rem 1rem;
+  grid-gap: 1.25rem;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: left;
 }
-.modalItem svg{
-    margin: unset;
+.modalItem svg {
+  margin: unset;
 }
-.modalItem:hover{
-    background-color: rgb(196, 196, 196);
-    opacity: .7;
+.modalItem:hover {
+  background-color: rgb(196, 196, 196);
+  opacity: 0.7;
 }
-.modalIcon{
-    font-size: 15px;
+.modalIcon {
+  font-size: 1rem;
+}
+
+@media (max-width: 1400px) {
+  .modalItem,
+  .modalIcon {
+    font-size: 0.8rem;
+  }
 }

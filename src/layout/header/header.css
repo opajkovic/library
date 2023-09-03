@@ -87,4 +87,8 @@
     width: 100vw;
     min-width: unset;
   }
+
+  .profile-modal {
+    bottom: -3rem;
+  }
 }

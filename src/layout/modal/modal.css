@@ -11,6 +11,7 @@
     top: unset !important;
     left: unset !important;
     display: unset !important;
+    min-width: 9rem;
     width: unset;
     height: unset;
 }
