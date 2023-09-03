@@ -79,8 +79,7 @@ export default function HeaderOptions({
                 <ModalItem
                   setResponse={setConfirmState}
                   closeModals={closeModals}
-                  isPath={false}
-                  path={""}
+                  noPath={true}
                   icon={<FaTrash />}
                   text={"Izbrisi"}
                 />
@@ -88,7 +87,7 @@ export default function HeaderOptions({
             }
           />
         ) : null}
-        {confirmState ? <ConfirmModal setCloseModal={setConfirmState} text={"Da li ste sigurni da zelite da izbrisete korisnika?"} setResponse={setConfirmState} /> : <></>}
+        {confirmState ? <ConfirmModal setCloseModal={setConfirmState} text={"Da li ste sigurni da zelite da izbrisete?"} setResponse={setConfirmState} /> : <></>}
       </div>
     </div>
   );

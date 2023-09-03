@@ -57,7 +57,7 @@ export default function Zanrovi() {
             {
               text: "Izbrisi zanr",
               icon: <FaTrash />,
-              path: "",
+              noPath: true
             },
           ]}
           onClick={handleClick}

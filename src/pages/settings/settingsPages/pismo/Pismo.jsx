@@ -49,7 +49,7 @@ export default function Pismo() {
             {
               text: "Izbrisi pismo",
               icon: <FaTrash />,
-              path: "",
+              noPath: true
             },
           ]}
           onClick={handleClick}

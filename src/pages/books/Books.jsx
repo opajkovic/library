@@ -120,7 +120,7 @@ export default function Books() {
             {
               text: "Izbrisi knjigu",
               icon: <FaTrash />,
-              url: "/books/1",
+              noPath: true
             },
           ]}
         />

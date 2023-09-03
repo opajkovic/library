@@ -67,7 +67,7 @@ export default function Authors() {
             {
               text: "Izbrisi autora",
               icon: <FaTrash />,
-              path: "/librarians/1",
+              noPath: true
             },
           ]}
         />

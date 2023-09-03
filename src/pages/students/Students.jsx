@@ -79,7 +79,7 @@ export default function Students() {
             {
               text: "Izbrisi korisnika",
               icon: <FaTrash />,
-              path: "/librarians/1",
+              noPath: true
             },
           ]}
         />

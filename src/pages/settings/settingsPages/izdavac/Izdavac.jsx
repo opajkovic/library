@@ -57,7 +57,7 @@ export default function Izdavac() {
             {
               text: "Izbrisi izdavaca",
               icon: <FaTrash />,
-              path: "",
+              noPath: true
             },
           ]}
           onClick={handleClick}

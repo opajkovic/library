@@ -56,7 +56,7 @@ export default function Format() {
             {
               text: "Izbrisi format",
               icon: <FaTrash />,
-              path: "",
+              noPath: true
             },
           ]}
           onClick={handleClick}

@@ -79,7 +79,7 @@ export default function Kategorije() {
             {
               text: "Izbrisi kategoriju",
               icon: <FaTrash />,
-              path: "",
+              noPath: true
             },
           ]}
           onClick={handleClick}

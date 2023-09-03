@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 import Modal from "../../../layout/modal/Modal";
 import ModalItem from "../../../layout/modal/modalItem/ModalItem";
 import Input from "../Input";
+import ConfirmModal from "../../../layout/modal/confirmModal/ConfirmModal";
 
 const MiddleDataCell = ({ item, headers, options, path }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [rowId, setRowId] = useState(null);
+  const [confirmModalState, setCconfirmModalStat] = useState(false);
 
   const handleOpenModal = (rowId) => {
     setRowId(rowId);
@@ -58,6 +60,19 @@ const MiddleDataCell = ({ item, headers, options, path }) => {
                 handleCloseModal();
               }}
               component={options.map((option, i) => {
+                if(option.noPath == true){
+                  return (
+                    <ModalItem
+                      key={i}
+                      newClassName="modalItemChange"
+                      setResponse={setCconfirmModalStat}
+                      icon={option.icon}
+                      text={option.text}
+                      noPath={true}
+                      closeModals={setModalOpen}
+                    />
+                  )
+                }else{
                 return (
                   <ModalItem
                     key={i}
@@ -66,12 +81,13 @@ const MiddleDataCell = ({ item, headers, options, path }) => {
                     text={option.text}
                     path={option.path}
                   />
-                );
+                )}
               })}
             />
           ) : null}
         </td>
       ))}
+      {confirmModalState ? <ConfirmModal text={"Jeste li sigurni da zelite da izbrisete?"} setCloseModal={setCconfirmModalStat} /> : <></>}
     </tr>
   ));
 };

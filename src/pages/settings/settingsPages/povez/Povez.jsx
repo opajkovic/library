@@ -55,7 +55,7 @@ export default function Povez() {
             {
               text: "Izbrisi povez",
               icon: <FaTrash />,
-              path: "",
+              noPath: true
             },
           ]}
           onClick={handleClick}
