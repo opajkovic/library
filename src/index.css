@@ -123,8 +123,7 @@ p {
   margin-bottom: 0 !important;
 }
 
-<<<<<<< HEAD
-.flex-column {
+<<<<<<< HEAD .flex-column {
   display: flex;
   flex-direction: column;
   width: 45%;
@@ -181,11 +180,8 @@ sup {
 .error-message {
   color: var(--red-700);
 }
-=======
-
-@media (max-width: 1400px) {
+======= @media (max-width: 1400px) {
   .page-wrapper {
     padding: 0 2rem;
   }
 }
->>>>>>> f151e19be451b04611242bda2a2cb14ef5f39f46
