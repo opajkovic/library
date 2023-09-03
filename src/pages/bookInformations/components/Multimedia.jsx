@@ -1,5 +1,5 @@
     import ImageUploader from "../../../components/UI/ImageUploader";
-    import "../layouts/BookMultimedia.css";
+    import "./Multimedia.css";
 
     export default function Multimedia() {
     return (

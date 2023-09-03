@@ -5,44 +5,36 @@ import { NavLink } from "react-router-dom";
 export default function Titles() {
   const params = useParams();
 
+  const navLinks = [
+    { to: `/books/${params.id}`, label: "Osnovni detalji" },
+    { to: `/books/${params.id}/specifikacija`, label: "Specifikacija" },
+
+    {
+      to: `/books/${params.id}/evidencija/izdate-knjige`,
+      label: "Evidencija iznajmljivanja",
+      className: location.pathname.includes(`/books/${params.id}/evidencija/`)
+        ? "active-evidence-link"
+        : undefined,
+    },
+    
+    { to: `/books/${params.id}/multimedija`, label: "Multimedija" },
+  ];
   return (
     <div className="title-bar-wrapper">
-      <NavLink
-        to={`/books/${params.id}`}
-        className={({ isActive }) => {
-          return isActive ? "active-page" : undefined;
-        }}
-        end
-      >
-        <h1> Osnovni detalji </h1>
-      </NavLink>
-      <NavLink
-        to={`/books/${params.id}/specifikacija`}
-        className={({ isActive }) => {
-          return isActive ? "active-page" : undefined;
-        }}
-        end
-      >
-        <h1> Specifikacija </h1>
-      </NavLink>
-      <NavLink
-        to={`/books/${params.id}/evidencija/evidencija-iznajmljivanja`}
-        className={({ isActive }) => {
-          return isActive ? "active-page" : undefined;
-        }}
-        end
-      >
-        <h1> Evidencija iznajmljivanja </h1>
-      </NavLink>
-      <NavLink
-        to={`/books/${params.id}/multimedija`}
-        className={({ isActive }) => {
-          return isActive ? "active-page" : undefined;
-        }}
-        end
-      >
-        <h1> Multimedija </h1>
-      </NavLink>
+      {navLinks.map((item, index) => (
+        <NavLink
+          key={index}
+          to={item.to}
+          className={
+            item.className
+              ? item.className
+              : ({ isActive }) => (isActive ? "active-page" : undefined)
+          }
+          end
+        >
+          <h1>{item.label}</h1>
+        </NavLink>
+      ))}
     </div>
   );
 }

@@ -17,6 +17,8 @@ import Books from "./pages/books/Books";
 import BookInfo from "./pages/bookInformations/BookInfo";
 import BookSpecification from "./pages/bookInformations/layouts/BookSpecification";
 import BookMultimedia from "./pages/bookInformations/layouts/BookMultimedia";
+import BookRentEvidence from "./pages/bookInformations/layouts/BookRentEvidence";
+import RentedEvidence from "./pages/bookInformations/layouts/table-layouts/RentedEvidence";
 
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
 import LibrarianProfile from "./pages/librarianProfile/LibrarianProfile";
@@ -44,6 +46,10 @@ import Singup from "./pages/singup/Singup";
 import Login from "./pages/login/Login";
 import AuthorProfile from "./pages/authorProfile/AuthorProfile";
 import NoviZanr from "./pages/settings/settingsPages/zanrovi/NoviZanr";
+import ReturnedEvidence from "./pages/bookInformations/layouts/table-layouts/ReturnedEvidence";
+import ExcessEvidence from "./pages/bookInformations/layouts/table-layouts/ExcessEvidence";
+import ReservationEvidence from "./pages/bookInformations/layouts/table-layouts/ReservationEvidence";
+import ArchivedEvidence from "./pages/bookInformations/layouts/table-layouts/ArchivedEvidence";
 
 function App() {
   return (
@@ -60,6 +66,27 @@ function App() {
             element={<BookSpecification />}
           />
           <Route path="/books/:id/multimedija" element={<BookMultimedia />} />
+          <Route path="/books/:id/evidencija/izdate-knjige" element={<BookRentEvidence />} />
+          <Route
+            path="/books/:id/evidencija/izdate-knjige"
+            element={<RentedEvidence />}
+          />
+          <Route
+            path="/books/:id/evidencija/vracene-knjige"
+            element={<ReturnedEvidence />}
+          />
+          <Route
+            path="/books/:id/evidencija/knjige-u-prekoracenju"
+            element={<ExcessEvidence />}
+          />
+          <Route
+            path="/books/:id/evidencija/aktivne-rezervacije"
+            element={<ReservationEvidence />}
+          />
+          <Route
+            path="/books/:id/evidencija/arhivirane-rezervacije"
+            element={<ArchivedEvidence />}
+          />
 
           {/* Author routes */}
           <Route path="/authors" element={<Authors />} />

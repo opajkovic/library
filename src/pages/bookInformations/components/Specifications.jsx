@@ -1,4 +1,4 @@
-import "../layouts/BookSpecification.css";
+import "./Specification.css";
 
 export default function Specification() {
   return (

@@ -9,7 +9,7 @@ const Table = ({ headers, tableData, options, path }) => {
     <table className="table-container">
       <Thead headers={headers} />
       <tbody>
-        {tableData.length === 0 ? (
+        {tableData && tableData.length === 0 || !tableData ? (
           <tr>
             <td className="blank-case">No items found</td>
           </tr>
