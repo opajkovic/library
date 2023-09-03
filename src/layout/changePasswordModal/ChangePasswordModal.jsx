@@ -23,7 +23,7 @@ export default function ChangePasswordModal({setModalClose}) {
             <Input input={{label: "Ponovi sifru", type: "password", inputClass: "", placeholder: "", className:"input", defaultValue:"", name:""}}  />
         </div>
         <div className="modalButtons">
-            <Button children={<>Ponisti <FaTimes /></>} btn="btn btn-danger" />
+            <Button onClick={()=>{setModalClose(false)}} children={<>Ponisti <FaTimes /></>} btn="btn btn-danger" />
             <Button children={<>Potvrdi <FaCheck /></>} btn="btn btn-success" />
         </div>
         </div>

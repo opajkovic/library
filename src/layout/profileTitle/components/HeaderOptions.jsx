@@ -13,6 +13,7 @@ import {
 import { useState } from "react";
 import Modal from "../../modal/Modal";
 import ModalItem from "../../modal/modalItem/ModalItem";
+import ConfirmModal from "../../modal/confirmModal/ConfirmModal";
 
 export default function HeaderOptions({
   reset,
@@ -22,6 +23,7 @@ export default function HeaderOptions({
   setModalPassword
 }) {
   let [openModule, setOpenModule] = useState(false);
+  let [confirmState, setConfirmState] = useState(false);
 
   let closeModals = () => {
     setOpenModule(false);
@@ -75,7 +77,9 @@ export default function HeaderOptions({
             component={
               <div>
                 <ModalItem
+                  setResponse={setConfirmState}
                   closeModals={closeModals}
+                  isPath={false}
                   path={""}
                   icon={<FaTrash />}
                   text={"Izbrisi"}
@@ -84,6 +88,7 @@ export default function HeaderOptions({
             }
           />
         ) : null}
+        {confirmState ? <ConfirmModal setCloseModal={setConfirmState} text={"Da li ste sigurni da zelite da izbrisete korisnika?"} setResponse={setConfirmState} /> : <></>}
       </div>
     </div>
   );

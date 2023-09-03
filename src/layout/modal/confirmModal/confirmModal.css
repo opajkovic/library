@@ -1,0 +1,22 @@
+.confirmModal {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 80px);
+    background-color: rgba(0, 0, 0, 0.47);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+.confirmModal .modalC{
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+}
+.confirmModal .modalButtons{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
