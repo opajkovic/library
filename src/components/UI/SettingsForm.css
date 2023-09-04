@@ -32,3 +32,22 @@
   height: 12rem !important;
   column-count: auto;
 }
+
+.form-image-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.form-image-input label{
+  margin-bottom: 0;
+}
+
+.form-image-input input {
+  display: none;
+}
+
+.form-image-input img{
+  width: 8rem;
+}
+

@@ -81,6 +81,7 @@ const NovaKategorija = () => {
       formIsValid={formIsValid}
       reset={resetHandler}
       submitHandler={() => submitHandler()}
+      image={true}
     />
   );
 };
