@@ -8,8 +8,6 @@ export default function SettingsTable(props) {
     <div className="settings-table-wrapper">
       <TableControl title={props.title} onClick={props.onClick} />
       <Table
-        mainHeader={props.mainHeader}
-        lastHeader={props.lastHeader}
         tableData={props.tableData}
         headers={props.headers}
         options={props.options}
