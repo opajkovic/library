@@ -1,0 +1,22 @@
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 7rem 2rem 2rem 2rem;
+  margin: 0;
+  color: var(--grey-400);
+}
+
+.input-wrapper input {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  padding: 0.5rem;
+}
+
+.form-wrapper sup {
+  display: absolute;
+  top: 0.15rem;
+  font-size: 1rem;
+  margin-left: 0.5rem;
+  color: var(--red-500);
+}

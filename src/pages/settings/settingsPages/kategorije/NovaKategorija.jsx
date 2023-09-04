@@ -35,6 +35,7 @@ const NovaKategorija = () => {
   return (
     <SettingsForm
       input={{
+        label: "Naziv kategorije",
         type: "text",
         name: "kategorija",
         value: kategorijaValue,

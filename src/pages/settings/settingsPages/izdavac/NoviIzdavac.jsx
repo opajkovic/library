@@ -34,6 +34,7 @@ const NoviIzdavac = () => {
   return (
     <SettingsForm
       input={{
+        label: "Naziv izdavača",
         type: "text",
         name: "izdavac",
         value: izdavacValue,

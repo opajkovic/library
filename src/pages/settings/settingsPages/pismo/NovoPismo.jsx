@@ -32,6 +32,7 @@ const NovoPismo = () => {
   return (
     <SettingsForm
       input={{
+        label: "Naziv pisma",
         type: "text",
         name: "pismo",
         value: pismoValue,

@@ -32,6 +32,7 @@ const NoviZanr = () => {
   return (
     <SettingsForm
       input={{
+        label: "Naziv poveza",
         type: "text",
         name: "povez",
         value: povezValue,

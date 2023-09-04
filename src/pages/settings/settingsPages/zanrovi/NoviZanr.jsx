@@ -33,6 +33,7 @@ const NoviZanr = () => {
   return (
     <SettingsForm
       input={{
+        label: "Naziv žanra",
         type: "text",
         name: "zanr",
         value: zanrValue,

@@ -1,0 +1,52 @@
+.form-title-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--grey-200);
+  position: fixed;
+  gap: calc(0.7rem - 1px);
+  width: calc(100% - 90px);
+  z-index: 2;
+  background-color: white;
+}
+
+.new-title,
+.new-subtitle {
+  margin: 0;
+}
+
+.new-title {
+  font-size: 1.8rem;
+  line-height: 1.8rem;
+}
+
+.new-subtitle {
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+.new-subtitle a {
+  padding: 0.5rem 1rem;
+}
+
+.new-subtitle a,
+.new-subtitle span {
+  margin: 0 0.5rem;
+  color: var(--grey-900);
+}
+
+.new-subtitle a:hover{
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--primary) !important;
+  background-color: inherit;
+  border: 1px solid var(--primary);
+  border-radius: 1rem;
+}
+
+.active-title{
+  background-color: var(--primary);
+  color: white !important;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+}

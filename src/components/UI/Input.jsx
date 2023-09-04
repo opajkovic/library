@@ -1,4 +1,3 @@
-import "./Input.css";
 
 const Input = (props) => {
   const {
@@ -6,16 +5,17 @@ const Input = (props) => {
     type,
     name,
     value,
-    className,
     placeholder,
     inputClass,
     onChange,
     onBlur,
-    hasError
+    hasError,
   } = props.input;
   return (
-    <div className={className}>
-      <label htmlFor={inputClass}>{label}</label>
+    <div className={props.className}>
+      <label htmlFor={inputClass}>
+        {label} {props.sup && <sup>*</sup>}
+      </label>
       <input
         className={inputClass}
         type={type}

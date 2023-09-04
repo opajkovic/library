@@ -123,60 +123,11 @@ p {
   margin-bottom: 0 !important;
 }
 
-.flex-column {
-  display: flex;
-  flex-direction: column;
-  width: 45%;
-}
-.new-item {
-  display: flex;
-  padding: 0 2rem;
-  background-color: white;
-  align-items: center;
-  border-bottom: 1px solid var(--gray-200);
-  position: fixed;
-  width: calc(100% - 90px);
-  z-index: 2;
-}
-.new-title {
-  font-size: 2rem;
-  font-weight: 300;
-}
-.new-subtitle {
-  margin-top: 0.5rem;
-  color: var(--primary);
-}
-
-.new-subtitle span {
-  margin-right: 0.5rem;
-}
-.new-form {
-  margin: 7rem auto;
-  width: 95%;
-  color: var(--grey-400);
-  position: relative;
-  height: 100vh;
-}
-
-.new-form label,
-.new-form input {
-  display: block;
-  width: 90%;
-  padding: 5px 10px;
-}
-.form-control {
-  font: inherit;
-  padding: 0.5rem;
-  max-width: 100%;
-}
 .invalid input {
   border: 1px solid var(--red-500);
   background-color: var(--white);
 }
-sup {
-  margin-left: 0.2rem;
-  color: var(--red-500);
-}
+
 .error-message {
   color: var(--red-700);
 }

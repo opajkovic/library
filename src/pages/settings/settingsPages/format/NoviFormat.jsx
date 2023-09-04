@@ -34,6 +34,7 @@ const NoviFormat = () => {
   return (
     <SettingsForm
       input={{
+        label: "Naziv formata",
         type: "text",
         name: "format",
         value: formatValue,
