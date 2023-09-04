@@ -32,7 +32,7 @@ export default function ProfileTitle({
         booksSpecial={booksSpecial}
         setModalPassword={setChangePassword}
       />
-      {changePassword ? <ChangePasswordModal setModalClose={setChangePassword} />  : <></>}
+      {changePassword && <ChangePasswordModal setModalClose={setChangePassword} />}
       
     </div>
   );

@@ -71,7 +71,7 @@ export default function HeaderOptions({
             setOpenModule(!openModule);
           }}
         />
-        {deleteMssg && openModule ? (
+        {deleteMssg && openModule && (
           <Modal
             setModalClose={setOpenModule}
             component={
@@ -86,8 +86,8 @@ export default function HeaderOptions({
               </div>
             }
           />
-        ) : null}
-        {confirmState ? <ConfirmModal setCloseModal={setConfirmState} text={"Da li ste sigurni da zelite da izbrisete?"} setResponse={setConfirmState} /> : <></>}
+        )}
+        {confirmState && <ConfirmModal setCloseModal={setConfirmState} text={"Da li ste sigurni da zelite da izbrisete?"} setResponse={setConfirmState} />}
       </div>
     </div>
   );
