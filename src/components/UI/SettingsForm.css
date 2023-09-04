@@ -1,16 +1,20 @@
 .form-wrapper {
   display: flex;
   flex-direction: column;
-  padding: 7rem 2rem 2rem 2rem;
+  padding: 8rem 2rem 2rem 2rem;
   margin: 0;
   color: var(--grey-400);
+  gap: 2rem;
 }
 
-.input-wrapper input {
+.input-wrapper input,
+.textarea-wrapper textarea {
   display: flex;
   flex-direction: column;
   width: 500px;
   padding: 0.5rem;
+  border: 1px solid var(--grey-200);
+  outline: none;
 }
 
 .form-wrapper sup {
@@ -19,4 +23,12 @@
   font-size: 1rem;
   margin-left: 0.5rem;
   color: var(--red-500);
+}
+
+.textarea-wrapper textarea {
+  padding: 0.5rem;
+  line-height: 1.5rem;
+  resize: none;
+  height: 12rem !important;
+  column-count: auto;
 }

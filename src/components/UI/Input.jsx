@@ -1,5 +1,6 @@
 
 const Input = (props) => {
+
   const {
     label,
     type,
@@ -11,6 +12,7 @@ const Input = (props) => {
     onBlur,
     hasError,
   } = props.input;
+
   return (
     <div className={props.className}>
       <label htmlFor={inputClass}>

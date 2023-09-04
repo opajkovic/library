@@ -130,6 +130,8 @@ p {
 
 .error-message {
   color: var(--red-700);
+  font-size: 0.8rem;
+  font-style: italic;
 }
 @media (max-width: 1400px) {
   .page-wrapper {

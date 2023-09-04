@@ -31,15 +31,17 @@ const NovoPismo = () => {
 
   return (
     <SettingsForm
-      input={{
-        label: "Naziv pisma",
-        type: "text",
-        name: "pismo",
-        value: pismoValue,
-        hasError: pismoHasError,
-        onChange: pismoChangeHandler,
-        onBlur: pismoBlurHandler,
-      }}
+      input={[
+        {
+          label: "Naziv pisma",
+          type: "text",
+          name: "pismo",
+          value: pismoValue,
+          hasError: pismoHasError,
+          onChange: pismoChangeHandler,
+          onBlur: pismoBlurHandler,
+        },
+      ]}
       title="Novo pismo"
       firstLinkName="Pisma"
       path="/settings/pismo"
