@@ -11,6 +11,7 @@ const Input = (props) => {
     onBlur,
     hasError,
     inputClasses,
+    disabled
   } = props.input;
 
   return (
@@ -26,6 +27,7 @@ const Input = (props) => {
         onChange={onChange}
         onBlur={onBlur}
         placeholder={placeholder}
+        disabled={disabled}
         required
       />
       {hasError && (

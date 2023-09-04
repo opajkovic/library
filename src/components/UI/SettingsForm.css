@@ -4,7 +4,7 @@
   padding: 8rem 2rem 2rem 2rem;
   margin: 0;
   color: var(--grey-400);
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .input-wrapper input,
@@ -42,15 +42,15 @@
   padding: 0.5rem 1rem;
 }
 
-.form-image-input label{
-  margin-bottom: 0;
+.form-image-input label,
+.form-wrapper label {
+  margin-bottom: 0rem;
 }
 
 .form-image-input input {
   display: none;
 }
 
-.form-image-input img{
+.form-image-input img {
   width: 8rem;
 }
-
