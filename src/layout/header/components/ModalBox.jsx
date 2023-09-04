@@ -7,8 +7,8 @@ const ModalBox = ({
   changeModal,
   modalProfileShow,
   setModalClose,
-  closeModals,
 }) => {
+
   return (
     <div className="modalBox">
       <FaBookReader onClick={changeModal} />
@@ -19,13 +19,13 @@ const ModalBox = ({
           component={
             <div className="modalHeader">
               <ModalItem
-                closeModals={closeModals}
+                setModalClose={setModalClose}
                 icon={<FaFile className="modalIcon" />}
                 text={"Profile"}
                 path={`/librarians/2`}
               />
               <ModalItem
-                closeModals={closeModals}
+                setModalClose={setModalClose}
                 icon={<FaSignOutAlt className="modalIcon" />}
                 text={"Log out"}
                 path={"/login"}

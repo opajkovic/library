@@ -9,11 +9,16 @@ const Header = () => {
   const [modalProfileShow, setModalProfileShow] = useState(false);
   const [modalPlus, setModalPlus] = useState(false);
 
-  const changeModal = (setModal, modal) => {
-    setModalPlus(false);
+  const openModalPlus = () => {
+    setModalPlus(true);
     setModalProfileShow(false);
-    setModal(!modal);
   };
+
+  const openModalProfile = () => {
+    setModalProfileShow(true);
+    setModalPlus(false);
+  };
+
   const closeModals = () => {
     setModalPlus(false);
     setModalProfileShow(false);
@@ -21,23 +26,21 @@ const Header = () => {
 
   return (
     <header className="header">
-      <NavLink onClick={closeModals} to="./dashboard">
+      <NavLink to="./dashboard">
         <FaBookReader />
         <span className="bild">Online biblioteka</span>
       </NavLink>
 
       <div className="headerRight">
-        <Link onClick={closeModals} to={"/activities"} className="bell">
+        <Link to={"/activities"} className="bell">
           <FaBell />
         </Link>
         <div className="border"></div>
 
         <BellModalBox
           modalPlus={modalPlus}
-          changeModal={() => {
-            changeModal(setModalPlus, modalPlus);
-          }}
-          setModalClose={() => closeModals}
+          setModalClose={closeModals}
+          changeModal={() => openModalPlus()}
         />
 
         <NavLink to="/dashboard">
@@ -45,12 +48,9 @@ const Header = () => {
         </NavLink>
 
         <ModalBox
-          changeModal={() => {
-            changeModal(setModalProfileShow, modalProfileShow);
-          }}
           modalProfileShow={modalProfileShow}
-          setModalClose={() => closeModals()}
-          closeModals={closeModals}
+          changeModal={() => openModalProfile()}
+          setModalClose={closeModals}
         />
       </div>
     </header>

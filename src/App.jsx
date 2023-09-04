@@ -2,9 +2,12 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/dashboard/Dashboard";
 import AppLayout from "./layout/AppLayout";
 import Polisa from "./pages/settings/Polisa";
-import Librarians from "./pages/librarians/Librarians";
 import Authors from "./pages/authors/Authors";
 import Students from "./pages/students/Students";
+
+import Librarians from "./pages/librarians/Librarians";
+import LibrarianProfile from "./pages/librarianProfile/LibrarianProfile";
+import NewLibrarian from "./pages/librarianNew/NewLibrarian";
 
 import RentingBooks from "./pages/rentingBooks/rentingBooks";
 import ReturnedBooks from "./pages/rentingBooks/layouts/returnedBooks";
@@ -21,7 +24,6 @@ import BookRentEvidence from "./pages/bookInformations/layouts/BookRentEvidence"
 import RentedEvidence from "./pages/bookInformations/layouts/table-layouts/RentedEvidence";
 
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
-import LibrarianProfile from "./pages/librarianProfile/LibrarianProfile";
 import StudentProfile from "./pages/studentProfile/StudentProfile";
 import Activities from "./pages/activities/Activities";
 import Kategorije from "./pages/settings/settingsPages/kategorije/Kategorije";
@@ -50,6 +52,7 @@ import ReturnedEvidence from "./pages/bookInformations/layouts/table-layouts/Ret
 import ExcessEvidence from "./pages/bookInformations/layouts/table-layouts/ExcessEvidence";
 import ReservationEvidence from "./pages/bookInformations/layouts/table-layouts/ReservationEvidence";
 import ArchivedEvidence from "./pages/bookInformations/layouts/table-layouts/ArchivedEvidence";
+
 
 function App() {
   return (
@@ -134,6 +137,8 @@ function App() {
           <Route path="/settings/format/new" element={<NoviFormat />} />
 
           <Route path="/librarians" element={<Librarians />} />
+          <Route path="/librarians/new" element={<NewLibrarian />} />
+
           <Route path="/activities" element={<Activities />} />
           <Route path="/librarians/:id" element={<LibrarianProfile />} />
 

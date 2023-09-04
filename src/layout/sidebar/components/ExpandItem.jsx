@@ -8,14 +8,14 @@ function ExpandItem({ route, changeExpand, isOpen, isExtendOpen }) {
         <FaExpand
           className={route == "dashboard" ? "icon activeIcon" : "icon"}
         />
-        {isOpen ? (
+        {isOpen && (
           <p>
             Expand Example{" "}
             <span className="extendArrows">
               {isExtendOpen ? <FaAngleDown /> : <FaAngleRight />}
             </span>
           </p>
-        ) : null}
+        )}
       </div>
       <div
         className={
