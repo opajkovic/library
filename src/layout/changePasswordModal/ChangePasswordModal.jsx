@@ -19,8 +19,8 @@ export default function ChangePasswordModal({setModalClose}) {
             <FaTimes onClick={()=>{setModalClose(false)}} className='closeModalIcon' />
         </div>
         <div className="inputsModal">
-            <Input input={{label: "Unesi novu sifru", type: "password", inputClass: "", placeholder: "", className:"input", defaultValue:"", name:""}}  />
-            <Input input={{label: "Ponovi sifru", type: "password", inputClass: "", placeholder: "", className:"input", defaultValue:"", name:""}}  />
+            <Input className="input" input={{label: "Unesi novu sifru", type: "password", inputClass: "", placeholder: "", className:"input", defaultValue:"", name:""}}  />
+            <Input className="input" input={{label: "Ponovi sifru", type: "password", inputClass: "", placeholder: "", className:"input", defaultValue:"", name:""}}  />
         </div>
         <div className="modalButtons">
             <Button onClick={()=>{setModalClose(false)}} children={<>Ponisti <FaTimes /></>} btn="btn btn-danger" />
