@@ -33,15 +33,17 @@ const NoviIzdavac = () => {
 
   return (
     <SettingsForm
-      input={{
-        label: "Naziv izdavača",
-        type: "text",
-        name: "izdavac",
-        value: izdavacValue,
-        hasError:izdavacHasError,
-        onChange: izdavacChangeHandler,
-        onBlur: izdavacBlurHandler,
-      }}
+      input={[
+        {
+          label: "Naziv izdavača",
+          type: "text",
+          name: "izdavac",
+          value: izdavacValue,
+          hasError: izdavacHasError,
+          onChange: izdavacChangeHandler,
+          onBlur: izdavacBlurHandler,
+        },
+      ]}
       title="Novi izdavač"
       firstLinkName="Izdavači"
       path="/settings/izdavac"

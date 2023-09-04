@@ -31,15 +31,17 @@ const NoviZanr = () => {
 
   return (
     <SettingsForm
-      input={{
-        label: "Naziv poveza",
-        type: "text",
-        name: "povez",
-        value: povezValue,
-        hasError: povezHasError,
-        onChange: povezChangeHandler,
-        onBlur: povezBlurHandler,
-      }}
+      input={[
+        {
+          label: "Naziv poveza",
+          type: "text",
+          name: "povez",
+          value: povezValue,
+          hasError: povezHasError,
+          onChange: povezChangeHandler,
+          onBlur: povezBlurHandler,
+        },
+      ]}
       title="Novi povez"
       firstLinkName="Povezi"
       path="/settings/povez"

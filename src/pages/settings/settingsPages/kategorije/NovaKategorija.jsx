@@ -13,18 +13,30 @@ const NovaKategorija = () => {
     reset: resetKategorija,
   } = useInput(isNotEmpty);
 
+  const {
+    value: descriptionValue,
+    isValid: descriptionIsValid,
+    hasError: descriptionHasError,
+    valueChangeHandler: descriptionChangeHandler,
+    inputBlurHandler: descriptionBlurHandler,
+    reset: resetDescription,
+  } = useInput(isNotEmpty);
+
   let formIsValid = false;
-  if (kategorijaIsValid) {
+  if (kategorijaIsValid && descriptionIsValid) {
     formIsValid = true;
   }
+
+  const resetHandler = () => {
+    resetDescription();
+    resetKategorija();
+  };
 
   const submitHandler = (event) => {
     event.preventDefault();
     if (!formIsValid) {
       return;
     }
-    console.log(kategorijaValue);
-
     resetKategorija();
   };
 
@@ -32,24 +44,44 @@ const NovaKategorija = () => {
     ? "form-control invalid"
     : "form-control";
 
+  const descriptionClasses = descriptionHasError
+    ? "form-control invalid"
+    : "form-control";
+
+
   return (
     <SettingsForm
-      input={{
-        label: "Naziv kategorije",
-        type: "text",
-        name: "kategorija",
-        value: kategorijaValue,
-        hasError: kategorijaHasError,
-        onChange: kategorijaChangeHandler,
-        onBlur: kategorijaBlurHandler,
-      }}
+      input={[
+        {
+          label: "Naziv kategorije",
+          inputClasses: kategorijaClasses,
+          type: "text",
+          name: "kategorija",
+          value: kategorijaValue,
+          hasError: kategorijaHasError,
+          onChange: kategorijaChangeHandler,
+          onBlur: kategorijaBlurHandler,
+        },
+      ]}
+      textarea={[
+        {
+          label: "Opis",
+          type: "text",
+          name: "description",
+          textareaClasses: descriptionClasses,
+          value: descriptionValue,
+          hasError: descriptionHasError,
+          onChange: descriptionChangeHandler,
+          onBlur: descriptionBlurHandler,
+        },
+      ]}
       title="Nova kategorija"
       firstLinkName="Kategorije"
       path="/settings/categories"
-      classes={kategorijaClasses}
       formIsValid={formIsValid}
-      reset={resetKategorija}
+      reset={resetHandler}
       submitHandler={() => submitHandler()}
+      image={true}
     />
   );
 };

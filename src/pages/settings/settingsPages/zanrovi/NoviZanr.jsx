@@ -23,8 +23,6 @@ const NoviZanr = () => {
     if (!formIsValid) {
       return;
     }
-    console.log(zanrValue);
-
     resetZanr();
   };
 
@@ -32,15 +30,17 @@ const NoviZanr = () => {
 
   return (
     <SettingsForm
-      input={{
-        label: "Naziv žanra",
-        type: "text",
-        name: "zanr",
-        value: zanrValue,
-        hasError: zanrHasError,
-        onChange: zanrChangeHandler,
-        onBlur: zanrBlurHandler,
-      }}
+      input={[
+        {
+          label: "Naziv žanra",
+          type: "text",
+          name: "zanr",
+          value: zanrValue,
+          hasError: zanrHasError,
+          onChange: zanrChangeHandler,
+          onBlur: zanrBlurHandler,
+        },
+      ]}
       title="Novi žanr"
       firstLinkName="Žanrovi"
       path="/settings/zanrovi"

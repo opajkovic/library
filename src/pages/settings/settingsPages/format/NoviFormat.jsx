@@ -33,15 +33,17 @@ const NoviFormat = () => {
 
   return (
     <SettingsForm
-      input={{
-        label: "Naziv formata",
-        type: "text",
-        name: "format",
-        value: formatValue,
-        hasError: formatHasError,
-        onChange: formatChangeHandler,
-        onBlur: formatBlurHandler,
-      }}
+      input={[
+        {
+          label: "Naziv formata",
+          type: "text",
+          name: "format",
+          value: formatValue,
+          hasError: formatHasError,
+          onChange: formatChangeHandler,
+          onBlur: formatBlurHandler,
+        },
+      ]}
       title="Novi format"
       firstLinkName="Formati"
       path="/settings/format"

@@ -12,6 +12,6 @@
   border: 1px solid var(--grey-200);
 }
 
-.custom-file-input {
+.custom-file input{
   display: none;
 }

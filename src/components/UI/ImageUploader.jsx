@@ -2,7 +2,7 @@ import { useRef } from "react";
 import "./ImageUploader.css";
 import image from "../../assets/insert.png"
 
-const ImageUploader = () => {
+const ImageUploader = (props) => {
   const fileInputRef = useRef(null);
   const handleImageClick = () => {
     fileInputRef.current.click();
@@ -13,17 +13,16 @@ const ImageUploader = () => {
     console.log("File selected:", selectedFile.name);
   };
   return (
-    <div className="custom-file">
-      <input
-        type="file"
-        className="custom-file-input"
-        id="customFile"
-        ref={fileInputRef}
-        onChange={handleFileSelect}
-      />
+    <div className={props.className ? props.className : "custom-file"}>
+      <label>{props.label}</label>
       <img
         onClick={handleImageClick}
         src={image}
+      />
+      <input
+        type="file"
+        ref={fileInputRef}
+        onChange={handleFileSelect}
       />
     </div>
   );

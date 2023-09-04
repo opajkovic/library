@@ -123,13 +123,15 @@ p {
   margin-bottom: 0 !important;
 }
 
-.invalid input {
-  border: 1px solid var(--red-500);
+.invalid {
+  border: 1px solid var(--red-500) !important;
   background-color: var(--white);
 }
 
 .error-message {
   color: var(--red-700);
+  font-size: 0.8rem;
+  font-style: italic;
 }
 @media (max-width: 1400px) {
   .page-wrapper {

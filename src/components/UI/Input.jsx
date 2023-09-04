@@ -1,23 +1,25 @@
 
 const Input = (props) => {
+
   const {
     label,
     type,
     name,
     value,
     placeholder,
-    inputClass,
     onChange,
     onBlur,
     hasError,
+    inputClasses,
   } = props.input;
+
   return (
     <div className={props.className}>
-      <label htmlFor={inputClass}>
+      <label >
         {label} {props.sup && <sup>*</sup>}
       </label>
       <input
-        className={inputClass}
+        className={inputClasses}
         type={type}
         name={name}
         value={value}
