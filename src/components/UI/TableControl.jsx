@@ -21,10 +21,10 @@ const TableControl = (props) => {
         <Input
           input={{
             type: "text",
-            className: "table-global-search",
             inputClass: "form-control",
             placeholder: "Search...",
           }}
+          className="table-global-search"
         />
       </div>
     </div>

@@ -1,7 +1,6 @@
 .pagination-wrapper {
   display: flex;
   width: 100%;
-  min-width: 1400px;
   justify-content: right;
   margin-top: 2rem;
 }
