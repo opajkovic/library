@@ -1,6 +1,5 @@
 import useInput from "../../../../hooks/useInput";
-import { Link } from "react-router-dom";
-import FormSubmitButtons from "../../../../components/UI/FormSubmitButtons";
+import SettingsForm from "../../../../components/UI/SettingsForm";
 
 const isNotEmpty = (value) => value.trim() !== "";
 
@@ -24,7 +23,6 @@ const NovoPismo = () => {
     if (!formIsValid) {
       return;
     }
-    console.log(pismoValue);
 
     resetPismo();
   };
@@ -32,41 +30,23 @@ const NovoPismo = () => {
   const pismoClasses = pismoHasError ? "form-control invalid" : "form-control";
 
   return (
-    <>
-      <div className="new-item">
-        <div>
-          <h1 className="new-title">Novi pismo</h1>
-          <div className="new-subtitle">
-            <Link to={"/settings"}>Settings</Link>
-            <span>/</span>
-            <Link to={"/settings/pismo"}>Pisma</Link>
-            <span>/</span>
-            <Link to={"/settings/pismo/new"}>Novo pismo</Link>
-          </div>
-        </div>
-      </div>
-
-      <form onSubmit={submitHandler} className="flex-between new-form">
-        <div className="flex-column">
-          <div className={pismoClasses}>
-            <label htmlFor="pismo">
-              Naziv pisma <sup>*</sup>
-            </label>
-            <input
-              type="text"
-              id="pismo"
-              value={pismoValue}
-              onChange={pismoChangeHandler}
-              onBlur={pismoBlurHandler}
-            />
-            {pismoHasError && (
-              <p className="error-message">Unesite naziv pisma</p>
-            )}
-          </div>
-        </div>
-        <FormSubmitButtons disabled={!formIsValid} reset={() => resetPismo()} />
-      </form>
-    </>
+    <SettingsForm
+      input={{
+        type: "text",
+        name: "pismo",
+        value: pismoValue,
+        hasError: pismoHasError,
+        onChange: pismoChangeHandler,
+        onBlur: pismoBlurHandler,
+      }}
+      title="Novo pismo"
+      firstLinkName="Pisma"
+      path="/settings/pismo"
+      classes={pismoClasses}
+      formIsValid={formIsValid}
+      reset={resetPismo}
+      submitHandler={() => submitHandler()}
+    />
   );
 };
 export default NovoPismo;

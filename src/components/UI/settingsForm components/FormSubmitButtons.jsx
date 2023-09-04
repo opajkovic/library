@@ -1,5 +1,5 @@
 import { FaCheck, FaTimes } from "react-icons/fa";
-import Button from "./Button";
+import Button from "../Button";
 
 const FormSubmitButtons = ({ disabled, reset }) => {
   return (

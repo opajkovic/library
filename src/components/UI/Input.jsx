@@ -1,7 +1,18 @@
 import "./Input.css";
 
 const Input = (props) => {
-  const {label, type, name, defaultValue, className, placeholder, inputClass } = props.input;
+  const {
+    label,
+    type,
+    name,
+    value,
+    className,
+    placeholder,
+    inputClass,
+    onChange,
+    onBlur,
+    hasError
+  } = props.input;
   return (
     <div className={className}>
       <label htmlFor={inputClass}>{label}</label>
@@ -9,10 +20,15 @@ const Input = (props) => {
         className={inputClass}
         type={type}
         name={name}
-        defaultValue={defaultValue}
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
         placeholder={placeholder}
         required
       />
+      {hasError && (
+        <p className="error-message"> Uneseni podatak nije validan! </p>
+      )}
     </div>
   );
 };

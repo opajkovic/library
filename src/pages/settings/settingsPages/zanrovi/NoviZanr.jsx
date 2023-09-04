@@ -1,6 +1,5 @@
 import useInput from "../../../../hooks/useInput";
-import { Link } from "react-router-dom";
-import FormSubmitButtons from "../../../../components/UI/FormSubmitButtons";
+import SettingsForm from "../../../../components/UI/SettingsForm";
 
 const isNotEmpty = (value) => value.trim() !== "";
 
@@ -32,41 +31,23 @@ const NoviZanr = () => {
   const zanrClasses = zanrHasError ? "form-control invalid" : "form-control";
 
   return (
-    <>
-      <div className="new-item">
-        <div>
-          <h1 className="new-title">Novi zanr</h1>
-          <div className="new-subtitle">
-            <Link to={"/settings"}>Settings</Link>
-            <span>/</span>
-            <Link to={"/settings/zanrovi"}>Zanrovi</Link>
-            <span>/</span>
-            <Link to={"/settings/zanrovi/new"}>Nova zanr</Link>
-          </div>
-        </div>
-      </div>
-
-      <form onSubmit={submitHandler} className="flex-between new-form">
-        <div className="flex-column">
-          <div className={zanrClasses}>
-            <label htmlFor="naziv">
-              Naziv zanra <sup>*</sup>
-            </label>
-            <input
-              type="text"
-              id="naziv"
-              value={zanrValue}
-              onChange={zanrChangeHandler}
-              onBlur={zanrBlurHandler}
-            />
-            {zanrHasError && (
-              <p className="error-message">Unesite naziv zanra</p>
-            )}
-          </div>
-        </div>
-        <FormSubmitButtons disabled={!formIsValid} reset={() => resetZanr()} />
-      </form>
-    </>
+    <SettingsForm
+      input={{
+        type: "text",
+        name: "zanr",
+        value: zanrValue,
+        hasError: zanrHasError,
+        onChange: zanrChangeHandler,
+        onBlur: zanrBlurHandler,
+      }}
+      title="Novi žanr"
+      firstLinkName="Žanrovi"
+      path="/settings/zanrovi"
+      classes={zanrClasses}
+      formIsValid={formIsValid}
+      reset={resetZanr}
+      submitHandler={() => submitHandler()}
+    />
   );
 };
 export default NoviZanr;
