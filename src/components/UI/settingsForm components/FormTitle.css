@@ -1,10 +1,10 @@
 .form-title-wrapper {
   display: flex;
   flex-direction: column;
-  padding: 1rem 2rem;
+  padding: 0.9rem 2rem;
   border-bottom: 1px solid var(--grey-200);
   position: fixed;
-  gap: calc(0.7rem - 1px);
+  gap: calc(0.9rem - 1px);
   width: calc(100% - 90px);
   z-index: 2;
   background-color: white;
@@ -25,13 +25,9 @@
   line-height: 1rem;
 }
 
-.new-subtitle a {
-  padding: 0.5rem 1rem;
-}
-
 .new-subtitle a,
 .new-subtitle span {
-  margin: 0 0.5rem;
+  margin: 0 0.5rem 0 0;
   color: var(--grey-900);
 }
 
@@ -42,11 +38,12 @@
   background-color: inherit;
   border: 1px solid var(--primary);
   border-radius: 1rem;
+  padding: 0.3rem 1rem;
 }
 
 .active-title{
   background-color: var(--primary);
   color: white !important;
-  padding: 0.5rem 1rem;
+  padding: 0.2rem 1rem;
   border-radius: 1rem;
 }
