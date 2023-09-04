@@ -15,15 +15,16 @@ export default function ChangePasswordModal({setModalClose}) {
     <div onClick={closeModalBackground} className='passwordModal'>
         <div className="modalP">
         <div className="modalTitle">
-            <p className="text">Resetuj sifru: Valentina Kascelan</p>
+            <p className="text">Resetuj šifru: Valentina Kascelan</p>
             <FaTimes onClick={()=>{setModalClose(false)}} className='closeModalIcon' />
         </div>
         <div className="inputsModal">
-            <Input input={{label: "Unesi novu sifru", type: "password", inputClass: "", placeholder: "", className:"input", defaultValue:"", name:""}}  />
-            <Input input={{label: "Ponovi sifru", type: "password", inputClass: "", placeholder: "", className:"input", defaultValue:"", name:""}}  />
+            <Input input={{label: "Unesi staru šifru", type: "password"}} className="input" /> 
+            <Input input={{label: "Unesi novu šifru", type: "password"}} className="input" />
+            <Input input={{label: "Ponovi šifru", type: "password"}} className="input" />
         </div>
         <div className="modalButtons">
-            <Button onClick={()=>{setModalClose(false)}} children={<>Ponisti <FaTimes /></>} btn="btn btn-danger" />
+            <Button onClick={()=>{setModalClose(false)}} children={<>Poništi <FaTimes /></>} btn="btn btn-danger" />
             <Button children={<>Potvrdi <FaCheck /></>} btn="btn btn-success" />
         </div>
         </div>
