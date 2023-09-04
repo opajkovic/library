@@ -35,6 +35,7 @@ import NoviPovez from "./pages/settings/settingsPages/povez/NoviPovez";
 import NovoPismo from "./pages/settings/settingsPages/pismo/NovoPismo";
 import NoviIzdavac from "./pages/settings/settingsPages/izdavac/NoviIzdavac";
 import NoviFormat from "./pages/settings/settingsPages/format/NoviFormat";
+import NewLibrarian from "./pages/librarians/NewLibrarian";
 
 import ProfileEvidenceReturned from "./pages/studentProfile/layouts/ProfileEvidenceReturned";
 import ProfileEvidenceWrittenOff from "./pages/studentProfile/layouts/ProfileEvidenceWrittenOff";
@@ -66,7 +67,10 @@ function App() {
             element={<BookSpecification />}
           />
           <Route path="/books/:id/multimedija" element={<BookMultimedia />} />
-          <Route path="/books/:id/evidencija/izdate-knjige" element={<BookRentEvidence />} />
+          <Route
+            path="/books/:id/evidencija/izdate-knjige"
+            element={<BookRentEvidence />}
+          />
           <Route
             path="/books/:id/evidencija/izdate-knjige"
             element={<RentedEvidence />}
@@ -136,6 +140,7 @@ function App() {
           <Route path="/librarians" element={<Librarians />} />
           <Route path="/activities" element={<Activities />} />
           <Route path="/librarians/:id" element={<LibrarianProfile />} />
+          <Route path="/librarians/new" element={<NewLibrarian />} />
 
           {/* student profile routes */}
           <Route path="/students" element={<Students />} />
