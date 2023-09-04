@@ -24,6 +24,7 @@ export default function ProfileEvidence(props) {
   return (
     <div>
       <ProfileTitle
+        userInfo={props.userInfo}
         linkOne={"Svi Studenti"}
         linkOnePath={"/students"}
         linkTwoPath={"/students/"}

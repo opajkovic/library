@@ -5,6 +5,7 @@ import HeaderOptions from "./components/HeaderOptions";
 import ChangePasswordModal from "../changePasswordModal/ChangePasswordModal";
 
 export default function ProfileTitle({
+  userInfo,
   linkOne,
   linkOnePath,
   linkTwoPath,
@@ -20,6 +21,7 @@ export default function ProfileTitle({
     <div className="title-wrapper">
       {image && <img src={image} />}
       <HeaderName
+        userInfo={userInfo}
         linkOne={linkOne}
         linkOnePath={linkOnePath}
         linkTwoPath={linkTwoPath}

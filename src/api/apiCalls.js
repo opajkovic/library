@@ -6,6 +6,6 @@ export default axios.create({
     'Content-Type': 'application/json',
     'Accept': 'application/json',
     // just for test >
-    // 'Authorization': 'Bearer 13|8LTCD0QxJho9jsKoZcfKEdHZuuSwDJdQxR7RIFYm'
+    'Authorization': 'Bearer 14|QF4D1r0NKIIKqeq7QdOvrjGEARcgABjyA1islr6n'
   }
 });
