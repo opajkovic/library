@@ -7,7 +7,7 @@ import Students from "./pages/students/Students";
 
 import Librarians from "./pages/librarians/Librarians";
 import LibrarianProfile from "./pages/librarianProfile/LibrarianProfile";
-import NewLibrarian from "./pages/librarianNew/NewLibrarian";
+import NewLibrarian from "./pages/librarians/NewLibrarian";
 
 import RentingBooks from "./pages/rentingBooks/rentingBooks";
 import ReturnedBooks from "./pages/rentingBooks/layouts/returnedBooks";
@@ -37,7 +37,6 @@ import NoviPovez from "./pages/settings/settingsPages/povez/NoviPovez";
 import NovoPismo from "./pages/settings/settingsPages/pismo/NovoPismo";
 import NoviIzdavac from "./pages/settings/settingsPages/izdavac/NoviIzdavac";
 import NoviFormat from "./pages/settings/settingsPages/format/NoviFormat";
-import NewLibrarian from "./pages/librarians/NewLibrarian";
 
 import ProfileEvidenceReturned from "./pages/studentProfile/layouts/ProfileEvidenceReturned";
 import ProfileEvidenceWrittenOff from "./pages/studentProfile/layouts/ProfileEvidenceWrittenOff";

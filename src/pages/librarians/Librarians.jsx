@@ -47,13 +47,13 @@ const Librarians = () => {
   }, []);
 
   const handleClick = () => {
-    navigate("./new");
+    navigate("/librarians/new");
   };
   return (
     <div>
       <PageTitle title="Bibliotekari" />
       <div className="page-wrapper">
-        <TableControl title="Novi bibliotekar" onClick={handleClick} />
+        <TableControl title="Novi bibliotekar" onClick={()=>handleClick()} />
         <Table
           path="/librarians"
           headers={headers}
