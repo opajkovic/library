@@ -27,10 +27,10 @@ const NovaKategorija = () => {
     formIsValid = true;
   }
 
-  const resetHandler =()=>{
+  const resetHandler = () => {
     resetDescription();
     resetKategorija();
-  }
+  };
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -48,11 +48,13 @@ const NovaKategorija = () => {
     ? "form-control invalid"
     : "form-control";
 
+
   return (
     <SettingsForm
       input={[
         {
           label: "Naziv kategorije",
+          inputClasses: kategorijaClasses,
           type: "text",
           name: "kategorija",
           value: kategorijaValue,
@@ -66,6 +68,7 @@ const NovaKategorija = () => {
           label: "Opis",
           type: "text",
           name: "description",
+          textareaClasses: descriptionClasses,
           value: descriptionValue,
           hasError: descriptionHasError,
           onChange: descriptionChangeHandler,
@@ -75,8 +78,6 @@ const NovaKategorija = () => {
       title="Nova kategorija"
       firstLinkName="Kategorije"
       path="/settings/categories"
-      inputClasses={kategorijaClasses}
-      descriptionClasses={descriptionClasses}
       formIsValid={formIsValid}
       reset={resetHandler}
       submitHandler={() => submitHandler()}

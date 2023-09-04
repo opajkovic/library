@@ -123,8 +123,8 @@ p {
   margin-bottom: 0 !important;
 }
 
-.invalid input {
-  border: 1px solid var(--red-500);
+.invalid {
+  border: 1px solid var(--red-500) !important;
   background-color: var(--white);
 }
 

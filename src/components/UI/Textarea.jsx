@@ -7,7 +7,7 @@ const Textarea = (props) => {
     name,
     value,
     placeholder,
-    inputClass,
+    textareaClasses,
     onChange,
     onBlur,
     hasError,
@@ -15,11 +15,11 @@ const Textarea = (props) => {
 
   return (
     <div className={props.className}>
-      <label htmlFor={inputClass}>
+      <label htmlFor={textareaClasses}>
         {label} {props.sup && <sup>*</sup>}
       </label>
       <textarea
-        className={inputClass}
+        className={textareaClasses}
         type={type}
         name={name}
         value={value}
