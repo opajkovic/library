@@ -1,4 +1,4 @@
-import { useOutletContext } from "react-router";
+import { useNavigate, useOutletContext } from "react-router";
 import { useEffect } from "react";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
@@ -40,15 +40,20 @@ const headers = [
 
 const Librarians = () => {
   const { setRoute } = useOutletContext();
+  const navigate = useNavigate();
   useEffect(() => {
     setRoute("librarians");
+    // eslint-disable-next-line
   }, []);
 
+  const handleClick = () => {
+    navigate("./new");
+  };
   return (
     <div>
       <PageTitle title="Bibliotekari" />
       <div className="page-wrapper">
-        <TableControl title="Novi bibliotekar" />
+        <TableControl title="Novi bibliotekar" onClick={handleClick} />
         <Table
           path="/librarians"
           headers={headers}
@@ -67,7 +72,7 @@ const Librarians = () => {
             {
               text: "Izbrisi korisnika",
               icon: <FaTrash />,
-              noPath: true
+              noPath: true,
             },
           ]}
         />
