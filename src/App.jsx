@@ -17,6 +17,7 @@ import LibrarianProfile, {
 } from "./pages/librarianProfile/LibrarianProfile";
 import NewLibrarian from "./pages/librarians/NewLibrarian";
 import NewStudent from "./pages/students/NewStudent";
+import NewAuthor from "./pages/authors/NewAuthor";
 
 import RentingBooks from "./pages/rentingBooks/rentingBooks";
 import ReturnedBooks from "./pages/rentingBooks/layouts/returnedBooks";
@@ -118,6 +119,7 @@ const router = createBrowserRouter(
         {/* Author routes */}
         <Route path="/authors" element={<Authors />} />
         <Route path="/authors/:id" element={<AuthorProfile />} />
+        <Route path="/authors/new" element={<NewAuthor />} />
 
         {/* Izdavanje knjiga routes */}
         <Route path="/rentingBooks/izdate-knjige" element={<RentingBooks />} />

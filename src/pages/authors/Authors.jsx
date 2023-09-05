@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useOutletContext } from "react-router";
+import { useEffect } from "react";
+import { useNavigate, useOutletContext } from "react-router";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
@@ -41,14 +41,22 @@ const headers = [
 
 export default function Authors() {
   const { setRoute } = useOutletContext();
+  const navigate = useNavigate();
+
   useEffect(() => {
     setRoute("authors");
+    // eslint-disable-next-line
   }, []);
+
+  const handleClick = () => {
+    navigate("/authors/new");
+  };
+
   return (
     <>
       <PageTitle title="Autori" />
       <div className="page-wrapper">
-        <TableControl title="Novi autor" />
+        <TableControl title="Novi autor" onClick={() => handleClick()} />
         <Table
           path="/authors"
           tableData={DUMMY_AUTHOR_DATA}
