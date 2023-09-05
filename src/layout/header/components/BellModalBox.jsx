@@ -10,7 +10,7 @@ import Modal from "../../modal/Modal";
 import ModalItem from "../../modal/modalItem/ModalItem";
 
 const BellModalBox = ({ changeModal, modalPlus, setModalClose }) => {
-  console.log(modalPlus);
+
   return (
     <div className="bell modalBox">
       <FaPlus onClick={changeModal} />

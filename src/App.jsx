@@ -36,12 +36,12 @@ import StudentProfile, {
   StudentProfileLoader,
 } from "./pages/studentProfile/StudentProfile";
 import Activities from "./pages/activities/Activities";
-import Kategorije from "./pages/settings/settingsPages/kategorije/Kategorije";
-import Zanrovi from "./pages/settings/settingsPages/zanrovi/Zanrovi";
-import Izdavac from "./pages/settings/settingsPages/izdavac/Izdavac";
-import Povez from "./pages/settings/settingsPages/povez/Povez";
-import Format from "./pages/settings/settingsPages/format/Format";
-import Pismo from "./pages/settings/settingsPages/pismo/Pismo";
+import Kategorije, { CategoryLoader } from "./pages/settings/settingsPages/kategorije/Kategorije";
+import Zanrovi, { GenresLoader } from "./pages/settings/settingsPages/zanrovi/Zanrovi";
+import Izdavac, { PublisherLoader } from "./pages/settings/settingsPages/izdavac/Izdavac";
+import Povez, { BookbindsLoader } from "./pages/settings/settingsPages/povez/Povez";
+import Format, { FormatLoader } from "./pages/settings/settingsPages/format/Format";
+import Pismo, { LanguagesLoader } from "./pages/settings/settingsPages/pismo/Pismo";
 import NovaKategorija from "./pages/settings/settingsPages/kategorije/NovaKategorija";
 import NoviPovez from "./pages/settings/settingsPages/povez/NoviPovez";
 import NovoPismo from "./pages/settings/settingsPages/pismo/NovoPismo";
@@ -131,17 +131,17 @@ const router = createBrowserRouter(
 
         {/* settings routes */}
         <Route path="/settings" element={<Polisa />} />
-        <Route path="/settings/categories" element={<Kategorije />} />
+        <Route path="/settings/categories" element={<Kategorije />} loader={CategoryLoader}/>
         <Route path="/settings/categories/new" element={<NovaKategorija />} />
-        <Route path="/settings/zanrovi" element={<Zanrovi />} />
+        <Route path="/settings/zanrovi" element={<Zanrovi />} loader={GenresLoader}/>
         <Route path="/settings/zanrovi/new" element={<NoviZanr />} />
-        <Route path="/settings/izdavac" element={<Izdavac />} />
-        <Route path="/settings/povez" element={<Povez />} />
+        <Route path="/settings/izdavac" element={<Izdavac />} loader={PublisherLoader} />
+        <Route path="/settings/povez" element={<Povez />} loader={BookbindsLoader}/>
         <Route path="/settings/povez/new" element={<NoviPovez />} />
-        <Route path="/settings/format" element={<Format />} />
-        <Route path="/settings/pismo" element={<Pismo />} />
+        <Route path="/settings/format" element={<Format />} loader={FormatLoader} />
+        <Route path="/settings/pismo" element={<Pismo />} loader={LanguagesLoader}/>
         <Route path="/settings/pismo/new" element={<NovoPismo />} />
-        <Route path="/settings/izdavac/new" element={<NoviIzdavac />} />
+        <Route path="/settings/izdavac/new" element={<NoviIzdavac />}/>
         <Route path="/settings/format/new" element={<NoviFormat />} />
 
         <Route path="/librarians" element={<Librarians />} />

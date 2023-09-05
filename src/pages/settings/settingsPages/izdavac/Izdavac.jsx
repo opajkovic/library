@@ -2,34 +2,19 @@ import { useEffect } from "react";
 import "./izdavac.css";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
 import Menu from "../../layouts/menu/Menu";
-import { useNavigate, useOutletContext } from "react-router";
+import { useLoaderData, useNavigate, useOutletContext } from "react-router";
 import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
-
-const DUMMY_DATA = [
-  {
-    id: 1,
-    Izdavac: "Arto",
-  },
-  {
-    id: 2,
-    Izdavac: "Balbelo",
-  },
-  {
-    id: 3,
-    Izdavac: "Cid",
-  },
-  {
-    id: 4,
-    Izdavac: "Cosmo",
-  },
-];
+import api from "../../../../api/apiCalls";
 
 const headers = [{ headerName: "Izdavac", sort: true, dropdown: true }];
 
 export default function Izdavac() {
   const { setRoute } = useOutletContext();
   const navigate = useNavigate();
+  const publisherData = useLoaderData();
+  const publishers = publisherData.map((item) => item.name);
+  
   useEffect(() => {
     setRoute("settings");
   }, []);
@@ -46,7 +31,7 @@ export default function Izdavac() {
       <div className="page-wrapper">
         <SettingsTable
           title="Novi izdavač"
-          tableData={DUMMY_DATA}
+          tableData={publishers}
           headers={headers}
           options={[
             {
@@ -66,3 +51,14 @@ export default function Izdavac() {
     </div>
   );
 }
+
+export const PublisherLoader = async () => {
+  try {
+    const response = await api.get(`/books/create`);
+    const responseData = response.data.data.publishers;
+    return responseData;
+  } catch (error) {
+    console.error("Loader function error:", error);
+    throw error;
+  }
+};

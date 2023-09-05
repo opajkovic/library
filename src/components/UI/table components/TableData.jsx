@@ -17,6 +17,7 @@ const MiddleDataCell = ({ item, headers, options, path }) => {
     setModalOpen(true);
   };
 
+  console.log(item)
   const handleCloseModal = () => {
     setRowId(null);
     setModalOpen(false);
@@ -32,17 +33,18 @@ const MiddleDataCell = ({ item, headers, options, path }) => {
               <Input
                 input={{ type: "checkbox", className: "table-checkbox" }}
               />
+
+              {/* Uslovno dadavanje linka za autore, bibliotekare, studente i ucenike */}
               {path ? (
                 <Link to={`${path}/${row.id}`}>
-                  {row[header.headerName.split(" ").join("")]}
+                  {row}
                 </Link>
               ) : (
-                row[header.headerName.split(" ").join("")]
+                row
               )}
             </div>
           )}
-
-          {!header.sort && row[header.headerName.split(" ").join("")]}
+          {!header.sort && row}
           {/* Uslovno prikazivanje tackica ako je props dropdown === true */}
           {header.dropdown && (
             <BsThreeDotsVertical

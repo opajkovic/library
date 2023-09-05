@@ -8,27 +8,27 @@ import "./librarians.css";
 import { FaEdit, FaFile, FaTrash } from "react-icons/fa";
 
 const DUMMY_TABLE_DATA = [
-  {
-    id: 1,
-    Imeiprezime: "Valentina Kašćelan",
-    email: "valentina.kascelan@domain...",
-    role: "Bibliotekar",
-    Poslednjipristupsistemu: "Prije 10 sati",
-  },
-  {
-    id: 2,
-    Imeiprezime: "Valentina Kašćelan",
-    email: "valentina.kascelan@domain...",
-    role: "Bibliotekar",
-    Poslednjipristupsistemu: "Prije 10 sati",
-  },
-  {
-    id: 3,
-    Imeiprezime: "Valentina Kašćelan",
-    email: "valentina.kascelan@domain...",
-    role: "Bibliotekar",
-    Poslednjipristupsistemu: "Prije 10 sati",
-  },
+  // {
+  //   id: 1,
+  //   Imeiprezime: "Valentina Kašćelan",
+  //   email: "valentina.kascelan@domain...",
+  //   role: "Bibliotekar",
+  //   Poslednjipristupsistemu: "Prije 10 sati",
+  // },
+  // {
+  //   id: 2,
+  //   Imeiprezime: "Valentina Kašćelan",
+  //   email: "valentina.kascelan@domain...",
+  //   role: "Bibliotekar",
+  //   Poslednjipristupsistemu: "Prije 10 sati",
+  // },
+  // {
+  //   id: 3,
+  //   Imeiprezime: "Valentina Kašćelan",
+  //   email: "valentina.kascelan@domain...",
+  //   role: "Bibliotekar",
+  //   Poslednjipristupsistemu: "Prije 10 sati",
+  // },
 ];
 
 const headers = [

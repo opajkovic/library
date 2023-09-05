@@ -1,57 +1,20 @@
 import "./kategorije.css";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
 import Menu from "../../layouts/menu/Menu";
-import { useOutletContext, useNavigate } from "react-router";
+import { useOutletContext, useNavigate, useLoaderData } from "react-router";
 import { useEffect } from "react";
 import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import api from "../../../../api/apiCalls";
 
-const DUMMY_DATA = [
-  {
-    id: 1,
-    Novakategorija: "Hrana i pice",
-    Opis: "Lorem ipsum dolor sit amet consectetur adipising eli,",
-  },
-  {
-    id: 2,
-    Novakategorija: "Djecije knjige",
-    Opis: "Lorem ipsum dolor sit amet consectetur adipising eli,",
-  },
-  {
-    id: 3,
-    Novakategorija: "Istorija",
-    Opis: "Lorem ipsum dolor sit amet consectetur adipising eli,",
-  },
-  {
-    id: 4,
-    Novakategorija: "Skolske knjige",
-    Opis: "Lorem ipsum dolor sit amet consectetur adipising eli,",
-  },
-  {
-    id: 5,
-    Novakategorija: "Nauka, priroda i matematika",
-    Opis: "Lorem ipsum dolor sit amet consectetur adipising eli,",
-  },
-  {
-    id: 6,
-    Novakategorija: "Pravo",
-    Opis: "Lorem ipsum dolor sit amet consectetur adipising eli,",
-  },
-  {
-    id: 7,
-    Novakategorija: "Hrana i pice",
-    Opis: "Lorem ipsum dolor sit amet consectetur adipising eli,",
-  },
-];
-
-const headers = [
-  { headerName: "Nova kategorija", sort: true, dropdown: false },
-  { headerName: "Opis", sort: false, dropdown: true },
-];
+const headers = [{ headerName: "Kategorije", sort: true, dropdown: false }];
 
 export default function Kategorije() {
   const { setRoute } = useOutletContext();
   const navigate = useNavigate();
+  const categoryData = useLoaderData();
+  const categories = categoryData.map((item) => item.name);
+
   useEffect(() => {
     setRoute("settings");
   }, []);
@@ -67,9 +30,9 @@ export default function Kategorije() {
       <Menu selectedSettings={"kategorije"} />
       <div className="page-wrapper">
         <SettingsTable
-          title="Nova Kategorija"
+          title="Nova kategorija"
           headers={headers}
-          tableData={DUMMY_DATA}
+          tableData={categories}
           options={[
             {
               text: "Izmijeni kategoriju",
@@ -79,7 +42,7 @@ export default function Kategorije() {
             {
               text: "Izbrisi kategoriju",
               icon: <FaTrash />,
-              noPath: true
+              noPath: true,
             },
           ]}
           onClick={handleClick}
@@ -88,3 +51,14 @@ export default function Kategorije() {
     </div>
   );
 }
+
+export const CategoryLoader = async () => {
+  try {
+    const response = await api.get(`/books/create`);
+    const responseData = response.data.data.categories;
+    return responseData;
+  } catch (error) {
+    console.error("Loader function error:", error);
+    throw error;
+  }
+};

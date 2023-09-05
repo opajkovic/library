@@ -2,34 +2,19 @@ import React, { useEffect } from "react";
 import "./povez.css";
 import Menu from "../../layouts/menu/Menu";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
-import { useNavigate, useOutletContext } from "react-router";
+import { useLoaderData, useNavigate, useOutletContext } from "react-router";
 import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
-
-const DUMMY_DATA = [
-  {
-    id: 1,
-    Povez: "Kožni",
-  },
-  {
-    id: 2,
-    Povez: "Meki",
-  },
-  {
-    id: 3,
-    Povez: "Poluplatneni",
-  },
-  {
-    id: 4,
-    Povez: "Tvrdi",
-  },
-];
+import api from "../../../../api/apiCalls";
 
 const headers = [{ headerName: "Povez", sort: true, dropdown: true }];
 
 export default function Povez() {
   const { setRoute } = useOutletContext();
   const navigate = useNavigate();
+  const bookbindsData = useLoaderData();
+  const bookbinds = bookbindsData.map((item) => item.name);
+
   useEffect(() => {
     setRoute("settings");
   }, []);
@@ -44,7 +29,7 @@ export default function Povez() {
       <div className="page-wrapper">
         <SettingsTable
           title="Novi povez"
-          tableData={DUMMY_DATA}
+          tableData={bookbinds}
           headers={headers}
           options={[
             {
@@ -55,7 +40,7 @@ export default function Povez() {
             {
               text: "Izbrisi povez",
               icon: <FaTrash />,
-              noPath: true
+              noPath: true,
             },
           ]}
           onClick={handleClick}
@@ -64,3 +49,14 @@ export default function Povez() {
     </div>
   );
 }
+
+export const BookbindsLoader = async () => {
+  try {
+    const response = await api.get(`/books/create`);
+    const responseData = response.data.data.bookbinds;
+    return responseData;
+  } catch (error) {
+    console.error("Loader function error:", error);
+    throw error;
+  }
+};

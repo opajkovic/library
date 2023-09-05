@@ -2,34 +2,19 @@ import { useEffect } from "react";
 import "./format.css";
 import Menu from "../../layouts/menu/Menu";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
-import { useNavigate, useOutletContext } from "react-router";
+import { useLoaderData, useNavigate, useOutletContext } from "react-router";
 import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
-
-const DUMMY_DATA = [
-  {
-    id: 1,
-    Format: "A3",
-  },
-  {
-    id: 2,
-    Format: "A4",
-  },
-  {
-    id: 3,
-    Format: "B4",
-  },
-  {
-    id: 4,
-    Format: "A6",
-  },
-];
+import api from "../../../../api/apiCalls";
 
 const headers = [{ headerName: "Format", sort: true, dropdown: true }];
 
 export default function Format() {
   const { setRoute } = useOutletContext();
   const navigate = useNavigate();
+  const formatData = useLoaderData();
+  const formats = formatData.map(item => item.name)
+  
   useEffect(() => {
     setRoute("settings");
   }, []);
@@ -45,7 +30,7 @@ export default function Format() {
       <div className="page-wrapper">
         <SettingsTable
           title="Novi format"
-          tableData={DUMMY_DATA}
+          tableData={formats}
           headers={headers}
           options={[
             {
@@ -65,3 +50,14 @@ export default function Format() {
     </div>
   );
 }
+
+export const FormatLoader = async () => {
+  try {
+    const response = await api.get(`/books/create`);
+    const responseData = response.data.data.formats;
+    return responseData;
+  } catch (error) {
+    console.error("Loader function error:", error);
+    throw error;
+  }
+};

@@ -2,26 +2,18 @@ import React, { useEffect } from "react";
 import "./pismo.css";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
 import Menu from "../../layouts/menu/Menu";
-import { useNavigate, useOutletContext } from "react-router";
+import { useLoaderData, useNavigate, useOutletContext } from "react-router";
 import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
-
-const DUMMY_DATA = [
-  {
-    id: 1,
-    Pismo: "Ćirlica",
-  },
-  {
-    id: 2,
-    Pismo: "Latinica",
-  },
-];
+import api from "../../../../api/apiCalls";
 
 const headers = [{ headerName: "Pismo", sort: true, dropdown: true }];
 
 export default function Pismo() {
   const { setRoute } = useOutletContext();
   const navigate = useNavigate();
+  const languagesData = useLoaderData();
+  const languages = languagesData.map((item) => item.name);
   useEffect(() => {
     setRoute("settings");
   }, []);
@@ -38,7 +30,7 @@ export default function Pismo() {
       <div className="page-wrapper">
         <SettingsTable
           title="Novo pismo"
-          tableData={DUMMY_DATA}
+          tableData={languages}
           headers={headers}
           options={[
             {
@@ -49,7 +41,7 @@ export default function Pismo() {
             {
               text: "Izbrisi pismo",
               icon: <FaTrash />,
-              noPath: true
+              noPath: true,
             },
           ]}
           onClick={handleClick}
@@ -58,3 +50,14 @@ export default function Pismo() {
     </div>
   );
 }
+
+export const LanguagesLoader = async () => {
+  try {
+    const response = await api.get(`/books/create`);
+    const responseData = response.data.data.languages;
+    return responseData;
+  } catch (error) {
+    console.error("Loader function error:", error);
+    throw error;
+  }
+};
