@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useOutletContext } from "react-router";
+import { useEffect } from "react";
+import { useNavigate, useOutletContext } from "react-router";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
@@ -34,19 +34,32 @@ const headers = [
   { headerName: "Ime i prezime", sort: true, dropdown: false, dataKey: "name" },
   { headerName: "email", sort: false, dropdown: false, dataKey: "email" },
   { headerName: "role", sort: false, dropdown: false, dataKey: "role" },
-  { headerName: "Poslednji pristup sistemu", sort: false, dropdown: true, dataKey: "lastOnline" },
+  {
+    headerName: "Poslednji pristup sistemu",
+    sort: false,
+    dropdown: true,
+    dataKey: "lastOnline",
+  },
 ];
 
 export default function Students() {
   const { setRoute } = useOutletContext();
+  const navigate = useNavigate();
+
   useEffect(() => {
     setRoute("students");
+    // eslint-disable-next-line
   }, []);
+
+  const handleClick = () => {
+    navigate("/students/new");
+  };
+
   return (
     <>
       <PageTitle title="Učenici" />
       <div className="page-wrapper">
-        <TableControl title="Novi ucenik" />
+        <TableControl title="Novi ucenik" onClick={() => handleClick()} />
         <Table
           path="/students"
           headers={headers}
@@ -65,7 +78,7 @@ export default function Students() {
             {
               text: "Izbrisi korisnika",
               icon: <FaTrash />,
-              noPath: true
+              noPath: true,
             },
           ]}
         />

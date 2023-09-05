@@ -9,7 +9,7 @@ const emailTest = (value) => emailRegex.test(value);
 const isNotEmptyNumber = (value) =>
   value.trim() !== "" && /^-?\d+(\.\d+)?$/.test(value);
 
-const NewLibrarian = () => {
+const NewStudent = () => {
   const {
     value: imePrezimeValue,
     isValid: imePrezimeIsValid,
@@ -43,7 +43,7 @@ const NewLibrarian = () => {
     reset: resetUsername,
   } = useInput(isNotEmptyString);
 
-  const [librarianImage, setLibrarianImage] = useState(null);
+  const [studentImage, setStudentImage] = useState(null);
 
   let formIsValid = false;
   if (imePrezimeIsValid && jmbgIsValid && emailIsValid && usernameIsValid) {
@@ -63,7 +63,7 @@ const NewLibrarian = () => {
       return;
     }
     resetHandler();
-    setLibrarianImage(null);
+    setStudentImage(null);
   };
   return (
     <SettingsForm
@@ -84,7 +84,7 @@ const NewLibrarian = () => {
           label: "Tip korisnika",
           type: "text",
           name: "userType",
-          value: "Bibliotekar",
+          value: "Ucenik",
           disabled: true,
         },
         {
@@ -120,15 +120,15 @@ const NewLibrarian = () => {
           onBlur: usernameBlurHandler,
         },
       ]}
-      title="Novi bibliotekar"
-      firstLinkName="Bibliotekari"
-      path="/librarians"
+      title="Novi ucenik"
+      firstLinkName="Ucenici"
+      path="/students"
       formIsValid={formIsValid}
       reset={resetHandler}
       submitHandler={submitHandler}
       image={true}
-      handleImageUpload={(image) => setLibrarianImage(image)}
+      handleImageUpload={(image) => setStudentImage(image)}
     />
   );
 };
-export default NewLibrarian;
+export default NewStudent;
