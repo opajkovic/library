@@ -1,34 +1,17 @@
 import React, { useEffect } from "react";
 import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
-import { useNavigate, useOutletContext, useParams } from "react-router";
+import { redirect, useLoaderData, useOutletContext } from "react-router";
 import UserInfo from "../studentProfile/components/UserInfo";
 import api from "../../api/apiCalls";
 import { useState } from "react";
 
 export default function LibrarianProfile() {
   const { setRoute } = useOutletContext();
-  const { id } = useParams()
-  let [userInfo, setUserInfo] = useState({})
-  let navigate = useNavigate()
-
-  let fetchUser = () =>{
-    api.get(`/users/${id}`).then(response => {
-      if(response.data.data.role == 'Bibliotekar'){
-        setUserInfo(response.data.data)
-      }
-      else if(response.data.data.role == "Učenik"){
-        navigate(`/students/${id}`)
-      }else if(response.data.data.role == "Administrator"){
-        navigate(`/administrators/${id}`)
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-  }
+  let [userInfo, setUserInfo] = useState({});
+  const fetchedData = useLoaderData();
 
   useEffect(() => {
-    fetchUser()
+    setUserInfo(fetchedData);
     setRoute("librarians");
   }, []);
   return (
@@ -48,3 +31,22 @@ export default function LibrarianProfile() {
     </div>
   );
 }
+
+export const LibrarianProfileLoader = async ({ params }) => {
+  const id = params.id;
+  try {
+    const response = await api.get(`/users/${id}`);
+    const responseData = response.data.data;
+
+    if (responseData.role == "Bibliotekar") {
+      return responseData;
+    } else if (response.data.data.role == "Učenik") {
+      return redirect(`/students/${id}`);
+    } else if (response.data.data.role == "Administrator") {
+      return redirect(`/administrators/${id}`);
+    }
+  } catch (error) {
+    console.error("Loader function error:", error);
+    throw error;
+  }
+};

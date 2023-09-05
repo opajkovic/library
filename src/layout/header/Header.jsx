@@ -26,9 +26,9 @@ const Header = () => {
 
   return (
     <header className="header">
-      <NavLink to="./dashboard">
+      <NavLink to="./dashboard" className="online-library">
         <FaBookReader />
-        <span className="bild">Online biblioteka</span>
+        <span>Online biblioteka</span>
       </NavLink>
 
       <div className="headerRight">
