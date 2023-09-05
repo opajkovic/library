@@ -64,11 +64,11 @@ const headers = [
 
 export default function Books() {
   const { setRoute } = useOutletContext();
-  let [books, setBooks] = useState();
-  const fetchedData = useLoaderData();
+  // let [books, setBooks] = useState();
+  // const fetchedData = useLoaderData();
 
   useEffect(() => {
-    setBooks(fetchedData);
+    // setBooks(fetchedData);
     setRoute("books");
   }, []);
   return (
@@ -79,7 +79,7 @@ export default function Books() {
         <Table
           path="/books"
           headers={headers}
-          tableData={books}
+          tableData={DUMMY_TABLE_DATA}
           options={[
             {
               text: "Pogledaj detalje",
