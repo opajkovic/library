@@ -5,36 +5,35 @@ export default function UserInfo({userInfo}) {
   return <div className="user-info">
       <ul>
         <li>
-          <span> Ime </span> {userInfo.name}
+          <span> Ime </span> {userInfo && userInfo.name}
         </li>
         <li>
-          <span> Prezime </span> {userInfo.surname}
+          <span> Prezime </span> {userInfo && userInfo.surname}
         </li>
         <li>
-          <span> Tip Korisnika </span> {userInfo.role}
+          <span> Tip Korisnika </span> {userInfo && userInfo.role}
         </li>
         <li>
-          <span> JMBG </span> {userInfo.jmbg}
+          <span> JMBG </span> {userInfo && userInfo.jmbg}
         </li>
         <li className="email-info">
-          <span> Email </span> {userInfo.email}
+          <span> Email </span> {userInfo && userInfo.email}
         </li>
         <li>
-          <span> Korisničko ime </span> {userInfo.username}
+          <span> Korisničko ime </span> {userInfo && userInfo.username}
         </li>
         <li>
-          <span> Broj logovanja </span> {userInfo.numberOfLogins}
+          <span> Broj logovanja </span> {userInfo && userInfo.numberOfLogins}
         </li>
         <li>
           <span> Poslednji put logovan/na </span>
-          {userInfo.lastSeen === null ? "Nije se nikad ulogovao/la" : userInfo.lastSeen}
+          {/* {userInfo.lastSeen === null ? "Nije se nikad ulogovao/la" : userInfo.lastSeen} */}
         </li>
       </ul>
       <div className="user-image">
         <img
           src={
-            userInfo.photoPath === null
-              ? "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"
+            !userInfo ? "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"
               : userInfo.photoPath
           }
         />

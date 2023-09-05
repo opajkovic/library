@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./studentProfile.css";
 import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
-import { useOutletContext, redirect} from "react-router";
+import { useOutletContext, redirect, useLoaderData} from "react-router";
 import LinkWrapper from "./components/LinkWrapper";
 import UserInfo from "./components/UserInfo";
 import { useState } from "react";
@@ -29,7 +29,7 @@ export default function StudentProfile() {
       />
       <div className="student-info-wrapper">
         <LinkWrapper />
-        <UserInfo userInfo={UserInfo} />
+        <UserInfo userInfo={userInfo} />
       </div>
     </div>
   );
