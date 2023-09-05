@@ -26,7 +26,7 @@ import InExcessBooks from "./pages/rentingBooks/layouts/inExcessBooks";
 import ActiveReservations from "./pages/rentingBooks/layouts/activeReservation";
 import ArchivedReservations from "./pages/rentingBooks/layouts/archivedReservations";
 
-import Books from "./pages/books/Books";
+import Books, {BooksLoader} from "./pages/books/Books";
 import BookInfo from "./pages/bookInformations/BookInfo";
 import BookSpecification from "./pages/bookInformations/layouts/BookSpecification";
 import BookMultimedia from "./pages/bookInformations/layouts/BookMultimedia";
@@ -84,7 +84,7 @@ const router = createBrowserRouter(
         <Route index element={<Navigate replace to="/dashboard" />} />
         <Route path="/dashboard" element={<Dashboard />} />
 
-        <Route path="/books" element={<Books />} />
+        <Route path="/books" element={<Books />} loader={BooksLoader} />
         <Route path="/books/:id" element={<BookInfo />} />
         <Route
           path="/books/:id/specifikacija"

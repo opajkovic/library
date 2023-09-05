@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
-import { useOutletContext } from "react-router";
+import React, { useEffect, useState } from "react";
+import { useLoaderData, useOutletContext } from "react-router";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
 import Pagination from "../../components/UI/Pagination";
+import api from '../../api/apiCalls'
 import {
   FaCalendar,
   FaEdit,
@@ -63,7 +64,11 @@ const headers = [
 
 export default function Books() {
   const { setRoute } = useOutletContext();
+  let [books, setBooks] = useState();
+  const fetchedData = useLoaderData();
+
   useEffect(() => {
+    setBooks(fetchedData);
     setRoute("books");
   }, []);
   return (
@@ -74,7 +79,7 @@ export default function Books() {
         <Table
           path="/books"
           headers={headers}
-          tableData={DUMMY_TABLE_DATA}
+          tableData={books}
           options={[
             {
               text: "Pogledaj detalje",
@@ -118,3 +123,14 @@ export default function Books() {
     </>
   );
 }
+
+export const BooksLoader = async () => {
+  try {
+    const response = await api.get(`/books`);
+    const responseData = response.data.data;
+      return responseData;
+  } catch (error) {
+    console.error("Loader function error:", error);
+    throw error;
+  }
+};
