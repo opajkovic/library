@@ -8,34 +8,34 @@ import "./librarians.css";
 import { FaEdit, FaFile, FaTrash } from "react-icons/fa";
 
 const DUMMY_TABLE_DATA = [
-  // {
-  //   id: 1,
-  //   Imeiprezime: "Valentina Kašćelan",
-  //   email: "valentina.kascelan@domain...",
-  //   role: "Bibliotekar",
-  //   Poslednjipristupsistemu: "Prije 10 sati",
-  // },
-  // {
-  //   id: 2,
-  //   Imeiprezime: "Valentina Kašćelan",
-  //   email: "valentina.kascelan@domain...",
-  //   role: "Bibliotekar",
-  //   Poslednjipristupsistemu: "Prije 10 sati",
-  // },
-  // {
-  //   id: 3,
-  //   Imeiprezime: "Valentina Kašćelan",
-  //   email: "valentina.kascelan@domain...",
-  //   role: "Bibliotekar",
-  //   Poslednjipristupsistemu: "Prije 10 sati",
-  // },
+  {
+    id: 1,
+    name: "Valentina Kašćelan",
+    email: "valentina.kascelan@domain...",
+    role: "Bibliotekar",
+    lastOnline: "Prije 10 sati",
+  },
+  {
+    id: 2,
+    name: "Valentina Kašćelan",
+    email: "valentina.kascelan@domain...",
+    role: "Bibliotekar",
+    lastOnline: "Prije 10 sati",
+  },
+  {
+    id: 3,
+    name: "Valentina Kašćelan",
+    email: "valentina.kascelan@domain...",
+    role: "Bibliotekar",
+    lastOnline: "Prije 10 sati",
+  },
 ];
 
 const headers = [
-  { headerName: "Ime i prezime", sort: true, dropdown: false },
-  { headerName: "email", sort: false, dropdown: false },
-  { headerName: "role", sort: false, dropdown: false },
-  { headerName: "Poslednji pristup sistemu", sort: false, dropdown: true },
+  { headerName: "Ime i prezime", sort: true, dropdown: false, dataKey: "name" },
+  { headerName: "email", sort: false, dropdown: false, dataKey: "email" },
+  { headerName: "role", sort: false, dropdown: false, dataKey: "role" },
+  { headerName: "Poslednji pristup sistemu", sort: false, dropdown: true, dataKey: "lastOnline" },
 ];
 
 const Librarians = () => {

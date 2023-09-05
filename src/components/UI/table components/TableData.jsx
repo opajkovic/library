@@ -18,6 +18,8 @@ const MiddleDataCell = ({ item, headers, options, path }) => {
   };
 
   console.log(item)
+  console.log(headers[0].dataKey)
+
   const handleCloseModal = () => {
     setRowId(null);
     setModalOpen(false);
@@ -37,14 +39,14 @@ const MiddleDataCell = ({ item, headers, options, path }) => {
               {/* Uslovno dadavanje linka za autore, bibliotekare, studente i ucenike */}
               {path ? (
                 <Link to={`${path}/${row.id}`}>
-                  {row}
+                  {row[header.dataKey]}
                 </Link>
               ) : (
-                row
+                row[header.dataKey]
               )}
             </div>
           )}
-          {!header.sort && row}
+          {!header.sort && row[header.dataKey]}
           {/* Uslovno prikazivanje tackica ako je props dropdown === true */}
           {header.dropdown && (
             <BsThreeDotsVertical

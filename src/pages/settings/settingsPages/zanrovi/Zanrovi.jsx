@@ -7,13 +7,12 @@ import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import api from "../../../../api/apiCalls";
 
-const headers = [{ headerName: "Zanr", sort: true, dropdown: true }];
+const headers = [{ headerName: "Zanr", sort: true, dropdown: true, dataKey: "name"}];
 
 export default function Zanrovi() {
   const { setRoute } = useOutletContext();
   const navigate = useNavigate();
   const genresData = useLoaderData();
-  const genres = genresData.map((item) => item.name);
   
   useEffect(() => {
     setRoute("settings");
@@ -31,7 +30,7 @@ export default function Zanrovi() {
       <div className="page-wrapper">
         <SettingsTable
           title="Novi žanr"
-          tableData={genres}
+          tableData={genresData}
           headers={headers}
           options={[
             {

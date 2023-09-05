@@ -7,13 +7,13 @@ import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import api from "../../../../api/apiCalls";
 
-const headers = [{ headerName: "Pismo", sort: true, dropdown: true }];
+const headers = [{ headerName: "Pismo", sort: true, dropdown: true, dataKey:"name"}];
 
 export default function Pismo() {
   const { setRoute } = useOutletContext();
   const navigate = useNavigate();
   const languagesData = useLoaderData();
-  const languages = languagesData.map((item) => item.name);
+
   useEffect(() => {
     setRoute("settings");
   }, []);
@@ -30,7 +30,7 @@ export default function Pismo() {
       <div className="page-wrapper">
         <SettingsTable
           title="Novo pismo"
-          tableData={languages}
+          tableData={languagesData}
           headers={headers}
           options={[
             {

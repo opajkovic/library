@@ -7,13 +7,12 @@ import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import api from "../../../../api/apiCalls";
 
-const headers = [{ headerName: "Kategorije", sort: true, dropdown: false }];
+const headers = [{ headerName: "Kategorije", sort: true, dropdown: false, dataKey: "name"}];
 
 export default function Kategorije() {
   const { setRoute } = useOutletContext();
   const navigate = useNavigate();
   const categoryData = useLoaderData();
-  const categories = categoryData.map((item) => item.name);
 
   useEffect(() => {
     setRoute("settings");
@@ -32,7 +31,7 @@ export default function Kategorije() {
         <SettingsTable
           title="Nova kategorija"
           headers={headers}
-          tableData={categories}
+          tableData={categoryData}
           options={[
             {
               text: "Izmijeni kategoriju",

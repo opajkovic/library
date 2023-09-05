@@ -7,13 +7,12 @@ import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import api from "../../../../api/apiCalls";
 
-const headers = [{ headerName: "Povez", sort: true, dropdown: true }];
+const headers = [{ headerName: "Povez", sort: true, dropdown: true, dataKey: "name" }];
 
 export default function Povez() {
   const { setRoute } = useOutletContext();
   const navigate = useNavigate();
   const bookbindsData = useLoaderData();
-  const bookbinds = bookbindsData.map((item) => item.name);
 
   useEffect(() => {
     setRoute("settings");
@@ -29,7 +28,7 @@ export default function Povez() {
       <div className="page-wrapper">
         <SettingsTable
           title="Novi povez"
-          tableData={bookbinds}
+          tableData={bookbindsData}
           headers={headers}
           options={[
             {

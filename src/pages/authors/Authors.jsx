@@ -7,37 +7,36 @@ import Pagination from "../../components/UI/Pagination";
 import { FaEdit, FaFile, FaTrash } from "react-icons/fa";
 
 const DUMMY_AUTHOR_DATA = [
-  // {
-  //   id: 1,
-  //   Nazivknjige: "Mark Twain",
-  //   Opis: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
-  // },
-  // {
-  //   id: 2,
-  //   Nazivknjige: "Uroš Tošković",
-  //   Opis: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
-  // },
-  // {
-  //   id: 3,
-  //   Nazivknjige: "Kale Gospodar vremena",
-  //   Opis: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
-  // },
-  // {
-  //   id: 4,
-  //   Nazivknjige: "Zvonko Bogdan",
-  //   Opis: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
-  // },
-  // {
-  //   id: 5,
-  //   Nazivknjige: "Željko Pajović",
-  //   Opis: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
-  // },
+  {
+    id: 1,
+    name: "Mark Twain",
+    description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+  },
+  {
+    id: 2,
+    name: "Uroš Tošković",
+    description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+  },
+  {
+    id: 3,
+    name: "Kale Gospodar vremena",
+    description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+  },
+  {
+    id: 4,
+    name: "Zvonko Bogdan",
+    description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+  },
+  {
+    id: 5,
+    name: "Željko Pajović",
+    description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+  },
 ];
 
-
 const headers = [
-  { headerName: "Naziv knjige", sort: true, dropdown: false },
-  { headerName: "Opis", sort: false, dropdown: true },
+  { headerName: "Naziv knjige", sort: true, dropdown: false, dataKey: "name" },
+  { headerName: "Opis", sort: false, dropdown: true, dataKey: "description" },
 ];
 
 export default function Authors() {
@@ -68,7 +67,7 @@ export default function Authors() {
             {
               text: "Izbrisi autora",
               icon: <FaTrash />,
-              noPath: true
+              noPath: true,
             },
           ]}
         />

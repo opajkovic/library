@@ -7,13 +7,12 @@ import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import api from "../../../../api/apiCalls";
 
-const headers = [{ headerName: "Izdavac", sort: true, dropdown: true }];
+const headers = [{ headerName: "Izdavac", sort: true, dropdown: true, dataKey:"name" }];
 
 export default function Izdavac() {
   const { setRoute } = useOutletContext();
   const navigate = useNavigate();
   const publisherData = useLoaderData();
-  const publishers = publisherData.map((item) => item.name);
   
   useEffect(() => {
     setRoute("settings");
@@ -31,7 +30,7 @@ export default function Izdavac() {
       <div className="page-wrapper">
         <SettingsTable
           title="Novi izdavač"
-          tableData={publishers}
+          tableData={publisherData}
           headers={headers}
           options={[
             {

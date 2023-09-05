@@ -7,48 +7,34 @@ import Pagination from "../../components/UI/Pagination";
 import { FaEdit, FaFile, FaTrash } from "react-icons/fa";
 
 const DUMMY_TABLE_DATA = [
-  // {
-  //   id: 1,
-  //   Imeiprezime: "Pero Perović",
-  //   email: "pero.perovic@domain.net",
-  //   role: "Ucenik",
-  //   Poslednjipristupsistemu: "Prije 10 sati",
-  // },
-  // {
-  //   id: 2,
-  //   Imeiprezime: "Sebastijan Nikolić",
-  //   email: "sebo.nikolic@domain.net",
-  //   role: "Ucenik",
-  //   Poslednjipristupsistemu: "Prije 2 dana",
-  // },
-  // {
-  //   id: 3,
-  //   Imeiprezime: "Makarona Žarković",
-  //   email: "mara.bubamara@domain.net",
-  //   role: "Ucenik",
-  //   Poslednjipristupsistemu: "Prije 10 sati",
-  // },
-  // {
-  //   id: 4,
-  //   Imeiprezime: "Kristijano Palikuća",
-  //   email: "callmekristyxxx@domain.net",
-  //   role: "Ucenik",
-  //   Poslednjipristupsistemu: "Prije 2 dana",
-  // },
-  // {
-  //   id: 5,
-  //   Imeiprezime: "Rihana Kalimperović",
-  //   email: "rijana.kali@domain.net",
-  //   role: "Ucenik",
-  //   Poslednjipristupsistemu: "Prije 2 dana",
-  // },
+  {
+    id: 1,
+    name: "Pero Perović",
+    email: "pero.perovic@domain.net",
+    role: "Ucenik",
+    lastOnline: "Prije 10 sati",
+  },
+  {
+    id: 2,
+    name: "Pero Perović",
+    email: "pero.perovic@domain.net",
+    role: "Ucenik",
+    lastOnline: "Prije 10 sati",
+  },
+  {
+    id: 3,
+    name: "Pero Perović",
+    email: "pero.perovic@domain.net",
+    role: "Ucenik",
+    lastOnline: "Prije 10 sati",
+  },
 ];
 
 const headers = [
-  { headerName: "Ime i prezime", sort: true, dropdown: false },
-  { headerName: "email", sort: false, dropdown: false },
-  { headerName: "role", sort: false, dropdown: false },
-  { headerName: "Poslednji pristup sistemu", sort: false, dropdown: true },
+  { headerName: "Ime i prezime", sort: true, dropdown: false, dataKey: "name" },
+  { headerName: "email", sort: false, dropdown: false, dataKey: "email" },
+  { headerName: "role", sort: false, dropdown: false, dataKey: "role" },
+  { headerName: "Poslednji pristup sistemu", sort: false, dropdown: true, dataKey: "lastOnline" },
 ];
 
 export default function Students() {

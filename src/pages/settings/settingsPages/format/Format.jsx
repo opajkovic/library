@@ -7,13 +7,12 @@ import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import api from "../../../../api/apiCalls";
 
-const headers = [{ headerName: "Format", sort: true, dropdown: true }];
+const headers = [{ headerName: "Format", sort: true, dropdown: true, dataKey:"name" }];
 
 export default function Format() {
   const { setRoute } = useOutletContext();
   const navigate = useNavigate();
   const formatData = useLoaderData();
-  const formats = formatData.map(item => item.name)
   
   useEffect(() => {
     setRoute("settings");
@@ -30,7 +29,7 @@ export default function Format() {
       <div className="page-wrapper">
         <SettingsTable
           title="Novi format"
-          tableData={formats}
+          tableData={formatData}
           headers={headers}
           options={[
             {
