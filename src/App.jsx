@@ -27,7 +27,7 @@ import ActiveReservations from "./pages/rentingBooks/layouts/activeReservation";
 import ArchivedReservations from "./pages/rentingBooks/layouts/archivedReservations";
 
 import Books, {BooksLoader} from "./pages/books/Books";
-import BookInfo from "./pages/bookInformations/BookInfo";
+import BookInfo, {BookLoader} from "./pages/bookInformations/BookInfo";
 import BookSpecification from "./pages/bookInformations/layouts/BookSpecification";
 import BookMultimedia from "./pages/bookInformations/layouts/BookMultimedia";
 import BookRentEvidence from "./pages/bookInformations/layouts/BookRentEvidence";
@@ -85,35 +85,43 @@ const router = createBrowserRouter(
         <Route path="/dashboard" element={<Dashboard />} />
 
         <Route path="/books" element={<Books />} loader={BooksLoader} />
-        <Route path="/books/:id" element={<BookInfo />} />
+        <Route path="/books/:id" element={<BookInfo />} loader={BookLoader} />
         <Route
           path="/books/:id/specifikacija"
           element={<BookSpecification />}
+          loader={BookLoader}
         />
-        <Route path="/books/:id/multimedija" element={<BookMultimedia />} />
+        <Route path="/books/:id/multimedija" element={<BookMultimedia />}
+         loader={BookLoader} />
         <Route
           path="/books/:id/evidencija/izdate-knjige"
           element={<BookRentEvidence />}
+          loader={BookLoader}
         />
         <Route
           path="/books/:id/evidencija/izdate-knjige"
           element={<RentedEvidence />}
+          loader={BookLoader}
         />
         <Route
           path="/books/:id/evidencija/vracene-knjige"
           element={<ReturnedEvidence />}
+          loader={BookLoader}
         />
         <Route
           path="/books/:id/evidencija/knjige-u-prekoracenju"
           element={<ExcessEvidence />}
+          loader={BookLoader}
         />
         <Route
           path="/books/:id/evidencija/aktivne-rezervacije"
           element={<ReservationEvidence />}
+          loader={BookLoader}
         />
         <Route
           path="/books/:id/evidencija/arhivirane-rezervacije"
           element={<ArchivedEvidence />}
+          loader={BookLoader}
         />
 
         {/* Author routes */}

@@ -1,22 +1,22 @@
 import "./Specification.css";
 
-export default function Specification() {
+export default function Specification({bookInfo}) {
   return (
     <ul className="book-specification-wrapper">
       <li>
-        Broj strana <span>1064</span>
+        Broj strana <span>{bookInfo.pages}</span>
       </li>
       <li>
-        Jezik <span>Crnogorski</span>
+        Jezik <span>{bookInfo.language.name}</span>
       </li>
       <li>
-        Povez <span> tvrdi </span>
+        Povez <span> {bookInfo.bookbind.name}</span>
       </li>
       <li>
-        Format <span> B6 </span>
+        Format <span> {bookInfo.format.name} </span>
       </li>
       <li>
-        International Standard Book Number (ISBN)<span> 1546213456878 </span>
+        International Standard Book Number (ISBN)<span> {bookInfo.isbn} </span>
       </li>
     </ul>
   );

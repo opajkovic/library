@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "../BookInfo.css";
 
 const DUMMY_DATA = [
@@ -13,32 +14,31 @@ const DUMMY_DATA = [
   },
 ];
 
-export default function Informations() {
-  return DUMMY_DATA.map((item, index) => (
-    <div className="book-spec" key={index}>
+export default function Informations({bookInfo}) {
+  
+  return <div className="book-spec">
       <ul>
         <li>
-          <span> Naziv knjige </span> {item.name}
+          <span> Naziv knjige </span> {bookInfo.title}
         </li>
         <li>
-          <span> Kategorija </span> {item.category}
+          <span> Kategorija </span> {bookInfo.categories[0].name}
         </li>
         <li>
-          <span> Žanr </span> {item.genre}
+          <span> Žanr </span> {bookInfo.genres[0].name}
         </li>
         <li>
-          <span> Autor </span> {item.author}
+          <span> Autor </span> {bookInfo.authors[0].name + " " + bookInfo.authors[0].surname}
         </li>
         <li>
-          <span> Izdavačka kuća </span> {item.publisher}
+          <span> Izdavačka kuća </span> {bookInfo.publisher.name}
         </li>
         <li>
-          <span> Godina izdavanja </span> {item.publish_date}
+          <span> Godina izdavanja </span> {bookInfo.pDate}
         </li>
       </ul>
       <div className="book-description">
-        <span> Kratki sadržaj (Storyline) </span> {item.description}
+        <span> Kratki sadržaj (Storyline) </span> {bookInfo.description}
       </div>
     </div>
-  ));
 }

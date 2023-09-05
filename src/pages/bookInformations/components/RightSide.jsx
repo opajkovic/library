@@ -1,7 +1,7 @@
 import "../BookInfo.css";
 import ActivityList from "../../dashboard/layouts/activityList/ActivityList";
 
-export default function RightSide() {
+export default function RightSide({bookInfo}) {
   return (
     <div className="right-side-info">
       <div className="book-count">
@@ -13,13 +13,13 @@ export default function RightSide() {
            Rezervisano  <span> 10 primjeraka </span> 
           </li>
           <li>
-           Izdato  <span> 25 primjeraka </span> 
+           Izdato  <span> {bookInfo.rSamples} primjeraka </span> 
           </li>
           <li>
            U prekoračenju <span> 5 primjeraka </span> 
           </li>
           <li>
-           Ukupna količina  <span> 122 primjeraka </span> 
+           Ukupna količina  <span> {bookInfo.samples} primjeraka </span> 
           </li>
         </ul>
       </div>

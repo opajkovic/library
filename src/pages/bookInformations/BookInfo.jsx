@@ -1,13 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./BookInfo.css";
 import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
-import { useOutletContext } from "react-router";
+import { useLoaderData, useOutletContext } from "react-router";
 import Titles from "./components/Titlles";
 import RightSide from "./components/RightSide";
 import Informations from "./components/Informations";
 import Specification from "./components/Specifications";
 import Multimedia from "./components/Multimedia";
 import EvidenceTable from "./components/EvidenceTable";
+import api from "../../api/apiCalls";
 
 export default function BookInfo({
   specification,
@@ -20,16 +21,34 @@ export default function BookInfo({
   archivedEvidence,
 }) {
   const { setRoute } = useOutletContext();
+  let [book, setBook] = useState({
+    title: 'loading...',
+    categories: [{name: "loading..." , surname: 'loading...'}],
+    authors: [{name: "loading..." , surname: 'loading...'}],
+    genres: [{name: "loading..." , surname: 'loading...'}],
+    publisher: {name: 'loading...'},
+    pDate: '2023',
+    description: "loading...",
+    language: {name: 'loading...'},
+    bookbind: {name: 'loading...'},
+    format: {name: 'loading...'},
+    isbn: 'loading...',
+    photo: ""
+  });
+  const fetchedData = useLoaderData();
+
   useEffect(() => {
+    setBook(fetchedData);
     setRoute("/books/:id/specifikacija");
   }, []);
   return (
     <div className="book-container">
       <ProfileTitle
+        userInfo={ book ? {name: book.title} : {name: 'loading...'}}
         linkOne={"Sve knjige"}
         linkOnePath={"/books"}
         linkTwoPath={`/books/`}
-        image="https://m.media-amazon.com/images/I/5167YEsQ6YL.jpg"
+        image={book.photo}
         change={true}
         deleteMssg={true}
         booksSpecial={true}
@@ -37,8 +56,8 @@ export default function BookInfo({
       <div className="bottom-wrapper">
         <div>
           <Titles />
-          {specification && <Specification />}
-          {multimedia && <Multimedia />}
+          {specification && <Specification bookInfo={book} />}
+          {multimedia && <Multimedia photos={[book.photo]} />}
 
           {evidence && <EvidenceTable headers={[
                 { headerName: "Naziv knjige", sort: false, dropdown: false },
@@ -111,10 +130,24 @@ export default function BookInfo({
             !returnedEvidence &&
             !excessEvidence &&
             !reservationEvidence &&
-            !archivedEvidence && <Informations />}
+            !archivedEvidence && <Informations bookInfo={book} />}
         </div>
-        <RightSide />
+        <RightSide bookInfo={book} />
       </div>
     </div>
   );
 }
+export const BookLoader = async ({ params }) => {
+  const id = params.id;
+  try {
+    const response = await api.get(`/books/${id}`);
+    const responseData = response.data.data;
+    console.log(responseData)
+    return responseData;
+
+  } catch (error) {
+    console.error("Loader function error:", error);
+    throw error;
+  }
+};
+

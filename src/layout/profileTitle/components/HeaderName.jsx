@@ -10,7 +10,6 @@ export default function HeaderName({
   image,
 }) {
   const params = useParams();
-  console.log(userInfo)
 
   return (
     <div className={image ? "margined" : "left"}>
