@@ -5,6 +5,7 @@ import Textarea from "./Textarea";
 import "./settingsForm.css";
 import ImageUploader from "./ImageUploader";
 import RichTextarea from "./RichTextarea";
+import FormSelect from "./FormSelect";
 
 const SettingsForm = (props) => {
   return (
@@ -15,14 +16,15 @@ const SettingsForm = (props) => {
         path={props.path}
       />
       <form onSubmit={props.submitHandler} className="form-wrapper">
-        {props.input.map((item, index) => (
-          <Input
-            key={index}
-            input={item}
-            className="input-wrapper"
-            sup={true}
-          />
-        ))}
+        {props.input &&
+          props.input.map((item, index) => (
+            <Input
+              key={index}
+              input={item}
+              className="input-wrapper"
+              sup={true}
+            />
+          ))}
 
         {props.image && (
           <ImageUploader label="Dodaj ikonicu" className="form-image-input" />
@@ -38,7 +40,14 @@ const SettingsForm = (props) => {
             />
           ))}
 
-        {props.richTextarea && <RichTextarea richTextarea={props.richTextarea}  sup={true}/>}
+        {props.richTextarea && (
+          <RichTextarea richTextarea={props.richTextarea} />
+        )}
+
+        {props.select &&
+          props.select.map((item, index) => (
+            <FormSelect key={index} select={item} sup={true}/>
+          ))}
 
         <FormSubmitButtons disabled={!props.formIsValid} reset={props.reset} />
       </form>

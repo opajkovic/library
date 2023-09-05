@@ -26,8 +26,8 @@ import InExcessBooks from "./pages/rentingBooks/layouts/inExcessBooks";
 import ActiveReservations from "./pages/rentingBooks/layouts/activeReservation";
 import ArchivedReservations from "./pages/rentingBooks/layouts/archivedReservations";
 
-import Books, {BooksLoader} from "./pages/books/Books";
-import BookInfo, {BookLoader} from "./pages/bookInformations/BookInfo";
+import Books, { BooksLoader } from "./pages/books/Books";
+import BookInfo, { BookLoader } from "./pages/bookInformations/BookInfo";
 import BookSpecification from "./pages/bookInformations/layouts/BookSpecification";
 import BookMultimedia from "./pages/bookInformations/layouts/BookMultimedia";
 import BookRentEvidence from "./pages/bookInformations/layouts/BookRentEvidence";
@@ -76,6 +76,7 @@ import ReturnedEvidence from "./pages/bookInformations/layouts/table-layouts/Ret
 import ExcessEvidence from "./pages/bookInformations/layouts/table-layouts/ExcessEvidence";
 import ReservationEvidence from "./pages/bookInformations/layouts/table-layouts/ReservationEvidence";
 import ArchivedEvidence from "./pages/bookInformations/layouts/table-layouts/ArchivedEvidence";
+import NewBook from "./pages/books/NewBook";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -86,13 +87,17 @@ const router = createBrowserRouter(
 
         <Route path="/books" element={<Books />} loader={BooksLoader} />
         <Route path="/books/:id" element={<BookInfo />} loader={BookLoader} />
+        <Route path="/books/new" element={<NewBook />} />
         <Route
           path="/books/:id/specifikacija"
           element={<BookSpecification />}
           loader={BookLoader}
         />
-        <Route path="/books/:id/multimedija" element={<BookMultimedia />}
-         loader={BookLoader} />
+        <Route
+          path="/books/:id/multimedija"
+          element={<BookMultimedia />}
+          loader={BookLoader}
+        />
         <Route
           path="/books/:id/evidencija/izdate-knjige"
           element={<BookRentEvidence />}

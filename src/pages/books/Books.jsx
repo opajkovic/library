@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useLoaderData, useOutletContext } from "react-router";
+import React, { useEffect } from "react";
+import { useOutletContext } from "react-router";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
