@@ -4,6 +4,7 @@ import Input from "./Input";
 import Textarea from "./Textarea";
 import "./settingsForm.css";
 import ImageUploader from "./ImageUploader";
+import RichTextarea from "./RichTextarea";
 
 const SettingsForm = (props) => {
   return (
@@ -36,6 +37,8 @@ const SettingsForm = (props) => {
               sup={true}
             />
           ))}
+
+        {props.richTextarea && <RichTextarea richTextarea={props.richTextarea}  sup={true}/>}
 
         <FormSubmitButtons disabled={!props.formIsValid} reset={props.reset} />
       </form>

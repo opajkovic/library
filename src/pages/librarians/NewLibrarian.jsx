@@ -2,10 +2,11 @@ import { useState } from "react";
 import useInput from "../../hooks/useInput";
 import SettingsForm from "../../components/UI/SettingsForm";
 
-const isNotEmptyString = (value) =>
-  value.trim() !== "" && /^[a-zA-Z]+$/.test(value);
+const isNotEmptyString = (value) => /^[a-zA-Z]+$/.test(value);
+
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const emailTest = (value) => emailRegex.test(value);
+
 const isNotEmptyNumber = (value) =>
   value.trim() !== "" && /^-?\d+(\.\d+)?$/.test(value);
 

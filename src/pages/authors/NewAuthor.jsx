@@ -1,8 +1,7 @@
 import useInput from "../../hooks/useInput";
 import SettingsForm from "../../components/UI/SettingsForm";
 
-const isNotEmptyString = (value) =>
-  value.trim() !== "" && /^[a-zA-Z]+$/.test(value);
+const isNotEmptyString = (value) => /^[A-Za-z]+(?:[ -][A-Za-z]+)*$/.test(value);
 
 const NewAuthor = () => {
   const {
@@ -14,22 +13,12 @@ const NewAuthor = () => {
     reset: resetAuthor,
   } = useInput(isNotEmptyString);
 
-  const {
-    value: descriptionValue,
-    isValid: descriptionIsValid,
-    hasError: descriptionHasError,
-    valueChangeHandler: descriptionChangeHandler,
-    inputBlurHandler: descriptionBlurHandler,
-    reset: resetDescription,
-  } = useInput(isNotEmptyString);
-
   let formIsValid = false;
-  if (authorIsValid && descriptionIsValid) {
+  if (authorIsValid) {
     formIsValid = true;
   }
 
   const resetHandler = () => {
-    resetDescription();
     resetAuthor();
   };
 
@@ -42,10 +31,6 @@ const NewAuthor = () => {
   };
 
   const authorClasses = authorHasError
-    ? "form-control invalid"
-    : "form-control";
-
-  const descriptionClasses = descriptionHasError
     ? "form-control invalid"
     : "form-control";
 
@@ -63,18 +48,9 @@ const NewAuthor = () => {
           onBlur: authorBlurHandler,
         },
       ]}
-      textarea={[
-        {
-          label: "Opis",
-          type: "text",
-          name: "description",
-          textareaClasses: descriptionClasses,
-          value: descriptionValue,
-          hasError: descriptionHasError,
-          onChange: descriptionChangeHandler,
-          onBlur: descriptionBlurHandler,
-        },
-      ]}
+      richTextarea={{
+        label: "Opis",
+      }}
       title="Novi autor"
       firstLinkName="Autori"
       path="/authors"

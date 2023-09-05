@@ -10,9 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^39.0.1",
+    "@ckeditor/ckeditor5-react": "^6.1.0",
     "admin-lte": "3.2",
     "apexcharts": "^3.42.0",
     "axios": "^1.4.0",
+    "ckeditor": "^4.12.1",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18.2.0",
