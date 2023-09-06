@@ -77,7 +77,7 @@ import ReturnedEvidence from "./pages/bookInformations/layouts/table-layouts/Ret
 import ExcessEvidence from "./pages/bookInformations/layouts/table-layouts/ExcessEvidence";
 import ReservationEvidence from "./pages/bookInformations/layouts/table-layouts/ReservationEvidence";
 import ArchivedEvidence from "./pages/bookInformations/layouts/table-layouts/ArchivedEvidence";
-import NewBook from "./pages/books/NewBook";
+import NewBook, { LoaderCreateBook } from "./pages/books/NewBook";
 import NewBookSpecification from "./pages/books/components/Specification";
 import { Provider } from 'react-redux'
 import { store } from './redux/combinedReducers';
@@ -92,8 +92,8 @@ const router = createBrowserRouter(
 
         <Route path="/books" element={<Books />} loader={BooksLoader} />
         <Route path="/books/:id" element={<BookInfo />} loader={BookLoader} />
-        <Route path="/books/new/osnovni-detalji" element={<NewBook />} />
-        <Route path="/books/new/specifikacija" element={<NewBookSpecification />} />
+        <Route path="/books/new/osnovni-detalji" element={<NewBook />} loader={LoaderCreateBook} />
+        <Route path="/books/new/specifikacija" element={<NewBookSpecification />} loader={LoaderCreateBook} />
         <Route path="/books/new/multimedija" element={<NewBookMultimedia/>} />
 
         <Route

@@ -35,7 +35,7 @@ const BellModalBox = ({ changeModal, modalPlus, setModalClose }) => {
               <ModalItem
                 icon={<FaCopy />}
                 text={"Knjiga"}
-                path="/books/new"
+                path="/books/new/osnovni-detalji"
                 setModalClose={setModalClose}
               />
               <ModalItem

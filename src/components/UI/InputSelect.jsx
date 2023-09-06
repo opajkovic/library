@@ -78,10 +78,10 @@ const InputSelect = (props) => {
               key={index}
               onMouseDown={(e) => {
                 e.preventDefault();
-                listHandler(item);
+                listHandler(item.name);
               }}
             >
-              {item}
+              {item.name}
             </li>
           ))}
         </ul>

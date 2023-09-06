@@ -43,7 +43,7 @@ const ModalBox = ({
           component={
             <div className="modalHeader">
               <ModalItem
-                onClick={clickProfile}
+                onClickModalItem={clickProfile}
                 setResponse={()=>{}}
                 closeModals={()=>{}}
                 setModalClose={setModalClose}

@@ -1,12 +1,15 @@
 import SettingsForm from "../../../components/UI/SettingsForm";
 import useInput from "../../../hooks/useInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Specification.css";
+import { useLoaderData } from "react-router";
 
 export default function NewBookSpecification() {
   const [languageIsValid, setLanguageIsValid] = useState(false);
   const [bookbindIsValid, setBookbindIsValid] = useState(false);
   const [formatIsValid, setFormatIsValid] = useState(false);
+  const fetchedData = useLoaderData()
+  let [data, setData] = useState({})
 
   const languageHandler = (value) => {
     setLanguageIsValid(value);
@@ -62,6 +65,10 @@ export default function NewBookSpecification() {
   const serialNumberClasses = serialNumberHasError
     ? "form-control invalid"
     : "form-control";
+
+    useEffect(()=>{
+      setData(fetchedData)
+    },[])
   return (
     <div>
       <SettingsForm
@@ -79,7 +86,7 @@ export default function NewBookSpecification() {
         ]}
         select={[
           {
-            options: ["pismo 1", "pismo 2", "pismo 3"],
+            options: data.scripts,
             input: {
               label: "Izaberite pismo",
               type: "text",
@@ -88,7 +95,7 @@ export default function NewBookSpecification() {
             validHandler: languageHandler,
           },
           {
-            options: ["povez 1", "povez 2", "povez 3"],
+            options: data.bookbinds,
             input: {
               label: "Izaberite povez",
               type: "text",
@@ -97,7 +104,7 @@ export default function NewBookSpecification() {
             validHandler: bookbindHandler,
           },
           {
-            options: ["format 1", "format 2", "format 3"],
+            options: data.formats,
             input: {
               label: "Izaberite format",
               type: "text",

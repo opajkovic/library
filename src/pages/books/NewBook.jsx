@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SettingsForm from "../../components/UI/SettingsForm";
 import useInput from "../../hooks/useInput";
 import "./NewBook.css";
-import { redirect } from "react-router";
+import { redirect, useLoaderData } from "react-router";
+import api from "../../api/apiCalls";
 
 const isNotEmptyString = (value) => /^[A-Za-z]+(?:[ -][A-Za-z]+)*$/.test(value);
 
@@ -12,6 +13,9 @@ const NewBook = () => {
   const [authorIsValid, setAuthorIsValid] = useState(false);
   const [publisherIsValid, setPublisherIsValid] = useState(false);
   const [yearIsValid, setYearIsValid] = useState(false);
+  const fetchedData = useLoaderData()
+  let [data, setData] = useState({})
+  let [authors, setAuthors] = useState([])
 
   const categoryHandler = (value) => {
     setCategoryIsValid(value);
@@ -68,13 +72,29 @@ const NewBook = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    return null
+    return null;
   };
 
   const bookClasses = bookHasError ? "form-control invalid" : "form-control";
   const quantityClasses = quantityHasError
     ? "form-control invalid"
     : "form-control";
+
+    let fetchAuthors = async() => {
+      try {
+        const response = await api.get(`/authors`);
+        const responseData = response.data.data;
+        setAuthors(responseData);
+      } catch (error) {
+        console.error("Loader function error:", error);
+        throw error;
+      }
+    }
+
+    useEffect(()=>{
+      fetchAuthors()
+      setData(fetchedData)
+    },[])
 
   return (
     <div className="new-book-position-handler">
@@ -96,7 +116,7 @@ const NewBook = () => {
         }}
         select={[
           {
-            options: ["kategorija 1", "kategorija 2", "kategorija 3"],
+            options: data.categories,
             input: {
               label: "Izaberite kategoriju",
               type: "text",
@@ -105,7 +125,7 @@ const NewBook = () => {
             validHandler: categoryHandler,
           },
           {
-            options: ["žanr 1", "žanr 2", "žanr 3"],
+            options: data.genres,
             input: {
               label: "Izaberite žanr",
               type: "text",
@@ -136,7 +156,7 @@ const NewBook = () => {
             validHandler: yearHandler,
           },
           {
-            options: ["izdavač 1", "izdavač 2", "izdavač 3"],
+            options: data.publishers,
             input: {
               label: "Izaberite izdavača",
               type: "text",
@@ -146,7 +166,7 @@ const NewBook = () => {
           },
 
           {
-            options: ["autor 1", "autor 2", "autor 3"],
+            options: authors,
             input: {
               label: "Izaberite autore",
               type: "text",
@@ -176,3 +196,14 @@ const NewBook = () => {
   );
 };
 export default NewBook;
+
+export async function LoaderCreateBook() {
+  try {
+    const response = await api.get(`/books/create`);
+    const responseData = response.data.data;
+    return responseData;
+  } catch (error) {
+    console.error("Loader function error:", error);
+    throw error;
+  }
+}
