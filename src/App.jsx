@@ -11,7 +11,7 @@ import Polisa from "./pages/settings/Polisa";
 import Authors from "./pages/authors/Authors";
 import Students, {LoaderStudents} from "./pages/students/Students";
 
-import Librarians from "./pages/librarians/Librarians";
+import Librarians, {LoaderLibrarians} from "./pages/librarians/Librarians";
 import LibrarianProfile, {
   LibrarianProfileLoader,
 } from "./pages/librarianProfile/LibrarianProfile";
@@ -196,7 +196,7 @@ const router = createBrowserRouter(
         <Route path="/settings/izdavac/new" element={<NoviIzdavac />} />
         <Route path="/settings/format/new" element={<NoviFormat />} />
 
-        <Route path="/librarians" element={<Librarians />} />
+        <Route path="/librarians" element={<Librarians />} loader={LoaderLibrarians} />
         <Route path="/librarians/new" element={<NewLibrarian />} />
 
         <Route path="/activities" element={<Activities />} />
