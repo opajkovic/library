@@ -1,9 +1,21 @@
+import { useState } from "react";
 import SettingsForm from "../../components/UI/SettingsForm";
 import useInput from "../../hooks/useInput";
-import { useState } from "react";
 
 const isNotEmptyString = (value) => /^[A-Za-z]+(?:[ -][A-Za-z]+)*$/.test(value);
+
 const NewBook = () => {
+  const [categoryIsValid, setCategoryIsValid] = useState(false);
+  const [genreIsValid, setGenreIsValid] = useState(false);
+
+  const categoryHandler = (value) => {
+    setCategoryIsValid(value);
+  };
+
+  const genreHandler = (value) => {
+    setGenreIsValid(value);
+  };
+
   const {
     value: bookValue,
     isValid: bookIsValid,
@@ -13,10 +25,8 @@ const NewBook = () => {
     reset: resetBook,
   } = useInput(isNotEmptyString);
 
-  const [option, setOption] = useState("");
-
   let formIsValid = false;
-  if (bookIsValid) {
+  if (bookIsValid && genreIsValid && categoryIsValid) {
     formIsValid = true;
   }
 
@@ -33,7 +43,7 @@ const NewBook = () => {
   };
 
   const bookClasses = bookHasError ? "form-control invalid" : "form-control";
-
+  console.log(categoryIsValid)
   return (
     <SettingsForm
       input={[
@@ -53,34 +63,22 @@ const NewBook = () => {
       }}
       select={[
         {
-          options: ["", "kategorija 1", "kategorija 2", "kategorija 3"],
-          value: { option },
-          onChange: (event) => setOption(event.target.value),
+          options: ["kategorija 1", "kategorija 2", "kategorija 3"],
           input: {
-            label: "Izaberite kategorije",
-            inputClasses: bookClasses,
+            label: "Izaberite kategoriju",
             type: "text",
-            name: "author",
-            value: bookValue,
-            hasError: bookHasError,
-            onChange: bookChangeHandler,
-            onBlur: bookBlurHandler,
+            name: "category",
           },
+          validHandler: categoryHandler,
         },
         {
-          options: ["", "žanr 1", "žanr 2", "žanr 3"],
-          value: { option },
-          onChange: (event) => setOption(event.target.value),
+          options: ["žanr 1", "žanr 2", "žanr 3"],
           input: {
-            label: "Izaberite žanrove",
-            inputClasses: bookClasses,
+            label: "Izaberite žanr",
             type: "text",
-            name: "author",
-            value: bookValue,
-            hasError: bookHasError,
-            onChange: bookChangeHandler,
-            onBlur: bookBlurHandler,
+            name: "genre",
           },
+          validHandler: genreHandler,
         },
       ]}
       title="Nova knjiga"

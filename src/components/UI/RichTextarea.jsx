@@ -16,7 +16,7 @@ function RichTextarea(props) {
   return (
     <div className="textarea-container">
       <label>
-        {label} <sup>*</sup>
+        {label}
       </label>
       <CKEditor
         editor={ClassicEditor}

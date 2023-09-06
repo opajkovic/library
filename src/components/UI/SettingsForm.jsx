@@ -5,9 +5,10 @@ import Textarea from "./Textarea";
 import "./settingsForm.css";
 import ImageUploader from "./ImageUploader";
 import RichTextarea from "./RichTextarea";
-import FormSelect from "./FormSelect";
+import InputSelect from "./InputSelect";
 
 const SettingsForm = (props) => {
+
   return (
     <div>
       <FormTitle
@@ -46,7 +47,10 @@ const SettingsForm = (props) => {
 
         {props.select &&
           props.select.map((item, index) => (
-            <FormSelect key={index} select={item} sup={true}/>
+            <InputSelect
+              key={index}
+              select={item}
+            />
           ))}
 
         <FormSubmitButtons disabled={!props.formIsValid} reset={props.reset} />
