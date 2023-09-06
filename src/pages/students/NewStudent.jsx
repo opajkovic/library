@@ -123,6 +123,7 @@ const NewStudent = () => {
       title="Novi ucenik"
       firstLinkName="Ucenici"
       path="/students"
+      pathDashboard="/dashboard"
       formIsValid={formIsValid}
       reset={resetHandler}
       submitHandler={submitHandler}

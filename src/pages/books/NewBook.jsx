@@ -86,6 +86,7 @@ const NewBook = () => {
       title="Nova knjiga"
       firstLinkName="Knjige"
       path="/books"
+      pathDashboard="/dashboard"
       formIsValid={formIsValid}
       reset={resetHandler}
       submitHandler={() => submitHandler()}

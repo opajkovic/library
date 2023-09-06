@@ -124,6 +124,7 @@ const NewLibrarian = () => {
       title="Novi bibliotekar"
       firstLinkName="Bibliotekari"
       path="/librarians"
+      pathDashboard="/dashboard"
       formIsValid={formIsValid}
       reset={resetHandler}
       submitHandler={submitHandler}
