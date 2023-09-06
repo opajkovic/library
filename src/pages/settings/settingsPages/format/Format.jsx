@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./format.css";
 import Menu from "../../layouts/menu/Menu";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
@@ -7,13 +7,31 @@ import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import api from "../../../../api/apiCalls";
 
-const headers = [{ headerName: "Format", sort: true, dropdown: true, dataKey:"name" }];
+const headers = [
+  { headerName: "Format", sort: true, dropdown: true, dataKey: "name" },
+];
 
 export default function Format() {
   const { setRoute } = useOutletContext();
   const navigate = useNavigate();
   const formatData = useLoaderData();
-  
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const formatToDisplay = formatData.slice(startIndex, endIndex);
+  const pageCount = Math.ceil(formatData.length / itemsPerPage);
+
+  const handlePageClick = (selectedPage) => {
+    setCurrentPage(selectedPage.selected);
+  };
+
+  const itemPerPageHandler = (value) => {
+    setItemsPerPage(value);
+  };
+
   useEffect(() => {
     setRoute("settings");
   }, []);
@@ -29,7 +47,7 @@ export default function Format() {
       <div className="page-wrapper">
         <SettingsTable
           title="Novi format"
-          tableData={formatData}
+          tableData={formatToDisplay}
           headers={headers}
           options={[
             {
@@ -40,10 +58,13 @@ export default function Format() {
             {
               text: "Izbrisi format",
               icon: <FaTrash />,
-              noPath: true
+              noPath: true,
             },
           ]}
           onClick={handleClick}
+          itemsPerPageHandler={itemPerPageHandler}
+          onPageChange={handlePageClick}
+          pageCount={pageCount}
         />
       </div>
     </div>

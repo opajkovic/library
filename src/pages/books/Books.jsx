@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useOutletContext } from "react-router";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
@@ -93,6 +93,22 @@ export default function Books() {
   // let [books, setBooks] = useState();
   // const fetchedData = useLoaderData();
 
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const booksToDisplay = DUMMY_TABLE_DATA.slice(startIndex, endIndex);
+  const pageCount = Math.ceil(DUMMY_TABLE_DATA.length / itemsPerPage);
+
+  const handlePageClick = (selectedPage) => {
+    setCurrentPage(selectedPage.selected);
+  };
+
+  const itemPerPageHandler = (value) => {
+    setItemsPerPage(value)
+  }
+
   useEffect(() => {
     // setBooks(fetchedData);
     setRoute("books");
@@ -106,11 +122,11 @@ export default function Books() {
     <>
       <PageTitle title="Knjige" />
       <div className="page-wrapper">
-        <TableControl title="Nova knjiga" onClick={handleClick} />
+        <TableControl title="Nova knjiga" onClick={handleClick} itemsPerPageHandler={itemPerPageHandler}/>
         <Table
           path="/books"
           headers={headers}
-          tableData={DUMMY_TABLE_DATA}
+          tableData={booksToDisplay}
           options={[
             {
               text: "Pogledaj detalje",
@@ -149,7 +165,12 @@ export default function Books() {
             },
           ]}
         />
-        <Pagination items={DUMMY_TABLE_DATA} />
+        {DUMMY_TABLE_DATA.length > 0 && (
+          <Pagination
+            onPageChange={handlePageClick}
+            pageCount={pageCount}
+          />
+        )}
       </div>
     </>
   );

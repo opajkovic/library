@@ -4,16 +4,16 @@ import Input from "./Input";
 import "./TableControl.css";
 import Select from "./Select";
 
-const TableControl = (props) => {
+const TableControl = ({hide, onClick, title, itemsPerPageHandler}) => {
   return (
     <div className="table-control">
-      {!props.hide && (
-        <Button type="button" btn="btn btn-primary" onClick={props.onClick}>
+      {!hide && (
+        <Button type="button" btn="btn btn-primary" onClick={onClick}>
           <FaPlus />
-          <span> {props.title} </span>
+          <span> {title} </span>
         </Button>
       )}
-      <Select />
+      <Select itemsPerPageHandler={itemsPerPageHandler}/>
       <div className="input-div">
         <span>
           <FaSearch className="search-icon" />

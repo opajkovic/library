@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./izdavac.css";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
 import Menu from "../../layouts/menu/Menu";
@@ -7,13 +7,31 @@ import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import api from "../../../../api/apiCalls";
 
-const headers = [{ headerName: "Izdavac", sort: true, dropdown: true, dataKey:"name" }];
+const headers = [
+  { headerName: "Izdavac", sort: true, dropdown: true, dataKey: "name" },
+];
 
 export default function Izdavac() {
   const { setRoute } = useOutletContext();
   const navigate = useNavigate();
   const publisherData = useLoaderData();
-  
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const publisherToDisplay = publisherData.slice(startIndex, endIndex);
+  const pageCount = Math.ceil(publisherData.length / itemsPerPage);
+
+  const handlePageClick = (selectedPage) => {
+    setCurrentPage(selectedPage.selected);
+  };
+
+  const itemPerPageHandler = (value) => {
+    setItemsPerPage(value);
+  };
+
   useEffect(() => {
     setRoute("settings");
   }, []);
@@ -30,7 +48,7 @@ export default function Izdavac() {
       <div className="page-wrapper">
         <SettingsTable
           title="Novi izdavač"
-          tableData={publisherData}
+          tableData={publisherToDisplay}
           headers={headers}
           options={[
             {
@@ -41,10 +59,13 @@ export default function Izdavac() {
             {
               text: "Izbrisi izdavaca",
               icon: <FaTrash />,
-              noPath: true
+              noPath: true,
             },
           ]}
           onClick={handleClick}
+          itemsPerPageHandler={itemPerPageHandler}
+          onPageChange={handlePageClick}
+          pageCount={pageCount}
         />
       </div>
     </div>

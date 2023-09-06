@@ -7,8 +7,6 @@ import Pagination from "../../components/UI/Pagination";
 import { FaEdit, FaFile, FaTrash } from "react-icons/fa";
 import api from "../../api/apiCalls";
 
-
-
 const headers = [
   { headerName: "Ime i prezime", sort: true, dropdown: false, dataKey: "name" },
   { headerName: "email", sort: false, dropdown: false, dataKey: "email" },
@@ -24,10 +22,24 @@ const headers = [
 export default function Students() {
   const { setRoute } = useOutletContext();
   const navigate = useNavigate();
-  let [students, setStudents] = useState([])
+  let [students, setStudents] = useState([]);
   const fetchedData = useLoaderData();
 
-  
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const studentsToDisplay = fetchedData.slice(startIndex, endIndex);
+  const pageCount = Math.ceil(fetchedData.length / itemsPerPage);
+
+  const handlePageClick = (selectedPage) => {
+    setCurrentPage(selectedPage.selected);
+  };
+
+  const itemPerPageHandler = (value) => {
+    setItemsPerPage(value);
+  };
 
   useEffect(() => {
     setStudents(fetchedData);
@@ -43,11 +55,15 @@ export default function Students() {
     <>
       <PageTitle title="Učenici" />
       <div className="page-wrapper">
-        <TableControl title="Novi ucenik" onClick={() => handleClick()} />
+        <TableControl
+          title="Novi ucenik"
+          onClick={() => handleClick()}
+          itemsPerPageHandler={itemPerPageHandler}
+        />
         <Table
           path="/students"
           headers={headers}
-          tableData={students}
+          tableData={studentsToDisplay}
           options={[
             {
               text: "Pogledaj detalje",
@@ -66,7 +82,9 @@ export default function Students() {
             },
           ]}
         />
-        <Pagination items={students} />
+        {students.length > 0 && (
+          <Pagination onPageChange={handlePageClick} pageCount={pageCount} />
+        )}
       </div>
     </>
   );
@@ -78,7 +96,7 @@ export async function LoaderStudents() {
     const responseData = response.data.data;
     let listOfStudents = [];
 
-    responseData.forEach(element => {
+    responseData.forEach((element) => {
       if (element.role === "Učenik") {
         listOfStudents = [...listOfStudents, element];
       }

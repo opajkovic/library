@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState} from "react";
 import "./povez.css";
 import Menu from "../../layouts/menu/Menu";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
@@ -14,6 +14,22 @@ export default function Povez() {
   const navigate = useNavigate();
   const bookbindsData = useLoaderData();
 
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const bookbindsToDisplay = bookbindsData.slice(startIndex, endIndex);
+  const pageCount = Math.ceil(bookbindsData.length / itemsPerPage);
+
+  const handlePageClick = (selectedPage) => {
+    setCurrentPage(selectedPage.selected);
+  };
+
+  const itemPerPageHandler = (value) => {
+    setItemsPerPage(value);
+  };
+
   useEffect(() => {
     setRoute("settings");
   }, []);
@@ -28,7 +44,7 @@ export default function Povez() {
       <div className="page-wrapper">
         <SettingsTable
           title="Novi povez"
-          tableData={bookbindsData}
+          tableData={bookbindsToDisplay}
           headers={headers}
           options={[
             {
@@ -43,6 +59,9 @@ export default function Povez() {
             },
           ]}
           onClick={handleClick}
+          itemsPerPageHandler={itemPerPageHandler}
+          onPageChange={handlePageClick}
+          pageCount={pageCount}
         />
       </div>
     </div>

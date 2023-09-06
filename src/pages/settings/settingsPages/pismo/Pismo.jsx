@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./pismo.css";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
 import Menu from "../../layouts/menu/Menu";
@@ -7,12 +7,30 @@ import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import api from "../../../../api/apiCalls";
 
-const headers = [{ headerName: "Pismo", sort: true, dropdown: true, dataKey:"name"}];
+const headers = [
+  { headerName: "Pismo", sort: true, dropdown: true, dataKey: "name" },
+];
 
 export default function Pismo() {
   const { setRoute } = useOutletContext();
   const navigate = useNavigate();
   const languagesData = useLoaderData();
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const languagesToDisplay = languagesData.slice(startIndex, endIndex);
+  const pageCount = Math.ceil(languagesData.length / itemsPerPage);
+
+  const handlePageClick = (selectedPage) => {
+    setCurrentPage(selectedPage.selected);
+  };
+
+  const itemPerPageHandler = (value) => {
+    setItemsPerPage(value);
+  };
 
   useEffect(() => {
     setRoute("settings");
@@ -29,8 +47,9 @@ export default function Pismo() {
       <Menu selectedSettings={"pismo"} />
       <div className="page-wrapper">
         <SettingsTable
+          itemsPerPageHandler={itemPerPageHandler}
           title="Novo pismo"
-          tableData={languagesData}
+          tableData={languagesToDisplay}
           headers={headers}
           options={[
             {
@@ -45,6 +64,8 @@ export default function Pismo() {
             },
           ]}
           onClick={handleClick}
+          onPageChange={handlePageClick}
+          pageCount={pageCount}
         />
       </div>
     </div>

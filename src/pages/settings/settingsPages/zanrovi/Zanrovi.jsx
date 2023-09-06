@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./zanrovi.css";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
 import Menu from "../../layouts/menu/Menu";
@@ -7,13 +7,31 @@ import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import api from "../../../../api/apiCalls";
 
-const headers = [{ headerName: "Zanr", sort: true, dropdown: true, dataKey: "name"}];
+const headers = [
+  { headerName: "Zanr", sort: true, dropdown: true, dataKey: "name" },
+];
 
 export default function Zanrovi() {
   const { setRoute } = useOutletContext();
   const navigate = useNavigate();
   const genresData = useLoaderData();
-  
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const genresToDisplay = genresData.slice(startIndex, endIndex);
+  const pageCount = Math.ceil(genresData.length / itemsPerPage);
+
+  const handlePageClick = (selectedPage) => {
+    setCurrentPage(selectedPage.selected);
+  };
+
+  const itemPerPageHandler = (value) => {
+    setItemsPerPage(value);
+  };
+
   useEffect(() => {
     setRoute("settings");
   }, []);
@@ -30,7 +48,7 @@ export default function Zanrovi() {
       <div className="page-wrapper">
         <SettingsTable
           title="Novi žanr"
-          tableData={genresData}
+          tableData={genresToDisplay}
           headers={headers}
           options={[
             {
@@ -45,6 +63,9 @@ export default function Zanrovi() {
             },
           ]}
           onClick={handleClick}
+          itemsPerPageHandler={itemPerPageHandler}
+          onPageChange={handlePageClick}
+          pageCount={pageCount}
         />
       </div>
     </div>

@@ -6,21 +6,42 @@ import TableControl from "../../components/UI/TableControl";
 import Pagination from "../../components/UI/Pagination";
 import { FaEdit, FaFile, FaTrash } from "react-icons/fa";
 import api from "../../api/apiCalls";
-
+import "./Author.css";
 
 const headers = [
-  { headerName: "Naziv knjige", sort: true, dropdown: false, dataKey: "name" },
-  { headerName: "Opis", sort: false, dropdown: true, dataKey: "description" },
+  { headerName: "Ime autora", sort: true, dropdown: false, dataKey: "name" },
+  {
+    headerName: "Prezime autora",
+    sort: false,
+    dropdown: true,
+    dataKey: "surname",
+  },
 ];
 
 export default function Authors() {
   const { setRoute } = useOutletContext();
   const navigate = useNavigate();
-  let [authors, setAuthors] = useState([])
+  let [authors, setAuthors] = useState([]);
   const fetchedData = useLoaderData();
 
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const authorsToDisplay = fetchedData.slice(startIndex, endIndex);
+  const pageCount = Math.ceil(fetchedData.length / itemsPerPage);
+  
+  const handlePageClick = (selectedPage) => {
+    setCurrentPage(selectedPage.selected);
+  };
+
+  const itemPerPageHandler = (value) => {
+    setItemsPerPage(value)
+  }
+
   useEffect(() => {
-    setAuthors(fetchedData)
+    setAuthors(fetchedData);
     setRoute("authors");
     // eslint-disable-next-line
   }, []);
@@ -28,15 +49,15 @@ export default function Authors() {
   const handleClick = () => {
     navigate("/authors/new");
   };
-
   return (
     <>
       <PageTitle title="Autori" />
       <div className="page-wrapper">
-        <TableControl title="Novi autor" onClick={() => handleClick()} />
+        <TableControl title="Novi autor" onClick={() => handleClick()} itemsPerPageHandler={itemPerPageHandler}/>
         <Table
+          className="authors-table"
           path="/authors"
-          tableData={authors}
+          tableData={authorsToDisplay}
           headers={headers}
           options={[
             {
@@ -56,7 +77,12 @@ export default function Authors() {
             },
           ]}
         />
-        <Pagination items={authors} />
+        {authors.length > 0 && (
+          <Pagination
+            onPageChange={handlePageClick}
+            pageCount={pageCount}
+          />
+        )}
       </div>
     </>
   );

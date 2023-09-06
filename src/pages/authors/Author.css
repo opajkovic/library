@@ -1,0 +1,34 @@
+.authors-table {
+  height: fit-content;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  box-shadow: 0.5rem 0.5rem 0.5rem rgba(128, 128, 128, 0.527);
+  width: 100%;
+  border: 1px solid var(--grey-200);
+}
+
+.authors-table tr {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid var(--grey-200);
+}
+
+.authors-table td,
+.authors-table th {
+  padding: 1rem 1.5rem;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  position: relative;
+}
+
+.authors-table td:nth-child(1),
+.authors-table th:nth-child(1) {
+  width: 15rem;
+  border-right: 1px solid var(--grey-200);
+}
+.authors-table td:nth-child(2),
+.authors-table th:nth-child(2) {
+  width: 100%;
+}

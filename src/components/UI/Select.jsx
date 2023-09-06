@@ -1,15 +1,18 @@
 import "./Select.css";
 
-const Select = () => {
-  const numbers = [];
-  for (let i = 5; i <= 20; i += 5) {
-    numbers.push(i);
-  }
+const Select = ({ itemsPerPageHandler }) => {
+  console.log(itemsPerPageHandler)
+  const numbers = [5, 10, 15, 20];
+
+  const handleChange = (event) => {
+    const selectedValue = +event.target.value;
+    itemsPerPageHandler(selectedValue);
+  };
 
   return (
     <div className="select-wrapper">
       <label htmlFor="number-select"> Prikazi </label>
-      <select id="number-select">
+      <select id="number-select" onChange={handleChange}>
         {numbers.map((number) => (
           <option key={number} value={number}>
             {number}
