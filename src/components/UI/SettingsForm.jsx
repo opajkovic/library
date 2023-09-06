@@ -48,7 +48,7 @@ const SettingsForm = (props) => {
 
         {props.select &&
           props.select.map((item, index) => (
-            <FormSelect key={index} select={item} sup={true}/>
+            <InputSelect key={index} select={item} sup={true}/>
           ))}
 
         <FormSubmitButtons disabled={!props.formIsValid} reset={props.reset} />
