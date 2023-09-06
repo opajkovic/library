@@ -8,7 +8,7 @@ import {
 import Dashboard from "./pages/dashboard/Dashboard";
 import AppLayout from "./layout/AppLayout";
 import Polisa from "./pages/settings/Polisa";
-import Authors from "./pages/authors/Authors";
+import Authors, { LoaderAuthors } from "./pages/authors/Authors";
 import Students, {LoaderStudents} from "./pages/students/Students";
 
 import Librarians, {LoaderLibrarians} from "./pages/librarians/Librarians";
@@ -70,7 +70,7 @@ import ProfileEvidenceArchived from "./pages/studentProfile/layouts/ProfileEvide
 import ProfileEvidenceRented from "./pages/studentProfile/layouts/ProfileEvidenceRented";
 import Singup from "./pages/singup/Singup";
 import Login from "./pages/login/Login";
-import AuthorProfile from "./pages/authorProfile/AuthorProfile";
+import AuthorProfile, { AuthorLoader } from "./pages/authorProfile/AuthorProfile";
 import NoviZanr from "./pages/settings/settingsPages/zanrovi/NoviZanr";
 import ReturnedEvidence from "./pages/bookInformations/layouts/table-layouts/ReturnedEvidence";
 import ExcessEvidence from "./pages/bookInformations/layouts/table-layouts/ExcessEvidence";
@@ -130,8 +130,8 @@ const router = createBrowserRouter(
         />
 
         {/* Author routes */}
-        <Route path="/authors" element={<Authors />} />
-        <Route path="/authors/:id" element={<AuthorProfile />} />
+        <Route path="/authors" element={<Authors />} loader={LoaderAuthors} />
+        <Route path="/authors/:id" element={<AuthorProfile />} loader={AuthorLoader} />
         <Route path="/authors/new" element={<NewAuthor />} />
 
         {/* Izdavanje knjiga routes */}

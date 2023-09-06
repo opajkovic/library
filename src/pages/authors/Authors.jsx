@@ -1,38 +1,12 @@
-import { useEffect } from "react";
-import { useNavigate, useOutletContext } from "react-router";
+import { useEffect, useState } from "react";
+import { useLoaderData, useNavigate, useOutletContext } from "react-router";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
 import Pagination from "../../components/UI/Pagination";
 import { FaEdit, FaFile, FaTrash } from "react-icons/fa";
+import api from "../../api/apiCalls";
 
-const DUMMY_AUTHOR_DATA = [
-  {
-    id: 1,
-    name: "Mark Twain",
-    description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
-  },
-  {
-    id: 2,
-    name: "Uroš Tošković",
-    description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
-  },
-  {
-    id: 3,
-    name: "Kale Gospodar vremena",
-    description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
-  },
-  {
-    id: 4,
-    name: "Zvonko Bogdan",
-    description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
-  },
-  {
-    id: 5,
-    name: "Željko Pajović",
-    description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
-  },
-];
 
 const headers = [
   { headerName: "Naziv knjige", sort: true, dropdown: false, dataKey: "name" },
@@ -42,8 +16,11 @@ const headers = [
 export default function Authors() {
   const { setRoute } = useOutletContext();
   const navigate = useNavigate();
+  let [authors, setAuthors] = useState([])
+  const fetchedData = useLoaderData();
 
   useEffect(() => {
+    setAuthors(fetchedData)
     setRoute("authors");
     // eslint-disable-next-line
   }, []);
@@ -59,18 +36,18 @@ export default function Authors() {
         <TableControl title="Novi autor" onClick={() => handleClick()} />
         <Table
           path="/authors"
-          tableData={DUMMY_AUTHOR_DATA}
+          tableData={authors}
           headers={headers}
           options={[
             {
               text: "Pogledaj detalje",
               icon: <FaFile />,
-              path: "/librarians/1",
+              path: "/authors/",
             },
             {
               text: "Izmijeni autora",
               icon: <FaEdit />,
-              path: "/librarians/1",
+              path: "/authors/",
             },
             {
               text: "Izbrisi autora",
@@ -79,8 +56,18 @@ export default function Authors() {
             },
           ]}
         />
-        <Pagination items={DUMMY_AUTHOR_DATA} />
+        <Pagination items={authors} />
       </div>
     </>
   );
+}
+export async function LoaderAuthors() {
+  try {
+    const response = await api.get(`/authors`);
+    const responseData = response.data.data;
+    return responseData;
+  } catch (error) {
+    console.error("Loader function error:", error);
+    throw error;
+  }
 }

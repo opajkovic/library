@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useOutletContext } from "react-router";
+import { useLoaderData, useNavigate, useOutletContext } from "react-router";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
@@ -25,20 +25,12 @@ export default function Students() {
   const { setRoute } = useOutletContext();
   const navigate = useNavigate();
   let [students, setStudents] = useState([])
+  const fetchedData = useLoaderData();
 
   
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const students1 = await LoaderStudents();
-        setStudents(students1);
-      } catch (error) {
-        console.error("Error in useEffect:", error);
-      }
-    }
-  
-    fetchData();
+    setStudents(fetchedData);
     setRoute("students");
     // eslint-disable-next-line
   }, []);

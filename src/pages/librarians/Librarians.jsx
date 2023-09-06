@@ -1,4 +1,4 @@
-import { useNavigate, useOutletContext } from "react-router";
+import { useLoaderData, useNavigate, useOutletContext } from "react-router";
 import { useEffect, useState } from "react";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
@@ -19,19 +19,12 @@ const Librarians = () => {
   const { setRoute } = useOutletContext();
   const navigate = useNavigate();
   let [librarians, setLibrarians] = useState([])
+  const fetchedData = useLoaderData();
 
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const librarians1 = await LoaderLibrarians();
-        setLibrarians(librarians1);
-      } catch (error) {
-        console.error("Error in useEffect:", error);
-      }
-    }
   
-    fetchData();
+    setLibrarians(fetchedData);
     setRoute("librarians");
     // eslint-disable-next-line
   }, []);
