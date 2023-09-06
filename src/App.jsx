@@ -77,6 +77,7 @@ import ExcessEvidence from "./pages/bookInformations/layouts/table-layouts/Exces
 import ReservationEvidence from "./pages/bookInformations/layouts/table-layouts/ReservationEvidence";
 import ArchivedEvidence from "./pages/bookInformations/layouts/table-layouts/ArchivedEvidence";
 import NewBook from "./pages/books/NewBook";
+import NewBookSpecification from "./pages/books/components/Specification";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -87,7 +88,8 @@ const router = createBrowserRouter(
 
         <Route path="/books" element={<Books />} loader={BooksLoader} />
         <Route path="/books/:id" element={<BookInfo />} loader={BookLoader} />
-        <Route path="/books/new" element={<NewBook />} />
+        <Route path="/books/new/osnovni-detalji" element={<NewBook />} />
+        <Route path="/books/new/specifikacija" element={<NewBookSpecification />} />
         <Route
           path="/books/:id/specifikacija"
           element={<BookSpecification />}
