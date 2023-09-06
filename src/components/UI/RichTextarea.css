@@ -1,5 +1,5 @@
 .ck-content {
-  width: 500px;
+  width: 600px;
   height: 250px;
   padding: 0;
 }
@@ -10,7 +10,7 @@
 .ck-reset,
 .textarea-container,
 .ck-content {
-  width: 500px !important;
+  width: 600px !important;
   margin: 0;
 }
 

@@ -3,7 +3,7 @@
   flex-direction: column;
   padding: 8rem 2rem 2rem 2rem;
   margin: 0 !important;
-  color: var(--grey-400);
+  color: var(--grey-900);
   gap: 1.5rem;
 }
 
@@ -12,13 +12,17 @@
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
-  width: 500px;
+  width: 600px;
   border: 1px solid var(--grey-200);
   outline: none;
 }
 
 .input-wrapper {
   height: fit-content;
+}
+
+.form-wrapper label {
+  font-weight: 300 !important;
 }
 
 .form-wrapper sup {
@@ -59,8 +63,9 @@
   width: 8rem;
 }
 
-.new-book-wrapper-left, .new-book-wrapper-right {
-  display:flex;
+.new-book-wrapper-left,
+.new-book-wrapper-right {
+  display: flex;
   width: 50%;
 }
 
