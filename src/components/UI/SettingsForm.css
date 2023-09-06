@@ -75,6 +75,23 @@
   justify-content: flex-end;
 }
 
-.new-book-wrapper-left{
+.new-book-wrapper-left {
   flex-direction: column;
+}
+
+.multimedia-image {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  border: 1px solid var(--grey-200);
+}
+
+.multimedia-image input {
+  width: 13.25rem;
+  padding-bottom: 1rem;
+}
+
+.multimedia-image img {
+  width: 10rem;
 }

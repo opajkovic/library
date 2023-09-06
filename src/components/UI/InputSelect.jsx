@@ -2,6 +2,7 @@ import "./InputSelect.css";
 import Input from "./Input";
 import arrow from "../../assets/down-arrow.png";
 import { useState, useRef } from "react";
+import { useEffect } from "react";
 
 const InputSelect = (props) => {
   const { options, input, validHandler } = props.select;
@@ -35,13 +36,16 @@ const InputSelect = (props) => {
   const listHandler = (item) => {
     setInputValue(item);
     setShow(false);
-    handleValidation();
   };
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
     setClicked(true);
   };
+
+  useEffect(() => {
+    handleValidation();
+  }, [inputValue]);
 
   const inputInvalid =
     hasError && clicked ? "form-control invalid" : "form-control";
@@ -72,7 +76,6 @@ const InputSelect = (props) => {
           {options.map((item, index) => (
             <li
               key={index}
-              onClick={handleValidation}
               onMouseDown={(e) => {
                 e.preventDefault();
                 listHandler(item);

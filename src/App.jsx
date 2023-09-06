@@ -81,6 +81,7 @@ import NewBook from "./pages/books/NewBook";
 import NewBookSpecification from "./pages/books/components/Specification";
 import { Provider } from 'react-redux'
 import { store } from './redux/combinedReducers';
+import NewBookMultimedia from "./pages/books/components/Multimedia";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -93,6 +94,8 @@ const router = createBrowserRouter(
         <Route path="/books/:id" element={<BookInfo />} loader={BookLoader} />
         <Route path="/books/new/osnovni-detalji" element={<NewBook />} />
         <Route path="/books/new/specifikacija" element={<NewBookSpecification />} />
+        <Route path="/books/new/multimedija" element={<NewBookMultimedia/>} />
+
         <Route
           path="/books/:id/specifikacija"
           element={<BookSpecification />}
