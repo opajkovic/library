@@ -54,6 +54,7 @@ const NewAuthor = () => {
       title="Novi autor"
       firstLinkName="Autori"
       path="/authors"
+      pathDashboard="/dashboard"
       formIsValid={formIsValid}
       reset={resetHandler}
       submitHandler={() => submitHandler()}

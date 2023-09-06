@@ -7,6 +7,9 @@ const isNotEmptyString = (value) => /^[A-Za-z]+(?:[ -][A-Za-z]+)*$/.test(value);
 const NewBook = () => {
   const [categoryIsValid, setCategoryIsValid] = useState(false);
   const [genreIsValid, setGenreIsValid] = useState(false);
+  const [authorIsValid, setAuthorIsValid] = useState(false);
+  const [publisherIsValid, setPublisherIsValid] = useState(false);
+  const [yearIsValid, setYearIsValid] = useState(false);
 
   const categoryHandler = (value) => {
     setCategoryIsValid(value);
@@ -14,6 +17,18 @@ const NewBook = () => {
 
   const genreHandler = (value) => {
     setGenreIsValid(value);
+  };
+
+  const authorHandler = (value) => {
+    setAuthorIsValid(value);
+  };
+
+  const publisherHandler = (value) => {
+    setPublisherIsValid(value);
+  };
+
+  const yearHandler = (value) => {
+    setYearIsValid(value);
   };
 
   const {
@@ -26,7 +41,14 @@ const NewBook = () => {
   } = useInput(isNotEmptyString);
 
   let formIsValid = false;
-  if (bookIsValid && genreIsValid && categoryIsValid) {
+  if (
+    bookIsValid &&
+    genreIsValid &&
+    categoryIsValid &&
+    authorIsValid &&
+    publisherIsValid &&
+    yearIsValid
+  ) {
     formIsValid = true;
   }
 
@@ -43,7 +65,7 @@ const NewBook = () => {
   };
 
   const bookClasses = bookHasError ? "form-control invalid" : "form-control";
-  console.log(categoryIsValid)
+  console.log(categoryIsValid);
   return (
     <SettingsForm
       input={[
@@ -79,6 +101,33 @@ const NewBook = () => {
             name: "genre",
           },
           validHandler: genreHandler,
+        },
+        {
+          options: ["Mark Twen", "Pero Peric"],
+          input: {
+            label: "Izaberite autore",
+            type: "text",
+            name: "author",
+          },
+          validHandler: authorHandler,
+        },
+        {
+          options: ["Izdavac 1", "Izdavac 2"],
+          input: {
+            label: "Izdavac",
+            type: "text",
+            name: "publisher",
+          },
+          validHandler: publisherHandler,
+        },
+        {
+          options: ["Godina izdavanja"],
+          input: {
+            label: "Godina izdavanja",
+            type: "text",
+            name: "year",
+          },
+          validHandler: yearHandler,
         },
       ]}
       title="Nova knjiga"
