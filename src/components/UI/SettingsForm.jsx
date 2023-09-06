@@ -19,6 +19,7 @@ const SettingsForm = (props) => {
           pathDashboard={props.pathDashboard}
         />
       )}
+
       {props.headers && <SecondRowHeaders />}
 
       <form
@@ -37,6 +38,10 @@ const SettingsForm = (props) => {
 
         {props.image && (
           <ImageUploader label="Dodaj ikonicu" className="form-image-input" />
+        )}
+
+        {props.multimediaImage && (
+          <ImageUploader className="multimedia-image" />
         )}
 
         {props.textarea &&
