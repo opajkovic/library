@@ -5,7 +5,7 @@ import SearchTableInputs from "./table components/SearchTableInputs";
 
 const Table = ({ headers, tableData, options, path, className }) => {
   return (
-    <table className={className ? className : "table-container"}>
+    <table className={`${className} table-container`}>
       <Thead headers={headers} />
       <tbody>
         {(tableData && tableData.length === 0) || !tableData ? (
