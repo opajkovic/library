@@ -100,7 +100,7 @@ export default function Books() {
   }, []);
 
   const handleClick = () => {
-    navigate("/books/new");
+    navigate("/books/new/osnovni-detalji");
   };
   return (
     <>

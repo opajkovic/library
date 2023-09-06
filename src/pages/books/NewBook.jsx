@@ -68,9 +68,7 @@ const NewBook = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    if (!formIsValid) {
-      return (window.location.href = "/books/new");
-    }
+    return null
   };
 
   const bookClasses = bookHasError ? "form-control invalid" : "form-control";
@@ -124,6 +122,7 @@ const NewBook = () => {
         formIsValid={formIsValid}
         submitHandler={(event) => submitHandler(event)}
         className="new-book-wrapper-left"
+        headers={true}
       />
       <SettingsForm
         select={[
