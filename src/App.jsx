@@ -1,4 +1,5 @@
 import {
+  BrowserRouter,
   Navigate,
   Route,
   RouterProvider,
@@ -78,6 +79,8 @@ import ReservationEvidence from "./pages/bookInformations/layouts/table-layouts/
 import ArchivedEvidence from "./pages/bookInformations/layouts/table-layouts/ArchivedEvidence";
 import NewBook from "./pages/books/NewBook";
 import NewBookSpecification from "./pages/books/components/Specification";
+import { Provider } from 'react-redux'
+import { store } from './redux/combinedReducers';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -250,6 +253,6 @@ const router = createBrowserRouter(
 );
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return <Provider store={store}><RouterProvider router={router} /></Provider>;
 };
 export default App;
