@@ -80,7 +80,7 @@ const MiddleDataCell = ({ item, headers, options, path }) => {
                     newClassName="modalItemChange"
                     icon={option.icon}
                     text={option.text}
-                    path={option.path}
+                    path={`${option.path}${row.id}`}
                   />
                 )}
               })}

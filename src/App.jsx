@@ -9,7 +9,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import AppLayout from "./layout/AppLayout";
 import Polisa from "./pages/settings/Polisa";
 import Authors from "./pages/authors/Authors";
-import Students from "./pages/students/Students";
+import Students, {LoaderStudents} from "./pages/students/Students";
 
 import Librarians from "./pages/librarians/Librarians";
 import LibrarianProfile, {
@@ -208,7 +208,7 @@ const router = createBrowserRouter(
         <Route path="/librarians/new" element={<NewLibrarian />} />
 
         {/* student profile routes */}
-        <Route path="/students" element={<Students />} />
+        <Route path="/students" element={<Students />} loader={LoaderStudents} />
         <Route path="/students/new" element={<NewStudent />} />
         <Route
           path="/students/:id"
