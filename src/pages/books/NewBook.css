@@ -1,0 +1,11 @@
+.new-book-position-handler {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+@media(max-width: 1400px){
+    .new-book-position-handler{
+        width: calc(100vw - 90px);
+    }
+}

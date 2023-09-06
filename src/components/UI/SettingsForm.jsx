@@ -10,14 +10,14 @@ import InputSelect from "./InputSelect";
 const SettingsForm = (props) => {
 
   return (
-    <div>
-      <FormTitle
+    <>
+      {props.title && <FormTitle
         title={props.title}
         firstLinkName={props.firstLinkName}
         path={props.path}
         pathDashboard={props.pathDashboard}
-      />
-      <form onSubmit={props.submitHandler} className="form-wrapper">
+      />}
+      <form onSubmit={props.submitHandler} className={`form-wrapper ${props.className}` }>
         {props.input &&
           props.input.map((item, index) => (
             <Input
@@ -53,7 +53,7 @@ const SettingsForm = (props) => {
 
         <FormSubmitButtons disabled={!props.formIsValid} reset={props.reset} />
       </form>
-    </div>
+    </>
   );
 };
 export default SettingsForm;

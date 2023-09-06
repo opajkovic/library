@@ -17,9 +17,6 @@ const MiddleDataCell = ({ item, headers, options, path }) => {
     setModalOpen(true);
   };
 
-  console.log(item)
-  console.log(headers[0].dataKey)
-
   const handleCloseModal = () => {
     setRowId(null);
     setModalOpen(false);

@@ -157,9 +157,10 @@ export default function Books() {
 
 export const BooksLoader = async () => {
   try {
-    const response = await api.get(`/books`);
-    const responseData = response.data.data;
-    return responseData;
+    // const response = await api.get(`/books`);
+    // const responseData = response.data.data;
+    // return responseData;
+    return null
   } catch (error) {
     console.error("Loader function error:", error);
     throw error;

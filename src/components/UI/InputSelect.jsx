@@ -72,6 +72,7 @@ const InputSelect = (props) => {
           {options.map((item, index) => (
             <li
               key={index}
+              onKeyUp={handleValidation}
               onMouseDown={(e) => {
                 e.preventDefault();
                 listHandler(item);
