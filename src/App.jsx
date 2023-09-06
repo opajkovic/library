@@ -9,9 +9,9 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import AppLayout from "./layout/AppLayout";
 import Polisa from "./pages/settings/Polisa";
 import Authors from "./pages/authors/Authors";
-import Students from "./pages/students/Students";
+import Students, {LoaderStudents} from "./pages/students/Students";
 
-import Librarians from "./pages/librarians/Librarians";
+import Librarians, {LoaderLibrarians} from "./pages/librarians/Librarians";
 import LibrarianProfile, {
   LibrarianProfileLoader,
 } from "./pages/librarianProfile/LibrarianProfile";
@@ -198,7 +198,7 @@ const router = createBrowserRouter(
         <Route path="/settings/izdavac/new" element={<NoviIzdavac />} />
         <Route path="/settings/format/new" element={<NoviFormat />} />
 
-        <Route path="/librarians" element={<Librarians />} />
+        <Route path="/librarians" element={<Librarians />} loader={LoaderLibrarians} />
         <Route path="/librarians/new" element={<NewLibrarian />} />
 
         <Route path="/activities" element={<Activities />} />
@@ -210,7 +210,7 @@ const router = createBrowserRouter(
         <Route path="/librarians/new" element={<NewLibrarian />} />
 
         {/* student profile routes */}
-        <Route path="/students" element={<Students />} />
+        <Route path="/students" element={<Students />} loader={LoaderStudents} />
         <Route path="/students/new" element={<NewStudent />} />
         <Route
           path="/students/:id"

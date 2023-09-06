@@ -28,7 +28,7 @@ const DUMMY_TABLE_DATA = [
     total: 10,
   },
   {
-    id: 2,
+    id: 1,
     name: "Robinson Kruso",
     author: "Daniel Defoe",
     category: "Romani",
@@ -39,7 +39,7 @@ const DUMMY_TABLE_DATA = [
     total: 10,
   },
   {
-    id: 2,
+    id: 3,
     name: "Robinson Kruso",
     author: "Daniel Defoe",
     category: "Romani",
@@ -115,32 +115,32 @@ export default function Books() {
             {
               text: "Pogledaj detalje",
               icon: <FaRegFile />,
-              url: "/books/1",
+              path: "/books/",
             },
             {
               text: "Izmijeni knjigu",
               icon: <FaEdit />,
-              url: "/books/1",
+              path: "/books/",
             },
             {
               text: "Otpisi knjigu",
               icon: <FaLevelUpAlt />,
-              url: "/books/1",
+              path: "/books/",
             },
             {
               text: "Izdaj knjigu",
               icon: <FaHandScissors />,
-              url: "/books/1",
+              path: "/books/",
             },
             {
               text: "Vrati knjigu",
               icon: <FaRedo />,
-              url: "/books/1",
+              path: "/books/",
             },
             {
               text: "Rezervisi knjigu",
               icon: <FaCalendar />,
-              url: "/books/1",
+              path: "/books/",
             },
             {
               text: "Izbrisi knjigu",

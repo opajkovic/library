@@ -1,35 +1,12 @@
 import { useNavigate, useOutletContext } from "react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
 import Pagination from "../../components/UI/Pagination";
 import "./librarians.css";
 import { FaEdit, FaFile, FaTrash } from "react-icons/fa";
-
-const DUMMY_TABLE_DATA = [
-  {
-    id: 1,
-    name: "Valentina Kašćelan",
-    email: "valentina.kascelan@domain...",
-    role: "Bibliotekar",
-    lastOnline: "Prije 10 sati",
-  },
-  {
-    id: 2,
-    name: "Valentina Kašćelan",
-    email: "valentina.kascelan@domain...",
-    role: "Bibliotekar",
-    lastOnline: "Prije 10 sati",
-  },
-  {
-    id: 3,
-    name: "Valentina Kašćelan",
-    email: "valentina.kascelan@domain...",
-    role: "Bibliotekar",
-    lastOnline: "Prije 10 sati",
-  },
-];
+import api from "../../api/apiCalls";
 
 const headers = [
   { headerName: "Ime i prezime", sort: true, dropdown: false, dataKey: "name" },
@@ -41,7 +18,20 @@ const headers = [
 const Librarians = () => {
   const { setRoute } = useOutletContext();
   const navigate = useNavigate();
+  let [librarians, setLibrarians] = useState([])
+
+
   useEffect(() => {
+    async function fetchData() {
+      try {
+        const librarians1 = await LoaderLibrarians();
+        setLibrarians(librarians1);
+      } catch (error) {
+        console.error("Error in useEffect:", error);
+      }
+    }
+  
+    fetchData();
     setRoute("librarians");
     // eslint-disable-next-line
   }, []);
@@ -57,17 +47,17 @@ const Librarians = () => {
         <Table
           path="/librarians"
           headers={headers}
-          tableData={DUMMY_TABLE_DATA}
+          tableData={librarians}
           options={[
             {
               text: "Pogledaj detalje",
               icon: <FaFile />,
-              path: "/librarians/1",
+              path: "/librarians/",
             },
             {
               text: "Izmijeni korisnika",
               icon: <FaEdit />,
-              path: "/librarians/1",
+              path: "/librarians/",
             },
             {
               text: "Izbrisi korisnika",
@@ -76,10 +66,29 @@ const Librarians = () => {
             },
           ]}
         />
-        <Pagination items={DUMMY_TABLE_DATA} />
+        <Pagination items={librarians} />
       </div>
     </div>
   );
 };
 
 export default Librarians;
+export async function LoaderLibrarians() {
+  try {
+    const response = await api.get(`/users`);
+    const responseData = response.data.data;
+    let listOfStudents = [];
+
+    responseData.forEach(element => {
+      if (element.role === "Bibliotekar") {
+        listOfStudents = [...listOfStudents, element];
+      }
+    });
+
+    // Now 'listOfStudents' contains the array of students.
+    return listOfStudents;
+  } catch (error) {
+    console.error("Loader function error:", error);
+    throw error;
+  }
+}

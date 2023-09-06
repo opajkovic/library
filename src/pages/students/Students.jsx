@@ -1,34 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useOutletContext } from "react-router";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
 import Pagination from "../../components/UI/Pagination";
 import { FaEdit, FaFile, FaTrash } from "react-icons/fa";
+import api from "../../api/apiCalls";
 
-const DUMMY_TABLE_DATA = [
-  {
-    id: 1,
-    name: "Pero Perović",
-    email: "pero.perovic@domain.net",
-    role: "Ucenik",
-    lastOnline: "Prije 10 sati",
-  },
-  {
-    id: 2,
-    name: "Pero Perović",
-    email: "pero.perovic@domain.net",
-    role: "Ucenik",
-    lastOnline: "Prije 10 sati",
-  },
-  {
-    id: 3,
-    name: "Pero Perović",
-    email: "pero.perovic@domain.net",
-    role: "Ucenik",
-    lastOnline: "Prije 10 sati",
-  },
-];
+
 
 const headers = [
   { headerName: "Ime i prezime", sort: true, dropdown: false, dataKey: "name" },
@@ -45,8 +24,21 @@ const headers = [
 export default function Students() {
   const { setRoute } = useOutletContext();
   const navigate = useNavigate();
+  let [students, setStudents] = useState([])
+
+  
 
   useEffect(() => {
+    async function fetchData() {
+      try {
+        const students1 = await LoaderStudents();
+        setStudents(students1);
+      } catch (error) {
+        console.error("Error in useEffect:", error);
+      }
+    }
+  
+    fetchData();
     setRoute("students");
     // eslint-disable-next-line
   }, []);
@@ -63,17 +55,17 @@ export default function Students() {
         <Table
           path="/students"
           headers={headers}
-          tableData={DUMMY_TABLE_DATA}
+          tableData={students}
           options={[
             {
               text: "Pogledaj detalje",
               icon: <FaFile />,
-              path: "/librarians/1",
+              path: "/students/",
             },
             {
               text: "Izmijeni korisnika",
               icon: <FaEdit />,
-              path: "/librarians/1",
+              path: "/students/",
             },
             {
               text: "Izbrisi korisnika",
@@ -82,8 +74,28 @@ export default function Students() {
             },
           ]}
         />
-        <Pagination items={DUMMY_TABLE_DATA} />
+        <Pagination items={students} />
       </div>
     </>
   );
+}
+
+export async function LoaderStudents() {
+  try {
+    const response = await api.get(`/users`);
+    const responseData = response.data.data;
+    let listOfStudents = [];
+
+    responseData.forEach(element => {
+      if (element.role === "Učenik") {
+        listOfStudents = [...listOfStudents, element];
+      }
+    });
+
+    // Now 'listOfStudents' contains the array of students.
+    return listOfStudents;
+  } catch (error) {
+    console.error("Loader function error:", error);
+    throw error;
+  }
 }
