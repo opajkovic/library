@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import { useOutletContext } from "react-router";
+import { useEffect } from "react";
+import { useNavigate, useOutletContext } from "react-router";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
 import Pagination from "../../components/UI/Pagination";
-import api from '../../api/apiCalls'
+import api from "../../api/apiCalls";
 import {
   FaCalendar,
   FaEdit,
@@ -48,34 +48,65 @@ const DUMMY_TABLE_DATA = [
     rented: 0,
     excess: 2,
     total: 10,
-  }
+  },
 ];
 
 const headers = [
-  { headerName: "Naziv knjige", sort: true, dropdown: false, dataKey:"name"},
+  { headerName: "Naziv knjige", sort: true, dropdown: false, dataKey: "name" },
   { headerName: "Autor", sort: false, dropdown: false, dataKey: "author" },
-  { headerName: "Kategorija", sort: false, dropdown: false, dataKey: "category"},
-  { headerName: "Na raspolaganju", sort: false, dropdown: false, dataKey: "available" },
-  { headerName: "Rezervisano", sort: false, dropdown: false, dataKey: "reserved" },
+  {
+    headerName: "Kategorija",
+    sort: false,
+    dropdown: false,
+    dataKey: "category",
+  },
+  {
+    headerName: "Na raspolaganju",
+    sort: false,
+    dropdown: false,
+    dataKey: "available",
+  },
+  {
+    headerName: "Rezervisano",
+    sort: false,
+    dropdown: false,
+    dataKey: "reserved",
+  },
   { headerName: "Izdato", sort: false, dropdown: false, dataKey: "rented" },
-  { headerName: "U prekoračenju", sort: false, dropdown: false, dataKey: "excess" },
-  { headerName: "Ukupna količina", sort: false, dropdown: true, dataKey: "total" },
+  {
+    headerName: "U prekoračenju",
+    sort: false,
+    dropdown: false,
+    dataKey: "excess",
+  },
+  {
+    headerName: "Ukupna količina",
+    sort: false,
+    dropdown: true,
+    dataKey: "total",
+  },
 ];
 
 export default function Books() {
   const { setRoute } = useOutletContext();
+  const navigate = useNavigate();
   // let [books, setBooks] = useState();
   // const fetchedData = useLoaderData();
 
   useEffect(() => {
     // setBooks(fetchedData);
     setRoute("books");
+    // eslint-disable-next-line
   }, []);
+
+  const handleClick = () => {
+    navigate("/books/new");
+  };
   return (
     <>
       <PageTitle title="Knjige" />
       <div className="page-wrapper">
-        <TableControl title="Nova knjiga" />
+        <TableControl title="Nova knjiga" onClick={handleClick} />
         <Table
           path="/books"
           headers={headers}
@@ -114,7 +145,7 @@ export default function Books() {
             {
               text: "Izbrisi knjigu",
               icon: <FaTrash />,
-              noPath: true
+              noPath: true,
             },
           ]}
         />
@@ -128,7 +159,7 @@ export const BooksLoader = async () => {
   try {
     const response = await api.get(`/books`);
     const responseData = response.data.data;
-      return responseData;
+    return responseData;
   } catch (error) {
     console.error("Loader function error:", error);
     throw error;

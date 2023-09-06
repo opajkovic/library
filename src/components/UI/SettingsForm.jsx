@@ -15,6 +15,7 @@ const SettingsForm = (props) => {
         title={props.title}
         firstLinkName={props.firstLinkName}
         path={props.path}
+        pathDashboard={props.pathDashboard}
       />
       <form onSubmit={props.submitHandler} className="form-wrapper">
         {props.input &&
@@ -47,10 +48,7 @@ const SettingsForm = (props) => {
 
         {props.select &&
           props.select.map((item, index) => (
-            <InputSelect
-              key={index}
-              select={item}
-            />
+            <FormSelect key={index} select={item} sup={true}/>
           ))}
 
         <FormSubmitButtons disabled={!props.formIsValid} reset={props.reset} />
