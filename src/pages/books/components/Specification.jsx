@@ -1,6 +1,7 @@
 import SettingsForm from "../../../components/UI/SettingsForm";
 import useInput from "../../../hooks/useInput";
 import { useState } from "react";
+import "./Specification.css";
 
 export default function NewBookSpecification() {
   const [languageIsValid, setLanguageIsValid] = useState(false);
@@ -28,12 +29,26 @@ export default function NewBookSpecification() {
     inputBlurHandler: pagesBlurHandler,
   } = useInput(isNotEmptyString);
 
+  const {
+    value: serialNumberValue,
+    isValid: serialNumberIsValid,
+    hasError: serialNumberHasError,
+    valueChangeHandler: serialNumberChangeHandler,
+    inputBlurHandler: serialNumberBlurHandler,
+  } = useInput(isNotEmptyString);
+
   let formIsValid = false;
-  if (pagesIsValid && languageIsValid && bookbindIsValid && formatIsValid) {
+  if (
+    pagesIsValid &&
+    languageIsValid &&
+    bookbindIsValid &&
+    formatIsValid &&
+    serialNumberIsValid
+  ) {
     formIsValid = true;
   }
 
-  console.log(languageIsValid, bookbindIsValid, formIsValid)
+  console.log(languageIsValid, bookbindIsValid, formatIsValid);
   const resetHandler = () => {
     redirect((window.location.href = "/books/new"));
   };
@@ -44,9 +59,11 @@ export default function NewBookSpecification() {
   };
 
   const pagesClasses = pagesHasError ? "form-control invalid" : "form-control";
-
+  const serialNumberClasses = serialNumberHasError
+    ? "form-control invalid"
+    : "form-control";
   return (
-    <div className="new-book-position-handler">
+    <div>
       <SettingsForm
         input={[
           {
@@ -96,8 +113,25 @@ export default function NewBookSpecification() {
         pathDashboard="/dashboard"
         formIsValid={formIsValid}
         submitHandler={(event) => submitHandler(event)}
-        className="new-book-wrapper-left"
         headers={true}
+      />
+      <SettingsForm
+        input={[
+          {
+            label: "International Standard Book Num",
+            inputClasses: serialNumberClasses,
+            type: "text",
+            name: "pages",
+            value: serialNumberValue,
+            hasError: serialNumberHasError,
+            onChange: serialNumberChangeHandler,
+            onBlur: serialNumberBlurHandler,
+          },
+        ]}
+        reset={resetHandler}
+        formIsValid={formIsValid}
+        submitHandler={(event) => submitHandler(event)}
+        className="specification-serial-number"
       />
     </div>
   );
