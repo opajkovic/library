@@ -1,7 +1,7 @@
-export const getInvalidClass = (value, formIsSubmitted) => {
-    return formIsSubmitted && value.toString().trim().length === 0
-      ? "invalid"
-      : "";
+export const getInvalidClass = (value) => {
+    return value.trim().length === 0
+      ? "form-control invalid"
+      : "form-control";
   };
   
   export const createChangeHandler = (key, setState) => (event) => {

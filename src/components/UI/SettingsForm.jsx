@@ -38,7 +38,7 @@ const SettingsForm = (props) => {
           ))}
 
         {props.image && (
-          <ImageUploader label="Dodaj ikonicu" className="form-image-input" />
+          <ImageUploader label="Dodaj ikonicu" className="form-image-input" imagePath={props.imagePath}/>
         )}
 
         {props.multimediaImage && (

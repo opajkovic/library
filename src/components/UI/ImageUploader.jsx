@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import "./ImageUploader.css";
-import image from "../../assets/insert.png"
+import image from "../../assets/insert.png";
 
 const ImageUploader = (props) => {
   const fileInputRef = useRef(null);
@@ -14,16 +14,12 @@ const ImageUploader = (props) => {
   };
   return (
     <div className={props.className ? props.className : "custom-file"}>
-      <label>{props.label}</label>
+      {!props.imagePath && <label>{props.label}</label>}
       <img
         onClick={handleImageClick}
-        src={image}
+        src={props.imagePath ? props.imagePath : image}
       />
-      <input
-        type="file"
-        ref={fileInputRef}
-        onChange={handleFileSelect}
-      />
+      <input type="file" ref={fileInputRef} onChange={handleFileSelect} />
     </div>
   );
 };

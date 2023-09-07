@@ -2,18 +2,17 @@ import { useEffect, useState } from "react";
 import SettingsForm from "../../components/UI/SettingsForm";
 import "./EditLibrarian.css";
 import { useLoaderData } from "react-router";
-import { createChangeHandler } from "../../util/Functions";
+import { createChangeHandler, getInvalidClass } from "../../util/Functions";
 
 const EditLibrarian = () => {
-  const [librarianInfo, setLibrairanInfo] = useState();
+  const [librarianInfo, setLibrairanInfo] = useState({
+    name: "",
+    jmbg: "",
+    email: "",
+    username: "",
+  });
   const fetchedData = useLoaderData();
-  console.log(fetchedData);
-
-  //   let formIsValid = false;
-  //   if (imePrezimeIsValid && jmbgIsValid && emailIsValid && usernameIsValid) {
-  //     formIsValid = true;
-  //   }
-
+  console.log(fetchedData)
   useEffect(() => {
     setLibrairanInfo(fetchedData);
   }, []);
@@ -23,75 +22,79 @@ const EditLibrarian = () => {
   const emailHandler = createChangeHandler("email", setLibrairanInfo);
   const usernameHandler = createChangeHandler("username", setLibrairanInfo);
 
+  const nameClass = getInvalidClass(librarianInfo.name);
+  const emailClass = getInvalidClass(librarianInfo.email);
+  const jmbgClass = getInvalidClass(librarianInfo.jmbg);
+  const usernameClass = getInvalidClass(librarianInfo.username);
+
+  let formIsValid = false;
+  if (
+    nameClass === "form-control" &&
+    emailClass === "form-control" &&
+    jmbgClass === "form-control" &&
+    usernameClass === "form-control"
+  ) {
+    formIsValid = true;
+  }
+
+  const resetHandler = (event) => {
+    event.preventDefault();
+    setLibrairanInfo(fetchedData);
+  };
   return (
-    librarianInfo !== undefined && (
-      <SettingsForm
-        input={[
-          {
-            label: "Ime i prezime",
-            //   inputClasses: imePrezimeHasError
-            //     ? "form-control invalid"
-            //     : "form-control",
-            type: "text",
-            name: "name",
-            value: librarianInfo.name,
-            //   hasError: imePrezimeHasError,
-            onChange: nameHandler,
-            //   onBlur: imePrezimeBlurHandler,
-          },
-          {
-            label: "Tip korisnika",
-            type: "text",
-            name: "type",
-            value: "Bibliotekar",
-            disabled: true,
-          },
-          {
-            label: "JMBG",
-            //   inputClasses: jmbgHasError ? "form-control invalid" : "form-control",
-            type: "text",
-            name: "jmbg",
-            value: librarianInfo.jmbg,
-            //   hasError: jmbgHasError,
-            onChange: jmbgHandler,
-            //   onBlur: jmbgBlurHandler,
-          },
-          {
-            label: "Email",
-            //   inputClasses: emailHasError ? "form-control invalid" : "form-control",
-            type: "email",
-            name: "email",
-            value: librarianInfo.email,
-            //   hasError: emailHasError,
-            onChange: emailHandler,
-            //   onBlur: emailBlurHandler,
-          },
-          {
-            label: "Korisničko ime",
-            //   inputClasses: usernameHasError
-            //     ? "form-control invalid"
-            //     : "form-control",
-            type: "text",
-            name: "username",
-            value: librarianInfo.username,
-            //   hasError: usernameHasError,
-            onChange: usernameHandler,
-            //   onBlur: usernameBlurHandler,
-          },
-        ]}
-        className="edit-librarian-form"
-        title="Izmijeni podatke"
-        firstLinkName="Bibliotekari"
-        path="/librarians"
-        pathDashboard="/dashboard"
-        //   formIsValid={formIsValid}
-        //   reset={resetHandler}
-        //   submitHandler={submitHandler}
-        image={true}
-        //   handleImageUpload={(image) => setLibrarianImage(image)}
-        edit={true}
-      />
-    )
+    <SettingsForm
+      input={[
+        {
+          label: "Ime i prezime",
+          inputClasses: nameClass,
+          type: "text",
+          name: "name",
+          value: librarianInfo.name,
+          onChange: nameHandler,
+        },
+        {
+          label: "Tip korisnika",
+          type: "text",
+          name: "type",
+          value: "Bibliotekar",
+          disabled: true,
+        },
+        {
+          label: "JMBG",
+          inputClasses: jmbgClass,
+          type: "text",
+          name: "jmbg",
+          value: librarianInfo.jmbg,
+          onChange: jmbgHandler,
+        },
+        {
+          label: "Email",
+          inputClasses: emailClass,
+          type: "email",
+          name: "email",
+          value: librarianInfo.email,
+          onChange: emailHandler,
+        },
+        {
+          label: "Korisničko ime",
+          inputClasses: usernameClass,
+          type: "text",
+          name: "username",
+          value: librarianInfo.username,
+          onChange: usernameHandler,
+        },
+      ]}
+      className="edit-librarian-form"
+      title="Izmijeni podatke"
+      firstLinkName="Profil bibliotekara"
+      path={`/librarians/${librarianInfo.id}`}
+      pathDashboard="/dashboard"
+      formIsValid={formIsValid}
+      reset={resetHandler}
+      image={true}
+      imagePath={librarianInfo.photoPath}
+      edit={true}
+    />
   );
 };
 export default EditLibrarian;

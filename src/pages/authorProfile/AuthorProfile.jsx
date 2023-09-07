@@ -9,7 +9,6 @@ export default function AuthorProfile() {
   const { setRoute } = useOutletContext();
   let [author, setAuthor] = useState({name: 'loading...'})
   const fetchedData = useLoaderData();
-  console.log(fetchedData)
 
   useEffect(() => {
     setAuthor(fetchedData);
