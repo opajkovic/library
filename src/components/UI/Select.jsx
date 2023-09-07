@@ -1,7 +1,6 @@
 import "./Select.css";
 
 const Select = ({ itemsPerPageHandler }) => {
-  console.log(itemsPerPageHandler)
   const numbers = [5, 10, 15, 20];
 
   const handleChange = (event) => {

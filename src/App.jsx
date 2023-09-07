@@ -84,6 +84,7 @@ import { store } from './redux/combinedReducers';
 import NewBookMultimedia from "./pages/books/components/Multimedia";
 import EditLibrarian from "./pages/librarians/EditLibrarian";
 import EditStudent from "./pages/students/EditStudent";
+import EditAuthor from "./pages/authorProfile/AuthorEdit";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -142,6 +143,7 @@ const router = createBrowserRouter(
         {/* Author routes */}
         <Route path="/authors" element={<Authors />} loader={LoaderAuthors} />
         <Route path="/authors/:id" element={<AuthorProfile />} loader={AuthorLoader} />
+        <Route path="/authors/:id/edit-profile" element={<EditAuthor />} loader={AuthorLoader} />
         <Route path="/authors/new" element={<NewAuthor />} />
 
         {/* Izdavanje knjiga routes */}

@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import "./RichTextarea.css";
 
 function RichTextarea(props) {
-  const { label } = props.richTextarea;
-
+  const { label, value, reset } = props.richTextarea;
   const [editorData, setEditorData] = useState("");
 
   const handleEditorChange = (event, editor) => {
@@ -13,17 +12,23 @@ function RichTextarea(props) {
     setEditorData(data);
   };
 
+  useEffect(() => {
+    setEditorData(value);
+  }, [reset]);
+
+  useEffect(() => {
+    setEditorData(value);
+  }, [value]);
+
   return (
-    <div className="textarea-container">
-      <label>
-        {label}
-      </label>
-      <CKEditor
-        editor={ClassicEditor}
-        data={editorData}
-        onChange={handleEditorChange}
-      />
-    </div>
+      <div className="textarea-container">
+        <label>{label}</label>
+        <CKEditor
+          editor={ClassicEditor}
+          data={editorData}
+          onChange={handleEditorChange}
+        />
+      </div>
   );
 }
 
