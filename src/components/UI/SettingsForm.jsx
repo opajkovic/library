@@ -21,7 +21,7 @@ const SettingsForm = (props) => {
         />
       )}
 
-      {props.headers && <SecondRowHeaders />}
+      {props.headers && <SecondRowHeaders editHeaders={props.editHeaders}/>}
 
       <form
         onSubmit={props.submitHandler}

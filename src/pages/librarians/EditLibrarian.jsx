@@ -12,7 +12,7 @@ const EditLibrarian = () => {
     username: "",
   });
   const fetchedData = useLoaderData();
-  console.log(fetchedData)
+
   useEffect(() => {
     setLibrairanInfo(fetchedData);
   }, []);

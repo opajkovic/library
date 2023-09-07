@@ -96,7 +96,7 @@ const router = createBrowserRouter(
 
         <Route path="/books" element={<Books />} loader={BooksLoader} />
         <Route path="/books/:id" element={<BookInfo />} loader={BookLoader} />
-        <Route path="/books/:id/edit" element={<EditBook />} loader={BookLoader} />
+        <Route path="/books/:id/edit" element={<EditBook />} loader={LoaderCreateBook} />
         <Route path="/books/new/osnovni-detalji" element={<NewBook />} loader={LoaderCreateBook} />
         <Route path="/books/new/specifikacija" element={<NewBookSpecification />} loader={LoaderCreateBook} />
         <Route path="/books/new/multimedija" element={<NewBookMultimedia/>} />
