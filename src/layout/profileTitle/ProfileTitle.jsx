@@ -10,7 +10,6 @@ export default function ProfileTitle({
   linkOnePath,
   linkTwoPath,
   editPath,
-  rentPath,
   image,
   change,
   reset,

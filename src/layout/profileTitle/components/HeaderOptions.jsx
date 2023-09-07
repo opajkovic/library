@@ -66,7 +66,7 @@ export default function HeaderOptions({
             <FaReply />
             Vrati knjigu
           </Link>
-          <Link to={`/izmijeniPodatke`} className="change-info">
+          <Link to={`/books/${params.id}/rezervisi-knjigu`} className="change-info">
             <FaBookmark />
             Rezerviši knjigu
           </Link>

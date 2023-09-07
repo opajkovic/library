@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./BookInfoRentingBook.css";
 import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
 import { redirect, useLoaderData, useOutletContext } from "react-router";
-import api from "../../api/apiCalls";
 import SettingsForm from "../../components/UI/SettingsForm";
 import useInput from "../../hooks/useInput";
 import RightSide from "../bookInformations/components/RightSide";
@@ -51,7 +50,7 @@ export default function BookInfoRentingBook() {
   }
 
   const resetHandler = () => {
-    redirect((window.location.href = "/books"));
+    window.location.href = `/books/${book.id}/izdaj-knjigu`;
   };
 
   const rentingClasses = rentingHasError
@@ -82,7 +81,7 @@ export default function BookInfoRentingBook() {
               {
                 options: [{ name: "Mark Twen" }, { name: "Pero Peric" }],
                 input: {
-                  label: "Izaberite ucenika koji zaduzuje knjigu",
+                  label: "Izaberite učenika koji zadužuje knjigu",
                   type: "text",
                   name: "name",
                 },
@@ -122,15 +121,3 @@ export default function BookInfoRentingBook() {
     </>
   );
 }
-export const BookLoader = async ({ params }) => {
-  const id = params.id;
-  try {
-    const response = await api.get(`/books/${id}`);
-    const responseData = response.data.data;
-
-    return responseData;
-  } catch (error) {
-    console.error("Loader function error:", error);
-    throw error;
-  }
-};
