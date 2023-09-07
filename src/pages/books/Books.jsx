@@ -28,17 +28,6 @@ const DUMMY_TABLE_DATA = [
     total: 10,
   },
   {
-    id: 1,
-    name: "Robinson Kruso",
-    author: "Daniel Defoe",
-    category: "Romani",
-    available: 3,
-    reserved: 2,
-    rented: 0,
-    excess: 2,
-    total: 10,
-  },
-  {
     id: 3,
     name: "Robinson Kruso",
     author: "Daniel Defoe",

@@ -44,6 +44,7 @@ const NoviIzdavac = () => {
           onBlur: izdavacBlurHandler,
         },
       ]}
+      className="settings-new-item"
       title="Novi izdavač"
       firstLinkName="Izdavači"
       path="/settings/izdavac"

@@ -41,6 +41,7 @@ const NoviZanr = () => {
           onBlur: zanrBlurHandler,
         },
       ]}
+      className="settings-new-item"
       title="Novi žanr"
       firstLinkName="Žanrovi"
       path="/settings/zanrovi"

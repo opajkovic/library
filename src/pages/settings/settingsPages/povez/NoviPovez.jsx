@@ -42,6 +42,7 @@ const NoviZanr = () => {
           onBlur: povezBlurHandler,
         },
       ]}
+      className="settings-new-item"
       title="Novi povez"
       firstLinkName="Povezi"
       path="/settings/povez"

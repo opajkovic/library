@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useInput from "../../hooks/useInput";
 import SettingsForm from "../../components/UI/SettingsForm";
+import "./NewStudent.css";
 
 const isNotEmptyString = (value) =>
   value.trim() !== "" && /^[a-zA-Z]+$/.test(value);
@@ -120,6 +121,7 @@ const NewStudent = () => {
           onBlur: usernameBlurHandler,
         },
       ]}
+      className="new-student-form"
       title="Novi ucenik"
       firstLinkName="Ucenici"
       path="/students"

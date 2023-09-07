@@ -88,7 +88,6 @@ import EditLibrarian from "./pages/librarians/EditLibrarian";
 import EditStudent from "./pages/students/EditStudent";
 import EditAuthor from "./pages/authorProfile/AuthorEdit";
 import EditBook from "./pages/books/EditBook";
-import RentingBook from "./pages/books/RentingBook";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -99,15 +98,9 @@ const router = createBrowserRouter(
 
         <Route path="/books" element={<Books />} loader={BooksLoader} />
         <Route path="/books/:id" element={<BookInfo />} loader={BookLoader} />
-
         <Route
           path="/books/:id/edit"
           element={<EditBook />}
-          loader={BookLoader}
-        />
-        <Route
-          path="/books/:id/izdaj"
-          element={<RentingBook />}
           loader={BookLoader}
         />
         <Route

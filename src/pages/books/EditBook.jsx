@@ -1,21 +1,36 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import SettingsForm from "../../components/UI/SettingsForm";
-import useInput from "../../hooks/useInput";
+import { createChangeHandler, getInvalidClass } from "../../util/Functions";
 import "./NewBook.css";
-import { redirect, useLoaderData } from "react-router";
-import api from "../../api/apiCalls";
-
-const isNotEmptyString = (value) => /^[A-Za-z]+(?:[ -][A-Za-z]+)*$/.test(value);
+import { redirect, useLoaderData, useParams } from "react-router";
 
 const EditBook = () => {
+  const fetchedData = useLoaderData();
+  const [data, setData] = useState(null);
+  const params = useParams();
+
   const [categoryIsValid, setCategoryIsValid] = useState(false);
   const [genreIsValid, setGenreIsValid] = useState(false);
   const [authorIsValid, setAuthorIsValid] = useState(false);
   const [publisherIsValid, setPublisherIsValid] = useState(false);
   const [yearIsValid, setYearIsValid] = useState(false);
-  const fetchedData = useLoaderData()
-  let [data, setData] = useState({})
-  let [authors, setAuthors] = useState([])
+
+  const [bookInfo, setBookInfo] = useState({
+    name: "knjiga",
+    category: "kategorija",
+    description: "opis",
+    genre: "zanr",
+    year: "godina",
+    quantity: "kolicina",
+    author: "autor",
+    publisher: "izdavac",
+  });
+
+  const nameHandler = createChangeHandler("name", setBookInfo);
+  const quantityHandler = createChangeHandler("quantity", setBookInfo);
+
+  const nameClass = getInvalidClass(bookInfo.name);
+  const quantityClass = getInvalidClass(bookInfo.quantity);
 
   const categoryHandler = (value) => {
     setCategoryIsValid(value);
@@ -37,31 +52,15 @@ const EditBook = () => {
     setYearIsValid(value);
   };
 
-  const {
-    value: bookValue,
-    isValid: bookIsValid,
-    hasError: bookHasError,
-    valueChangeHandler: bookChangeHandler,
-    inputBlurHandler: bookBlurHandler,
-  } = useInput(isNotEmptyString);
-
-  const {
-    value: quantityValue,
-    isValid: quantityIsValid,
-    hasError: quantityHasError,
-    valueChangeHandler: quantityChangeHandler,
-    inputBlurHandler: quantityBlurHandler,
-  } = useInput(isNotEmptyString);
-
   let formIsValid = false;
   if (
-    bookIsValid &&
-    genreIsValid &&
+    nameClass === "form-control" &&
     categoryIsValid &&
-    authorIsValid &&
-    publisherIsValid &&
+    genreIsValid &&
     yearIsValid &&
-    quantityIsValid
+    quantityClass === "form-control" &&
+    authorIsValid &&
+    publisherIsValid
   ) {
     formIsValid = true;
   }
@@ -75,103 +74,100 @@ const EditBook = () => {
     return null;
   };
 
-  const bookClasses = bookHasError ? "form-control invalid" : "form-control";
-  const quantityClasses = quantityHasError
-    ? "form-control invalid"
-    : "form-control";
+  useEffect(() => {
+    setData(fetchedData);
+  }, []);
 
-    let fetchAuthors = async() => {
-      try {
-        const response = await api.get(`/authors`);
-        const responseData = response.data.data;
-        setAuthors(responseData);
-      } catch (error) {
-        console.error("Loader function error:", error);
-        throw error;
-      }
-    }
-
-    useEffect(()=>{
-      fetchAuthors()
-      setData(fetchedData)
-    },[])
-
+  console.log(data);
   return (
     <div className="new-book-position-handler">
       <SettingsForm
         input={[
           {
             label: "Naziv knjige",
-            inputClasses: bookClasses,
+            inputClasses: nameClass,
             type: "text",
             name: "books",
-            value: bookValue,
-            hasError: bookHasError,
-            onChange: bookChangeHandler,
-            onBlur: bookBlurHandler,
+            value: bookInfo.name,
+            onChange: nameHandler,
           },
         ]}
         richTextarea={{
           label: "Kratki sadržaj",
-          value: ""
+          value: bookInfo.description,
         }}
         select={[
           {
-            options: data.categories,
+            options: data && data.categories,
             input: {
               label: "Izaberite kategoriju",
               type: "text",
               name: "category",
+              value: bookInfo.category,
             },
             validHandler: categoryHandler,
           },
           {
-            options: data.genres,
+            options: data && data.genres,
             input: {
               label: "Izaberite žanr",
               type: "text",
               name: "genre",
+              value: bookInfo.genre,
             },
             validHandler: genreHandler,
           },
         ]}
         reset={resetHandler}
-        title="Nova knjiga"
+        title="Izmijeni knjigu"
         firstLinkName="Knjige"
-        path="/books"
+        path={`/books/${params.id}`}
         pathDashboard="/dashboard"
         formIsValid={formIsValid}
         submitHandler={(event) => submitHandler(event)}
         className="new-book-wrapper-left"
         headers={true}
+        editHeaders={[
+          {
+            details: `/books/${params.id}/edit`,
+            specification: `/books/${params.id}/edit/specification`,
+            multimedia: `/books/${params.id}/edit/multimedia`,
+          },
+        ]}
+        image={true}
+        imagePath={bookInfo.photoPath}
+        edit={true}
       />
       <SettingsForm
         select={[
           {
-            options: ["godina 1", "godina 2", "godina 3"],
+            options: [],
             input: {
               label: "Izaberite godinu izdavanja",
               type: "text",
               name: "year",
+              value: bookInfo.year,
             },
             validHandler: yearHandler,
           },
           {
-            options: data.publishers,
+            options: data && data.publishers,
             input: {
               label: "Izaberite izdavača",
               type: "text",
               name: "publishers",
+              value: bookInfo.publisher,
             },
             validHandler: publisherHandler,
           },
 
           {
-            options: authors,
+            options: data && data.authors,
             input: {
               label: "Izaberite autore",
               type: "text",
               name: "authors",
+              value: bookInfo.author,
             },
             validHandler: authorHandler,
           },
@@ -179,13 +175,11 @@ const EditBook = () => {
         input={[
           {
             label: "Količina",
-            inputClasses: quantityClasses,
+            inputClasses: quantityClass,
             type: "text",
             name: "quantity",
-            value: quantityValue,
-            hasError: quantityHasError,
-            onChange: quantityChangeHandler,
-            onBlur: quantityBlurHandler,
+            value: bookInfo.quantity,
+            onChange: quantityHandler,
           },
         ]}
         reset={resetHandler}
@@ -197,14 +191,3 @@ const EditBook = () => {
   );
 };
 export default EditBook;
-
-export async function LoaderCreateBook() {
-  try {
-    const response = await api.get(`/books/create`);
-    const responseData = response.data.data;
-    return responseData;
-  } catch (error) {
-    console.error("Loader function error:", error);
-    throw error;
-  }
-}

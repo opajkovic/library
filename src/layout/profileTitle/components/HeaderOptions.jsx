@@ -1,5 +1,5 @@
 import "../profileTitle.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   FaEdit,
   FaEllipsisV,
@@ -24,6 +24,8 @@ export default function HeaderOptions({
   booksSpecial,
   setModalPassword,
 }) {
+
+  const params = useParams();
   let [openModule, setOpenModule] = useState(false);
   let [confirmState, setConfirmState] = useState(false);
 
@@ -53,7 +55,7 @@ export default function HeaderOptions({
 
       {booksSpecial && (
         <>
-          <Link to={`/izmijeniPodatke`} className="change-info">
+          <Link to={`/books/${params.id}/otpisi-knjigu`} className="change-info">
             <FaBook />
             Otpiši knjigu
           </Link>
@@ -61,7 +63,7 @@ export default function HeaderOptions({
             <FaHandPointUp />
             Izdaj knjigu
           </Link>
-          <Link to={`/izmijeniPodatke`} className="change-info">
+          <Link to={`/books/${params.id}/vrati-knjigu`}  className="change-info">
             <FaReply />
             Vrati knjigu
           </Link>

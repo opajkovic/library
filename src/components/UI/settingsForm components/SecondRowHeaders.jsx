@@ -1,12 +1,21 @@
 import "./SecondRowHeaders.css";
 import { NavLink } from "react-router-dom";
 
-export default function SecondRowHeaders() {
+export default function SecondRowHeaders({ editHeaders }) {
 
   const navLinks = [
-    { to: `/books/new/osnovni-detalji`, label: "Osnovni detalji" },
-    { to: `/books/new/specifikacija`, label: "Specifikacija" },
-    {to: `/books/new/multimedija`, label: "Multimedija" },
+    {
+      to: editHeaders ? editHeaders[0].details : "/books/new/osnovni-detalji",
+      label: "Osnovni detalji",
+    },
+    {
+      to: editHeaders ? editHeaders[0].specification : `/books/new/specifikacija`,
+      label: "Specifikacija",
+    },
+    {
+      to: editHeaders ? editHeaders[0].multimedia : `/books/new/multimedija`,
+      label: "Multimedija",
+    },
   ];
 
   return (
@@ -15,7 +24,8 @@ export default function SecondRowHeaders() {
         <NavLink
           key={index}
           to={item.to}
-          className={({ isActive }) => (isActive ? "active-secondary-header" : undefined)
+          className={({ isActive }) =>
+            isActive ? "active-secondary-header" : undefined
           }
           end
         >

@@ -136,6 +136,10 @@ p {
   font-size: 0.8rem;
   font-style: italic;
 }
+
+.settings-new-item {
+  padding-top: 8rem;
+}
 @media (max-width: 1400px) {
   .page-wrapper {
     padding: 0 2rem;

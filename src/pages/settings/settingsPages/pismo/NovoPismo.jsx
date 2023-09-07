@@ -42,6 +42,7 @@ const NovoPismo = () => {
           onBlur: pismoBlurHandler,
         },
       ]}
+      className="settings-new-item"
       title="Novo pismo"
       firstLinkName="Pisma"
       path="/settings/pismo"
