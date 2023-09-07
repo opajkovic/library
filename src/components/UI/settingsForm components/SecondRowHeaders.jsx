@@ -2,7 +2,7 @@ import "./SecondRowHeaders.css";
 import { NavLink } from "react-router-dom";
 
 export default function SecondRowHeaders({ editHeaders }) {
-  console.log(editHeaders[0].details)
+
   const navLinks = [
     {
       to: editHeaders ? editHeaders[0].details : "/books/new/osnovni-detalji",
