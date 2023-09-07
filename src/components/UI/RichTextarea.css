@@ -1,0 +1,29 @@
+.ck-content {
+  width: 600px;
+  height: 250px;
+  padding: 0;
+}
+
+.ck-toolbar_grouping,
+.ck-sticky-panel__content,
+.ck-editor__main,
+.ck-reset,
+.textarea-container,
+.ck-content {
+  width: 600px !important;
+  margin: 0;
+}
+
+.ck-content p {
+  padding: 0;
+}
+
+.ck-toolbar__items {
+    display: flex;
+    flex-wrap: wrap !important;
+    height: fit-content !important;
+}
+
+.ck-editor__editable.invalid {
+  border: 1px solid red !important;
+}

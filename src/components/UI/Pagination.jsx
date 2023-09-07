@@ -1,16 +1,8 @@
 import "./Pagination.css";
 import ReactPaginate from "react-paginate";
-import { useState } from "react";
 
-const Pagination = (props) => {
-  const [data, setData] = useState(props.items); 
-  const itemsPerPage = 5;
 
-  const handlePageClick = (selectedPage) => {
-    setCurrentPage(selectedPage.selected);
-  };
-
-  const pageCount = Math.ceil(data.length / itemsPerPage);
+const Pagination = ({pageCount, onPageChange}) => {
 
   return (
     <div className="pagination-wrapper">
@@ -18,7 +10,7 @@ const Pagination = (props) => {
         pageCount={pageCount}
         marginPagesDisplayed={2}
         pageRangeDisplayed={5}
-        onPageChange={handlePageClick}
+        onPageChange={onPageChange}
         containerClassName="pagination"
         activeClassName="active"
       />

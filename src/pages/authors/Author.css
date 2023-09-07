@@ -1,0 +1,16 @@
+.authors-table td,
+.authors-table th {
+  padding: 1rem 1.5rem;
+  white-space: nowrap;
+  position: relative;
+  flex: unset;
+}
+
+.authors-table td:nth-child(1),
+.authors-table th:nth-child(1) {
+  width: 15rem;
+}
+.authors-table td:last-child,
+.authors-table th:last-child {
+  flex-grow: 1;
+}

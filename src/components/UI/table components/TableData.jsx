@@ -32,17 +32,18 @@ const MiddleDataCell = ({ item, headers, options, path }) => {
               <Input
                 input={{ type: "checkbox", className: "table-checkbox" }}
               />
+
+              {/* Uslovno dadavanje linka za autore, bibliotekare, studente i ucenike */}
               {path ? (
                 <Link to={`${path}/${row.id}`}>
-                  {row[header.headerName.split(" ").join("")]}
+                  {row[header.dataKey]}
                 </Link>
               ) : (
-                row[header.headerName.split(" ").join("")]
+                row[header.dataKey]
               )}
             </div>
           )}
-
-          {!header.sort && row[header.headerName.split(" ").join("")]}
+          {!header.sort && row[header.dataKey]}
           {/* Uslovno prikazivanje tackica ako je props dropdown === true */}
           {header.dropdown && (
             <BsThreeDotsVertical
@@ -79,7 +80,7 @@ const MiddleDataCell = ({ item, headers, options, path }) => {
                     newClassName="modalItemChange"
                     icon={option.icon}
                     text={option.text}
-                    path={option.path}
+                    path={`${option.path}${row.id}`}
                   />
                 )}
               })}

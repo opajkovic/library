@@ -7,9 +7,11 @@ const Input = (props) => {
     placeholder,
     onChange,
     onBlur,
+    onClick,
+    onKeyUp,
     hasError,
     inputClasses,
-    readOnly,
+    disabled,
   } = props.input;
 
   return (
@@ -24,8 +26,10 @@ const Input = (props) => {
         value={value}
         onChange={onChange}
         onBlur={onBlur}
+        onClick={onClick}
+        onKeyUp={onKeyUp}
         placeholder={placeholder}
-        readOnly={readOnly}
+        disabled={disabled}
         required
       />
       {hasError && (

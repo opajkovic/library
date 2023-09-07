@@ -1,20 +1,28 @@
 .form-wrapper {
   display: flex;
   flex-direction: column;
-  padding: 8rem 2rem 2rem 2rem;
-  margin: 0;
-  color: var(--grey-400);
-  gap: 2rem;
+  padding: 11rem 2rem 2rem 2rem;
+  margin: 0 !important;
+  color: var(--grey-900);
+  gap: 1.5rem;
 }
 
 .input-wrapper input,
 .textarea-wrapper textarea {
   display: flex;
   flex-direction: column;
-  width: 500px;
   padding: 0.5rem;
+  width: 600px;
   border: 1px solid var(--grey-200);
   outline: none;
+}
+
+.input-wrapper {
+  height: fit-content;
+}
+
+.form-wrapper label {
+  font-weight: 300 !important;
 }
 
 .form-wrapper sup {
@@ -42,15 +50,48 @@
   padding: 0.5rem 1rem;
 }
 
-.form-image-input label{
-  margin-bottom: 0;
+.form-image-input label,
+.form-wrapper label {
+  margin-bottom: 0rem;
 }
 
 .form-image-input input {
   display: none;
 }
 
-.form-image-input img{
+.form-image-input img {
   width: 8rem;
 }
 
+.new-book-wrapper-left,
+.new-book-wrapper-right {
+  display: flex;
+  width: 50%;
+}
+
+.new-book-wrapper-right {
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.new-book-wrapper-left {
+  flex-direction: column;
+}
+
+.multimedia-image {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  border: 1px solid var(--grey-200);
+}
+
+.multimedia-image input {
+  width: 13.25rem;
+  padding-bottom: 1rem;
+}
+
+.multimedia-image img {
+  width: 10rem;
+}

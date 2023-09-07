@@ -1,35 +1,37 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./izdavac.css";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
 import Menu from "../../layouts/menu/Menu";
-import { useNavigate, useOutletContext } from "react-router";
+import { useLoaderData, useNavigate, useOutletContext } from "react-router";
 import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import api from "../../../../api/apiCalls";
 
-const DUMMY_DATA = [
-  {
-    id: 1,
-    Izdavac: "Arto",
-  },
-  {
-    id: 2,
-    Izdavac: "Balbelo",
-  },
-  {
-    id: 3,
-    Izdavac: "Cid",
-  },
-  {
-    id: 4,
-    Izdavac: "Cosmo",
-  },
+const headers = [
+  { headerName: "Izdavac", sort: true, dropdown: true, dataKey: "name" },
 ];
-
-const headers = [{ headerName: "Izdavac", sort: true, dropdown: true }];
 
 export default function Izdavac() {
   const { setRoute } = useOutletContext();
   const navigate = useNavigate();
+  const publisherData = useLoaderData();
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const publisherToDisplay = publisherData.slice(startIndex, endIndex);
+  const pageCount = Math.ceil(publisherData.length / itemsPerPage);
+
+  const handlePageClick = (selectedPage) => {
+    setCurrentPage(selectedPage.selected);
+  };
+
+  const itemPerPageHandler = (value) => {
+    setItemsPerPage(value);
+  };
+
   useEffect(() => {
     setRoute("settings");
   }, []);
@@ -46,7 +48,7 @@ export default function Izdavac() {
       <div className="page-wrapper">
         <SettingsTable
           title="Novi izdavač"
-          tableData={DUMMY_DATA}
+          tableData={publisherToDisplay}
           headers={headers}
           options={[
             {
@@ -57,12 +59,26 @@ export default function Izdavac() {
             {
               text: "Izbrisi izdavaca",
               icon: <FaTrash />,
-              noPath: true
+              noPath: true,
             },
           ]}
           onClick={handleClick}
+          itemsPerPageHandler={itemPerPageHandler}
+          onPageChange={handlePageClick}
+          pageCount={pageCount}
         />
       </div>
     </div>
   );
 }
+
+export const PublisherLoader = async () => {
+  try {
+    const response = await api.get(`/books/create`);
+    const responseData = response.data.data.publishers;
+    return responseData;
+  } catch (error) {
+    console.error("Loader function error:", error);
+    throw error;
+  }
+};

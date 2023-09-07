@@ -5,8 +5,8 @@ const FormSubmitButtons = ({ disabled, reset }) => {
   return (
     <div className="flex-end btn-end">
       <Button
-        disabled={disabled}
-        btn={!disabled ? "btn btn-danger" : "btn btn-disabled  "}
+        // disabled={disabled}
+        btn="btn btn-danger"
         onClick={reset}
       >
         Ponisti {<FaTimes />}

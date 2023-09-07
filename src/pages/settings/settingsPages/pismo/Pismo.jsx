@@ -1,27 +1,37 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./pismo.css";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
 import Menu from "../../layouts/menu/Menu";
-import { useNavigate, useOutletContext } from "react-router";
+import { useLoaderData, useNavigate, useOutletContext } from "react-router";
 import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import api from "../../../../api/apiCalls";
 
-const DUMMY_DATA = [
-  {
-    id: 1,
-    Pismo: "Ćirlica",
-  },
-  {
-    id: 2,
-    Pismo: "Latinica",
-  },
+const headers = [
+  { headerName: "Pismo", sort: true, dropdown: true, dataKey: "name" },
 ];
-
-const headers = [{ headerName: "Pismo", sort: true, dropdown: true }];
 
 export default function Pismo() {
   const { setRoute } = useOutletContext();
   const navigate = useNavigate();
+  const languagesData = useLoaderData();
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const languagesToDisplay = languagesData.slice(startIndex, endIndex);
+  const pageCount = Math.ceil(languagesData.length / itemsPerPage);
+
+  const handlePageClick = (selectedPage) => {
+    setCurrentPage(selectedPage.selected);
+  };
+
+  const itemPerPageHandler = (value) => {
+    setItemsPerPage(value);
+  };
+
   useEffect(() => {
     setRoute("settings");
   }, []);
@@ -37,8 +47,9 @@ export default function Pismo() {
       <Menu selectedSettings={"pismo"} />
       <div className="page-wrapper">
         <SettingsTable
+          itemsPerPageHandler={itemPerPageHandler}
           title="Novo pismo"
-          tableData={DUMMY_DATA}
+          tableData={languagesToDisplay}
           headers={headers}
           options={[
             {
@@ -49,12 +60,25 @@ export default function Pismo() {
             {
               text: "Izbrisi pismo",
               icon: <FaTrash />,
-              noPath: true
+              noPath: true,
             },
           ]}
           onClick={handleClick}
+          onPageChange={handlePageClick}
+          pageCount={pageCount}
         />
       </div>
     </div>
   );
 }
+
+export const LanguagesLoader = async () => {
+  try {
+    const response = await api.get(`/books/create`);
+    const responseData = response.data.data.languages;
+    return responseData;
+  } catch (error) {
+    console.error("Loader function error:", error);
+    throw error;
+  }
+};

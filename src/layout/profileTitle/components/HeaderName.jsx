@@ -3,6 +3,7 @@ import "../profileTitle.css";
 import { Link, useParams } from "react-router-dom";
 
 export default function HeaderName({
+  userInfo,
   linkOne,
   linkOnePath,
   linkTwoPath,
@@ -12,7 +13,7 @@ export default function HeaderName({
 
   return (
     <div className={image ? "margined" : "left"}>
-      <h1 className="name">Valentina Kascelan</h1>
+      <h1 className="name">{userInfo ? userInfo.name : ""} {userInfo ? userInfo.surname : ""}</h1>
       <div className="subtitle">
         <Link to={`${linkOnePath}`}>{linkOne}</Link>
         <span>/</span>

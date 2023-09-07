@@ -2,7 +2,14 @@ import { useState } from "react";
 import useInput from "../../hooks/useInput";
 import SettingsForm from "../../components/UI/SettingsForm";
 
-const isNotEmpty = (value) => value.trim() !== "";
+const isNotEmptyString = (value) => /^[a-zA-Z]+$/.test(value);
+
+const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const emailTest = (value) => emailRegex.test(value);
+
+const isNotEmptyNumber = (value) =>
+  value.trim() !== "" && /^-?\d+(\.\d+)?$/.test(value);
+
 const NewLibrarian = () => {
   const {
     value: imePrezimeValue,
@@ -11,7 +18,7 @@ const NewLibrarian = () => {
     valueChangeHandler: imePrezimeChangeHandler,
     inputBlurHandler: imePrezimeBlurHandler,
     reset: resetImePrezime,
-  } = useInput(isNotEmpty);
+  } = useInput(isNotEmptyString);
   const {
     value: jmbgValue,
     isValid: jmbgIsValid,
@@ -19,15 +26,15 @@ const NewLibrarian = () => {
     valueChangeHandler: jmbgChangeHandler,
     inputBlurHandler: jmbgBlurHandler,
     reset: resetJMBG,
-  } = useInput(isNotEmpty);
+  } = useInput(isNotEmptyNumber);
   const {
     value: emailValue,
-    isValid: emailIsValid,
     hasError: emailHasError,
+    isValid: emailIsValid,
     valueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailBlurHandler,
     reset: resetEmail,
-  } = useInput(isNotEmpty);
+  } = useInput(emailTest);
   const {
     value: usernameValue,
     isValid: usernameIsValid,
@@ -35,33 +42,12 @@ const NewLibrarian = () => {
     valueChangeHandler: usernameChangeHandler,
     inputBlurHandler: usernameBlurHandler,
     reset: resetUsername,
-  } = useInput(isNotEmpty);
-  const {
-    value: passwordValue,
-    isValid: passwordIsValid,
-    hasError: passwordHasError,
-    valueChangeHandler: passwordChangeHandler,
-    inputBlurHandler: passwordBlurHandler,
-    reset: resetPassword,
-  } = useInput(isNotEmpty);
-  const {
-    value: confirmPasswordValue,
-    isValid: confirmPasswordIsValid,
-    hasError: confirmPasswordHasError,
-    valueChangeHandler: confirmPasswordChangeHandler,
-    inputBlurHandler: confirmPasswordBlurHandler,
-    reset: resetConfirmPassword,
-  } = useInput(isNotEmpty);
+  } = useInput(isNotEmptyString);
+
   const [librarianImage, setLibrarianImage] = useState(null);
+
   let formIsValid = false;
-  if (
-    imePrezimeIsValid &&
-    jmbgIsValid &&
-    emailIsValid &&
-    usernameIsValid &&
-    passwordIsValid &&
-    confirmPasswordIsValid
-  ) {
+  if (imePrezimeIsValid && jmbgIsValid && emailIsValid && usernameIsValid) {
     formIsValid = true;
   }
   const resetHandler = () => {
@@ -99,8 +85,8 @@ const NewLibrarian = () => {
           label: "Tip korisnika",
           type: "text",
           name: "userType",
-          placeholder: "Bibliotekar",
-          readOnly: true,
+          value: "Bibliotekar",
+          disabled: true,
         },
         {
           label: "JMBG",
@@ -134,34 +120,11 @@ const NewLibrarian = () => {
           onChange: usernameChangeHandler,
           onBlur: usernameBlurHandler,
         },
-        {
-          label: "Šifra",
-          inputClasses: passwordHasError
-            ? "form-control invalid"
-            : "form-control",
-          type: "password",
-          name: "password",
-          value: passwordValue,
-          hasError: passwordHasError,
-          onChange: passwordChangeHandler,
-          onBlur: passwordBlurHandler,
-        },
-        {
-          label: "Ponovi šifru",
-          inputClasses: confirmPasswordHasError
-            ? "form-control invalid"
-            : "form-control",
-          type: "password",
-          name: "confirmPassword",
-          value: confirmPasswordValue,
-          hasError: confirmPasswordHasError,
-          onChange: confirmPasswordChangeHandler,
-          onBlur: confirmPasswordBlurHandler,
-        },
       ]}
       title="Novi bibliotekar"
       firstLinkName="Bibliotekari"
       path="/librarians"
+      pathDashboard="/dashboard"
       formIsValid={formIsValid}
       reset={resetHandler}
       submitHandler={submitHandler}

@@ -8,20 +8,22 @@ export default function ModalItem({
   closeModals,
   newClassName,
   noPath,
-  setResponse
+  setResponse,
+  onClickModalItem
 }) {
   return (<>
   {noPath ?  <div
       onClick={()=>{
         setResponse(true)
         closeModals(false)
+        onClickModalItem()
       }}
       className={newClassName ? `modalItem ${newClassName}` : "modalItem"}
     >
       {icon}
       <p>{text}</p>
     </div> : <Link
-    onClick={closeModals}
+      onClick={closeModals}
       to={`${path}`}
       className={newClassName ? `modalItem ${newClassName}` : "modalItem"}
     >

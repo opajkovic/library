@@ -9,7 +9,7 @@ export default function NavItem({ text, icon, path, isOpen, active }) {
       to={`/${path}`}
     >
       {icon}
-      {isOpen ? <p>{text}</p> : <></>}
+      {isOpen && <p>{text}</p>}
     </NavLink>
   );
 }

@@ -1,0 +1,28 @@
+.second-headers-wrapper {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid var(--grey-200);
+    position: fixed;
+    padding: 0rem 2rem;
+    margin-top: 5.5rem;
+    gap: 2rem;
+    width: calc(100% - 90px);
+    z-index: 2;
+    background-color: white;
+}
+
+.second-headers-wrapper h1 {
+    margin: 0;
+    padding: 1rem 0;
+    font-size: 0.75rem;
+}
+
+.active-secondary-header{
+    border-bottom: 2px solid var(--secondary);
+    color: var(--primary) !important;
+}
+
+.second-headers-wrapper h1:hover{
+    cursor: pointer;
+    color: var(--primary) !important;
+}

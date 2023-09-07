@@ -1,0 +1,47 @@
+.form-select-wrapper {
+  width: 600px;
+}
+
+.input-button{
+  position: relative;
+}
+
+.input-button input{
+  font-size: 1rem;
+}
+
+.input-button button {
+  position: absolute;
+  right: 0.25rem;
+  bottom: 0;
+  border: 0;
+  background-color: inherit;
+  height: 2.25rem;
+}
+
+.input-button img {
+  width: 0.75rem;
+}
+
+.form-select-wrapper ul{
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  width: 100%;
+  margin: 0;
+  box-shadow: 0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.212);
+}
+
+.form-select-wrapper li{
+  width: 100%;
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid transparent;
+  background-color: #fff; 
+  transition: background-color 0.3s ease;
+}
+
+.form-select-wrapper li:hover {
+  background-color: #f0f0f0; 
+  cursor: pointer;
+}

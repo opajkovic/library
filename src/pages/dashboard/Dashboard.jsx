@@ -5,8 +5,10 @@ import ReservationList from "./layouts/reservationList/ReservationList";
 import './dashboard.css'
 import ActivityList from "./layouts/activityList/ActivityList";
 import Chart from "../../components/UI/Chart";
+import { useSelector } from "react-redux";
 
 export default function Dashboard() {
+  let profile = useSelector(store => store.profile)
   const { setRoute } = useOutletContext();
   useEffect(() => {
     setRoute("dashboard");
