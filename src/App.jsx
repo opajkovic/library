@@ -92,6 +92,7 @@ import EditSpecification from "./pages/books/components/EditSpecification";
 import EditMultimedia from "./pages/books/components/EditMultimedia";
 import BookInfoWrittenOff from "./pages/books/BookInfoWrittenOff";
 import BookInfoReturn from "./pages/books/BookInfoReturn";
+import BookInfoRentingBook from "./pages/books/BookInfoRentingBook";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -121,6 +122,12 @@ const router = createBrowserRouter(
         <Route
           path="/books/:id/vrati-knjigu"
           element={<BookInfoReturn />}
+          loader={BookLoader}
+        />
+
+        <Route
+          path="/books/:id/izdaj-knjigu"
+          element={<BookInfoRentingBook />}
           loader={BookLoader}
         />
         <Route

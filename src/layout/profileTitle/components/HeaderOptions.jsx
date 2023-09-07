@@ -19,7 +19,6 @@ export default function HeaderOptions({
   reset,
   change,
   editPath,
-  rentPath,
   deleteMssg,
   booksSpecial,
   setModalPassword,
@@ -47,7 +46,7 @@ export default function HeaderOptions({
       )}
 
       {change && (
-        <Link to={editPath ? editPath : "/"} className="change-info">
+        <Link to={editPath ? editPath : `/books/${params.id}/edit`} className="change-info">
           <FaEdit />
           Izmijeni podatke
         </Link>
@@ -59,7 +58,7 @@ export default function HeaderOptions({
             <FaBook />
             Otpiši knjigu
           </Link>
-          <Link to={rentPath} className="change-info">
+          <Link to={`/books/${params.id}/izdaj-knjigu`} className="change-info">
             <FaHandPointUp />
             Izdaj knjigu
           </Link>

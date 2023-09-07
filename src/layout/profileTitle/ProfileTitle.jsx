@@ -35,7 +35,6 @@ export default function ProfileTitle({
         booksSpecial={booksSpecial}
         setModalPassword={setChangePassword}
         editPath={editPath}
-        rentPath={rentPath}
       />
       {changePassword && (
         <ChangePasswordModal setModalClose={setChangePassword} />

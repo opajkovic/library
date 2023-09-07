@@ -53,7 +53,6 @@ export default function BookInfo({
         deleteMssg={true}
         booksSpecial={true}
         editPath={`/books/${fetchedData.id}/edit`}
-        rentPath={`/books/${fetchedData.id}/izdaj`}
       />
       <div className="bottom-wrapper">
         <div>
@@ -217,7 +216,7 @@ export const BookLoader = async ({ params }) => {
   try {
     const response = await api.get(`/books/${id}`);
     const responseData = response.data.data;
-    console.log(responseData);
+
     return responseData;
   } catch (error) {
     console.error("Loader function error:", error);

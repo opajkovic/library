@@ -1,0 +1,40 @@
+.renting-table-wrapper {
+  padding: 5.5rem 0rem 2rem 2rem;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.renting-table-wrapper h1 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 1rem;
+  color: var(--primary);
+  width: fit-content;
+  border: 1px solid var(--grey-200);
+  border-radius: 0.25rem;
+}
+
+.renting-table-wrapper div {
+  border: 0;
+}
+
+.bottom-wrapper {
+  display: flex;
+  flex-direction: row;
+  padding: 5.5rem 0rem 1rem 0rem;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.rent {
+  width: 70%;
+  padding: 2rem 0 0 0;
+  border: 0;
+}
+
+.edit-renting-book{
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 1rem 0 0 0;
+}

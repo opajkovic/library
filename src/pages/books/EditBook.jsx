@@ -134,7 +134,6 @@ const EditBook = () => {
             multimedia: `/books/${params.id}/edit/multimedia`,
           },
         ]}
-        image={true}
         imagePath={bookInfo.photoPath}
         edit={true}
       />

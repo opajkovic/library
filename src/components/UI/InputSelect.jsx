@@ -50,6 +50,7 @@ const InputSelect = (props) => {
   const inputInvalid =
     hasError && clicked ? "form-control invalid" : "form-control";
 
+    console.log(options)
   return (
     <div className="form-select-wrapper" onBlur={blurHandler}>
       <div className="input-button">

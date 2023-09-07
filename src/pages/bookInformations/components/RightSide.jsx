@@ -1,7 +1,7 @@
 import "../BookInfo.css";
 import ActivityList from "../../dashboard/layouts/activityList/ActivityList";
 
-export default function RightSide({bookInfo}) {
+export default function RightSide({bookInfo, hide}) {
   return (
     <div className="right-side-info">
       <div className="book-count">
@@ -23,7 +23,7 @@ export default function RightSide({bookInfo}) {
           </li>
         </ul>
       </div>
-      <ActivityList hideTitle={true}/>
+      {!hide && <ActivityList hideTitle={true}/>}
     </div>
   );
 }
