@@ -1,6 +1,4 @@
-
 const Input = (props) => {
-
   const {
     label,
     type,
@@ -11,11 +9,12 @@ const Input = (props) => {
     onBlur,
     hasError,
     inputClasses,
+    readOnly,
   } = props.input;
 
   return (
     <div className={props.className}>
-      <label >
+      <label>
         {label} {props.sup && <sup>*</sup>}
       </label>
       <input
@@ -26,6 +25,7 @@ const Input = (props) => {
         onChange={onChange}
         onBlur={onBlur}
         placeholder={placeholder}
+        readOnly={readOnly}
         required
       />
       {hasError && (
