@@ -121,7 +121,7 @@ const EditBook = () => {
         reset={resetHandler}
         title="Izmijeni knjigu"
         firstLinkName="Knjige"
-        path={`/books`}
+        path={`/books/${params.id}`}
         pathDashboard="/dashboard"
         formIsValid={formIsValid}
         submitHandler={(event) => submitHandler(event)}

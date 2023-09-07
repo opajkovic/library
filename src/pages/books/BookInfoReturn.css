@@ -1,0 +1,15 @@
+.return-table-wrapper {
+    padding: 8rem 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.return-table-wrapper h1{
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 1rem;
+    color: var(--primary);
+    width: fit-content;
+    border: 1px solid var(--grey-200);
+    border-radius: 0.25rem;
+}

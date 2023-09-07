@@ -57,7 +57,7 @@ export default function HeaderOptions({
             <FaHandPointUp />
             Izdaj knjigu
           </Link>
-          <Link to={`/izmijeniPodatke`} className="change-info">
+          <Link to={`/books/${params.id}/vrati-knjigu`}  className="change-info">
             <FaReply />
             Vrati knjigu
           </Link>

@@ -1,5 +1,5 @@
 import Table from "../../components/UI/Table";
-import "./BookInfoWrittenOff.css";
+import "./BookInfoReturn.css";
 import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
 import { useLoaderData } from "react-router";
 import { useState } from "react";
@@ -15,7 +15,7 @@ const headers = [
   { headerName: "Knjigu izdao", sort: false, dropdown: true },
 ];
 
-const BookInfoWrittenOff = () => {
+const BookInfoReturn = () => {
   const fetchedData = useLoaderData();
 
   const [currentPage, setCurrentPage] = useState(0);
@@ -48,8 +48,8 @@ const BookInfoWrittenOff = () => {
         image={fetchedData.photo}
         editPath={`/books/${fetchedData.id}/edit`}
       />
-      <div className="written-off-table-wrapper">
-        <h1>Otpiši knjigu</h1>
+      <div className="return-table-wrapper">
+        <h1>Vrati knjigu</h1>
         <TableControl
           hide={true}
           itemsPerPageHandler={itemPerPageHandler}
@@ -58,10 +58,10 @@ const BookInfoWrittenOff = () => {
         {data.length > 0 && (
           <Pagination onPageChange={handlePageClick} pageCount={pageCount} />
         )}
-        <FormSubmitButtons />
+         <FormSubmitButtons />
       </div>
     </>
   );
 };
 
-export default BookInfoWrittenOff;
+export default BookInfoReturn;
