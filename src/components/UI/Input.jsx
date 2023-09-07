@@ -1,6 +1,4 @@
-
 const Input = (props) => {
-
   const {
     label,
     type,
@@ -13,12 +11,12 @@ const Input = (props) => {
     onKeyUp,
     hasError,
     inputClasses,
-    disabled
+    disabled,
   } = props.input;
 
   return (
     <div className={props.className}>
-      <label >
+      <label>
         {label} {props.sup && <sup>*</sup>}
       </label>
       <input

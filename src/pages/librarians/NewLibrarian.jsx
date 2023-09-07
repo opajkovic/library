@@ -92,7 +92,7 @@ const NewLibrarian = () => {
         {
           label: "JMBG",
           inputClasses: jmbgHasError ? "form-control invalid" : "form-control",
-          type: "text",
+          type: "number",
           name: "jmbg",
           value: jmbgValue,
           hasError: jmbgHasError,

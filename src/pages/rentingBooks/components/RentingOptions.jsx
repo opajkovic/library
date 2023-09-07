@@ -1,39 +1,49 @@
 import "./RentingOptions.css";
 import { NavLink } from "react-router-dom";
-import { BsBook } from "react-icons/bs";
+import {
+  FaCopy,
+  FaFile,
+  FaExclamationTriangle,
+  FaCalendarCheck,
+  FaCalendarAlt,
+  FaBan,
+} from "react-icons/fa";
 
 export default function RentingOptions(props) {
-
   const titles = [
     {
       name: "Izdate Knjige",
       path: props.paths ? props.paths[0] : "/rentingBooks/izdate-knjige",
-      image: <BsBook />,
+      image: <FaCopy />,
     },
     {
       name: "Vraćene knjige",
       path: props.paths ? props.paths[1] : "/rentingBooks/vracene-knjige",
-      image: <BsBook />,
+      image: <FaFile />,
     },
     {
       name: "Otpisane knjige",
       path: props.paths ? props.paths[2] : "/rentingBooks/otpisane-knjige",
-      image: <BsBook />,
+      image: <FaBan />,
     },
     {
       name: "Knjige u prekoračenju",
-      path: props.paths ? props.paths[3] : "/rentingBooks/knjige-u-prekoracenju",
-      image: <BsBook />,
+      path: props.paths
+        ? props.paths[3]
+        : "/rentingBooks/knjige-u-prekoracenju",
+      image: <FaExclamationTriangle />,
     },
     {
       name: "Aktivne rezervacije",
       path: props.paths ? props.paths[4] : "/rentingBooks/aktivne-rezervacije",
-      image: <BsBook />,
+      image: <FaCalendarCheck />,
     },
     {
       name: "Arhivirane rezervacije",
-      path: props.paths ? props.paths[5] : "/rentingBooks/arhivirane-rezervacije",
-      image: <BsBook />,
+      path: props.paths
+        ? props.paths[5]
+        : "/rentingBooks/arhivirane-rezervacije",
+      image: <FaCalendarAlt />,
     },
   ];
 
