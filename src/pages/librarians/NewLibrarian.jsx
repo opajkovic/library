@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useInput from "../../hooks/useInput";
 import SettingsForm from "../../components/UI/SettingsForm";
+import "./NewLibrarian.css";
 
 const isNotEmptyString = (value) => /^[a-zA-Z]+$/.test(value);
 
@@ -121,6 +122,7 @@ const NewLibrarian = () => {
           onBlur: usernameBlurHandler,
         },
       ]}
+      className="new-librarian-form"
       title="Novi bibliotekar"
       firstLinkName="Bibliotekari"
       path="/librarians"

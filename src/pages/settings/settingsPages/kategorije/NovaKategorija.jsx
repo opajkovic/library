@@ -75,6 +75,7 @@ const NovaKategorija = () => {
           onBlur: descriptionBlurHandler,
         },
       ]}
+      className="settings-new-item"
       title="Nova kategorija"
       firstLinkName="Kategorije"
       path="/settings/categories"

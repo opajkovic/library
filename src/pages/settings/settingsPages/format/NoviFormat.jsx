@@ -44,6 +44,7 @@ const NoviFormat = () => {
           onBlur: formatBlurHandler,
         },
       ]}
+      className="settings-new-item"
       title="Novi format"
       firstLinkName="Formati"
       path="/settings/format"
