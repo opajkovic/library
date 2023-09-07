@@ -113,6 +113,7 @@ const NewBook = () => {
         ]}
         richTextarea={{
           label: "Kratki sadržaj",
+          value: ""
         }}
         select={[
           {

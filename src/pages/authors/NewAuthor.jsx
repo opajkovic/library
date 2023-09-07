@@ -1,5 +1,6 @@
 import useInput from "../../hooks/useInput";
 import SettingsForm from "../../components/UI/SettingsForm";
+import "./NewAuthor.css"
 
 const isNotEmptyString = (value) => /^[A-Za-z]+(?:[ -][A-Za-z]+)*$/.test(value);
 
@@ -50,6 +51,7 @@ const NewAuthor = () => {
       ]}
       richTextarea={{
         label: "Opis",
+        value: ""
       }}
       title="Novi autor"
       firstLinkName="Autori"
@@ -58,6 +60,7 @@ const NewAuthor = () => {
       formIsValid={formIsValid}
       reset={resetHandler}
       submitHandler={() => submitHandler()}
+      className="new-author-form"
     />
   );
 };
