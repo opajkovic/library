@@ -214,7 +214,7 @@ const router = createBrowserRouter(
           element={<LibrarianProfile />}
           loader={LibrarianProfileLoader}
         />
-        <Route path="/librarians/:id/edit-profile" element={<EditLibrarian />} />
+        <Route path="/librarians/:id/edit-profile" element={<EditLibrarian />} loader={LibrarianProfileLoader}/>
 
         {/* student profile routes */}
         <Route path="/students" element={<Students />} loader={LoaderStudents} />
