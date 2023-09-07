@@ -10,14 +10,14 @@ export default function ProfileTitle({
   linkOnePath,
   linkTwoPath,
   editPath,
+  rentPath,
   image,
   change,
   reset,
   deleteMssg,
   booksSpecial,
 }) {
-
-  let [changePassword, setChangePassword] = useState(false)
+  let [changePassword, setChangePassword] = useState(false);
   return (
     <div className="title-wrapper">
       {image && <img src={image} />}
@@ -35,9 +35,11 @@ export default function ProfileTitle({
         booksSpecial={booksSpecial}
         setModalPassword={setChangePassword}
         editPath={editPath}
+        rentPath={rentPath}
       />
-      {changePassword && <ChangePasswordModal setModalClose={setChangePassword} />}
-      
+      {changePassword && (
+        <ChangePasswordModal setModalClose={setChangePassword} />
+      )}
     </div>
   );
 }

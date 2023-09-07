@@ -19,9 +19,10 @@ export default function HeaderOptions({
   reset,
   change,
   editPath,
+  rentPath,
   deleteMssg,
   booksSpecial,
-  setModalPassword
+  setModalPassword,
 }) {
   let [openModule, setOpenModule] = useState(false);
   let [confirmState, setConfirmState] = useState(false);
@@ -32,7 +33,12 @@ export default function HeaderOptions({
   return (
     <div className="right">
       {reset && (
-        <p onClick={()=>{setModalPassword(true)}} className="reset-password">
+        <p
+          onClick={() => {
+            setModalPassword(true);
+          }}
+          className="reset-password"
+        >
           <FaRedo />
           Resetuj sifru
         </p>
@@ -51,7 +57,7 @@ export default function HeaderOptions({
             <FaBook />
             Otpiši knjigu
           </Link>
-          <Link to={`/izmijeniPodatke`} className="change-info">
+          <Link to={rentPath} className="change-info">
             <FaHandPointUp />
             Izdaj knjigu
           </Link>
@@ -88,7 +94,13 @@ export default function HeaderOptions({
             }
           />
         )}
-        {confirmState && <ConfirmModal setCloseModal={setConfirmState} text={"Da li ste sigurni da zelite da izbrisete?"} setResponse={setConfirmState} />}
+        {confirmState && (
+          <ConfirmModal
+            setCloseModal={setConfirmState}
+            text={"Da li ste sigurni da zelite da izbrisete?"}
+            setResponse={setConfirmState}
+          />
+        )}
       </div>
     </div>
   );

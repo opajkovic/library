@@ -22,18 +22,18 @@ export default function BookInfo({
 }) {
   const { setRoute } = useOutletContext();
   let [book, setBook] = useState({
-    title: 'loading...',
-    categories: [{name: "loading..." , surname: 'loading...'}],
-    authors: [{name: "loading..." , surname: 'loading...'}],
-    genres: [{name: "loading..." , surname: 'loading...'}],
-    publisher: {name: 'loading...'},
-    pDate: '2023',
+    title: "loading...",
+    categories: [{ name: "loading...", surname: "loading..." }],
+    authors: [{ name: "loading...", surname: "loading..." }],
+    genres: [{ name: "loading...", surname: "loading..." }],
+    publisher: { name: "loading..." },
+    pDate: "2023",
     description: "loading...",
-    language: {name: 'loading...'},
-    bookbind: {name: 'loading...'},
-    format: {name: 'loading...'},
-    isbn: 'loading...',
-    photo: ""
+    language: { name: "loading..." },
+    bookbind: { name: "loading..." },
+    format: { name: "loading..." },
+    isbn: "loading...",
+    photo: "",
   });
   const fetchedData = useLoaderData();
 
@@ -44,7 +44,7 @@ export default function BookInfo({
   return (
     <div className="book-container">
       <ProfileTitle
-        userInfo={ book ? {name: book.title} : {name: 'loading...'}}
+        userInfo={book ? { name: book.title } : { name: "loading..." }}
         linkOne={"Sve knjige"}
         linkOnePath={"/books"}
         linkTwoPath={`/books/`}
@@ -53,6 +53,7 @@ export default function BookInfo({
         deleteMssg={true}
         booksSpecial={true}
         editPath={`/books/${fetchedData.id}/edit`}
+        rentPath={`/books/${fetchedData.id}/izdaj`}
       />
       <div className="bottom-wrapper">
         <div>
@@ -60,23 +61,52 @@ export default function BookInfo({
           {specification && <Specification bookInfo={book} />}
           {multimedia && <Multimedia photos={[book.photo]} />}
 
-          {evidence && <EvidenceTable headers={[
+          {evidence && (
+            <EvidenceTable
+              headers={[
                 { headerName: "Naziv knjige", sort: false, dropdown: false },
-                { headerName: "Datum rezervacije", sort: false, dropdown: false },
-                { headerName: "Rezervacija ističe", sort: false, dropdown: false },
-                { headerName: "Rezervaciju podnio", sort: false, dropdown: false },
+                {
+                  headerName: "Datum rezervacije",
+                  sort: false,
+                  dropdown: false,
+                },
+                {
+                  headerName: "Rezervacija ističe",
+                  sort: false,
+                  dropdown: false,
+                },
+                {
+                  headerName: "Rezervaciju podnio",
+                  sort: false,
+                  dropdown: false,
+                },
                 { headerName: "Status", sort: false, dropdown: true },
-              ]}/>}
+              ]}
+            />
+          )}
 
           {rentedEvidence && (
             <EvidenceTable
               headers={[
                 { headerName: "Naziv knjige", sort: false, dropdown: false },
-                { headerName: "Datum rezervacije", sort: false, dropdown: false },
-                { headerName: "Rezervacija ističe", sort: false, dropdown: false },
-                { headerName: "Rezervaciju podnio", sort: false, dropdown: false },
+                {
+                  headerName: "Datum rezervacije",
+                  sort: false,
+                  dropdown: false,
+                },
+                {
+                  headerName: "Rezervacija ističe",
+                  sort: false,
+                  dropdown: false,
+                },
+                {
+                  headerName: "Rezervaciju podnio",
+                  sort: false,
+                  dropdown: false,
+                },
                 { headerName: "Status", sort: false, dropdown: true },
-              ]}/>
+              ]}
+            />
           )}
 
           {returnedEvidence && (
@@ -86,9 +116,18 @@ export default function BookInfo({
                 { headerName: "Izdato učeniku", sort: false, dropdown: false },
                 { headerName: "Datum izdavanja", sort: false, dropdown: false },
                 { headerName: "Datum vraćanja", sort: false, dropdown: false },
-                { headerName: "Zadržavanje knjige", sort: false, dropdown: false },
-                { headerName: "Trenutno zadržavanje knjige", sort: false, dropdown: true },
-              ]}/>
+                {
+                  headerName: "Zadržavanje knjige",
+                  sort: false,
+                  dropdown: false,
+                },
+                {
+                  headerName: "Trenutno zadržavanje knjige",
+                  sort: false,
+                  dropdown: true,
+                },
+              ]}
+            />
           )}
 
           {excessEvidence && (
@@ -97,31 +136,66 @@ export default function BookInfo({
                 { headerName: "Naziv knjige", sort: false, dropdown: false },
                 { headerName: "Izdato učeniku", sort: false, dropdown: false },
                 { headerName: "Datum izdavanja", sort: false, dropdown: false },
-                { headerName: "Prekoračenje u danima", sort: false, dropdown: false },
-                { headerName: "Trenutno zadržavanje knjige", sort: false, dropdown: true },
-              ]}/>
+                {
+                  headerName: "Prekoračenje u danima",
+                  sort: false,
+                  dropdown: false,
+                },
+                {
+                  headerName: "Trenutno zadržavanje knjige",
+                  sort: false,
+                  dropdown: true,
+                },
+              ]}
+            />
           )}
 
           {reservationEvidence && (
             <EvidenceTable
               headers={[
                 { headerName: "Naziv knjige", sort: false, dropdown: false },
-                { headerName: "Datum rezervacije", sort: false, dropdown: false },
-                { headerName: "Rezervacija ističe", sort: false, dropdown: false },
-                { headerName: "Rezervaciju podnio", sort: false, dropdown: false },
+                {
+                  headerName: "Datum rezervacije",
+                  sort: false,
+                  dropdown: false,
+                },
+                {
+                  headerName: "Rezervacija ističe",
+                  sort: false,
+                  dropdown: false,
+                },
+                {
+                  headerName: "Rezervaciju podnio",
+                  sort: false,
+                  dropdown: false,
+                },
                 { headerName: "Status", sort: false, dropdown: true },
-              ]}/>
+              ]}
+            />
           )}
 
           {archivedEvidence && (
             <EvidenceTable
               headers={[
                 { headerName: "Naziv knjige", sort: false, dropdown: false },
-                { headerName: "Datum rezervacije", sort: false, dropdown: false },
-                { headerName: "Rezervacija zatvorena", sort: false, dropdown: false },
-                { headerName: "Rezervaciju podnio", sort: false, dropdown: false },
+                {
+                  headerName: "Datum rezervacije",
+                  sort: false,
+                  dropdown: false,
+                },
+                {
+                  headerName: "Rezervacija zatvorena",
+                  sort: false,
+                  dropdown: false,
+                },
+                {
+                  headerName: "Rezervaciju podnio",
+                  sort: false,
+                  dropdown: false,
+                },
                 { headerName: "Status", sort: false, dropdown: true },
-              ]}/>
+              ]}
+            />
           )}
 
           {!specification &&
@@ -143,12 +217,10 @@ export const BookLoader = async ({ params }) => {
   try {
     const response = await api.get(`/books/${id}`);
     const responseData = response.data.data;
-    console.log(responseData)
+    console.log(responseData);
     return responseData;
-
   } catch (error) {
     console.error("Loader function error:", error);
     throw error;
   }
 };
-

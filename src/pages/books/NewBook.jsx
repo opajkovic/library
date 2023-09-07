@@ -13,9 +13,9 @@ const NewBook = () => {
   const [authorIsValid, setAuthorIsValid] = useState(false);
   const [publisherIsValid, setPublisherIsValid] = useState(false);
   const [yearIsValid, setYearIsValid] = useState(false);
-  const fetchedData = useLoaderData()
-  let [data, setData] = useState({})
-  let [authors, setAuthors] = useState([])
+  const fetchedData = useLoaderData();
+  let [data, setData] = useState({});
+  let [authors, setAuthors] = useState([]);
 
   const categoryHandler = (value) => {
     setCategoryIsValid(value);
@@ -80,21 +80,21 @@ const NewBook = () => {
     ? "form-control invalid"
     : "form-control";
 
-    let fetchAuthors = async() => {
-      try {
-        const response = await api.get(`/authors`);
-        const responseData = response.data.data;
-        setAuthors(responseData);
-      } catch (error) {
-        console.error("Loader function error:", error);
-        throw error;
-      }
+  let fetchAuthors = async () => {
+    try {
+      const response = await api.get(`/authors`);
+      const responseData = response.data.data;
+      setAuthors(responseData);
+    } catch (error) {
+      console.error("Loader function error:", error);
+      throw error;
     }
+  };
 
-    useEffect(()=>{
-      fetchAuthors()
-      setData(fetchedData)
-    },[])
+  useEffect(() => {
+    fetchAuthors();
+    setData(fetchedData);
+  }, []);
 
   return (
     <div className="new-book-position-handler">
@@ -113,7 +113,7 @@ const NewBook = () => {
         ]}
         richTextarea={{
           label: "Kratki sadržaj",
-          value: ""
+          value: "",
         }}
         select={[
           {
