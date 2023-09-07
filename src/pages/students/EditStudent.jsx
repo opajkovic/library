@@ -1,31 +1,31 @@
 import { useEffect, useState } from "react";
 import SettingsForm from "../../components/UI/SettingsForm";
-import "./EditLibrarian.css";
+import "./EditStudent.css";
 import { useLoaderData } from "react-router";
 import { createChangeHandler, getInvalidClass } from "../../util/Functions";
 
-const EditLibrarian = () => {
-  const [librarianInfo, setLibrairanInfo] = useState({
+const EditStudent = () => {
+  const [studentInfo, setStudentInfo] = useState({
     name: "",
     jmbg: "",
     email: "",
     username: "",
   });
   const fetchedData = useLoaderData();
-  console.log(fetchedData)
+  console.log(fetchedData);
   useEffect(() => {
-    setLibrairanInfo(fetchedData);
+    setStudentInfo(fetchedData);
   }, []);
 
-  const nameHandler = createChangeHandler("name", setLibrairanInfo);
-  const jmbgHandler = createChangeHandler("jmbg", setLibrairanInfo);
-  const emailHandler = createChangeHandler("email", setLibrairanInfo);
-  const usernameHandler = createChangeHandler("username", setLibrairanInfo);
+  const nameHandler = createChangeHandler("name", setStudentInfo);
+  const jmbgHandler = createChangeHandler("jmbg", setStudentInfo);
+  const emailHandler = createChangeHandler("email", setStudentInfo);
+  const usernameHandler = createChangeHandler("username", setStudentInfo);
 
-  const nameClass = getInvalidClass(librarianInfo.name);
-  const emailClass = getInvalidClass(librarianInfo.email);
-  const jmbgClass = getInvalidClass(librarianInfo.jmbg);
-  const usernameClass = getInvalidClass(librarianInfo.username);
+  const nameClass = getInvalidClass(studentInfo.name);
+  const emailClass = getInvalidClass(studentInfo.email);
+  const jmbgClass = getInvalidClass(studentInfo.jmbg);
+  const usernameClass = getInvalidClass(studentInfo.username);
 
   let formIsValid = false;
   if (
@@ -39,7 +39,7 @@ const EditLibrarian = () => {
 
   const resetHandler = (event) => {
     event.preventDefault();
-    setLibrairanInfo(fetchedData);
+    setStudentInfo(fetchedData);
   };
   return (
     <SettingsForm
@@ -49,14 +49,14 @@ const EditLibrarian = () => {
           inputClasses: nameClass,
           type: "text",
           name: "name",
-          value: librarianInfo.name,
+          value: studentInfo.name,
           onChange: nameHandler,
         },
         {
           label: "Tip korisnika",
           type: "text",
           name: "type",
-          value: "Bibliotekar",
+          value: "Učenik",
           disabled: true,
         },
         {
@@ -64,7 +64,7 @@ const EditLibrarian = () => {
           inputClasses: jmbgClass,
           type: "text",
           name: "jmbg",
-          value: librarianInfo.jmbg,
+          value: studentInfo.jmbg,
           onChange: jmbgHandler,
         },
         {
@@ -72,7 +72,7 @@ const EditLibrarian = () => {
           inputClasses: emailClass,
           type: "email",
           name: "email",
-          value: librarianInfo.email,
+          value: studentInfo.email,
           onChange: emailHandler,
         },
         {
@@ -80,22 +80,21 @@ const EditLibrarian = () => {
           inputClasses: usernameClass,
           type: "text",
           name: "username",
-          value: librarianInfo.username,
+          value: studentInfo.username,
           onChange: usernameHandler,
         },
       ]}
-      className="edit-librarian-form"
+      className="edit-student-form"
       title="Izmijeni podatke"
-      firstLinkName="Profil bibliotekara"
-      path={`/librarians/${librarianInfo.id}`}
+      firstLinkName="Profil učenika"
+      path={`/students/${studentInfo.id}`}
       pathDashboard="/dashboard"
       formIsValid={formIsValid}
       reset={resetHandler}
       image={true}
-      imagePath={librarianInfo.photoPath}
+      imagePath={studentInfo.photoPath}
       edit={true}
     />
   );
 };
-export default EditLibrarian;
-
+export default EditStudent;

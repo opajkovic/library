@@ -26,6 +26,7 @@ export default function StudentProfile() {
         change={true}
         reset={true}
         deleteMssg={true}
+        editPath={`/students/${fetchedData.id}/edit-profile`}
       />
       <div className="student-info-wrapper">
         <LinkWrapper />

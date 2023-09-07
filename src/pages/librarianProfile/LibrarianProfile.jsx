@@ -4,7 +4,6 @@ import {
   redirect,
   useLoaderData,
   useOutletContext,
-  useParams,
 } from "react-router";
 import UserInfo from "../studentProfile/components/UserInfo";
 import api from "../../api/apiCalls";
@@ -14,7 +13,6 @@ export default function LibrarianProfile() {
   const { setRoute } = useOutletContext();
   let [userInfo, setUserInfo] = useState({});
   const fetchedData = useLoaderData();
-  console.log(fetchedData.id)
 
   useEffect(() => {
     setUserInfo(fetchedData);

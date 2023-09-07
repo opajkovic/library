@@ -83,6 +83,7 @@ import { Provider } from 'react-redux'
 import { store } from './redux/combinedReducers';
 import NewBookMultimedia from "./pages/books/components/Multimedia";
 import EditLibrarian from "./pages/librarians/EditLibrarian";
+import EditStudent from "./pages/students/EditStudent";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -222,6 +223,11 @@ const router = createBrowserRouter(
         <Route
           path="/students/:id"
           element={<StudentProfile />}
+          loader={StudentProfileLoader}
+        />
+        <Route
+          path="/students/:id/edit-profile"
+          element={<EditStudent />}
           loader={StudentProfileLoader}
         />
         <Route
