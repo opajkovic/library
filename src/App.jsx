@@ -88,6 +88,10 @@ import EditLibrarian from "./pages/librarians/EditLibrarian";
 import EditStudent from "./pages/students/EditStudent";
 import EditAuthor from "./pages/authorProfile/AuthorEdit";
 import EditBook from "./pages/books/EditBook";
+import EditSpecification from "./pages/books/components/EditSpecification";
+import EditMultimedia from "./pages/books/components/EditMultimedia";
+import BookInfoWrittenOff from "./pages/books/BookInfoWrittenOff";
+import BookInfoReturn from "./pages/books/BookInfoReturn";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -101,6 +105,22 @@ const router = createBrowserRouter(
         <Route
           path="/books/:id/edit"
           element={<EditBook />}
+          loader={LoaderCreateBook}
+        />
+        <Route
+          path="/books/:id/edit/specification"
+          element={<EditSpecification />}
+          loader={LoaderCreateBook}
+        />
+        <Route path="/books/:id/edit/multimedia" element={<EditMultimedia />} />
+        <Route
+          path="/books/:id/otpisi-knjigu"
+          element={<BookInfoWrittenOff />}
+          loader={BookLoader}
+        />
+        <Route
+          path="/books/:id/vrati-knjigu"
+          element={<BookInfoReturn />}
           loader={BookLoader}
         />
         <Route
