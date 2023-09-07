@@ -18,7 +18,7 @@ const FormTitle = (props) => {
           className={({ isActive }) => {
             return isActive ? "active-title" : undefined;
           }}
-          to={`${props.path}/new`}
+          to={props.edit ? `${props.path}/edit-profile` : `${props.path}/new`}
         >
           {props.title}
         </NavLink>

@@ -27,8 +27,15 @@
 
 .new-subtitle a,
 .new-subtitle span {
-  margin: 0 0.5rem 0 0;
+  margin: 0;
   color: var(--grey-900);
+  margin: 0 0.25rem 0 0;
+}
+
+.new-subtitle a {
+  padding: 0.3rem 1rem;
+  border: 1px solid var(--grey-200);
+  border-radius: 1rem;
 }
 
 .new-subtitle a:hover{
@@ -37,8 +44,6 @@
   color: var(--primary) !important;
   background-color: inherit;
   border: 1px solid var(--primary);
-  border-radius: 1rem;
-  padding: 0.3rem 1rem;
 }
 
 .active-title{

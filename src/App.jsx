@@ -82,6 +82,7 @@ import NewBookSpecification from "./pages/books/components/Specification";
 import { Provider } from 'react-redux'
 import { store } from './redux/combinedReducers';
 import NewBookMultimedia from "./pages/books/components/Multimedia";
+import EditLibrarian from "./pages/librarians/EditLibrarian";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -213,7 +214,7 @@ const router = createBrowserRouter(
           element={<LibrarianProfile />}
           loader={LibrarianProfileLoader}
         />
-        <Route path="/librarians/new" element={<NewLibrarian />} />
+        <Route path="/librarians/:id/edit-profile" element={<EditLibrarian />} />
 
         {/* student profile routes */}
         <Route path="/students" element={<Students />} loader={LoaderStudents} />

@@ -18,6 +18,7 @@ import ConfirmModal from "../../modal/confirmModal/ConfirmModal";
 export default function HeaderOptions({
   reset,
   change,
+  editPath,
   deleteMssg,
   booksSpecial,
   setModalPassword
@@ -38,9 +39,9 @@ export default function HeaderOptions({
       )}
 
       {change && (
-        <Link to={`/izmijeniPodatke`} className="change-info">
+        <Link to={editPath ? editPath : "/"} className="change-info">
           <FaEdit />
-          Izmeni podatke
+          Izmijeni podatke
         </Link>
       )}
 

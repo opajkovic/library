@@ -17,6 +17,7 @@ const SettingsForm = (props) => {
           firstLinkName={props.firstLinkName}
           path={props.path}
           pathDashboard={props.pathDashboard}
+          edit={props.edit}
         />
       )}
 

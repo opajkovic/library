@@ -9,6 +9,7 @@ export default function ProfileTitle({
   linkOne,
   linkOnePath,
   linkTwoPath,
+  editPath,
   image,
   change,
   reset,
@@ -33,6 +34,7 @@ export default function ProfileTitle({
         deleteMssg={deleteMssg}
         booksSpecial={booksSpecial}
         setModalPassword={setChangePassword}
+        editPath={editPath}
       />
       {changePassword && <ChangePasswordModal setModalClose={setChangePassword} />}
       

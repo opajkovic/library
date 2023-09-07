@@ -1,6 +1,11 @@
 import React, { useEffect } from "react";
 import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
-import { redirect, useLoaderData, useOutletContext } from "react-router";
+import {
+  redirect,
+  useLoaderData,
+  useOutletContext,
+  useParams,
+} from "react-router";
 import UserInfo from "../studentProfile/components/UserInfo";
 import api from "../../api/apiCalls";
 import { useState } from "react";
@@ -9,6 +14,7 @@ export default function LibrarianProfile() {
   const { setRoute } = useOutletContext();
   let [userInfo, setUserInfo] = useState({});
   const fetchedData = useLoaderData();
+  console.log(fetchedData.id)
 
   useEffect(() => {
     setUserInfo(fetchedData);
@@ -24,6 +30,7 @@ export default function LibrarianProfile() {
         change={true}
         reset={true}
         deleteMssg={true}
+        editPath={`/librarians/${fetchedData.id}/edit-profile`}
       />
       <div className="student-info-wrapper">
         <UserInfo userInfo={userInfo} />
