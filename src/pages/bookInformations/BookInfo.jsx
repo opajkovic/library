@@ -143,7 +143,7 @@ export const BookLoader = async ({ params }) => {
   try {
     const response = await api.get(`/books/${id}`);
     const responseData = response.data.data;
-    console.log(responseData)
+
     return responseData;
 
   } catch (error) {

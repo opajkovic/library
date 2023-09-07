@@ -88,6 +88,7 @@ import EditAuthor from "./pages/authorProfile/AuthorEdit";
 import EditBook from "./pages/books/EditBook";
 import EditSpecification from "./pages/books/components/EditSpecification";
 import EditMultimedia from "./pages/books/components/EditMultimedia";
+import BookInfoWrittenOff from "./pages/books/BookInfoWrittenOff";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -101,6 +102,7 @@ const router = createBrowserRouter(
         <Route path="/books/:id/edit" element={<EditBook />} loader={LoaderCreateBook} />
         <Route path="/books/:id/edit/specification" element={<EditSpecification />} loader={LoaderCreateBook} />
         <Route path="/books/:id/edit/multimedia" element={<EditMultimedia />} />
+        <Route path="/books/:id/otpisi-knjigu" element={<BookInfoWrittenOff />} loader={BookLoader}/>
         <Route path="/books/new/osnovni-detalji" element={<NewBook />} loader={LoaderCreateBook} />
         <Route path="/books/new/specifikacija" element={<NewBookSpecification />} loader={LoaderCreateBook} />
         <Route path="/books/new/multimedija" element={<NewBookMultimedia/>} />
