@@ -52,6 +52,7 @@ export default function BookInfo({
         change={true}
         deleteMssg={true}
         booksSpecial={true}
+        editPath={`/books/${fetchedData.id}/edit`}
       />
       <div className="bottom-wrapper">
         <div>

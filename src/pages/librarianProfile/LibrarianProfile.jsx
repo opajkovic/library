@@ -28,7 +28,7 @@ export default function LibrarianProfile() {
         change={true}
         reset={true}
         deleteMssg={true}
-        editPath={`/librarians/${fetchedData.id}/edit-profile`}
+        editPath={`/librarians/${fetchedData.id}/edit`}
       />
       <div className="student-info-wrapper">
         <UserInfo userInfo={userInfo} />

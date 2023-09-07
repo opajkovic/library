@@ -23,7 +23,7 @@ export default function AuthorProfile() {
         linkTwoPath={`/authors/`}
         change={true}
         deleteMssg={true}
-        editPath={`/authors/${fetchedData.id}/edit-profile`}
+        editPath={`/authors/${fetchedData.id}/edit`}
       />
       <AuthorInfo userInfo={author} />
     </div>

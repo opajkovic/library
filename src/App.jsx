@@ -85,6 +85,7 @@ import NewBookMultimedia from "./pages/books/components/Multimedia";
 import EditLibrarian from "./pages/librarians/EditLibrarian";
 import EditStudent from "./pages/students/EditStudent";
 import EditAuthor from "./pages/authorProfile/AuthorEdit";
+import EditBook from "./pages/books/EditBook";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -95,6 +96,7 @@ const router = createBrowserRouter(
 
         <Route path="/books" element={<Books />} loader={BooksLoader} />
         <Route path="/books/:id" element={<BookInfo />} loader={BookLoader} />
+        <Route path="/books/:id/edit" element={<EditBook />} loader={BookLoader} />
         <Route path="/books/new/osnovni-detalji" element={<NewBook />} loader={LoaderCreateBook} />
         <Route path="/books/new/specifikacija" element={<NewBookSpecification />} loader={LoaderCreateBook} />
         <Route path="/books/new/multimedija" element={<NewBookMultimedia/>} />
@@ -143,7 +145,7 @@ const router = createBrowserRouter(
         {/* Author routes */}
         <Route path="/authors" element={<Authors />} loader={LoaderAuthors} />
         <Route path="/authors/:id" element={<AuthorProfile />} loader={AuthorLoader} />
-        <Route path="/authors/:id/edit-profile" element={<EditAuthor />} loader={AuthorLoader} />
+        <Route path="/authors/:id/edit" element={<EditAuthor />} loader={AuthorLoader} />
         <Route path="/authors/new" element={<NewAuthor />} />
 
         {/* Izdavanje knjiga routes */}
@@ -217,7 +219,7 @@ const router = createBrowserRouter(
           element={<LibrarianProfile />}
           loader={LibrarianProfileLoader}
         />
-        <Route path="/librarians/:id/edit-profile" element={<EditLibrarian />} loader={LibrarianProfileLoader}/>
+        <Route path="/librarians/:id/edit" element={<EditLibrarian />} loader={LibrarianProfileLoader}/>
 
         {/* student profile routes */}
         <Route path="/students" element={<Students />} loader={LoaderStudents} />
@@ -228,7 +230,7 @@ const router = createBrowserRouter(
           loader={StudentProfileLoader}
         />
         <Route
-          path="/students/:id/edit-profile"
+          path="/students/:id/edit"
           element={<EditStudent />}
           loader={StudentProfileLoader}
         />
