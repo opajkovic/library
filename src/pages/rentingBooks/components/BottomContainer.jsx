@@ -3,7 +3,6 @@ import RentingOptions from "../../rentingBooks/components/RentingOptions";
 import Table from "../../../components/UI/Table";
 import TableControl from "../../../components/UI/TableControl";
 import Pagination from "../../../components/UI/Pagination";
-import { FaEdit } from "react-icons/fa";
 
 const DUMMY_TABLE_DATA = [];
 
