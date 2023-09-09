@@ -1,8 +1,8 @@
 import "./Informations.css";
 
-export default function Informations({bookInfo}) {
-  
-  return <div className="book-spec">
+export default function Informations({ bookInfo }) {
+  return (
+    <div className="book-spec">
       <ul>
         <li>
           <span> Naziv knjige </span> {bookInfo.title}
@@ -14,7 +14,8 @@ export default function Informations({bookInfo}) {
           <span> Žanr </span> {bookInfo.genres[0].name}
         </li>
         <li>
-          <span> Autor </span> {bookInfo.authors[0].name + " " + bookInfo.authors[0].surname}
+          <span> Autor </span>{" "}
+          {bookInfo.authors[0].name + " " + bookInfo.authors[0].surname}
         </li>
         <li>
           <span> Izdavačka kuća </span> {bookInfo.publisher.name}
@@ -27,4 +28,5 @@ export default function Informations({bookInfo}) {
         <span> Kratki sadržaj (Storyline) </span> {bookInfo.description}
       </div>
     </div>
+  );
 }

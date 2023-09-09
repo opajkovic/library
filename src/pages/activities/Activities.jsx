@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./activities.css";
 import PageTitle from "../../components/pageTitle/PageTitle";
-import ActivitiItem from "./components/activitiItem/ActivitiItem";
+import ActivitiItem from "./components/ActivitiItem";
 import { useOutletContext } from "react-router";
 
 export default function Activities() {

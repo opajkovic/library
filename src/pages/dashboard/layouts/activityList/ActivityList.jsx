@@ -1,7 +1,7 @@
 import React from "react";
 import "./ActivityList.css";
 import { Link } from "react-router-dom";
-import ActivitiItem from "../../../activities/components/activitiItem/ActivitiItem";
+import ActivitiItem from "../../../activities/components/ActivitiItem";
 
 export default function ActivityList({ hideTitle }) {
   return (

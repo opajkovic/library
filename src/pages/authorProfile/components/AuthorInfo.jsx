@@ -1,6 +1,6 @@
 import "../AuthorProfile.css";
 
-export default function AuthorInfo({userInfo}) {
+export default function AuthorInfo({ userInfo }) {
   return (
     <ul className="author-info-wrapper">
       <li>
@@ -9,7 +9,7 @@ export default function AuthorInfo({userInfo}) {
       </li>
       <li>
         <span> Opis </span>
-        {userInfo.bio && userInfo.bio.replace(/<\/?p>/g, '')}
+        {userInfo.bio && userInfo.bio.replace(/<\/?p>/g, "")}
       </li>
     </ul>
   );

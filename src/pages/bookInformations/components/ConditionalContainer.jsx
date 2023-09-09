@@ -1,5 +1,5 @@
 import "../BookInfo.css";
-import Titles from "../components/Titlles";
+import Titles from "../components/Titles";
 import Informations from "../components/Informations";
 import Specification from "../components/Specifications";
 import Multimedia from "../components/Multimedia";

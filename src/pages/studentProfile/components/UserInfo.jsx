@@ -1,8 +1,8 @@
 import "../studentProfile.css";
 
-
-export default function UserInfo({userInfo}) {
-  return <div className="user-info">
+export default function UserInfo({ userInfo }) {
+  return (
+    <div className="user-info">
       <ul>
         <li>
           <span> Ime </span> {userInfo && userInfo.name}
@@ -33,10 +33,12 @@ export default function UserInfo({userInfo}) {
       <div className="user-image">
         <img
           src={
-            !userInfo ? "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"
+            !userInfo
+              ? "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"
               : userInfo.photoPath
           }
         />
       </div>
     </div>
+  );
 }

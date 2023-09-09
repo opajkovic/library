@@ -1,10 +1,6 @@
 import React, { useEffect } from "react";
 import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
-import {
-  redirect,
-  useLoaderData,
-  useOutletContext,
-} from "react-router";
+import { redirect, useLoaderData, useOutletContext } from "react-router";
 import UserInfo from "../studentProfile/components/UserInfo";
 import api from "../../api/apiCalls";
 import { useState } from "react";
@@ -45,10 +41,8 @@ export const LibrarianProfileLoader = async ({ params }) => {
 
     if (responseData.role == "Bibliotekar") {
       return responseData;
-    } else if (response.data.data.role == "Učenik") {
-      return redirect(`/students/${id}`);
-    } else if (response.data.data.role == "Administrator") {
-      return redirect(`/administrators/${id}`);
+    } else {
+      return null;
     }
   } catch (error) {
     console.error("Loader function error:", error);

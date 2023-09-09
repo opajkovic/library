@@ -31,14 +31,14 @@ export default function Authors() {
   const endIndex = startIndex + itemsPerPage;
   const authorsToDisplay = fetchedData.slice(startIndex, endIndex);
   const pageCount = Math.ceil(fetchedData.length / itemsPerPage);
-  
+
   const handlePageClick = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
   };
 
   const itemPerPageHandler = (value) => {
-    setItemsPerPage(value)
-  }
+    setItemsPerPage(value);
+  };
 
   useEffect(() => {
     setAuthors(fetchedData);
@@ -53,7 +53,11 @@ export default function Authors() {
     <>
       <PageTitle title="Autori" />
       <div className="page-wrapper">
-        <TableControl title="Novi autor" onClick={() => handleClick()} itemsPerPageHandler={itemPerPageHandler}/>
+        <TableControl
+          title="Novi autor"
+          onClick={() => handleClick()}
+          itemsPerPageHandler={itemPerPageHandler}
+        />
         <Table
           className="authors-table"
           path="/authors"
@@ -78,10 +82,7 @@ export default function Authors() {
           ]}
         />
         {authors.length > 0 && (
-          <Pagination
-            onPageChange={handlePageClick}
-            pageCount={pageCount}
-          />
+          <Pagination onPageChange={handlePageClick} pageCount={pageCount} />
         )}
       </div>
     </>

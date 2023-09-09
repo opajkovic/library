@@ -4,7 +4,7 @@ import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
 import Pagination from "../../components/UI/Pagination";
-import api from "../../api/apiCalls";
+
 import {
   FaCalendar,
   FaEdit,

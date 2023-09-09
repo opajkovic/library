@@ -1,7 +1,7 @@
 import React from "react";
 import "./activitiItem.css";
 import { Link } from "react-router-dom";
-import photo from "../../../../assets/profileStudent.jpg";
+import photo from "../../../assets/profileStudent.jpg";
 
 export default function ActivitiItem() {
   return (

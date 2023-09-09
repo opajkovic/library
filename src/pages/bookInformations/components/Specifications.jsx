@@ -1,6 +1,6 @@
 import "./Specification.css";
 
-export default function Specification({bookInfo}) {
+export default function Specification({ bookInfo }) {
   return (
     <ul className="book-specification-wrapper">
       <li>

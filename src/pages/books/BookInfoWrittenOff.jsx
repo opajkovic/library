@@ -50,10 +50,7 @@ const BookInfoWrittenOff = () => {
       />
       <div className="written-off-table-wrapper">
         <h1>Otpiši knjigu</h1>
-        <TableControl
-          hide={true}
-          itemsPerPageHandler={itemPerPageHandler}
-        />
+        <TableControl hide={true} itemsPerPageHandler={itemPerPageHandler} />
         <Table headers={headers} tableData={booksToDisplay} />
         {data.length > 0 && (
           <Pagination onPageChange={handlePageClick} pageCount={pageCount} />
