@@ -8,7 +8,7 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import api from "../../../../api/apiCalls";
 
 const headers = [
-  { headerName: "Kategorije", sort: true, dropdown: false, dataKey: "name" },
+  { headerName: "Kategorije", sort: true, dropdown: true, dataKey: "name" },
 ];
 
 export default function Kategorije() {
@@ -34,6 +34,7 @@ export default function Kategorije() {
 
   useEffect(() => {
     setRoute("settings");
+    // eslint-disable-next-line
   }, []);
 
   const handleClick = () => {
