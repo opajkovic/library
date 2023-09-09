@@ -1,4 +1,4 @@
-import "../BookInfo.css";
+import "./Informations.css";
 
 export default function Informations({bookInfo}) {
   
