@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLoaderData, useNavigate, useOutletContext } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
@@ -19,18 +19,13 @@ const headers = [
 ];
 
 export default function Authors() {
-  const { setRoute } = useOutletContext();
   const navigate = useNavigate();
   let [authors, setAuthors] = useState([]);
   const fetchedData = useLoaderData();
 
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(5);
-
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const authorsToDisplay = fetchedData.slice(startIndex, endIndex);
-  const pageCount = Math.ceil(fetchedData.length / itemsPerPage);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handlePageClick = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
@@ -42,13 +37,27 @@ export default function Authors() {
 
   useEffect(() => {
     setAuthors(fetchedData);
-    setRoute("authors");
-    // eslint-disable-next-line
   }, []);
 
   const handleClick = () => {
     navigate("/authors/new");
   };
+
+  const handleSearchInputChange = (event) => {
+    const query = event.target.value.toLowerCase();
+    setSearchQuery(query);
+  };
+  // Filter authors based on the search query
+  const filteredAuthors = fetchedData.filter((author) => {
+    const fullName = `${author.name} ${author.surname}`.toLowerCase();
+    return fullName.includes(searchQuery);
+  });
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const authorsToDisplay = filteredAuthors.slice(startIndex, endIndex);
+  const pageCount = Math.ceil(filteredAuthors.length / itemsPerPage);
+
   return (
     <>
       <PageTitle title="Autori" />
@@ -57,6 +66,7 @@ export default function Authors() {
           title="Novi autor"
           onClick={() => handleClick()}
           itemsPerPageHandler={itemPerPageHandler}
+          search={handleSearchInputChange}
         />
         <Table
           className="authors-table"

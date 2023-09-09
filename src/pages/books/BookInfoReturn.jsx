@@ -50,15 +50,12 @@ const BookInfoReturn = () => {
       />
       <div className="return-table-wrapper">
         <h1>Vrati knjigu</h1>
-        <TableControl
-          hide={true}
-          itemsPerPageHandler={itemPerPageHandler}
-        />
+        <TableControl hide={true} itemsPerPageHandler={itemPerPageHandler} />
         <Table headers={headers} tableData={booksToDisplay} />
         {data.length > 0 && (
           <Pagination onPageChange={handlePageClick} pageCount={pageCount} />
         )}
-         <FormSubmitButtons />
+        <FormSubmitButtons />
       </div>
     </>
   );
