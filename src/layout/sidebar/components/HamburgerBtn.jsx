@@ -11,12 +11,8 @@ function HamburgerBtn({ isOpen, setOpen, setClose }) {
   };
 
   return (
-    <nav>
-      {isOpen ? (
-        <FaTimes className="faTimes" onClick={handleClick} />
-      ) : (
-        <FaBars className="faBars" onClick={handleClick} />
-      )}
+    <nav onMouseEnter={handleClick}>
+      {isOpen ? <FaTimes className="faTimes" /> : <FaBars className="faBars" />}
     </nav>
   );
 }

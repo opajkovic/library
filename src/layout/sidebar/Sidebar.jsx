@@ -1,6 +1,5 @@
 import "./Sidebar.css";
 import { FaCog } from "react-icons/fa";
-
 import { useEffect, useState } from "react";
 import NavItem from "./components/NavItem";
 import NavList from "./components/NavList";
@@ -36,26 +35,24 @@ function Sidebar({ route }) {
         setOpen={() => setIsOpen(true)}
         setClose={() => setIsOpen(false)}
       />
-      <ul>
+      <ul onMouseEnter={() => setIsOpen(true)}>
         <NavList isOpen={isOpen} />
         <ExpandItem
           isOpen={isOpen}
           isExtendOpen={isExtendOpen}
           changeExpand={() => changeExpand()}
         />
-        <li>
-          <NavItem
-            isOpen={isOpen}
-            active={route == "settings" ? true : false}
-            path="settings"
-            text="Settings"
-            icon={
-              <FaCog
-                className={route == "settings" ? "icon activeIcon" : "icon"}
-              />
-            }
-          />
-        </li>
+        <NavItem
+          isOpen={isOpen}
+          active={route == "settings" ? true : false}
+          path="settings"
+          text="Settings"
+          icon={
+            <FaCog
+              className={route == "settings" ? "icon activeIcon" : "icon"}
+            />
+          }
+        />
       </ul>
     </aside>
   );
