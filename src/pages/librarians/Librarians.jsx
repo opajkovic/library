@@ -1,4 +1,4 @@
-import { useLoaderData, useNavigate, useOutletContext } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
@@ -7,32 +7,35 @@ import Pagination from "../../components/UI/Pagination";
 import "./librarians.css";
 import { FaEdit, FaFile, FaTrash } from "react-icons/fa";
 import api from "../../api/apiCalls";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSearchData } from "../../redux/actions";
 
 const headers = [
   { headerName: "Ime i prezime", sort: true, dropdown: false, dataKey: "name" },
   { headerName: "email", sort: false, dropdown: false, dataKey: "email" },
   { headerName: "role", sort: false, dropdown: false, dataKey: "role" },
   {
-    headerName: "Poslednji pristup sistemu",
+    headerName: "Username",
     sort: false,
     dropdown: true,
-    dataKey: "lastOnline",
+    dataKey: "username",
   },
 ];
 
 const Librarians = () => {
-  const { setRoute } = useOutletContext();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  let [librarians, setLibrarians] = useState([]);
-  const fetchedData = useLoaderData();
 
+  const [librarians, setLibrarians] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [search, setSearch] = useState("");
 
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const librariansToDisplay = fetchedData.slice(startIndex, endIndex);
-  const pageCount = Math.ceil(fetchedData.length / itemsPerPage);
+  const fetchedData = useLoaderData();
+  const dispatchData = useSelector((state) => state.search.searchData);
+  const searchData = dispatchData.searchData;
+
+  console.log(searchData);
 
   const handlePageClick = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
@@ -44,13 +47,37 @@ const Librarians = () => {
 
   useEffect(() => {
     setLibrarians(fetchedData);
-    setRoute("librarians");
-    // eslint-disable-next-line
-  }, []);
+  }, [fetchedData]);
+
+  useEffect(() => {
+    if (searchData !== undefined) {
+      setLibrarians(searchData);
+    }
+  }, [searchData]);
+
+  useEffect(() => {
+    dispatch(fetchSearchData(headers, search, "/users"));
+  }, [dispatch]);
 
   const handleClick = () => {
     navigate("/librarians/new");
   };
+
+  const handleSearchInputChange = (event) => {
+    const searchValue = event.target.value.toLowerCase();
+    setSearch(searchValue);
+    dispatch(fetchSearchData(headers, searchValue, "/users"));
+  };
+
+  const handleLowerSearchInputs = (headerName, searchValue) => {
+    dispatch(fetchSearchData(headerName, searchValue, "/users"));
+  };
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const librariansToDisplay = librarians.slice(startIndex, endIndex);
+  const pageCount = Math.ceil(librarians.length / itemsPerPage);
+
   return (
     <div>
       <PageTitle title="Bibliotekari" />
@@ -59,11 +86,13 @@ const Librarians = () => {
           title="Novi bibliotekar"
           onClick={() => handleClick()}
           itemsPerPageHandler={itemPerPageHandler}
+          search={handleSearchInputChange}
         />
         <Table
           path="/librarians"
           headers={headers}
           tableData={librariansToDisplay}
+          handleSearchInputChange={handleLowerSearchInputs}
           options={[
             {
               text: "Pogledaj detalje",
@@ -92,21 +121,14 @@ const Librarians = () => {
 
 export default Librarians;
 
-
 export async function LoaderLibrarians() {
   try {
     const response = await api.get(`/users`);
     const responseData = response.data.data;
-    let listOfStudents = [];
-
-    responseData.forEach((element) => {
-      if (element.role === "Bibliotekar") {
-        listOfStudents = [...listOfStudents, element];
-      }
-    });
-
-    // Now 'listOfStudents' contains the array of students.
-    return listOfStudents;
+    const listOfBibliotekars = responseData.filter(
+      (item) => item.role === "Bibliotekar"
+    );
+    return listOfBibliotekars;
   } catch (error) {
     console.error("Loader function error:", error);
     throw error;

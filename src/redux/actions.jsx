@@ -5,10 +5,17 @@ export const fetchSearchData = (headers, value, headline) => {
   return async (dispatch) => {
     const fetchingData = async () => {
       const response = await api.get(headline);
-      const responseData = response.data.data;
-      const filteredData = responseData.filter((author) => {
+      let responseData;
+      if (headline === "/users") {
+        responseData = response.data.data.filter(
+          (item) => item.role === "Bibliotekar"
+        );
+      } else {
+        responseData = response.data.data;
+      }
+      const filteredData = responseData.filter((item) => {
         return headers.some((header) => {
-          const columnValue = author[header.dataKey];
+          const columnValue = item[header.dataKey];
           return columnValue.toLowerCase().includes(value);
         });
       });
