@@ -4,34 +4,25 @@ import Modal from "../../modal/Modal";
 import ModalItem from "../../modal/modalItem/ModalItem";
 import api from "../../../api/apiCalls";
 import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
-import { profileAction } from "../../../redux/actions";
 
-const ModalBox = ({
-  changeModal,
-  modalProfileShow,
-  setModalClose,
-}) => {
-  let navigate = useNavigate()
-  const dispatch = useDispatch()
+const ModalBox = ({ changeModal, modalProfileShow, setModalClose }) => {
+  let navigate = useNavigate();
 
-  let  clickProfile = async()=>{
+  let clickProfile = async () => {
     try {
       const response = await api.post(`/users/me`);
       const responseData = response.data.data;
-      if(responseData.role == "Bibliotekar"){
-        navigate(`/librarians/${responseData.id}`)
-      }else if(responseData.role == 'Ucenik'){
-        navigate(`/students/${responseData.id}`)
+      if (responseData.role == "Bibliotekar") {
+        navigate(`/librarians/${responseData.id}`);
+      } else if (responseData.role == "Ucenik") {
+        navigate(`/students/${responseData.id}`);
       }
-      dispatch(profileAction(responseData))
-      setModalClose(false)
+      setModalClose(false);
     } catch (error) {
       console.error("Loader function error:", error);
       throw error;
     }
-    
-  }
+  };
 
   return (
     <div className="modalBox">
@@ -44,8 +35,8 @@ const ModalBox = ({
             <div className="modalHeader">
               <ModalItem
                 onClickModalItem={clickProfile}
-                setResponse={()=>{}}
-                closeModals={()=>{}}
+                setResponse={() => {}}
+                closeModals={() => {}}
                 setModalClose={setModalClose}
                 icon={<FaFile className="modalIcon" />}
                 text={"Profile"}

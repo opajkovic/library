@@ -99,10 +99,6 @@ import PageNotFound from "./pages/pageNotFound/PageNotFound";
 import Singup from "./pages/singup/Singup";
 import Login from "./pages/login/Login";
 
-// Store
-import { Provider } from "react-redux";
-import { store } from "./redux/combinedReducers";
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
@@ -342,10 +338,6 @@ const router = createBrowserRouter(
 );
 
 const App = () => {
-  return (
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
-  );
+  return <RouterProvider router={router} />;
 };
 export default App;
