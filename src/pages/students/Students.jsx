@@ -67,7 +67,8 @@ export default function Students() {
   const endIndex = startIndex + itemsPerPage;
   const studentsToDisplay = students.slice(startIndex, endIndex);
   const pageCount = Math.ceil(students.length / itemsPerPage);
-
++
+console.log(fetchedData)
   return (
     <>
       <PageTitle title="Učenici" />
@@ -87,12 +88,12 @@ export default function Students() {
             {
               text: "Pogledaj detalje",
               icon: <FaFile />,
-              path: "/students/",
+              path: ""
             },
             {
               text: "Izmijeni korisnika",
               icon: <FaEdit />,
-              path: "/students/",
+              path: "edit"
             },
             {
               text: "Izbrisi korisnika",

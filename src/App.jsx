@@ -203,7 +203,7 @@ const router = createBrowserRouter(
         <Route
           path="/authors/:id/edit"
           element={<EditAuthor />}
-          loader={LoaderAuthors}
+          loader={LoaderAuthorProfile}
         />
         <Route path="/authors/new" element={<NewAuthor />} />
 

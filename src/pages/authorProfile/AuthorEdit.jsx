@@ -13,6 +13,7 @@ const EditAuthor = () => {
   const fetchedData = useLoaderData();
   const nameSurname = `${fetchedData.name} ${fetchedData.surname}`;
 
+  console.log(authorInfo)
   useEffect(() => {
     setAuthorInfo({ ...fetchedData, name: nameSurname });
   }, []);

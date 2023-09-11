@@ -5,30 +5,48 @@ export default function ModalItem({
   icon,
   text,
   path,
-  closeModals,
+  setModalClose,
   newClassName,
-  noPath,
   setResponse,
-  onClickModalItem
+  noPath,
+  onClickModalItem,
+  close,
 }) {
-  return (<>
-  {noPath ?  <div
-      onClick={()=>{
-        setResponse(true)
-        closeModals(false)
-        onClickModalItem()
-      }}
-      className={newClassName ? `modalItem ${newClassName}` : "modalItem"}
-    >
-      {icon}
-      <p>{text}</p>
-    </div> : <Link
-      onClick={closeModals}
-      to={`${path}`}
-      className={newClassName ? `modalItem ${newClassName}` : "modalItem"}
-    >
-      {icon}
-      <p>{text}</p>
-    </Link>}
-  </>);
+  return (
+    <>
+      {noPath && !close && (
+        <div
+          onClick={() => {
+            onClickModalItem();
+          }}
+          className={newClassName ? `modalItem ${newClassName}` : "modalItem"}
+        >
+          {icon}
+          <p>{text}</p>
+        </div>
+      )}
+      {!close && !noPath && (
+        <Link
+          to={path}
+          onClick={() => setModalClose()}
+          className={newClassName ? `modalItem ${newClassName}` : "modalItem"}
+        >
+          {icon}
+          <p>{text}</p>
+        </Link>
+      )}
+      {close && (
+        <div
+          onClick={() => {
+            setResponse();
+            setModalClose();
+          }}
+          className={newClassName ? `modalItem ${newClassName}` : "modalItem"}
+        >
+          {icon}
+          <p>{text}</p>
+        </div>
+      )}
+    </>
+  );
 }

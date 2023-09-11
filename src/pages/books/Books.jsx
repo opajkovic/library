@@ -120,32 +120,32 @@ export default function Books() {
             {
               text: "Pogledaj detalje",
               icon: <FaRegFile />,
-              path: "/books/",
+              path: "",
             },
             {
               text: "Izmijeni knjigu",
               icon: <FaEdit />,
-              path: "/books/",
+              path: "edit",
             },
             {
               text: "Otpisi knjigu",
               icon: <FaLevelUpAlt />,
-              path: "/books/",
+              path: "otpisi-knjigu",
             },
             {
               text: "Izdaj knjigu",
               icon: <FaHandScissors />,
-              path: "/books/",
+              path: "izdaj-knjigu",
             },
             {
               text: "Vrati knjigu",
               icon: <FaRedo />,
-              path: "/books/",
+              path: "vrati-knjigu",
             },
             {
               text: "Rezervisi knjigu",
               icon: <FaCalendar />,
-              path: "/books/",
+              path: "rezervisi-knjigu",
             },
             {
               text: "Izbrisi knjigu",

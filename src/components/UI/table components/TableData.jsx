@@ -10,7 +10,7 @@ import ConfirmModal from "../../../layout/modal/confirmModal/ConfirmModal";
 const MiddleDataCell = ({ item, headers, options, path }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [rowId, setRowId] = useState(null);
-  const [confirmModalState, setCconfirmModalStat] = useState(false);
+  const [confirmModalState, setConfirmModalStat] = useState(false);
 
   const handleOpenModal = (rowId) => {
     setRowId(rowId);
@@ -35,9 +35,7 @@ const MiddleDataCell = ({ item, headers, options, path }) => {
 
               {/* Uslovno dadavanje linka za autore, bibliotekare, studente i ucenike */}
               {path ? (
-                <Link to={`${path}/${row.id}`}>
-                  {row[header.dataKey]}
-                </Link>
+                <Link to={`${path}/${row.id}`}>{row[header.dataKey]}</Link>
               ) : (
                 row[header.dataKey]
               )}
@@ -55,40 +53,49 @@ const MiddleDataCell = ({ item, headers, options, path }) => {
           )}
 
           {/* Uslovno otvaranje modala sa opcijama */}
-          {header.dropdown && modalOpen && row.id == rowId ? (
+          {header.dropdown && modalOpen && row.id == rowId && (
             <Modal
               setModalClose={() => {
                 handleCloseModal();
               }}
               component={options.map((option, i) => {
-                if(option.noPath == true){
+                if (option.noPath === true) {
+                  return (
+                    <ModalItem
+                      setModalClose={() => {
+                        handleCloseModal();
+                      }}
+                      key={i}
+                      newClassName="modalItemChange"
+                      setResponse={()=>setConfirmModalStat(true)}
+                      icon={option.icon}
+                      text={option.text}
+                      close={true}
+                      closeModals={setModalOpen}
+                    />
+                  );
+                } else {
                   return (
                     <ModalItem
                       key={i}
                       newClassName="modalItemChange"
-                      setResponse={setCconfirmModalStat}
                       icon={option.icon}
                       text={option.text}
-                      noPath={true}
-                      closeModals={setModalOpen}
+                      path={`${path}/${row.id}/${option.path}`}
                     />
-                  )
-                }else{
-                return (
-                  <ModalItem
-                    key={i}
-                    newClassName="modalItemChange"
-                    icon={option.icon}
-                    text={option.text}
-                    path={`${option.path}${row.id}`}
-                  />
-                )}
+                  );
+                }
               })}
             />
-          ) : null}
+          )}
         </td>
       ))}
-      {confirmModalState ? <ConfirmModal text={"Jeste li sigurni da zelite da izbrisete?"} setCloseModal={setCconfirmModalStat} /> : <></>}
+      {confirmModalState && (
+        <ConfirmModal
+          text={"Jeste li sigurni da zelite da izbrisete?"}
+          setCloseModal={setConfirmModalStat}
+        />
+      )}
     </tr>
   ));
 };

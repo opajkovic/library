@@ -92,12 +92,12 @@ export default function Authors() {
             {
               text: "Pogledaj detalje",
               icon: <FaFile />,
-              path: "/authors/",
+              path: "",
             },
             {
               text: "Izmijeni autora",
               icon: <FaEdit />,
-              path: "/authors/",
+              path: "edit",
             },
             {
               text: "Izbrisi autora",

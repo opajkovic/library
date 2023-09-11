@@ -35,8 +35,6 @@ const ModalBox = ({ changeModal, modalProfileShow, setModalClose }) => {
             <div className="modalHeader">
               <ModalItem
                 onClickModalItem={clickProfile}
-                setResponse={() => {}}
-                closeModals={() => {}}
                 setModalClose={setModalClose}
                 icon={<FaFile className="modalIcon" />}
                 text={"Profile"}

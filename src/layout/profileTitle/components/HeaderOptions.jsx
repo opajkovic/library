@@ -85,11 +85,11 @@ export default function HeaderOptions({
             component={
               <div>
                 <ModalItem
-                  setResponse={setConfirmState}
-                  closeModals={closeModals}
-                  noPath={true}
+                  setResponse={()=>setConfirmState(true)}
+                  setModalClose={closeModals}
                   icon={<FaTrash />}
                   text={"Izbrisi"}
+                  close={true}
                 />
               </div>
             }

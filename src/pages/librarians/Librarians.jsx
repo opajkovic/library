@@ -88,12 +88,12 @@ const Librarians = () => {
             {
               text: "Pogledaj detalje",
               icon: <FaFile />,
-              path: "/librarians/",
+              path: "",
             },
             {
               text: "Izmijeni korisnika",
               icon: <FaEdit />,
-              path: "/librarians/",
+              path: "edit",
             },
             {
               text: "Izbrisi korisnika",
