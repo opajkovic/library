@@ -13,7 +13,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 
 // Author
 import Authors, { LoaderAuthors } from "./pages/authors/Authors";
-import AuthorProfile from "./pages/authorProfile/AuthorProfile";
+import AuthorProfile, { LoaderAuthorProfile } from "./pages/authorProfile/AuthorProfile";
 import EditAuthor from "./pages/authorProfile/AuthorEdit";
 import NewAuthor from "./pages/authors/NewAuthor";
 
@@ -198,7 +198,7 @@ const router = createBrowserRouter(
         <Route
           path="/authors/:id"
           element={<AuthorProfile />}
-          loader={LoaderAuthors}
+          loader={LoaderAuthorProfile}
         />
         <Route
           path="/authors/:id/edit"
