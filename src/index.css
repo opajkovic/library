@@ -121,7 +121,7 @@ ul li {
   display: flex;
   flex-direction: column;
   padding: 0 5rem 0 2rem;
-  animation: scale-in-fade-in 0.5s ease-out forwards;
+  animation: blur 0.5s ease forwards;
 }
 
 p {
@@ -156,12 +156,12 @@ p {
   }
 }
 
-@keyframes scale-in-fade-in {
+@keyframes blur {
   0% {
-    transform: translateX(-100%);
+    filter: blur(5rem);
   }
   100% {
-    transform: translateX(0);
+    filter: blur(0);
   }
 }
 

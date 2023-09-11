@@ -14,12 +14,7 @@ const headers = [
   { headerName: "Ime i prezime", sort: true, dropdown: false, dataKey: "name" },
   { headerName: "email", sort: false, dropdown: false, dataKey: "email" },
   { headerName: "role", sort: false, dropdown: false, dataKey: "role" },
-  {
-    headerName: "Username",
-    sort: false,
-    dropdown: true,
-    dataKey: "username",
-  },
+  { headerName: "Username", sort: false, dropdown: true, dataKey: "username" },
 ];
 
 const Librarians = () => {
@@ -35,8 +30,6 @@ const Librarians = () => {
   const dispatchData = useSelector((state) => state.search.searchData);
   const searchData = dispatchData.searchData;
 
-  console.log(searchData);
-
   const handlePageClick = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
   };
@@ -51,7 +44,7 @@ const Librarians = () => {
 
   useEffect(() => {
     if (searchData !== undefined) {
-      setLibrarians(searchData);
+      setLibrarians(searchData.filter(item => item.role === "Bibliotekar"));
     }
   }, [searchData]);
 

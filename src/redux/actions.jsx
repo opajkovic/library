@@ -5,14 +5,7 @@ export const fetchSearchData = (headers, value, headline) => {
   return async (dispatch) => {
     const fetchingData = async () => {
       const response = await api.get(headline);
-      let responseData;
-      if (headline === "/users") {
-        responseData = response.data.data.filter(
-          (item) => item.role === "Bibliotekar"
-        );
-      } else {
-        responseData = response.data.data;
-      }
+      const responseData = response.data.data;
       const filteredData = responseData.filter((item) => {
         return headers.some((header) => {
           const columnValue = item[header.dataKey];

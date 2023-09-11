@@ -2,6 +2,16 @@
   display: flex;
   flex-direction: column;
   padding: 7rem 2rem 0 2rem;
+  animation: blur 0.5s ease forwards;
+}
+
+@keyframes blur {
+  0% {
+    filter: blur(5rem);
+  }
+  100% {
+    filter: blur(0);
+  }
 }
 
 .user-info ul {

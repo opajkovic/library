@@ -5,6 +5,16 @@
   list-style: none;
   margin: 0;
   gap: 3rem;
+  animation: blur 0.5s ease forwards;
+}
+
+@keyframes blur {
+  0% {
+    filter: blur(5rem);
+  }
+  100% {
+    filter: blur(0);
+  }
 }
 
 .author-info-wrapper li {
