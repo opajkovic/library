@@ -4,7 +4,7 @@ import Input from "./Input";
 import "./TableControl.css";
 import Select from "./Select";
 
-const TableControl = ({hide, onClick, title, itemsPerPageHandler, search}) => {
+const TableControl = ({hide, onClick, title, itemsPerPageHandler, searchGlobal}) => {
   return (
     <div className="table-control">
       {!hide && (
@@ -23,7 +23,7 @@ const TableControl = ({hide, onClick, title, itemsPerPageHandler, search}) => {
             type: "text",
             inputClass: "form-control",
             placeholder: "Search...",
-            onChange: search
+            onChange: searchGlobal
           }}
           className="table-global-search"
         />

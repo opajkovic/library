@@ -8,7 +8,7 @@ import "./librarians.css";
 import { FaEdit, FaFile, FaTrash } from "react-icons/fa";
 import api from "../../api/apiCalls";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSearchData } from "../../redux/actions";
+import { filterSearchedData } from "../../redux/actions";
 
 const headers = [
   { headerName: "Ime i prezime", sort: true, dropdown: false, dataKey: "name" },
@@ -27,8 +27,7 @@ const Librarians = () => {
   const [search, setSearch] = useState("");
 
   const fetchedData = useLoaderData();
-  const dispatchData = useSelector((state) => state.search.searchData);
-  const searchData = dispatchData.searchData;
+  const searchData = useSelector((state) => state.search.searchData);
 
   const handlePageClick = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
@@ -39,31 +38,30 @@ const Librarians = () => {
   };
 
   useEffect(() => {
-    setLibrarians(fetchedData);
-  }, [fetchedData]);
+    setLibrarians(fetchedData)
+  }, []);
 
   useEffect(() => {
-    if (searchData !== undefined) {
-      setLibrarians(searchData.filter(item => item.role === "Bibliotekar"));
+    if (search.length > 0) {
+      setLibrarians(searchData);
+    } else {
+      setLibrarians(fetchedData);
     }
-  }, [searchData]);
-
-  useEffect(() => {
-    dispatch(fetchSearchData(headers, search, "/users"));
-  }, [dispatch]);
+  }, [search, fetchedData]);
 
   const handleClick = () => {
     navigate("/librarians/new");
   };
 
-  const handleSearchInputChange = (event) => {
+  const handleGlobalSearch = (event) => {
     const searchValue = event.target.value.toLowerCase();
     setSearch(searchValue);
-    dispatch(fetchSearchData(headers, searchValue, "/users"));
+    dispatch(filterSearchedData(fetchedData, headers, searchValue));
   };
 
-  const handleLowerSearchInputs = (headerName, searchValue) => {
-    dispatch(fetchSearchData(headerName, searchValue, "/users"));
+  const handleColumnSearch = (headerName, searchValue) => {
+    setSearch(searchValue);
+    dispatch(filterSearchedData(fetchedData, headerName, searchValue));
   };
 
   const startIndex = currentPage * itemsPerPage;
@@ -79,13 +77,13 @@ const Librarians = () => {
           title="Novi bibliotekar"
           onClick={() => handleClick()}
           itemsPerPageHandler={itemPerPageHandler}
-          search={handleSearchInputChange}
+          searchGlobal={handleGlobalSearch}
         />
         <Table
           path="/librarians"
           headers={headers}
           tableData={librariansToDisplay}
-          handleSearchInputChange={handleLowerSearchInputs}
+          searchColumn={handleColumnSearch}
           options={[
             {
               text: "Pogledaj detalje",

@@ -10,11 +10,13 @@ export default function SettingsTable(props) {
         title={props.title}
         onClick={props.onClick}
         itemsPerPageHandler={props.itemPerPageHandler}
+        searchGlobal={props.searchGlobal}
       />
       <Table
         tableData={props.tableData}
         headers={props.headers}
         options={props.options}
+        searchColumn={props.searchColumn}
       />
       <Pagination
         items={props.tableData}

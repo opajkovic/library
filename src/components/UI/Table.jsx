@@ -3,7 +3,7 @@ import Thead from "./table components/Thead";
 import TableData from "./table components/TableData";
 import SearchTableInputs from "./table components/SearchTableInputs";
 
-const Table = ({ headers, tableData, options, path, className, handleSearchInputChange }) => {
+const Table = ({ headers, tableData, options, path, className, searchColumn}) => {
   return (
     <table className={`${className} table-container`}>
       <Thead headers={headers} />
@@ -20,7 +20,7 @@ const Table = ({ headers, tableData, options, path, className, handleSearchInput
             path={path}
           />
         )}
-        <SearchTableInputs headers={headers} handleSearchInputChange={handleSearchInputChange} />
+        <SearchTableInputs headers={headers} searchColumn={searchColumn} />
       </tbody>
     </table>
   );

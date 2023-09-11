@@ -2,27 +2,28 @@ import { useEffect, useState } from "react";
 import "./zanrovi.css";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
 import Menu from "../../layouts/menu/Menu";
-import { useLoaderData, useNavigate, useOutletContext } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import api from "../../../../api/apiCalls";
+import { useDispatch, useSelector } from "react-redux";
+import { filterSearchedData } from "../../../../redux/actions";
 
 const headers = [
   { headerName: "Zanr", sort: true, dropdown: true, dataKey: "name" },
 ];
 
 export default function Zanrovi() {
-  const { setRoute } = useOutletContext();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const genresData = useLoaderData();
 
+  const [genres, setGenres] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [search, setSearch] = useState("");
 
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const genresToDisplay = genresData.slice(startIndex, endIndex);
-  const pageCount = Math.ceil(genresData.length / itemsPerPage);
+  const fetchedData = useLoaderData();
+  const searchData = useSelector((state) => state.search.searchData);
 
   const handlePageClick = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
@@ -33,12 +34,36 @@ export default function Zanrovi() {
   };
 
   useEffect(() => {
-    setRoute("settings");
+    setGenres(fetchedData);
   }, []);
+
+  useEffect(() => {
+    if (search.length > 0) {
+      setGenres(searchData);
+    } else {
+      setGenres(fetchedData);
+    }
+  }, [search, fetchedData]);
 
   const handleClick = () => {
     navigate("./new");
   };
+
+  const handleGlobalSearch = (event) => {
+    const searchValue = event.target.value.toLowerCase();
+    setSearch(searchValue);
+    dispatch(filterSearchedData(fetchedData, headers, searchValue));
+  };
+
+  const handleColumnSearch = (headerName, searchValue) => {
+    setSearch(searchValue);
+    dispatch(filterSearchedData(fetchedData, headerName, searchValue));
+  };
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const genresToDisplay = genres.slice(startIndex, endIndex);
+  const pageCount = Math.ceil(genres.length / itemsPerPage);
 
   return (
     <div>
@@ -50,6 +75,8 @@ export default function Zanrovi() {
           title="Novi žanr"
           tableData={genresToDisplay}
           headers={headers}
+          searchGlobal={handleGlobalSearch}
+          searchColumn={handleColumnSearch}
           options={[
             {
               text: "Izmijeni zanr",

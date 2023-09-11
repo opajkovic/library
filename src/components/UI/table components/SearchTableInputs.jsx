@@ -1,9 +1,9 @@
 import "../Table.css";
 
-const SearchTableInputs = ({ headers, handleSearchInputChange }) => {
+const SearchTableInputs = ({ headers, searchColumn }) => {
   const handleInputChange = (event, headerName) => {
     const searchValue = event.target.value.toLowerCase();
-    handleSearchInputChange([headerName], searchValue);
+    searchColumn([headerName], searchValue);
   };
 
   return (

@@ -1,30 +1,18 @@
-import api from "../api/apiCalls";
-import { searchActions } from "./search-slice";
+import { searchedData } from "./search-data";
 
-export const fetchSearchData = (headers, value, headline) => {
+export const filterSearchedData = (data, headers, inputValue ) => {
   return async (dispatch) => {
-    const fetchingData = async () => {
-      const response = await api.get(headline);
-      const responseData = response.data.data;
-      const filteredData = responseData.filter((item) => {
+    try {
+      const filteredData = data.filter((item) => {
         return headers.some((header) => {
           const columnValue = item[header.dataKey];
-          return columnValue.toLowerCase().includes(value);
+          return columnValue.toLowerCase().includes(inputValue);
         });
       });
 
-      return filteredData;
-    };
-
-    try {
-      const filteredData = await fetchingData();
-      dispatch(
-        searchActions.fetchData({
-          searchData: filteredData || [],
-        })
-      );
+      dispatch(searchedData(filteredData || []));
     } catch (error) {
-      console.error("Error fetching search data:", error);
+      console.error("Error filtering/searching data:", error);
     }
   };
 };

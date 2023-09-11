@@ -2,27 +2,28 @@ import { useEffect, useState } from "react";
 import "./izdavac.css";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
 import Menu from "../../layouts/menu/Menu";
-import { useLoaderData, useNavigate, useOutletContext } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import api from "../../../../api/apiCalls";
+import { useDispatch, useSelector } from "react-redux";
+import { filterSearchedData } from "../../../../redux/actions";
 
 const headers = [
   { headerName: "Izdavac", sort: true, dropdown: true, dataKey: "name" },
 ];
 
 export default function Izdavac() {
-  const { setRoute } = useOutletContext();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const publisherData = useLoaderData();
 
+  const [publishers, setPublishers] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [search, setSearch] = useState("");
 
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const publisherToDisplay = publisherData.slice(startIndex, endIndex);
-  const pageCount = Math.ceil(publisherData.length / itemsPerPage);
+  const fetchedData = useLoaderData();
+  const searchData = useSelector((state) => state.search.searchData);
 
   const handlePageClick = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
@@ -33,12 +34,36 @@ export default function Izdavac() {
   };
 
   useEffect(() => {
-    setRoute("settings");
+    setPublishers(fetchedData);
   }, []);
+
+  useEffect(() => {
+    if (search.length > 0) {
+      setPublishers(searchData);
+    } else {
+      setPublishers(fetchedData);
+    }
+  }, [search, fetchedData]);
 
   const handleClick = () => {
     navigate("./new");
   };
+
+  const handleGlobalSearch = (event) => {
+    const searchValue = event.target.value.toLowerCase();
+    setSearch(searchValue);
+    dispatch(filterSearchedData(fetchedData, headers, searchValue));
+  };
+
+  const handleColumnSearch = (headerName, searchValue) => {
+    setSearch(searchValue);
+    dispatch(filterSearchedData(fetchedData, headerName, searchValue));
+  };
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const publishersToDisplay = publishers.slice(startIndex, endIndex);
+  const pageCount = Math.ceil(publishers.length / itemsPerPage);
 
   return (
     <div>
@@ -48,8 +73,10 @@ export default function Izdavac() {
       <div className="page-wrapper">
         <SettingsTable
           title="Novi izdavač"
-          tableData={publisherToDisplay}
+          tableData={publishersToDisplay}
           headers={headers}
+          searchGlobal={handleGlobalSearch}
+          searchColumn={handleColumnSearch}
           options={[
             {
               text: "Izmijeni izdavaca",

@@ -2,27 +2,28 @@ import { useEffect, useState } from "react";
 import "./format.css";
 import Menu from "../../layouts/menu/Menu";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
-import { useLoaderData, useNavigate, useOutletContext } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import api from "../../../../api/apiCalls";
+import { useDispatch, useSelector } from "react-redux";
+import { filterSearchedData } from "../../../../redux/actions";
 
 const headers = [
   { headerName: "Format", sort: true, dropdown: true, dataKey: "name" },
 ];
 
 export default function Format() {
-  const { setRoute } = useOutletContext();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const formatData = useLoaderData();
 
+  const [format, setFormat] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [search, setSearch] = useState("");
 
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const formatToDisplay = formatData.slice(startIndex, endIndex);
-  const pageCount = Math.ceil(formatData.length / itemsPerPage);
+  const fetchedData = useLoaderData();
+  const searchData = useSelector((state) => state.search.searchData);
 
   const handlePageClick = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
@@ -33,12 +34,37 @@ export default function Format() {
   };
 
   useEffect(() => {
-    setRoute("settings");
+    setFormat(fetchedData);
   }, []);
+
+  useEffect(() => {
+    if (search.length > 0) {
+      setFormat(searchData);
+    } else {
+      setFormat(fetchedData);
+    }
+  }, [search, fetchedData]);
 
   const handleClick = () => {
     navigate("./new");
   };
+
+  const handleGlobalSearch = (event) => {
+    const searchValue = event.target.value.toLowerCase();
+    setSearch(searchValue);
+    dispatch(filterSearchedData(fetchedData, headers, searchValue));
+  };
+
+  const handleColumnSearch = (headerName, searchValue) => {
+    setSearch(searchValue);
+    dispatch(filterSearchedData(fetchedData, headerName, searchValue));
+  };
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const formatToDisplay = format.slice(startIndex, endIndex);
+  const pageCount = Math.ceil(format.length / itemsPerPage);
+
   return (
     <div>
       <PageTitle title="Settings" />
@@ -49,6 +75,8 @@ export default function Format() {
           title="Novi format"
           tableData={formatToDisplay}
           headers={headers}
+          searchGlobal={handleGlobalSearch}
+          searchColumn={handleColumnSearch}
           options={[
             {
               text: "Izmijeni format",

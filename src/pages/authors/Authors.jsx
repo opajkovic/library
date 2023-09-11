@@ -8,7 +8,7 @@ import { FaEdit, FaFile, FaTrash } from "react-icons/fa";
 import api from "../../api/apiCalls";
 import "./Author.css";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSearchData } from "../../redux/actions";
+import { filterSearchedData } from "../../redux/actions";
 
 const headers = [
   { headerName: "Ime autora", sort: true, dropdown: false, dataKey: "name" },
@@ -30,9 +30,7 @@ export default function Authors() {
   const [search, setSearch] = useState("");
 
   const fetchedData = useLoaderData();
-  const dispatchData = useSelector((state) => state.search.searchData);
-  const searchData = dispatchData.searchData;
-  console.log(searchData);
+  const searchData = useSelector((state) => state.search.searchData);
 
   const handlePageClick = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
@@ -43,31 +41,30 @@ export default function Authors() {
   };
 
   useEffect(() => {
-    setAuthors(fetchedData);
-  }, [fetchedData]);
+    setAuthors(fetchedData)
+  }, []);
 
   useEffect(() => {
-    if (searchData !== undefined) {
+    if (search.length > 0) {
       setAuthors(searchData);
+    } else {
+      setAuthors(fetchedData);
     }
-  }, [searchData]);
-
-  useEffect(() => {
-    dispatch(fetchSearchData(headers, search, "/authors"));
-  }, [dispatch]);
+  }, [search, fetchedData]);
 
   const handleClick = () => {
     navigate("/authors/new");
   };
 
-  const handleSearchInputChange = (event) => {
+  const handleGlobalSearch = (event) => {
     const searchValue = event.target.value.toLowerCase();
     setSearch(searchValue);
-    dispatch(fetchSearchData(headers, searchValue, "/authors"));
+    dispatch(filterSearchedData(fetchedData, headers, searchValue));
   };
 
-  const handleLowerSearchInputs = (headerName, searchValue) => {
-    dispatch(fetchSearchData(headerName, searchValue, "/authors"));
+  const handleColumnSearch = (headerName, searchValue) => {
+    setSearch(searchValue);
+    dispatch(filterSearchedData(fetchedData, headerName, searchValue));
   };
 
   const startIndex = currentPage * itemsPerPage;
@@ -83,14 +80,14 @@ export default function Authors() {
           title="Novi autor"
           onClick={() => handleClick()}
           itemsPerPageHandler={itemPerPageHandler}
-          search={handleSearchInputChange}
+          searchGlobal={handleGlobalSearch}
         />
         <Table
           className="authors-table"
           path="/authors"
           tableData={authorsToDisplay}
           headers={headers}
-          handleSearchInputChange={handleLowerSearchInputs}
+          searchColumn={handleColumnSearch}
           options={[
             {
               text: "Pogledaj detalje",

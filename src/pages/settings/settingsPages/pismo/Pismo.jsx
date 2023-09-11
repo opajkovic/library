@@ -2,27 +2,28 @@ import React, { useEffect, useState } from "react";
 import "./pismo.css";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
 import Menu from "../../layouts/menu/Menu";
-import { useLoaderData, useNavigate, useOutletContext } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import api from "../../../../api/apiCalls";
+import { useDispatch, useSelector } from "react-redux";
+import { filterSearchedData } from "../../../../redux/actions";
 
 const headers = [
   { headerName: "Pismo", sort: true, dropdown: true, dataKey: "name" },
 ];
 
 export default function Pismo() {
-  const { setRoute } = useOutletContext();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const languagesData = useLoaderData();
 
+  const [language, setLanguage] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [search, setSearch] = useState("");
 
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const languagesToDisplay = languagesData.slice(startIndex, endIndex);
-  const pageCount = Math.ceil(languagesData.length / itemsPerPage);
+  const fetchedData = useLoaderData();
+  const searchData = useSelector((state) => state.search.searchData);
 
   const handlePageClick = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
@@ -33,12 +34,36 @@ export default function Pismo() {
   };
 
   useEffect(() => {
-    setRoute("settings");
+    setLanguage(fetchedData);
   }, []);
+
+  useEffect(() => {
+    if (search.length > 0) {
+      setLanguage(searchData);
+    } else {
+      setLanguage(fetchedData);
+    }
+  }, [search, fetchedData]);
 
   const handleClick = () => {
     navigate("./new");
   };
+
+  const handleGlobalSearch = (event) => {
+    const searchValue = event.target.value.toLowerCase();
+    setSearch(searchValue);
+    dispatch(filterSearchedData(fetchedData, headers, searchValue));
+  };
+
+  const handleColumnSearch = (headerName, searchValue) => {
+    setSearch(searchValue);
+    dispatch(filterSearchedData(fetchedData, headerName, searchValue));
+  };
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const languageToDisplay = language.slice(startIndex, endIndex);
+  const pageCount = Math.ceil(language.length / itemsPerPage);
 
   return (
     <div>
@@ -49,8 +74,10 @@ export default function Pismo() {
         <SettingsTable
           itemsPerPageHandler={itemPerPageHandler}
           title="Novo pismo"
-          tableData={languagesToDisplay}
+          tableData={languageToDisplay}
           headers={headers}
+          searchGlobal={handleGlobalSearch}
+          searchColumn={handleColumnSearch}
           options={[
             {
               text: "Izmijeni pismo",
