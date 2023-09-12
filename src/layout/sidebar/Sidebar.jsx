@@ -35,7 +35,7 @@ function Sidebar({ route }) {
         setOpen={() => setIsOpen(true)}
         setClose={() => setIsOpen(false)}
       />
-      <ul onMouseEnter={() => setIsOpen(true)}>
+      <ul>
         <NavList isOpen={isOpen} />
         <ExpandItem
           isOpen={isOpen}
