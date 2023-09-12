@@ -9,7 +9,7 @@ import {
 } from "react-icons/fa";
 import NavItem from "./NavItem";
 
-const NavList = ({ isOpen, route }) => {
+const NavList = ({ isOpen, route, setClose }) => {
   const navItems = [
     { path: "dashboard", text: "Dashborad", icon: <FaTachometerAlt /> },
     { path: "librarians", text: "Bibliotekari", icon: <FaAddressBook /> },
@@ -29,6 +29,7 @@ const NavList = ({ isOpen, route }) => {
         <li key={item.path}>
           <NavItem
             isOpen={isOpen}
+            setClose={setClose}
             active={route === item.path}
             path={item.path}
             text={item.text}

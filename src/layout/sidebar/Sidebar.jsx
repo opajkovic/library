@@ -22,6 +22,7 @@ function Sidebar({ route }) {
     setIsExtendOpen(false);
   }, [window.location.href]);
 
+  console.log(isOpen)
   return (
     <aside className={isOpen ? "sidebar open" : "sidebar closed"}>
       <div
@@ -36,7 +37,7 @@ function Sidebar({ route }) {
         setClose={() => setIsOpen(false)}
       />
       <ul>
-        <NavList isOpen={isOpen} />
+        <NavList isOpen={isOpen} setClose={() => setIsOpen(false)}/>
         <ExpandItem
           isOpen={isOpen}
           isExtendOpen={isExtendOpen}
