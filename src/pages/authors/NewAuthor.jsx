@@ -1,6 +1,8 @@
+import { useState } from "react";
 import useInput from "../../hooks/useInput";
 import SettingsForm from "../../components/UI/SettingsForm";
-import "./NewAuthor.css"
+import "./NewAuthor.css";
+import api from "../../api/apiCalls";
 
 const isNotEmptyString = (value) => value.trim().length > 0;
 
@@ -14,21 +16,36 @@ const NewAuthor = () => {
     reset: resetAuthor,
   } = useInput(isNotEmptyString);
 
+  const [richTextareaValue, setRichTextareaValue] = useState("");
+
+  const richTextareaChangeHandler = (newValue) => {
+    setRichTextareaValue(newValue);
+  };
+
   let formIsValid = false;
   if (authorIsValid) {
     formIsValid = true;
   }
 
-  const resetHandler = () => {
-    resetAuthor();
+  const formData = {
+    name: authorValue.split(" ")[0],
+    surname: authorValue.split(" ")[1],
+    biography: richTextareaValue,
+    image: null,
   };
 
-  const submitHandler = (event) => {
-    event.preventDefault();
-    if (!formIsValid) {
-      return;
+  const submitHandler = async () => {
+    const response = await api.post(`/authors/store`, formData);
+    if (response.status === 200) {
+      console.log("succssfully posted");
+      setRichTextareaValue("");
+      resetAuthor();
     }
+  };
+
+  const resetHandler = () => {
     resetAuthor();
+    setRichTextareaValue("");
   };
 
   const authorClasses = authorHasError
@@ -51,7 +68,9 @@ const NewAuthor = () => {
       ]}
       richTextarea={{
         label: "Opis",
-        value: ""
+        name: "description",
+        value: richTextareaValue,
+        valueUpdate: richTextareaChangeHandler,
       }}
       title="Novi autor"
       firstLinkName="Autori"
@@ -59,7 +78,7 @@ const NewAuthor = () => {
       pathDashboard="/dashboard"
       formIsValid={formIsValid}
       reset={resetHandler}
-      submitHandler={() => submitHandler()}
+      submitHandler={submitHandler}
       className="new-author-form"
     />
   );

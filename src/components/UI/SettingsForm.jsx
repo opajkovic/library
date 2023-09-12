@@ -9,6 +9,12 @@ import InputSelect from "./InputSelect";
 import SecondRowHeaders from "./settingsForm components/SecondRowHeaders";
 
 const SettingsForm = (props) => {
+  
+const submitHandler = (event) => {
+  event.preventDefault();
+  props.submitHandler();
+}
+
   return (
     <>
       {props.title && (
@@ -30,7 +36,7 @@ const SettingsForm = (props) => {
       )}
 
       <form
-        onSubmit={props.submitHandler}
+        onSubmit={submitHandler}
         className={`form-wrapper ${props.className}`}
       >
         {props.input &&

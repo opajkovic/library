@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import SettingsForm from "../../components/UI/SettingsForm";
 import useInput from "../../hooks/useInput";
 import "./NewBook.css";
-import { redirect, useLoaderData, useNavigate } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import api from "../../api/apiCalls";
 
 const isNotEmptyString = (value) => value.trim().length > 0;

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import SettingsForm from "../../components/UI/SettingsForm";
 import "./AuthorEdit.css";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useParams } from "react-router";
 import { createChangeHandler, getInvalidClass } from "../../util/Functions";
+import api from "../../api/apiCalls";
 
 const EditAuthor = () => {
   const [richTextReset, setRichTextReset] = useState(false);
@@ -10,10 +11,10 @@ const EditAuthor = () => {
     name: "",
     bio: "",
   });
+  const params = useParams();
   const fetchedData = useLoaderData();
   const nameSurname = `${fetchedData.name} ${fetchedData.surname}`;
 
-  console.log(authorInfo)
   useEffect(() => {
     setAuthorInfo({ ...fetchedData, name: nameSurname });
   }, []);
@@ -25,6 +26,21 @@ const EditAuthor = () => {
   if (nameClass === "form-control") {
     formIsValid = true;
   }
+
+  const formData = {
+    name: authorInfo.name.split(" ")[0],
+    surname: authorInfo.name.split(" ")[1],
+    biography: authorInfo.bio,
+    image: null,
+  };
+
+  console.log(formData)
+  const submitHandler = async () => {
+    const response = await api.put(`/authors/${params.id}`, formData);
+    if (response.status === 200) {
+      console.log("succssfully posted")
+  };
+}
 
   const resetHandler = (event) => {
     event.preventDefault();
@@ -55,6 +71,7 @@ const EditAuthor = () => {
       pathDashboard="/dashboard"
       formIsValid={formIsValid}
       reset={resetHandler}
+      submitHandler={submitHandler}
       edit={true}
     />
   );
