@@ -2,7 +2,7 @@ import useInput from "../../hooks/useInput";
 import SettingsForm from "../../components/UI/SettingsForm";
 import "./NewAuthor.css"
 
-const isNotEmptyString = (value) => /^[A-Za-z]+(?:[ -][A-Za-z]+)*$/.test(value);
+const isNotEmptyString = (value) => value.trim().length > 0;
 
 const NewAuthor = () => {
   const {

@@ -3,12 +3,16 @@ import useInput from "../../hooks/useInput";
 import SettingsForm from "../../components/UI/SettingsForm";
 import "./NewStudent.css";
 
-const isNotEmptyString = (value) =>
-  value.trim() !== "" && /^[a-zA-Z]+$/.test(value);
+const nameRegex = /^[a-zA-Z]+\s[a-zA-Z]+$/;
+const nameTest = (value) => nameRegex.test(value);
+
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const emailTest = (value) => emailRegex.test(value);
-const isNotEmptyNumber = (value) =>
-  value.trim() !== "" && /^-?\d+(\.\d+)?$/.test(value);
+
+const jmbgRegex = /^\d{13}$/;
+const jmbgTest = (value) => jmbgRegex.test(value);
+
+const isNotEmptyString = (value) => value.trim().length > 0;
 
 const NewStudent = () => {
   const {
@@ -18,7 +22,7 @@ const NewStudent = () => {
     valueChangeHandler: imePrezimeChangeHandler,
     inputBlurHandler: imePrezimeBlurHandler,
     reset: resetImePrezime,
-  } = useInput(isNotEmptyString);
+  } = useInput(nameTest);
   const {
     value: jmbgValue,
     isValid: jmbgIsValid,
@@ -26,7 +30,7 @@ const NewStudent = () => {
     valueChangeHandler: jmbgChangeHandler,
     inputBlurHandler: jmbgBlurHandler,
     reset: resetJMBG,
-  } = useInput(isNotEmptyNumber);
+  } = useInput(jmbgTest);
   const {
     value: emailValue,
     hasError: emailHasError,

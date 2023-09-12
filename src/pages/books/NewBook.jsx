@@ -5,7 +5,7 @@ import "./NewBook.css";
 import { redirect, useLoaderData } from "react-router";
 import api from "../../api/apiCalls";
 
-const isNotEmptyString = (value) => /^[A-Za-z]+(?:[ -][A-Za-z]+)*$/.test(value);
+const isNotEmptyString = (value) => value.trim().length > 0;
 
 const NewBook = () => {
   const [categoryIsValid, setCategoryIsValid] = useState(false);
