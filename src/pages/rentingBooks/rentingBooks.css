@@ -6,17 +6,5 @@
 }
 
 .table-wrapper {
-  animation: fade-in 0.5s ease-in forwards;
-}
-
-@keyframes fade-in {
-  0% {
-    transform: translateY(1rem);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  animation: slide-up-fade-in 0.5s ease-in forwards;
 }

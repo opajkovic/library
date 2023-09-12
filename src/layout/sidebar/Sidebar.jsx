@@ -22,7 +22,6 @@ function Sidebar({ route }) {
     setIsExtendOpen(false);
   }, [window.location.href]);
 
-  console.log(isOpen)
   return (
     <aside className={isOpen ? "sidebar open" : "sidebar closed"}>
       <div

@@ -2,14 +2,17 @@ import SettingsForm from "../../../components/UI/SettingsForm";
 import useInput from "../../../hooks/useInput";
 import { useEffect, useState } from "react";
 import "./Specification.css";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 
 export default function NewBookSpecification() {
   const [languageIsValid, setLanguageIsValid] = useState(false);
   const [bookbindIsValid, setBookbindIsValid] = useState(false);
   const [formatIsValid, setFormatIsValid] = useState(false);
-  const fetchedData = useLoaderData()
-  let [data, setData] = useState({})
+  const fetchedData = useLoaderData();
+  let [data, setData] = useState({});
+
+  const [secondLevel, setSecondLevel] = useState(false);
+  const navigate = useNavigate();
 
   const languageHandler = (value) => {
     setLanguageIsValid(value);
@@ -51,14 +54,14 @@ export default function NewBookSpecification() {
     formIsValid = true;
   }
 
-  console.log(languageIsValid, bookbindIsValid, formatIsValid);
   const resetHandler = () => {
-    redirect((window.location.href = "/books/new"));
+    navigate("/books/new/osnovni-detalji")
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
-    return null;
+    setSecondLevel(true);
+    navigate("/books/new/multimedija")
   };
 
   const pagesClasses = pagesHasError ? "form-control invalid" : "form-control";
@@ -66,11 +69,13 @@ export default function NewBookSpecification() {
     ? "form-control invalid"
     : "form-control";
 
-    useEffect(()=>{
-      setData(fetchedData)
-    },[])
+  useEffect(() => {
+    setData(fetchedData);
+    setSecondLevel(false);
+  }, []);
+
   return (
-    <div>
+    <div className="new-book-specification-wrapper">
       <SettingsForm
         input={[
           {
@@ -121,6 +126,7 @@ export default function NewBookSpecification() {
         formIsValid={formIsValid}
         submitHandler={(event) => submitHandler(event)}
         headers={true}
+        secondLevel={secondLevel}
       />
       <SettingsForm
         input={[
@@ -135,6 +141,7 @@ export default function NewBookSpecification() {
             onBlur: serialNumberBlurHandler,
           },
         ]}
+        secondLevel={secondLevel}
         reset={resetHandler}
         formIsValid={formIsValid}
         submitHandler={(event) => submitHandler(event)}

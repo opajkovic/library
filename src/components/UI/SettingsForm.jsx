@@ -21,7 +21,13 @@ const SettingsForm = (props) => {
         />
       )}
 
-      {props.headers && <SecondRowHeaders editHeaders={props.editHeaders}/>}
+      {props.headers && (
+        <SecondRowHeaders
+          editHeaders={props.editHeaders}
+          nextLevel={props.nextLevel}
+          secondLevel={props.secondLevel}
+        />
+      )}
 
       <form
         onSubmit={props.submitHandler}
@@ -38,7 +44,11 @@ const SettingsForm = (props) => {
           ))}
 
         {props.image && (
-          <ImageUploader label="Dodaj ikonicu" className="form-image-input" imagePath={props.imagePath}/>
+          <ImageUploader
+            label="Dodaj ikonicu"
+            className="form-image-input"
+            imagePath={props.imagePath}
+          />
         )}
 
         {props.multimediaImage && (

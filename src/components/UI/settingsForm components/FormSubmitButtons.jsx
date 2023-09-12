@@ -5,7 +5,6 @@ const FormSubmitButtons = ({ disabled, reset }) => {
   return (
     <div className="flex-end btn-end">
       <Button
-        // disabled={disabled}
         btn="btn btn-danger"
         onClick={reset}
       >

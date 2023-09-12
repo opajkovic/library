@@ -30,6 +30,7 @@ const Input = (props) => {
         onKeyUp={onKeyUp}
         placeholder={placeholder}
         disabled={disabled}
+        autoComplete="off"
         required
       />
       {hasError && (

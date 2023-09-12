@@ -1,8 +1,9 @@
 import SettingsForm from "../../../components/UI/SettingsForm";
+import "./Multimedia.css"
 
 export default function NewBookMultimedia() {
   return (
-    <div>
+    <div className="new-book-multimedia">
       <SettingsForm
         title="Nova knjiga"
         firstLinkName="Knjige"

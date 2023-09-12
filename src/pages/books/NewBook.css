@@ -3,6 +3,7 @@
     flex-direction: row;
     width: 100%;
     position: relative;
+    animation: blur 0.5s ease;
 }
 
 @media(max-width: 1400px){

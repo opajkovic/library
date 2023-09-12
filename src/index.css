@@ -113,7 +113,7 @@ ul li {
 .btn-success:hover {
   background-color: var(--green-300);
 }
-.btn-end {
+.flex-end.btn-end {
   position: fixed;
   bottom: 0;
   right: 0;

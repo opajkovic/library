@@ -7,15 +7,6 @@
   animation: blur 0.5s ease forwards;
 }
 
-@keyframes blur {
-  0% {
-    filter: blur(5rem);
-  }
-  100% {
-    filter: blur(0);
-  }
-}
-
 .right-side {
   width: 45%;
   min-width: 550px;

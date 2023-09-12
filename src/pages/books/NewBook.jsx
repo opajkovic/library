@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import SettingsForm from "../../components/UI/SettingsForm";
 import useInput from "../../hooks/useInput";
 import "./NewBook.css";
-import { redirect, useLoaderData } from "react-router";
+import { redirect, useLoaderData, useNavigate } from "react-router";
 import api from "../../api/apiCalls";
 
 const isNotEmptyString = (value) => value.trim().length > 0;
@@ -16,6 +16,9 @@ const NewBook = () => {
   const fetchedData = useLoaderData();
   let [data, setData] = useState({});
   let [authors, setAuthors] = useState([]);
+
+  const [nextLevel, setNextLevel] = useState(false);
+  const navigate = useNavigate();
 
   const categoryHandler = (value) => {
     setCategoryIsValid(value);
@@ -67,12 +70,13 @@ const NewBook = () => {
   }
 
   const resetHandler = () => {
-    redirect((window.location.href = "/books/new"));
+    navigate("/books/new/osnovni-detalji");
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
-    return null;
+    setNextLevel(true);
+    navigate("/books/new/specifikacija");
   };
 
   const bookClasses = bookHasError ? "form-control invalid" : "form-control";
@@ -94,6 +98,7 @@ const NewBook = () => {
   useEffect(() => {
     fetchAuthors();
     setData(fetchedData);
+    setNextLevel(false);
   }, []);
 
   return (
@@ -144,6 +149,7 @@ const NewBook = () => {
         submitHandler={(event) => submitHandler(event)}
         className="new-book-wrapper-left"
         headers={true}
+        nextLevel={nextLevel}
       />
       <SettingsForm
         select={[
@@ -192,6 +198,7 @@ const NewBook = () => {
         submitHandler={(event) => submitHandler(event)}
         formIsValid={formIsValid}
         className="new-book-wrapper-right"
+        nextLevel={nextLevel}
       />
     </div>
   );
