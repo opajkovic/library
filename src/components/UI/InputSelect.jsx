@@ -35,12 +35,14 @@ const InputSelect = (props) => {
 
   const listHandler = (item) => {
     setInputValue(item);
+    input.onChange(item)
     setShow(false);
   };
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
     setClicked(true);
+    input.onChange(inputValue)
   };
 
   useEffect(() => {

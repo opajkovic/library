@@ -1,7 +1,33 @@
 import SettingsForm from "../../../components/UI/SettingsForm";
+import { useDispatch, useSelector } from "react-redux";
+import { resetFormData } from "../../../redux/new-book-data";
+import api from "../../../api/apiCalls";
 import "./Multimedia.css"
+import { useNavigate } from "react-router";
 
 export default function NewBookMultimedia() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const newBook = useSelector((state) => state.newBookData)
+  console.log(newBook)
+
+  const submitHandler = async() => {
+    const response = await api.post(`/books/store`, newBook);
+    if (response.status === 200) {
+      console.log("succssfully posted");
+      navigate("/books/new/multimedija")
+      dispatch(resetFormData())
+    }
+    else {
+      navigate("/books/new/osnovni-detalji")
+    }
+  };
+
+  const resetHandler = () => {
+    navigate("/books/new/osnovni-detalji")
+    dispatch(resetFormData())
+  };
+  
   return (
     <div className="new-book-multimedia">
       <SettingsForm
@@ -11,6 +37,9 @@ export default function NewBookMultimedia() {
         pathDashboard="/dashboard"
         headers={true}
         multimediaImage={true}
+        formIsValid={true}
+        submitHandler={submitHandler}
+        reset={resetHandler}
       />
     </div>
   );

@@ -11,3 +11,9 @@ export const createChangeHandler = (key, setState) => (event) => {
     [key]: event.target.value,
   }));
 };
+
+export const filterAndMap = (dataArray, filterValue) => {
+  return +dataArray
+    .filter((item) => item.name === filterValue)
+    .map((item) => +item.id);
+};

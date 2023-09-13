@@ -2,10 +2,18 @@ import SettingsForm from "../../../components/UI/SettingsForm";
 import useInput from "../../../hooks/useInput";
 import { useEffect, useState } from "react";
 import "./Specification.css";
+import { filterAndMap } from "../../../util/Functions";
+import { useDispatch, useSelector } from "react-redux";
+import { updateFormData, resetFormData } from "../../../redux/new-book-data";
 import { useLoaderData, useNavigate } from "react-router";
 
 export default function NewBookSpecification() {
-  const [languageIsValid, setLanguageIsValid] = useState(false);
+
+  const dispatch = useDispatch();
+  const newBook = useSelector((state) => state.newBookData)
+  console.log(newBook)
+
+  const [scriptIsValid, setScriptIsValid] = useState(false);
   const [bookbindIsValid, setBookbindIsValid] = useState(false);
   const [formatIsValid, setFormatIsValid] = useState(false);
   const fetchedData = useLoaderData();
@@ -14,14 +22,26 @@ export default function NewBookSpecification() {
   const [secondLevel, setSecondLevel] = useState(false);
   const navigate = useNavigate();
 
-  const languageHandler = (value) => {
-    setLanguageIsValid(value);
+  const [scriptValue, setScriptValue] = useState("");
+  const scriptChangeHandler = (newValue) => {
+    setScriptValue(newValue);
+  };
+  const scriptHandler = (value) => {
+    setScriptIsValid(value);
   };
 
+  const [bookbindValue, setBookbindValue] = useState("");
+  const bookbindChangeHandler = (newValue) => {
+    setBookbindValue(newValue);
+  };
   const bookbindHandler = (value) => {
     setBookbindIsValid(value);
   };
 
+  const [formatValue, setFormatValue] = useState("");
+  const formatChangeHandler = (newValue) => {
+    setFormatValue(newValue);
+  };
   const formatHandler = (value) => {
     setFormatIsValid(value);
   };
@@ -46,7 +66,7 @@ export default function NewBookSpecification() {
   let formIsValid = false;
   if (
     pagesIsValid &&
-    languageIsValid &&
+    scriptIsValid &&
     bookbindIsValid &&
     formatIsValid &&
     serialNumberIsValid
@@ -54,13 +74,16 @@ export default function NewBookSpecification() {
     formIsValid = true;
   }
 
-  const resetHandler = () => {
-    navigate("/books/new/osnovni-detalji")
-  };
-
-  const submitHandler = (event) => {
-    event.preventDefault();
+  const submitHandler = () => {
     setSecondLevel(true);
+    const formData = {
+      brStrana: pagesValue,
+      pismo: filterAndMap(data.scripts, scriptValue),
+      povez: filterAndMap(data.bookbinds, bookbindValue),
+      format: filterAndMap(data.formats, formatValue),
+      isbn: serialNumberValue,
+    };
+    dispatch(updateFormData(formData))
     navigate("/books/new/multimedija")
   };
 
@@ -73,6 +96,12 @@ export default function NewBookSpecification() {
     setData(fetchedData);
     setSecondLevel(false);
   }, []);
+
+  const resetHandler = () => {
+    navigate("/books/new/osnovni-detalji")
+    dispatch(resetFormData())
+  };
+
 
   return (
     <div className="new-book-specification-wrapper">
@@ -96,8 +125,10 @@ export default function NewBookSpecification() {
               label: "Izaberite pismo",
               type: "text",
               name: "language",
+              value: scriptValue,
+              onChange: scriptChangeHandler
             },
-            validHandler: languageHandler,
+            validHandler: scriptHandler,
           },
           {
             options: data.bookbinds,
@@ -105,6 +136,8 @@ export default function NewBookSpecification() {
               label: "Izaberite povez",
               type: "text",
               name: "bookbind",
+              value: bookbindValue,
+              onChange: bookbindChangeHandler
             },
             validHandler: bookbindHandler,
           },
@@ -114,6 +147,8 @@ export default function NewBookSpecification() {
               label: "Izaberite format",
               type: "text",
               name: "format",
+              value: formatValue,
+              onChange: formatChangeHandler
             },
             validHandler: formatHandler,
           },
@@ -124,7 +159,7 @@ export default function NewBookSpecification() {
         path="/books"
         pathDashboard="/dashboard"
         formIsValid={formIsValid}
-        submitHandler={(event) => submitHandler(event)}
+        submitHandler={submitHandler}
         headers={true}
         secondLevel={secondLevel}
       />
@@ -135,16 +170,14 @@ export default function NewBookSpecification() {
             inputClasses: serialNumberClasses,
             type: "text",
             name: "pages",
-            value: serialNumberValue,
-            hasError: serialNumberHasError,
-            onChange: serialNumberChangeHandler,
-            onBlur: serialNumberBlurHandler,
+            value: "1234567891011",
+            disabled: true
           },
         ]}
         secondLevel={secondLevel}
         reset={resetHandler}
         formIsValid={formIsValid}
-        submitHandler={(event) => submitHandler(event)}
+        submitHandler={submitHandler}
         className="specification-serial-number"
       />
     </div>
