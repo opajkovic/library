@@ -8,16 +8,15 @@ import { updateFormData, resetFormData } from "../../../redux/new-book-data";
 import { useLoaderData, useNavigate } from "react-router";
 
 export default function NewBookSpecification() {
-
   const dispatch = useDispatch();
-  const newBook = useSelector((state) => state.newBookData)
-  console.log(newBook)
+  const newBook = useSelector((state) => state.newBookData);
+  console.log(newBook);
 
   const [scriptIsValid, setScriptIsValid] = useState(false);
   const [bookbindIsValid, setBookbindIsValid] = useState(false);
   const [formatIsValid, setFormatIsValid] = useState(false);
   const fetchedData = useLoaderData();
-  let [data, setData] = useState({});
+  const [data, setData] = useState({});
 
   const [secondLevel, setSecondLevel] = useState(false);
   const navigate = useNavigate();
@@ -53,24 +52,11 @@ export default function NewBookSpecification() {
     hasError: pagesHasError,
     valueChangeHandler: pagesChangeHandler,
     inputBlurHandler: pagesBlurHandler,
-  } = useInput(isNotEmptyString);
-
-  const {
-    value: serialNumberValue,
-    isValid: serialNumberIsValid,
-    hasError: serialNumberHasError,
-    valueChangeHandler: serialNumberChangeHandler,
-    inputBlurHandler: serialNumberBlurHandler,
+    reset: pagesReset,
   } = useInput(isNotEmptyString);
 
   let formIsValid = false;
-  if (
-    pagesIsValid &&
-    scriptIsValid &&
-    bookbindIsValid &&
-    formatIsValid &&
-    serialNumberIsValid
-  ) {
+  if (pagesIsValid && scriptIsValid && bookbindIsValid && formatIsValid) {
     formIsValid = true;
   }
 
@@ -81,16 +67,13 @@ export default function NewBookSpecification() {
       pismo: filterAndMap(data.scripts, scriptValue),
       povez: filterAndMap(data.bookbinds, bookbindValue),
       format: filterAndMap(data.formats, formatValue),
-      isbn: serialNumberValue,
+      isbn: "1234567891011",
     };
-    dispatch(updateFormData(formData))
-    navigate("/books/new/multimedija")
+    dispatch(updateFormData(formData));
+    navigate("/books/new/multimedija");
   };
 
   const pagesClasses = pagesHasError ? "form-control invalid" : "form-control";
-  const serialNumberClasses = serialNumberHasError
-    ? "form-control invalid"
-    : "form-control";
 
   useEffect(() => {
     setData(fetchedData);
@@ -98,10 +81,13 @@ export default function NewBookSpecification() {
   }, []);
 
   const resetHandler = () => {
-    navigate("/books/new/osnovni-detalji")
-    dispatch(resetFormData())
+    pagesReset();
+    setScriptValue("");
+    setBookbindValue("");
+    setFormatValue("");
+    navigate("/books/new/osnovni-detalji");
+    dispatch(resetFormData());
   };
-
 
   return (
     <div className="new-book-specification-wrapper">
@@ -126,7 +112,7 @@ export default function NewBookSpecification() {
               type: "text",
               name: "language",
               value: scriptValue,
-              onChange: scriptChangeHandler
+              onChange: scriptChangeHandler,
             },
             validHandler: scriptHandler,
           },
@@ -137,7 +123,7 @@ export default function NewBookSpecification() {
               type: "text",
               name: "bookbind",
               value: bookbindValue,
-              onChange: bookbindChangeHandler
+              onChange: bookbindChangeHandler,
             },
             validHandler: bookbindHandler,
           },
@@ -148,7 +134,7 @@ export default function NewBookSpecification() {
               type: "text",
               name: "format",
               value: formatValue,
-              onChange: formatChangeHandler
+              onChange: formatChangeHandler,
             },
             validHandler: formatHandler,
           },
@@ -159,7 +145,7 @@ export default function NewBookSpecification() {
         path="/books"
         pathDashboard="/dashboard"
         formIsValid={formIsValid}
-        submitHandler={submitHandler}
+        submitHandler={(event) => submitHandler(event)}
         headers={true}
         secondLevel={secondLevel}
       />
@@ -167,17 +153,16 @@ export default function NewBookSpecification() {
         input={[
           {
             label: "International Standard Book Num",
-            inputClasses: serialNumberClasses,
             type: "text",
             name: "pages",
             value: "1234567891011",
-            disabled: true
+            disabled: true,
           },
         ]}
         secondLevel={secondLevel}
         reset={resetHandler}
         formIsValid={formIsValid}
-        submitHandler={submitHandler}
+        submitHandler={(event) => submitHandler(event)}
         className="specification-serial-number"
       />
     </div>

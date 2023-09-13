@@ -8,10 +8,9 @@ const InputSelect = (props) => {
   const { options, input, validHandler } = props.select;
   const [show, setShow] = useState(false);
   const [clicked, setClicked] = useState(false);
-  const [inputValue, setInputValue] = useState("");
   const ulRef = useRef(null);
 
-  const hasError = inputValue.trim().length === 0;
+  const hasError = input.value.trim().length === 0;
 
   const clickHandler = () => {
     setShow(!show);
@@ -34,20 +33,18 @@ const InputSelect = (props) => {
   };
 
   const listHandler = (item) => {
-    setInputValue(item);
     input.onChange(item)
     setShow(false);
   };
 
   const handleInputChange = (event) => {
-    setInputValue(event.target.value);
     setClicked(true);
-    input.onChange(inputValue)
+    input.onChange(event.target.value)
   };
 
   useEffect(() => {
     handleValidation();
-  }, [inputValue]);
+  }, [input.value]);
 
   const inputInvalid =
     hasError && clicked ? "form-control invalid" : "form-control";
@@ -58,7 +55,6 @@ const InputSelect = (props) => {
         <Input
           input={{
             ...input,
-            value: inputValue,
             onChange: handleInputChange,
             inputClasses: inputInvalid,
             onClick: clickHandler,

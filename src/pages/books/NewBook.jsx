@@ -11,10 +11,9 @@ import api from "../../api/apiCalls";
 const isNotEmptyString = (value) => value.trim().length > 0;
 
 const NewBook = () => {
-
   const dispatch = useDispatch();
-  const newBook = useSelector((state) => state.newBookData)
-  console.log(newBook)
+  const newBook = useSelector((state) => state.newBookData);
+  console.log(newBook);
   const [categoryIsValid, setCategoryIsValid] = useState(false);
   const [genreIsValid, setGenreIsValid] = useState(false);
   const [authorIsValid, setAuthorIsValid] = useState(false);
@@ -70,6 +69,7 @@ const NewBook = () => {
     hasError: bookHasError,
     valueChangeHandler: bookChangeHandler,
     inputBlurHandler: bookBlurHandler,
+    reset: resetBookValue,
   } = useInput(isNotEmptyString);
 
   const {
@@ -78,6 +78,7 @@ const NewBook = () => {
     hasError: yearHasError,
     valueChangeHandler: yearChangeHandler,
     inputBlurHandler: yearBlurHandler,
+    reset: resetYearValue,
   } = useInput(isNotEmptyString);
 
   const {
@@ -86,6 +87,7 @@ const NewBook = () => {
     hasError: quantityHasError,
     valueChangeHandler: quantityChangeHandler,
     inputBlurHandler: quantityBlurHandler,
+    reset: resetQuantityValue,
   } = useInput(isNotEmptyString);
 
   let formIsValid = false;
@@ -112,15 +114,17 @@ const NewBook = () => {
       authors: filterAndMap(data.authors, authorValue),
       izdavac: filterAndMap(data.publishers, publisherValue),
       godinaIzdavanja: yearValue,
-      knjigaKolicina: quantityValue
+      knjigaKolicina: quantityValue,
     };
-  
-    dispatch(updateFormData(formData))
+
+    dispatch(updateFormData(formData));
     navigate("/books/new/specifikacija");
   };
 
   const bookClasses = bookHasError ? "form-control invalid" : "form-control";
-  const quantityClasses = quantityHasError ? "form-control invalid" : "form-control";
+  const quantityClasses = quantityHasError
+    ? "form-control invalid"
+    : "form-control";
   const yearClasses = yearHasError ? "form-control invalid" : "form-control";
 
   let fetchAuthors = async () => {
@@ -141,8 +145,16 @@ const NewBook = () => {
   }, []);
 
   const resetHandler = () => {
+    setGenreValue("");
+    setCategoryValue("");
+    setRichTextareaValue("");
+    setPublisherValue("");
+    setAuthorValue("");
+    resetBookValue();
+    resetYearValue();
+    resetQuantityValue();
     navigate("/books/new/osnovni-detalji");
-    dispatch(resetFormData())
+    dispatch(resetFormData());
   };
 
   return (
@@ -174,7 +186,7 @@ const NewBook = () => {
               type: "text",
               name: "category",
               value: categoryValue,
-              onChange: categoryChangeHandler
+              onChange: categoryChangeHandler,
             },
             validHandler: categoryHandler,
           },
@@ -184,8 +196,8 @@ const NewBook = () => {
               label: "Izaberite žanr",
               type: "text",
               name: "genre",
-              value: categoryValue,
-              onChange: genreChangeHandler
+              value: genreValue,
+              onChange: genreChangeHandler,
             },
             validHandler: genreHandler,
           },
@@ -196,7 +208,7 @@ const NewBook = () => {
         path="/books"
         pathDashboard="/dashboard"
         formIsValid={formIsValid}
-        submitHandler={submitHandler}
+        submitHandler={(event) => submitHandler(event)}
         className="new-book-wrapper-left"
         headers={true}
         nextLevel={nextLevel}
@@ -210,8 +222,7 @@ const NewBook = () => {
               type: "text",
               name: "publishers",
               value: publisherValue,
-              onChange: publisherChangeHandler
-              
+              onChange: publisherChangeHandler,
             },
             validHandler: publisherHandler,
           },
@@ -222,7 +233,7 @@ const NewBook = () => {
               type: "text",
               name: "authors",
               value: authorValue,
-              onChange: authorChangeHandler
+              onChange: authorChangeHandler,
             },
             validHandler: authorHandler,
           },
