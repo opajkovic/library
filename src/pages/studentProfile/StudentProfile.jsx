@@ -1,20 +1,18 @@
 import React, { useEffect } from "react";
 import "./studentProfile.css";
 import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
-import { useOutletContext, redirect, useLoaderData} from "react-router";
+import { redirect, useLoaderData} from "react-router";
 import LinkWrapper from "./components/LinkWrapper";
 import UserInfo from "./components/UserInfo";
 import { useState } from "react";
 import api from "../../api/apiCalls";
 
 export default function StudentProfile() {
-  const { setRoute } = useOutletContext();
   let [userInfo, setUserInfo] = useState();
   const fetchedData = useLoaderData();
 
   useEffect(() => {
     setUserInfo(fetchedData);
-    setRoute("students");
   }, []);
   return (
     <div>

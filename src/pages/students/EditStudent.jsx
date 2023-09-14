@@ -11,8 +11,8 @@ const EditStudent = () => {
     email: "",
     username: "",
   });
+
   const fetchedData = useLoaderData();
-  console.log(fetchedData);
   useEffect(() => {
     setStudentInfo(fetchedData);
   }, []);
@@ -37,10 +37,10 @@ const EditStudent = () => {
     formIsValid = true;
   }
 
-  const resetHandler = (event) => {
-    event.preventDefault();
+  const resetHandler = () => {
     setStudentInfo(fetchedData);
   };
+
   return (
     <SettingsForm
       input={[
@@ -90,7 +90,7 @@ const EditStudent = () => {
       path={`/students/${studentInfo.id}`}
       pathDashboard="/dashboard"
       formIsValid={formIsValid}
-      reset={resetHandler}
+      reset={() => resetHandler()}
       image={true}
       imagePath={studentInfo.photoPath}
       edit={true}

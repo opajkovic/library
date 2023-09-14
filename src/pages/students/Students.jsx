@@ -67,8 +67,7 @@ export default function Students() {
   const endIndex = startIndex + itemsPerPage;
   const studentsToDisplay = students.slice(startIndex, endIndex);
   const pageCount = Math.ceil(students.length / itemsPerPage);
-+
-console.log(fetchedData)
+
   return (
     <>
       <PageTitle title="Učenici" />

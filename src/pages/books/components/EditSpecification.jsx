@@ -57,8 +57,7 @@ export default function EditSpecification() {
     redirect((window.location.href = "/books/new"));
   };
 
-  const submitHandler = (event) => {
-    event.preventDefault();
+  const submitHandler = () => {
     return null;
   };
 
@@ -114,13 +113,13 @@ export default function EditSpecification() {
             validHandler: formatHandler,
           },
         ]}
-        reset={resetHandler}
+        submit={() => submitHandler()}
+        reset={() => resetHandler()}
         title="Nova knjiga"
         firstLinkName="Knjige"
         path="/books"
         pathDashboard="/dashboard"
         formIsValid={formIsValid}
-        submitHandler={(event) => submitHandler(event)}
         headers={true}
         editHeaders={[
           {

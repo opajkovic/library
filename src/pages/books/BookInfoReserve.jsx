@@ -27,12 +27,12 @@ export default function BookInfoReserve() {
   const nameHandler = (value) => {
     setNameIsValid(value);
   };
-  let formIsValid = false;
 
-  const submitHandler = (event) => {
-    event.preventDefault();
+  const submitHandler = () => {
     return null;
-  };
+  }
+
+  let formIsValid = false;
   if (nameIsValid && reserveIsValid) {
     formIsValid = true;
   }
@@ -40,7 +40,6 @@ export default function BookInfoReserve() {
   const resetHandler = () => {
     window.location.href = `/books/${book.id}/rezervisi-knjigu`;
   };
-
 
   const reserveClasses = reserveHasError
     ? "form-control invalid"
@@ -84,8 +83,8 @@ export default function BookInfoReserve() {
               validHandler: nameHandler,
             },
           ]}
-          reset={resetHandler}
-          submitHandler={(event) => submitHandler(event)}
+          submit={() => submitHandler()}
+          reset={() => resetHandler()}
           formIsValid={formIsValid}
           className="edit-reserve-book"
         />

@@ -39,12 +39,12 @@ export default function BookInfoRentingBook() {
   const nameHandler = (value) => {
     setNameIsValid(value);
   };
-  let formIsValid = false;
 
-  const submitHandler = (event) => {
-    event.preventDefault();
+  const submitHandler = () => {
     return null;
-  };
+  }
+
+  let formIsValid = false;
   if (nameIsValid && returnIsValid && rentingIsValid) {
     formIsValid = true;
   }
@@ -110,8 +110,8 @@ export default function BookInfoRentingBook() {
                 onBlur: rentingBlurHandler,
               },
             ]}
-            reset={resetHandler}
-            submitHandler={(event) => submitHandler(event)}
+            submit={() => submitHandler()}
+            reset={() => resetHandler()}
             formIsValid={formIsValid}
             className="edit-renting-book"
           />

@@ -1,14 +1,9 @@
-import React, { useEffect } from "react";
-import { useOutletContext } from "react-router";
+import React from "react";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import "./rentingBooks.css";
 import BottomContainer from "./components/BottomContainer";
 
 export default function RentingBooks(props) {
-  const { setRoute } = useOutletContext();
-  useEffect(() => {
-    setRoute("rentingBooks");
-  }, []);
 
   const headers = [
     { headerName: "Naziv knjige", sort: false, dropdown: false },

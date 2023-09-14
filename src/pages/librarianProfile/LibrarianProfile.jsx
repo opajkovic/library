@@ -1,19 +1,18 @@
 import React, { useEffect } from "react";
 import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
-import { redirect, useLoaderData, useOutletContext } from "react-router";
+import { useLoaderData } from "react-router";
 import UserInfo from "../studentProfile/components/UserInfo";
 import api from "../../api/apiCalls";
 import { useState } from "react";
 
 export default function LibrarianProfile() {
-  const { setRoute } = useOutletContext();
   let [userInfo, setUserInfo] = useState({});
   const fetchedData = useLoaderData();
 
   useEffect(() => {
     setUserInfo(fetchedData);
-    setRoute("librarians");
   }, []);
+
   return (
     <div>
       <ProfileTitle

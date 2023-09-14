@@ -62,8 +62,7 @@ const NewStudent = () => {
     resetPassword();
     resetConfirmPassword();
   };
-  const submitHandler = (event) => {
-    event.preventDefault();
+  const submitHandler = () => {
     if (!formIsValid) {
       return;
     }
@@ -131,8 +130,8 @@ const NewStudent = () => {
       path="/students"
       pathDashboard="/dashboard"
       formIsValid={formIsValid}
-      reset={resetHandler}
-      submitHandler={submitHandler}
+      reset={() => resetHandler()}
+      submitHandler={() => submitHandler()}
       image={true}
       handleImageUpload={(image) => setStudentImage(image)}
     />

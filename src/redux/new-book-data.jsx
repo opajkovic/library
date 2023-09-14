@@ -25,7 +25,7 @@ const newBookData = createSlice({
     updateFormData: (state, action) => {
       return { ...state, ...action.payload };
     },
-    resetFormData: (state) => bookData,
+    resetFormData: () => bookData,
   },
 });
 

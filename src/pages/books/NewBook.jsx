@@ -202,13 +202,13 @@ const NewBook = () => {
             validHandler: genreHandler,
           },
         ]}
-        reset={resetHandler}
         title="Nova knjiga"
         firstLinkName="Knjige"
         path="/books"
         pathDashboard="/dashboard"
         formIsValid={formIsValid}
-        submitHandler={(event) => submitHandler(event)}
+        reset={() => resetHandler()}
+        submit={() => submitHandler()}
         className="new-book-wrapper-left"
         headers={true}
         nextLevel={nextLevel}
@@ -260,8 +260,8 @@ const NewBook = () => {
             onBlur: quantityBlurHandler,
           },
         ]}
-        reset={resetHandler}
-        submitHandler={(event) => submitHandler(event)}
+        reset={() => resetHandler()}
+        submit={() => submitHandler()}
         formIsValid={formIsValid}
         className="new-book-wrapper-right"
         nextLevel={nextLevel}

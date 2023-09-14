@@ -37,10 +37,10 @@ const EditLibrarian = () => {
     formIsValid = true;
   }
 
-  const resetHandler = (event) => {
-    event.preventDefault();
+  const resetHandler = () => {
     setLibrairanInfo(fetchedData);
   };
+
   return (
     <SettingsForm
       input={[
@@ -90,7 +90,7 @@ const EditLibrarian = () => {
       path={`/librarians/${librarianInfo.id}`}
       pathDashboard="/dashboard"
       formIsValid={formIsValid}
-      reset={resetHandler}
+      reset={() => resetHandler()}
       image={true}
       imagePath={librarianInfo.photoPath}
       edit={true}

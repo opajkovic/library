@@ -62,8 +62,8 @@ const NewLibrarian = () => {
     resetPassword();
     resetConfirmPassword();
   };
-  const submitHandler = (event) => {
-    event.preventDefault();
+  
+  const submitHandler = () => {
     if (!formIsValid) {
       return;
     }
@@ -131,8 +131,8 @@ const NewLibrarian = () => {
       path="/librarians"
       pathDashboard="/dashboard"
       formIsValid={formIsValid}
-      reset={resetHandler}
-      submitHandler={submitHandler}
+      reset={() => resetHandler()}
+      submit={() => submitHandler()}
       image={true}
       handleImageUpload={(image) => setLibrarianImage(image)}
     />

@@ -85,8 +85,6 @@ export default function NewBookSpecification() {
     setScriptValue("");
     setBookbindValue("");
     setFormatValue("");
-    navigate("/books/new/osnovni-detalji");
-    dispatch(resetFormData());
   };
 
   return (
@@ -139,13 +137,13 @@ export default function NewBookSpecification() {
             validHandler: formatHandler,
           },
         ]}
-        reset={resetHandler}
+        reset={() => resetHandler()}
+        submit={() => submitHandler()}
         title="Nova knjiga"
         firstLinkName="Knjige"
         path="/books"
         pathDashboard="/dashboard"
         formIsValid={formIsValid}
-        submitHandler={(event) => submitHandler(event)}
         headers={true}
         secondLevel={secondLevel}
       />
@@ -160,9 +158,9 @@ export default function NewBookSpecification() {
           },
         ]}
         secondLevel={secondLevel}
-        reset={resetHandler}
+        reset={() => resetHandler()}
+        submit={() => submitHandler()}
         formIsValid={formIsValid}
-        submitHandler={(event) => submitHandler(event)}
         className="specification-serial-number"
       />
     </div>

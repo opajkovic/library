@@ -9,11 +9,9 @@ import InputSelect from "./InputSelect";
 import SecondRowHeaders from "./settingsForm components/SecondRowHeaders";
 
 const SettingsForm = (props) => {
-  
-const submitHandler = (event) => {
-  event.preventDefault();
-  props.submitHandler();
-}
+  const submitHandler = (event) => {
+    event.preventDefault();
+  };
 
   return (
     <>
@@ -80,7 +78,11 @@ const submitHandler = (event) => {
             <InputSelect key={index} select={item} sup={true} />
           ))}
 
-        <FormSubmitButtons disabled={!props.formIsValid} reset={props.reset} />
+        <FormSubmitButtons
+          disabled={!props.formIsValid}
+          submit={props.submit}
+          reset={props.reset}
+        />
       </form>
     </>
   );
