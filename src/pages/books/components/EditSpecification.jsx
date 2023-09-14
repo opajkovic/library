@@ -1,74 +1,80 @@
 import SettingsForm from "../../../components/UI/SettingsForm";
-import useInput from "../../../hooks/useInput";
+import { createChangeHandler, getInvalidClass } from "../../../util/Functions";
 import { useEffect, useState } from "react";
 import "./Specification.css";
 import { useLoaderData, useParams } from "react-router";
 
 export default function EditSpecification() {
-  const [languageIsValid, setLanguageIsValid] = useState(false);
+  const [scriptIsValid, setScriptIsValid] = useState(false);
   const [bookbindIsValid, setBookbindIsValid] = useState(false);
   const [formatIsValid, setFormatIsValid] = useState(false);
-  const fetchedData = useLoaderData()
-  let [data, setData] = useState({})
+  const fetchedData = useLoaderData();
   const params = useParams();
-  
-  const languageHandler = (value) => {
-    setLanguageIsValid(value);
+
+  const [bookInfo, setBookInfo] = useState({
+    pages: "",
+    script: "",
+    bookbind: "",
+    format: "",
+  });
+
+  const [scriptValue, setScriptValue] = useState(fetchedData.book.script.name);
+  const scriptChangeHandler = (newValue) => {
+    setScriptValue(newValue);
+  };
+  const scriptHandler = (value) => {
+    setScriptIsValid(value);
   };
 
+  const [bookbindValue, setBookbindValue] = useState(
+    fetchedData.book.bookbind.name
+  );
+  const bookbindChangeHandler = (newValue) => {
+    setBookbindValue(newValue);
+  };
   const bookbindHandler = (value) => {
     setBookbindIsValid(value);
   };
 
+  const [formatValue, setFormatValue] = useState(fetchedData.book.format.name);
+  const formatChangeHandler = (newValue) => {
+    setFormatValue(newValue);
+  };
   const formatHandler = (value) => {
     setFormatIsValid(value);
   };
 
-  const isNotEmptyString = (value) => value.trim().length > 0;
-  const {
-    value: pagesValue,
-    isValid: pagesIsValid,
-    hasError: pagesHasError,
-    valueChangeHandler: pagesChangeHandler,
-    inputBlurHandler: pagesBlurHandler,
-  } = useInput(isNotEmptyString);
-
-  const {
-    value: serialNumberValue,
-    isValid: serialNumberIsValid,
-    hasError: serialNumberHasError,
-    valueChangeHandler: serialNumberChangeHandler,
-    inputBlurHandler: serialNumberBlurHandler,
-  } = useInput(isNotEmptyString);
+  const pageHandler = createChangeHandler("pages", setBookInfo);
+  const pagesClasses = getInvalidClass(bookInfo.pages);
 
   let formIsValid = false;
   if (
-    pagesIsValid &&
-    languageIsValid &&
+    pagesClasses === "form-control" &&
+    scriptIsValid &&
     bookbindIsValid &&
-    formatIsValid &&
-    serialNumberIsValid
+    formatIsValid
   ) {
     formIsValid = true;
   }
 
-  console.log(languageIsValid, bookbindIsValid, formatIsValid);
   const resetHandler = () => {
-    redirect((window.location.href = "/books/new"));
+    setBookInfo({
+      pages: fetchedData.book.pages,
+    });
+    setScriptValue(fetchedData.book.script.name);
+    setFormatValue(fetchedData.book.format.name);
+    setBookbindValue(fetchedData.book.bookbind.name);
   };
 
   const submitHandler = () => {
+    // post request
     return null;
   };
 
-  const pagesClasses = pagesHasError ? "form-control invalid" : "form-control";
-  const serialNumberClasses = serialNumberHasError
-    ? "form-control invalid"
-    : "form-control";
+  useEffect(() => {
+    resetHandler();
+  }, []);
 
-    useEffect(()=>{
-      setData(fetchedData)
-    },[])
   return (
     <div>
       <SettingsForm
@@ -78,44 +84,48 @@ export default function EditSpecification() {
             inputClasses: pagesClasses,
             type: "text",
             name: "pages",
-            value: pagesValue,
-            hasError: pagesHasError,
-            onChange: pagesChangeHandler,
-            onBlur: pagesBlurHandler,
+            value: bookInfo.pages,
+            onChange: pageHandler,
           },
         ]}
         select={[
           {
-            options: data.scripts,
+            options: fetchedData.scripts,
             input: {
               label: "Izaberite pismo",
               type: "text",
               name: "language",
+              value: scriptValue,
+              onChange: scriptChangeHandler,
             },
-            validHandler: languageHandler,
+            validHandler: scriptHandler,
           },
           {
-            options: data.bookbinds,
+            options: fetchedData.bookbinds,
             input: {
               label: "Izaberite povez",
               type: "text",
               name: "bookbind",
+              value: bookbindValue,
+              onChange: bookbindChangeHandler,
             },
             validHandler: bookbindHandler,
           },
           {
-            options: data.formats,
+            options: fetchedData.formats,
             input: {
               label: "Izaberite format",
               type: "text",
               name: "format",
+              value: formatValue,
+              onChange: formatChangeHandler,
             },
             validHandler: formatHandler,
           },
         ]}
         submit={() => submitHandler()}
         reset={() => resetHandler()}
-        title="Nova knjiga"
+        title="Izmijeni knjigu"
         firstLinkName="Knjige"
         path="/books"
         pathDashboard="/dashboard"
@@ -133,18 +143,15 @@ export default function EditSpecification() {
         input={[
           {
             label: "International Standard Book Num",
-            inputClasses: serialNumberClasses,
             type: "text",
             name: "pages",
-            value: serialNumberValue,
-            hasError: serialNumberHasError,
-            onChange: serialNumberChangeHandler,
-            onBlur: serialNumberBlurHandler,
+            value: "1234567891011",
+            disabled: true,
           },
         ]}
-        reset={resetHandler}
+        reset={() => resetHandler()}
         formIsValid={formIsValid}
-        submitHandler={(event) => submitHandler(event)}
+        submit={() => submitHandler()}
         className="specification-serial-number"
       />
     </div>

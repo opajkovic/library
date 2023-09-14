@@ -1,4 +1,8 @@
 export const getInvalidClass = (value) => {
+  if (typeof value === 'number') {
+    return value === "" ? "form-control invalid" : "form-control";
+  }
+
   if (value !== null) {
     return value.trim().length === 0 ? "form-control invalid" : "form-control";
   }

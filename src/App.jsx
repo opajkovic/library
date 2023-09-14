@@ -21,9 +21,7 @@ import NewAuthor from "./pages/authors/NewAuthor";
 import Students, { LoaderStudents } from "./pages/students/Students";
 import NewStudent from "./pages/students/NewStudent";
 import EditStudent from "./pages/students/EditStudent";
-import StudentProfile, {
-  StudentProfileLoader,
-} from "./pages/studentProfile/StudentProfile";
+import StudentProfile, { StudentProfileLoader } from "./pages/studentProfile/StudentProfile";
 import ProfileEvidenceReturned from "./pages/studentProfile/layouts/ProfileEvidenceReturned";
 import ProfileEvidenceWrittenOff from "./pages/studentProfile/layouts/ProfileEvidenceWrittenOff";
 import ProfileEvidenceExcess from "./pages/studentProfile/layouts/ProfileEvidenceExcess";
@@ -59,7 +57,7 @@ import ReturnedEvidence from "./pages/bookInformations/layouts/table-layouts/Ret
 import ExcessEvidence from "./pages/bookInformations/layouts/table-layouts/ExcessEvidence";
 import ReservationEvidence from "./pages/bookInformations/layouts/table-layouts/ReservationEvidence";
 import ArchivedEvidence from "./pages/bookInformations/layouts/table-layouts/ArchivedEvidence";
-import EditBook from "./pages/books/EditBook";
+import EditBook, { EditBookLoader } from "./pages/books/EditBook";
 import EditSpecification from "./pages/books/components/EditSpecification";
 import EditMultimedia from "./pages/books/components/EditMultimedia";
 import BookInfoWrittenOff from "./pages/books/BookInfoWrittenOff";
@@ -111,12 +109,12 @@ const router = createBrowserRouter(
         <Route
           path="/books/:id/edit"
           element={<EditBook />}
-          loader={LoaderCreateBook}
+          loader={EditBookLoader}
         />
         <Route
           path="/books/:id/edit/specification"
           element={<EditSpecification />}
-          loader={LoaderCreateBook}
+          loader={EditBookLoader}
         />
         <Route path="/books/:id/edit/multimedia" element={<EditMultimedia />} />
         <Route

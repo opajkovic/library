@@ -6,7 +6,7 @@ export default function EditMultimedia() {
   return (
     <div>
       <SettingsForm
-        title="Nova knjiga"
+        title="Izmijeni knjigu"
         firstLinkName="Knjige"
         path="/books"
         pathDashboard="/dashboard"

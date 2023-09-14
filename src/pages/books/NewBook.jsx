@@ -12,8 +12,7 @@ const isNotEmptyString = (value) => value.trim().length > 0;
 
 const NewBook = () => {
   const dispatch = useDispatch();
-  const newBook = useSelector((state) => state.newBookData);
-  console.log(newBook);
+
   const [categoryIsValid, setCategoryIsValid] = useState(false);
   const [genreIsValid, setGenreIsValid] = useState(false);
   const [authorIsValid, setAuthorIsValid] = useState(false);

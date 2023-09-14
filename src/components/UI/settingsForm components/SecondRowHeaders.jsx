@@ -38,9 +38,9 @@ export default function SecondRowHeaders({
           className={({ isActive }) =>
             isActive
               ? "active-secondary-header"
-              : !item.nextLevel
+              : item.nextLevel && !item.nextLevel
               ? "secondary-disabled"
-              : !item.secondLevel
+              : item.secondLevel && !item.secondLevel
               ? "secondary-disabled"
               : ""
           }
