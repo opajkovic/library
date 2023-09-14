@@ -1,6 +1,8 @@
 import "./Informations.css";
 
 export default function Informations({ bookInfo }) {
+  const descriptionWithoutPTags = bookInfo.description.replace(/<\/?p>/g, "");
+
   return (
     <div className="book-spec">
       <ul>
@@ -25,7 +27,7 @@ export default function Informations({ bookInfo }) {
         </li>
       </ul>
       <div className="book-description">
-        <span> Kratki sadržaj (Storyline) </span> {bookInfo.description}
+        <span> Kratki sadržaj (Storyline) </span> {descriptionWithoutPTags}
       </div>
     </div>
   );

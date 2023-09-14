@@ -8,7 +8,7 @@ const TableControl = ({hide, onClick, title, itemsPerPageHandler, searchGlobal})
   return (
     <div className="table-control">
       {!hide && (
-        <Button type="button" btn="btn btn-primary" onClick={onClick}>
+        <Button type="button" btn="btn btn-primary" function={onClick}>
           <FaPlus />
           <span> {title} </span>
         </Button>

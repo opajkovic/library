@@ -73,7 +73,6 @@ export const BookLoader = async ({ params }) => {
   try {
     const response = await api.get(`/books/${id}`);
     const responseData = response.data.data;
-
     return responseData;
   } catch (error) {
     console.error("Loader function error:", error);

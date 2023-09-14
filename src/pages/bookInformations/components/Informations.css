@@ -3,6 +3,7 @@
   flex-direction: row;
   gap: 20rem;
   padding: 2rem;
+  width: 70%;
 }
 
 .book-spec ul {
@@ -74,4 +75,14 @@
 
 .book-spec li:nth-child(6) {
   animation-delay: 1.8s;
+}
+
+@media (max-width: 1400px) {
+  .book-spec {
+    gap: 5rem;
+  }
+
+  .book-description {
+    min-width: 350px;
+  }
 }
