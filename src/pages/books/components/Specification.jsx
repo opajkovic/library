@@ -4,13 +4,11 @@ import { useEffect, useState } from "react";
 import "./Specification.css";
 import { filterAndMap } from "../../../util/Functions";
 import { useDispatch, useSelector } from "react-redux";
-import { updateFormData, resetFormData } from "../../../redux/new-book-data";
+import { updateFormData } from "../../../redux/new-book-data";
 import { useLoaderData, useNavigate } from "react-router";
 
 export default function NewBookSpecification() {
   const dispatch = useDispatch();
-  const newBook = useSelector((state) => state.newBookData);
-  console.log(newBook);
 
   const [scriptIsValid, setScriptIsValid] = useState(false);
   const [bookbindIsValid, setBookbindIsValid] = useState(false);
@@ -67,7 +65,7 @@ export default function NewBookSpecification() {
       pismo: filterAndMap(data.scripts, scriptValue),
       povez: filterAndMap(data.bookbinds, bookbindValue),
       format: filterAndMap(data.formats, formatValue),
-      isbn: "1234567891011",
+      isbn: 1234567891011,
     };
     dispatch(updateFormData(formData));
     navigate("/books/new/multimedija");
@@ -153,7 +151,7 @@ export default function NewBookSpecification() {
             label: "International Standard Book Num",
             type: "text",
             name: "pages",
-            value: "1234567891011",
+            value: 1234567891011,
             disabled: true,
           },
         ]}

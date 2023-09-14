@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SettingsForm from "../../components/UI/SettingsForm";
 import "./AuthorEdit.css";
-import { useLoaderData, useParams } from "react-router";
+import { useLoaderData, useNavigate, useParams } from "react-router";
 import { createChangeHandler, getInvalidClass } from "../../util/Functions";
 import api from "../../api/apiCalls";
 
@@ -12,6 +12,7 @@ const EditAuthor = () => {
     bio: "",
   });
   const params = useParams();
+  const navigate = useNavigate();
   const fetchedData = useLoaderData();
   const nameSurname = `${fetchedData.name} ${fetchedData.surname}`;
 
@@ -34,18 +35,18 @@ const EditAuthor = () => {
     image: null,
   };
 
-  console.log(formData)
+  console.log(formData);
   const submitHandler = async () => {
     const response = await api.put(`/authors/${params.id}`, formData);
     if (response.status === 200) {
-      console.log("succssfully posted")
+      console.log("succssfully posted");
+      navigate("/authors")
+    }
   };
-}
 
-  const resetHandler = (event) => {
-    event.preventDefault();
+  const resetHandler = () => {
     setAuthorInfo({ ...fetchedData, name: nameSurname });
-    setRichTextReset(!richTextReset)
+    setRichTextReset(!richTextReset);
   };
   return (
     <SettingsForm
@@ -62,7 +63,7 @@ const EditAuthor = () => {
       richTextarea={{
         label: "Opis",
         value: authorInfo.bio,
-        reset: richTextReset
+        reset: richTextReset,
       }}
       className="edit-author-form"
       title="Izmijeni podatke"
@@ -70,8 +71,8 @@ const EditAuthor = () => {
       path={`/authors/${authorInfo.id}`}
       pathDashboard="/dashboard"
       formIsValid={formIsValid}
-      reset={resetHandler}
-      submitHandler={submitHandler}
+      reset={() => resetHandler()}
+      submit={() => submitHandler()}
       edit={true}
     />
   );

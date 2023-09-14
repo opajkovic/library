@@ -4,7 +4,7 @@ import useInput from "../../hooks/useInput";
 import "./NewBook.css";
 import { useLoaderData, useNavigate } from "react-router";
 import { filterAndMap } from "../../util/Functions";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateFormData, resetFormData } from "../../redux/new-book-data";
 import api from "../../api/apiCalls";
 
