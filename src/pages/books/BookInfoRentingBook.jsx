@@ -84,6 +84,7 @@ export default function BookInfoRentingBook() {
                   label: "Izaberite učenika koji zadužuje knjigu",
                   type: "text",
                   name: "name",
+                  value: ""
                 },
                 validHandler: nameHandler,
               },

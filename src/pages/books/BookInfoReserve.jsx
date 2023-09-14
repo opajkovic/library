@@ -79,6 +79,7 @@ export default function BookInfoReserve() {
                 label: "Izaberite učenika koji rezerviše knjigu",
                 type: "text",
                 name: "name",
+                value: ""
               },
               validHandler: nameHandler,
             },
