@@ -29,3 +29,15 @@
 .options-list svg {
     font-size: 1.5rem;
 }
+
+
+@media(max-width: 1400px) {
+    .options-list{
+        width: 200px;
+    }
+
+    .options-list li {
+        font-size: 0.8rem;
+        padding: 0.5rem;
+    }
+}

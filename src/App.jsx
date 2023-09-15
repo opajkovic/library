@@ -67,24 +67,12 @@ import BookInfoReserve from "./pages/books/BookInfoReserve";
 
 // Settings
 import Polisa from "./pages/settings/Polisa";
-import Kategorije, {
-  CategoryLoader,
-} from "./pages/settings/settingsPages/kategorije/Kategorije";
-import Zanrovi, {
-  GenresLoader,
-} from "./pages/settings/settingsPages/zanrovi/Zanrovi";
-import Izdavac, {
-  PublisherLoader,
-} from "./pages/settings/settingsPages/izdavac/Izdavac";
-import Povez, {
-  BookbindsLoader,
-} from "./pages/settings/settingsPages/povez/Povez";
-import Format, {
-  FormatLoader,
-} from "./pages/settings/settingsPages/format/Format";
-import Pismo, {
-  LanguagesLoader,
-} from "./pages/settings/settingsPages/pismo/Pismo";
+import Kategorije, { CategoryLoader } from "./pages/settings/settingsPages/kategorije/Kategorije";
+import Zanrovi, { GenresLoader } from "./pages/settings/settingsPages/zanrovi/Zanrovi";
+import Izdavac, { PublisherLoader } from "./pages/settings/settingsPages/izdavac/Izdavac";
+import Povez, { BookbindsLoader } from "./pages/settings/settingsPages/povez/Povez";
+import Format, { FormatLoader } from "./pages/settings/settingsPages/format/Format";
+import Pismo, { LanguagesLoader } from "./pages/settings/settingsPages/pismo/Pismo";
 import NovaKategorija from "./pages/settings/settingsPages/kategorije/NovaKategorija";
 import NoviPovez from "./pages/settings/settingsPages/povez/NoviPovez";
 import NovoPismo from "./pages/settings/settingsPages/pismo/NovoPismo";
@@ -103,7 +91,9 @@ const router = createBrowserRouter(
       <Route element={<AppLayout />}>
         <Route index element={<Navigate replace to="/dashboard" />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/activities" element={<Activities />} />
 
+        {/* Books routes */}
         <Route path="/books" element={<Books />} loader={BooksLoader} />
         <Route path="/books/:id" element={<BookInfo />} loader={BookLoader} />
         <Route
@@ -149,7 +139,6 @@ const router = createBrowserRouter(
           loader={LoaderCreateBook}
         />
         <Route path="/books/new/multimedija" element={<NewBookMultimedia />} />
-
         <Route
           path="/books/:id/specifikacija"
           element={<BookSpecification />}
@@ -267,14 +256,13 @@ const router = createBrowserRouter(
         <Route path="/settings/izdavac/new" element={<NoviIzdavac />} />
         <Route path="/settings/format/new" element={<NoviFormat />} />
 
+        {/* Librairan routes */}
         <Route
           path="/librarians"
           element={<Librarians />}
           loader={LoaderLibrarians}
         />
         <Route path="/librarians/new" element={<NewLibrarian />} />
-
-        <Route path="/activities" element={<Activities />} />
         <Route
           path="/librarians/:id"
           element={<LibrarianProfile />}
@@ -286,7 +274,7 @@ const router = createBrowserRouter(
           loader={LibrarianProfileLoader}
         />
 
-        {/* student profile routes */}
+        {/* student routes */}
         <Route
           path="/students"
           element={<Students />}

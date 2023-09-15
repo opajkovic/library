@@ -16,13 +16,8 @@ const EditBook = () => {
 
   const [bookInfo, setBookInfo] = useState({
     name: "",
-    category: "",
-    description: "",
-    genre: "",
     year: "",
     quantity: "",
-    author: "",
-    publisher: "",
   });
 
   const nameHandler = createChangeHandler("name", setBookInfo);
