@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from "react";
 import "./AuthorProfile.css";
 import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import AuthorInfo from "./components/AuthorInfo";
 import api from "../../api/apiCalls";
 
 export default function AuthorProfile() {
+  const navigate = useNavigate();
   let [author, setAuthor] = useState({ name: "loading..." });
   const fetchedData = useLoaderData();
 
   useEffect(() => {
     setAuthor(fetchedData);
   }, []);
+
+  const handleDelete = async () => {
+    api.delete(`/authors/${fetchedData.id}`)
+    navigate("/authors")
+  }
+
   return (
-    <div>
+    <>
       <ProfileTitle
         userInfo={author}
         linkOne={"Svi autori"}
@@ -22,9 +29,10 @@ export default function AuthorProfile() {
         change={true}
         deleteMssg={true}
         editPath={`/authors/${fetchedData.id}/edit`}
+        handleDelete={()=>handleDelete()}
       />
       <AuthorInfo userInfo={author} />
-    </div>
+    </>
   );
 }
 export async function LoaderAuthorProfile({ params }) {

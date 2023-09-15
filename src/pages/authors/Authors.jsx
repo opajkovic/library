@@ -12,12 +12,7 @@ import { filterSearchedData } from "../../redux/actions";
 
 const headers = [
   { headerName: "Ime autora", sort: true, dropdown: false, dataKey: "name" },
-  {
-    headerName: "Prezime autora",
-    sort: false,
-    dropdown: true,
-    dataKey: "surname",
-  },
+  { headerName: "Prezime autora", sort: false, dropdown: true, dataKey: "surname" },
 ];
 
 export default function Authors() {
@@ -72,6 +67,12 @@ export default function Authors() {
   const authorsToDisplay = authors.slice(startIndex, endIndex);
   const pageCount = Math.ceil(authors.length / itemsPerPage);
 
+  const handleDelete = async (id) => {
+    api.delete(`/authors/${id}`)
+    console.log("success")
+    navigate("/authors")
+  }
+
   return (
     <>
       <PageTitle title="Autori" />
@@ -88,6 +89,7 @@ export default function Authors() {
           tableData={authorsToDisplay}
           headers={headers}
           searchColumn={handleColumnSearch}
+          handleDelete={handleDelete}
           options={[
             {
               text: "Pogledaj detalje",

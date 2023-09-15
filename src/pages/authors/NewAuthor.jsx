@@ -77,8 +77,8 @@ const NewAuthor = () => {
       path="/authors"
       pathDashboard="/dashboard"
       formIsValid={formIsValid}
-      reset={resetHandler}
-      submitHandler={submitHandler}
+      reset={()=>resetHandler()}
+      submit={()=>submitHandler()}
       className="new-author-form"
     />
   );

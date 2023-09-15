@@ -15,6 +15,7 @@ export default function ProfileTitle({
   reset,
   deleteMssg,
   booksSpecial,
+  handleDelete
 }) {
   let [changePassword, setChangePassword] = useState(false);
   return (
@@ -34,6 +35,7 @@ export default function ProfileTitle({
         booksSpecial={booksSpecial}
         setModalPassword={setChangePassword}
         editPath={editPath}
+        handleDelete={handleDelete}
       />
       {changePassword && (
         <ChangePasswordModal setModalClose={setChangePassword} />

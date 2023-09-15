@@ -7,7 +7,7 @@ import ModalItem from "../../../layout/modal/modalItem/ModalItem";
 import Input from "../Input";
 import ConfirmModal from "../../../layout/modal/confirmModal/ConfirmModal";
 
-const MiddleDataCell = ({ item, headers, options, path }) => {
+const MiddleDataCell = ({ item, headers, options, path, handleDelete }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [rowId, setRowId] = useState(null);
   const [confirmModalState, setConfirmModalStat] = useState(false);
@@ -21,6 +21,8 @@ const MiddleDataCell = ({ item, headers, options, path }) => {
     setRowId(null);
     setModalOpen(false);
   };
+
+  console.log(rowId);
 
   return item.map((row, rowIndex) => (
     <tr key={rowIndex}>
@@ -42,6 +44,7 @@ const MiddleDataCell = ({ item, headers, options, path }) => {
             </div>
           )}
           {!header.sort && row[header.dataKey]}
+
           {/* Uslovno prikazivanje tackica ako je props dropdown === true */}
           {header.dropdown && (
             <BsThreeDotsVertical
@@ -64,10 +67,11 @@ const MiddleDataCell = ({ item, headers, options, path }) => {
                     <ModalItem
                       setModalClose={() => {
                         handleCloseModal();
+                        setRowId(row.id)
                       }}
                       key={i}
                       newClassName="modalItemChange"
-                      setResponse={()=>setConfirmModalStat(true)}
+                      setResponse={() => setConfirmModalStat(true)}
                       icon={option.icon}
                       text={option.text}
                       close={true}
@@ -93,7 +97,8 @@ const MiddleDataCell = ({ item, headers, options, path }) => {
       {confirmModalState && (
         <ConfirmModal
           text={"Jeste li sigurni da zelite da izbrisete?"}
-          setCloseModal={setConfirmModalStat}
+          setCloseModal={() => setConfirmModalStat(false)}
+          handleDelete={() => {handleDelete(rowId); setConfirmModalStat(false)}}
         />
       )}
     </tr>

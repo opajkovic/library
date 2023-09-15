@@ -22,15 +22,17 @@ export default function HeaderOptions({
   deleteMssg,
   booksSpecial,
   setModalPassword,
+  handleDelete
 }) {
 
   const params = useParams();
-  let [openModule, setOpenModule] = useState(false);
-  let [confirmState, setConfirmState] = useState(false);
+  const [openModule, setOpenModule] = useState(false);
+  const [confirmState, setConfirmState] = useState(false);
 
-  let closeModals = () => {
-    setOpenModule(false);
+  const closeModals = () => {
+    setConfirmState(false)
   };
+
   return (
     <div className="right">
       {reset && (
@@ -86,7 +88,7 @@ export default function HeaderOptions({
               <div>
                 <ModalItem
                   setResponse={()=>setConfirmState(true)}
-                  setModalClose={closeModals}
+                  setModalClose={() => setOpenModule(false)}
                   icon={<FaTrash />}
                   text={"Izbrisi"}
                   close={true}
@@ -97,9 +99,9 @@ export default function HeaderOptions({
         )}
         {confirmState && (
           <ConfirmModal
-            setCloseModal={setConfirmState}
+            setCloseModal={()=>closeModals()}
             text={"Da li ste sigurni da zelite da izbrisete?"}
-            setResponse={setConfirmState}
+            handleDelete={handleDelete}
           />
         )}
       </div>
