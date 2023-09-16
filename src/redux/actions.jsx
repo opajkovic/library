@@ -2,13 +2,16 @@ import { searchedData } from "./search-data";
 import { updateAuthorsData } from "./authors-data";
 
 export const filterSearchedData = (data, headers, inputValue ) => {
-  console.log(data)
   return async (dispatch) => {
     try {
       const filteredData = data.filter((item) => {
         return headers.some((header) => {
           const columnValue = item[header.dataKey];
-          return columnValue.toLowerCase().includes(inputValue);
+          if (typeof columnValue === 'string') {
+            return columnValue.toLowerCase().includes(inputValue.toLowerCase());
+          } else if (typeof columnValue === 'number') {
+            return columnValue.toString().includes(inputValue);
+          }
         });
       });
 

@@ -21,3 +21,17 @@ export const filterAndMap = (dataArray, filterValue) => {
     .filter((item) => item.name === filterValue)
     .map((item) => +item.id);
 };
+
+export function transformBookData(data) {
+  return data.map((item) => ({
+    id: item.id,
+    name: item.title,
+    author: `${item.authors[0].name} ${item.authors[0].surname}`,
+    category: item.categories[0].name,
+    available: item.samples,
+    reserved: item.rSamples,
+    rented: item.bSamples,
+    excess: item.fSamples,
+    total: item.samples,
+  }));
+}

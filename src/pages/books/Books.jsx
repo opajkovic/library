@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLoaderData } from "react-router";
+import { useDispatch, useSelector} from "react-redux";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
 import Pagination from "../../components/UI/Pagination";
 import api from "../../api/apiCalls";
+import { filterSearchedData } from "../../redux/actions";
 
 import {
   FaCalendar,
@@ -15,6 +17,7 @@ import {
   FaRegFile,
   FaTrash,
 } from "react-icons/fa";
+import { transformBookData } from "../../util/Functions";
 
 const headers = [
   { headerName: "Naziv knjige", sort: true, dropdown: false, dataKey: "name" },
@@ -28,18 +31,17 @@ const headers = [
 ];
 
 export default function Books() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [books, setBooks] = useState([]);
-  const fetchedData = useLoaderData();
-
+  const [search, setSearch] = useState("");
+  const [searchBooks, setSearchBooks] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(5);
 
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const booksToDisplay = books.slice(startIndex, endIndex);
-  const pageCount = Math.ceil(books.length / itemsPerPage);
+  const fetchedData = useLoaderData();
+  const searchData = useSelector((state) => state.search.searchData);
 
   const handlePageClick = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
@@ -50,22 +52,34 @@ export default function Books() {
   };
 
   useEffect(() => {
-    setBooks(
-      fetchedData.map((item) => ({
-        id: item.id,
-        name: item.title,
-        author: item.authors[0].name + " " + item.authors[0].surname,
-        category: item.categories[0].name,
-        available: item.samples,
-        reserved: item.rSamples,
-        rented: item.bSamples,
-        excess: item.fSamples,
-        total: item.samples,
-      }))
-    );
+    setBooks(transformBookData(fetchedData));
+    setSearchBooks(transformBookData(fetchedData))
   }, []);
 
-  console.log(books)
+  useEffect(() => {
+    if (search.length > 0 ) {
+      setBooks(searchData);
+    }  else {
+      setBooks(transformBookData(fetchedData))
+    }
+  }, [search, fetchedData]);
+
+  const handleGlobalSearch = (event) => {
+    const searchValue = event.target.value.toLowerCase();
+    setSearch(searchValue);
+    dispatch(filterSearchedData(searchBooks, headers, searchValue));
+  };
+
+  const handleColumnSearch = (headerName, searchValue) => {
+    setSearch(searchValue);
+    dispatch(filterSearchedData(searchBooks, headerName, searchValue));
+  };
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const booksToDisplay = books.slice(startIndex, endIndex);
+  const pageCount = Math.ceil(books.length / itemsPerPage);
+
 
   const handleClick = () => {
     navigate("/books/new/osnovni-detalji");
@@ -78,11 +92,13 @@ export default function Books() {
           title="Nova knjiga"
           onClick={handleClick}
           itemsPerPageHandler={itemPerPageHandler}
+          searchGlobal={handleGlobalSearch}
         />
         <Table
           path="/books"
           headers={headers}
           tableData={booksToDisplay}
+          searchColumn={handleColumnSearch}
           options={[
             {
               text: "Pogledaj detalje",
