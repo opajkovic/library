@@ -8,11 +8,12 @@ import { FaEdit, FaFile, FaTrash } from "react-icons/fa";
 import api from "../../api/apiCalls";
 import "./Author.css";
 import { useDispatch, useSelector } from "react-redux";
-import { filterSearchedData } from "../../redux/actions";
+import { deleteAuthor, filterSearchedData } from "../../redux/actions";
+import { updateAuthorsData } from "../../redux/authors-data";
 
 const headers = [
   { headerName: "Ime autora", sort: true, dropdown: false, dataKey: "name" },
-  { headerName: "Prezime autora", sort: false, dropdown: true, dataKey: "surname" },
+  { headerName: "Prezime autora", sort: false, dropdown: true,dataKey: "surname" }
 ];
 
 export default function Authors() {
@@ -20,12 +21,15 @@ export default function Authors() {
   const navigate = useNavigate();
 
   const [authors, setAuthors] = useState([]);
+  const [search, setSearch] = useState("");
+  const [updatedSearchData, setUpdatedSearchData] = useState(null);
+
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(5);
-  const [search, setSearch] = useState("");
 
   const fetchedData = useLoaderData();
   const searchData = useSelector((state) => state.search.searchData);
+  const authorData = useSelector((state) => state.authors);
 
   const handlePageClick = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
@@ -36,16 +40,19 @@ export default function Authors() {
   };
 
   useEffect(() => {
-    setAuthors(fetchedData)
+    dispatch(updateAuthorsData(fetchedData));
+    setAuthors(fetchedData);
   }, []);
 
   useEffect(() => {
-    if (search.length > 0) {
+    if (search.length > 0 && updatedSearchData === null) {
       setAuthors(searchData);
+    } else if ( updatedSearchData !== null ) {
+      setAuthors(updatedSearchData);
     } else {
-      setAuthors(fetchedData);
+      setAuthors(authorData)
     }
-  }, [search, fetchedData]);
+  }, [search, searchData, updatedSearchData, authorData]);
 
   const handleClick = () => {
     navigate("/authors/new");
@@ -54,12 +61,12 @@ export default function Authors() {
   const handleGlobalSearch = (event) => {
     const searchValue = event.target.value.toLowerCase();
     setSearch(searchValue);
-    dispatch(filterSearchedData(fetchedData, headers, searchValue));
+    dispatch(filterSearchedData(authorData, headers, searchValue));
   };
 
   const handleColumnSearch = (headerName, searchValue) => {
     setSearch(searchValue);
-    dispatch(filterSearchedData(fetchedData, headerName, searchValue));
+    dispatch(filterSearchedData(authorData, headerName, searchValue));
   };
 
   const startIndex = currentPage * itemsPerPage;
@@ -68,10 +75,11 @@ export default function Authors() {
   const pageCount = Math.ceil(authors.length / itemsPerPage);
 
   const handleDelete = async (id) => {
-    api.delete(`/authors/${id}`)
-    console.log("success")
-    navigate("/authors")
-  }
+    api.delete(`/authors/${id}`);
+    dispatch(deleteAuthor(authorData, id));
+    setUpdatedSearchData(searchData.filter((item) => item.id !== id));
+    navigate("/authors");
+  };
 
   return (
     <>

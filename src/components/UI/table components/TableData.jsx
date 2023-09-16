@@ -22,8 +22,6 @@ const MiddleDataCell = ({ item, headers, options, path, handleDelete }) => {
     setModalOpen(false);
   };
 
-  console.log(rowId);
-
   return item.map((row, rowIndex) => (
     <tr key={rowIndex}>
       {/* Uslovno prikazivanje kolona koje imaju props sort = true za checkbox */}
