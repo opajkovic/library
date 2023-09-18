@@ -32,7 +32,7 @@ const NewAuthor = () => {
 
   const formData = {
     name: authorValue.split(" ")[0],
-    surname: authorValue.split(" ")[1],
+    surname: authorValue.split(" ").slice(1).join(" "),
     biography: richTextareaValue,
     image: null,
   };

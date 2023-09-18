@@ -36,7 +36,7 @@ const EditAuthor = () => {
 
   const formData = {
     name: authorInfo.name.split(" ")[0],
-    surname: authorInfo.name.split(" ")[1],
+    surname: authorInfo.name.split(" ").slice(1).join(" "),
     biography: richTextareaValue,
     image: null,
   };
