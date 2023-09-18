@@ -1,9 +1,10 @@
-import { useState } from "react";
 import useInput from "../../hooks/useInput";
 import SettingsForm from "../../components/UI/SettingsForm";
+import { useNavigate } from "react-router";
+import api from "../../api/apiCalls";
 import "./NewStudent.css";
 
-const nameRegex = /^[a-zA-Z]+\s[a-zA-Z]+$/;
+const nameRegex = /^[A-Za-z]+ [A-Za-z]+(?: [A-Za-z]+)?$/;
 const nameTest = (value) => nameRegex.test(value);
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -12,16 +13,22 @@ const emailTest = (value) => emailRegex.test(value);
 const jmbgRegex = /^\d{13}$/;
 const jmbgTest = (value) => jmbgRegex.test(value);
 
-const isNotEmptyString = (value) => value.trim().length > 0;
+const usernameRegex = /^[a-zA-Z0-9_.-]{3,15}$/;
+const usernameTest = (value) => usernameRegex.test(value);
+
+const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
+const passwordTest = (value) => passwordRegex.test(value);
 
 const NewStudent = () => {
+  const navigate = useNavigate();
+
   const {
-    value: imePrezimeValue,
-    isValid: imePrezimeIsValid,
-    hasError: imePrezimeHasError,
-    valueChangeHandler: imePrezimeChangeHandler,
-    inputBlurHandler: imePrezimeBlurHandler,
-    reset: resetImePrezime,
+    value: nameValue,
+    isValid: nameIsValid,
+    hasError: nameHasError,
+    valueChangeHandler: nameChangeHandler,
+    inputBlurHandler: nameBlurHandler,
+    reset: resetName,
   } = useInput(nameTest);
   const {
     value: jmbgValue,
@@ -46,95 +53,162 @@ const NewStudent = () => {
     valueChangeHandler: usernameChangeHandler,
     inputBlurHandler: usernameBlurHandler,
     reset: resetUsername,
-  } = useInput(isNotEmptyString);
-
-  const [studentImage, setStudentImage] = useState(null);
+  } = useInput(usernameTest);
+  const {
+    value: passwordValue,
+    isValid: passwordIsValid,
+    hasError: passwordHasError,
+    valueChangeHandler: passwordChangeHandler,
+    inputBlurHandler: passwordBlurHandler,
+    reset: resetPassword,
+  } = useInput(passwordTest);
+  const {
+    value: repeatPasswordValue,
+    isValid: repeatPasswordIsValid,
+    hasError: repeatPasswordHasError,
+    valueChangeHandler: repeatPasswordChangeHandler,
+    inputBlurHandler: repeatPasswordBlurHandler,
+    reset: resetRepeatPassword,
+  } = useInput(passwordTest);
 
   let formIsValid = false;
-  if (imePrezimeIsValid && jmbgIsValid && emailIsValid && usernameIsValid) {
+  if (
+    nameIsValid &&
+    jmbgIsValid &&
+    emailIsValid &&
+    usernameIsValid &&
+    passwordIsValid &&
+    repeatPasswordIsValid
+  ) {
     formIsValid = true;
   }
+
   const resetHandler = () => {
-    resetImePrezime();
+    resetName();
     resetJMBG();
     resetEmail();
     resetUsername();
     resetPassword();
-    resetConfirmPassword();
+    resetRepeatPassword();
   };
-  const submitHandler = () => {
-    if (!formIsValid) {
-      return;
+
+  const submitHandler = async () => {
+    const formData = {
+      name: nameValue.split(" ")[0],
+      surname: nameValue.split(" ").slice(1).join(" "),
+      role_id: 2, // 1 = bibiliotekar, 2 = ucenik, 3 = admin
+      jmbg: jmbgValue,
+      email: emailValue,
+      username: usernameValue,
+      password: passwordValue,
+      password_confirmation: repeatPasswordValue,
+    };
+    const response = await api.post(`/users/store`, formData);
+    if (response.status === 200) {
+      console.log("succssfully posted");
+      navigate("/students");
     }
-    resetHandler();
-    setStudentImage(null);
   };
+
   return (
-    <SettingsForm
-      input={[
-        {
-          label: "Ime i prezime",
-          inputClasses: imePrezimeHasError
-            ? "form-control invalid"
-            : "form-control",
-          type: "text",
-          name: "imePrezime",
-          value: imePrezimeValue,
-          hasError: imePrezimeHasError,
-          onChange: imePrezimeChangeHandler,
-          onBlur: imePrezimeBlurHandler,
-        },
-        {
-          label: "Tip korisnika",
-          type: "text",
-          name: "userType",
-          value: "Ucenik",
-          disabled: true,
-        },
-        {
-          label: "JMBG",
-          inputClasses: jmbgHasError ? "form-control invalid" : "form-control",
-          type: "text",
-          name: "jmbg",
-          value: jmbgValue,
-          hasError: jmbgHasError,
-          onChange: jmbgChangeHandler,
-          onBlur: jmbgBlurHandler,
-        },
-        {
-          label: "Email",
-          inputClasses: emailHasError ? "form-control invalid" : "form-control",
-          type: "email",
-          name: "email",
-          value: emailValue,
-          hasError: emailHasError,
-          onChange: emailChangeHandler,
-          onBlur: emailBlurHandler,
-        },
-        {
-          label: "Korisničko ime",
-          inputClasses: usernameHasError
-            ? "form-control invalid"
-            : "form-control",
-          type: "text",
-          name: "username",
-          value: usernameValue,
-          hasError: usernameHasError,
-          onChange: usernameChangeHandler,
-          onBlur: usernameBlurHandler,
-        },
-      ]}
-      className="new-student-form"
-      title="Novi ucenik"
-      firstLinkName="Ucenici"
-      path="/students"
-      pathDashboard="/dashboard"
-      formIsValid={formIsValid}
-      reset={() => resetHandler()}
-      submitHandler={() => submitHandler()}
-      image={true}
-      handleImageUpload={(image) => setStudentImage(image)}
-    />
+    <div className="new-librarian-position-handler">
+      <SettingsForm
+        input={[
+          {
+            label: "Ime i prezime",
+            inputClasses: nameHasError
+              ? "form-control invalid"
+              : "form-control",
+            type: "text",
+            name: "name",
+            value: nameValue,
+            hasError: nameHasError,
+            onChange: nameChangeHandler,
+            onBlur: nameBlurHandler,
+          },
+
+          {
+            label: "Tip korisnika",
+            type: "text",
+            name: "userType",
+            value: "Ucenik",
+            disabled: true,
+          },
+          {
+            label: "JMBG",
+            inputClasses: jmbgHasError
+              ? "form-control invalid"
+              : "form-control",
+            type: "text",
+            name: "jmbg",
+            value: jmbgValue,
+            hasError: jmbgHasError,
+            onChange: jmbgChangeHandler,
+            onBlur: jmbgBlurHandler,
+          },
+          {
+            label: "Email",
+            inputClasses: emailHasError
+              ? "form-control invalid"
+              : "form-control",
+            type: "email",
+            name: "email",
+            value: emailValue,
+            hasError: emailHasError,
+            onChange: emailChangeHandler,
+            onBlur: emailBlurHandler,
+          },
+          {
+            label: "Korisničko ime",
+            inputClasses: usernameHasError
+              ? "form-control invalid"
+              : "form-control",
+            type: "text",
+            name: "username",
+            value: usernameValue,
+            hasError: usernameHasError,
+            onChange: usernameChangeHandler,
+            onBlur: usernameBlurHandler,
+          },
+          {
+            label: "Lozinka",
+            inputClasses: passwordHasError
+              ? "form-control invalid"
+              : "form-control",
+            type: "password",
+            placeholder: "min 8 karaktera (cifre + slova)",
+            name: "password",
+            value: passwordValue,
+            hasError: passwordHasError,
+            onChange: passwordChangeHandler,
+            onBlur: passwordBlurHandler,
+          },
+          {
+            label: "Ponovite lozinku",
+            inputClasses:
+              repeatPasswordHasError || repeatPasswordValue !== passwordValue
+                ? "form-control invalid"
+                : "form-control",
+            type: "password",
+            placeholder: "Mora odgovarati prvobitno unesenoj lozinki",
+            name: "username",
+            value: repeatPasswordValue,
+            hasError: repeatPasswordHasError,
+            onChange: repeatPasswordChangeHandler,
+            onBlur: repeatPasswordBlurHandler,
+          },
+        ]}
+        className="new-student-form-left"
+        title="Novi ucenik"
+        firstLinkName="Ucenici"
+        path="/students"
+        pathDashboard="/dashboard"
+        formIsValid={formIsValid}
+        reset={() => resetHandler()}
+        submit={() => submitHandler()}
+      />
+      <SettingsForm image={true} className="new-student-form-right" />
+    </div>
   );
 };
 export default NewStudent;

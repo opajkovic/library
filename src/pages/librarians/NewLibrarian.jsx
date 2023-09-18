@@ -1,9 +1,7 @@
-import { useState } from "react";
 import useInput from "../../hooks/useInput";
 import SettingsForm from "../../components/UI/SettingsForm";
 import "./NewLibrarian.css";
 import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
 import api from "../../api/apiCalls";
 
 const nameRegex = /^[A-Za-z]+ [A-Za-z]+(?: [A-Za-z]+)?$/;
@@ -120,7 +118,7 @@ const NewLibrarian = () => {
               ? "form-control invalid"
               : "form-control",
             type: "text",
-            name: "imePrezime",
+            name: "name",
             placeholder: "Unesite Vaše puno ime i prezime",
             value: nameValue,
             hasError: nameHasError,
