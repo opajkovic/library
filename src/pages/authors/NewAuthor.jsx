@@ -23,8 +23,6 @@ const NewAuthor = () => {
     setRichTextareaValue(newValue);
   };
 
-
-
   let formIsValid = false;
   if (authorIsValid && richTextareaValue !== "") {
     formIsValid = true;

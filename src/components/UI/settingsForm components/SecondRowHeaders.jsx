@@ -29,6 +29,7 @@ export default function SecondRowHeaders({
     },
   ];
 
+  console.log(nextLevel, secondLevel)
   return (
     <div className="second-headers-wrapper">
       {navLinks.map((item, index) => (
@@ -38,9 +39,9 @@ export default function SecondRowHeaders({
           className={({ isActive }) =>
             isActive
               ? "active-secondary-header"
-              : item.nextLevel && !item.nextLevel
+              : !item.nextLevel && item.nextLevel !== undefined
               ? "secondary-disabled"
-              : item.secondLevel && !item.secondLevel
+              : !item.secondLevel
               ? "secondary-disabled"
               : ""
           }

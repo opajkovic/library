@@ -1,25 +1,29 @@
 import SettingsForm from "../../../components/UI/SettingsForm";
-import useInput from "../../../hooks/useInput";
 import { useEffect, useState } from "react";
 import "./Specification.css";
 import { filterAndMap } from "../../../util/Functions";
 import { useDispatch, useSelector } from "react-redux";
 import { updateFormData } from "../../../redux/new-book-data";
 import { useLoaderData, useNavigate } from "react-router";
+import { updateCurrentData } from "../../../redux/new-book-current";
 
 export default function NewBookSpecification() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const currentBookData = useSelector((state) => state.newBookCurrent);
 
   const [scriptIsValid, setScriptIsValid] = useState(false);
   const [bookbindIsValid, setBookbindIsValid] = useState(false);
   const [formatIsValid, setFormatIsValid] = useState(false);
+  const [pagesIsValid, setPagesIsValid] = useState(false);
+
+  const [clickedPages, setClickedPages] = useState(false);
+  const [secondLevel, setSecondLevel] = useState(false);
+
   const fetchedData = useLoaderData();
   const [data, setData] = useState({});
 
-  const [secondLevel, setSecondLevel] = useState(false);
-  const navigate = useNavigate();
-
-  const [scriptValue, setScriptValue] = useState("");
+  const [scriptValue, setScriptValue] = useState(currentBookData.pismo || "");
   const scriptChangeHandler = (newValue) => {
     setScriptValue(newValue);
   };
@@ -27,7 +31,7 @@ export default function NewBookSpecification() {
     setScriptIsValid(value);
   };
 
-  const [bookbindValue, setBookbindValue] = useState("");
+  const [bookbindValue, setBookbindValue] = useState(currentBookData.povez || "");
   const bookbindChangeHandler = (newValue) => {
     setBookbindValue(newValue);
   };
@@ -35,7 +39,7 @@ export default function NewBookSpecification() {
     setBookbindIsValid(value);
   };
 
-  const [formatValue, setFormatValue] = useState("");
+  const [formatValue, setFormatValue] = useState(currentBookData.format || "");
   const formatChangeHandler = (newValue) => {
     setFormatValue(newValue);
   };
@@ -43,15 +47,15 @@ export default function NewBookSpecification() {
     setFormatIsValid(value);
   };
 
-  const isNotEmptyString = (value) => value.trim().length > 0;
-  const {
-    value: pagesValue,
-    isValid: pagesIsValid,
-    hasError: pagesHasError,
-    valueChangeHandler: pagesChangeHandler,
-    inputBlurHandler: pagesBlurHandler,
-    reset: pagesReset,
-  } = useInput(isNotEmptyString);
+  const pagesBlurHandler = () => {
+    setClickedPages(true);
+  };
+
+  const [pagesValue, setPagesValue] = useState(currentBookData.brStrana || "");
+  const pagesChangeHandler = (event) => {
+    setPagesValue(event.target.value);
+    setPagesIsValid(pagesValue !== "");
+  };
 
   let formIsValid = false;
   if (pagesIsValid && scriptIsValid && bookbindIsValid && formatIsValid) {
@@ -68,18 +72,26 @@ export default function NewBookSpecification() {
       isbn: 1234567891011,
     };
     dispatch(updateFormData(formData));
+    dispatch(updateCurrentData({
+      brStrana: pagesValue,
+      povez: bookbindValue,
+      format: formatValue,
+      pismo: scriptValue,
+    })
+    )
     navigate("/books/new/multimedija");
   };
 
-  const pagesClasses = pagesHasError ? "form-control invalid" : "form-control";
+  const pagesClasses = !pagesIsValid && clickedPages ? "form-control invalid" : "form-control";
 
   useEffect(() => {
     setData(fetchedData);
     setSecondLevel(false);
+    setPagesIsValid(pagesValue !== "");
   }, []);
 
   const resetHandler = () => {
-    pagesReset();
+    setPagesValue("")
     setScriptValue("");
     setBookbindValue("");
     setFormatValue("");
@@ -95,7 +107,6 @@ export default function NewBookSpecification() {
             type: "text",
             name: "pages",
             value: pagesValue,
-            hasError: pagesHasError,
             onChange: pagesChangeHandler,
             onBlur: pagesBlurHandler,
           },

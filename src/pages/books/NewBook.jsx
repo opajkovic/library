@@ -1,22 +1,42 @@
 import { useEffect, useState } from "react";
 import SettingsForm from "../../components/UI/SettingsForm";
-import useInput from "../../hooks/useInput";
 import "./NewBook.css";
 import { useLoaderData, useNavigate } from "react-router";
 import { filterAndMap } from "../../util/Functions";
-import { useDispatch } from "react-redux";
-import { updateFormData, resetFormData } from "../../redux/new-book-data";
+import { useDispatch, useSelector } from "react-redux";
+import { updateFormData } from "../../redux/new-book-data";
 import api from "../../api/apiCalls";
-
-const isNotEmptyString = (value) => value.trim().length > 0;
+import { updateCurrentData } from "../../redux/new-book-current";
 
 const NewBook = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const currentBookData = useSelector((state) => state.newBookCurrent);
 
   const [categoryIsValid, setCategoryIsValid] = useState(false);
   const [genreIsValid, setGenreIsValid] = useState(false);
   const [authorIsValid, setAuthorIsValid] = useState(false);
   const [publisherIsValid, setPublisherIsValid] = useState(false);
+  const [nameIsValid, setNameIsValid] = useState(false);
+  const [quantityIsValid, setQuantityIsValid] = useState(false);
+  const [yearIsValid, setYearIsValid] = useState(false);
+
+  const [clickedName, setClickedName] = useState(false);
+  const [clickedYear, setClickedYear] = useState(false);
+  const [clickedQuantity, setClickedQuantity] = useState(false);
+  const [nextLevel, setNextLevel] = useState(false);
+
+  const nameBlurHandler = () => {
+    setClickedName(true);
+  };
+
+  const quantityBlurHandler = () => {
+    setClickedQuantity(true);
+  };
+
+  const yearBlurHandler = () => {
+    setClickedYear(true);
+  };
 
   const [richTextareaValue, setRichTextareaValue] = useState("");
   const richTextareaChangeHandler = (newValue) => {
@@ -55,43 +75,35 @@ const NewBook = () => {
     setPublisherIsValid(value);
   };
 
+  const [nameValue, setNameValue] = useState(currentBookData.nazivKnjiga || "");
+  const nameChangeHandler = (event) => {
+    setNameValue(event.target.value);
+    setNameIsValid(event.target.value !== "");
+  };
+
+  const [yearValue, setYearValue] = useState(
+    currentBookData.godinaIzdavanja || ""
+  );
+  const yearChangeHandler = (event) => {
+    setYearValue(event.target.value);
+    setYearIsValid(event.target.value !== "");
+  };
+
+  const [quantityValue, setQuantityValue] = useState(
+    currentBookData.knjigaKolicina || ""
+  );
+  const quantityChangeHandler = (event) => {
+    setQuantityValue(event.target.value);
+    setQuantityIsValid(event.target.value !== "");
+  };
+
   const fetchedData = useLoaderData();
-  let [data, setData] = useState({});
-  let [authors, setAuthors] = useState([]);
-
-  const [nextLevel, setNextLevel] = useState(false);
-  const navigate = useNavigate();
-
-  const {
-    value: bookValue,
-    isValid: bookIsValid,
-    hasError: bookHasError,
-    valueChangeHandler: bookChangeHandler,
-    inputBlurHandler: bookBlurHandler,
-    reset: resetBookValue,
-  } = useInput(isNotEmptyString);
-
-  const {
-    value: yearValue,
-    isValid: yearIsValid,
-    hasError: yearHasError,
-    valueChangeHandler: yearChangeHandler,
-    inputBlurHandler: yearBlurHandler,
-    reset: resetYearValue,
-  } = useInput(isNotEmptyString);
-
-  const {
-    value: quantityValue,
-    isValid: quantityIsValid,
-    hasError: quantityHasError,
-    valueChangeHandler: quantityChangeHandler,
-    inputBlurHandler: quantityBlurHandler,
-    reset: resetQuantityValue,
-  } = useInput(isNotEmptyString);
+  const [data, setData] = useState({});
+  const [authors, setAuthors] = useState([]);
 
   let formIsValid = false;
   if (
-    bookIsValid &&
+    nameIsValid &&
     genreIsValid &&
     categoryIsValid &&
     authorIsValid &&
@@ -104,9 +116,8 @@ const NewBook = () => {
 
   const submitHandler = () => {
     setNextLevel(true);
-
     const formData = {
-      nazivKnjiga: bookValue,
+      nazivKnjiga: nameValue,
       kratki_sadrzaj: richTextareaValue,
       categories: filterAndMap(data.categories, categoryValue),
       genres: filterAndMap(data.genres, genreValue),
@@ -115,16 +126,31 @@ const NewBook = () => {
       godinaIzdavanja: yearValue,
       knjigaKolicina: quantityValue,
     };
-
     dispatch(updateFormData(formData));
+
+    dispatch(
+      updateCurrentData({
+        nazivKnjiga: nameValue,
+        kratki_sadrzaj: richTextareaValue,
+        categories: categoryValue,
+        genres: genreValue,
+        authors: authorValue,
+        izdavac: publisherValue,
+        godinaIzdavanja: yearValue,
+        knjigaKolicina: quantityValue,
+      })
+    );
     navigate("/books/new/specifikacija");
   };
 
-  const bookClasses = bookHasError ? "form-control invalid" : "form-control";
-  const quantityClasses = quantityHasError
-    ? "form-control invalid"
-    : "form-control";
-  const yearClasses = yearHasError ? "form-control invalid" : "form-control";
+  const nameClasses =
+    !nameIsValid && clickedName ? "form-control invalid" : "form-control";
+  const quantityClasses =
+    !quantityIsValid && clickedQuantity
+      ? "form-control invalid"
+      : "form-control";
+  const yearClasses =
+    !yearIsValid && clickedYear ? "form-control invalid" : "form-control";
 
   let fetchAuthors = async () => {
     try {
@@ -140,7 +166,15 @@ const NewBook = () => {
   useEffect(() => {
     fetchAuthors();
     setData(fetchedData);
+    setGenreValue(currentBookData.genres);
+    setCategoryValue(currentBookData.categories);
+    setPublisherValue(currentBookData.izdavac);
+    setAuthorValue(currentBookData.authors);
     setNextLevel(false);
+
+    setNameIsValid(nameValue !== "");
+    setYearIsValid(yearValue !== "");
+    setQuantityIsValid(quantityValue !== "");
   }, []);
 
   const resetHandler = () => {
@@ -149,11 +183,9 @@ const NewBook = () => {
     setRichTextareaValue("");
     setPublisherValue("");
     setAuthorValue("");
-    resetBookValue();
-    resetYearValue();
-    resetQuantityValue();
-    navigate("/books/new/osnovni-detalji");
-    dispatch(resetFormData());
+    setQuantityValue("");
+    setYearValue("");
+    setNameValue("");
   };
 
   return (
@@ -162,19 +194,18 @@ const NewBook = () => {
         input={[
           {
             label: "Naziv knjige",
-            inputClasses: bookClasses,
+            inputClasses: nameClasses,
             type: "text",
             name: "books",
-            value: bookValue,
-            hasError: bookHasError,
-            onChange: bookChangeHandler,
-            onBlur: bookBlurHandler,
+            value: nameValue,
+            onBlur: nameBlurHandler,
+            onChange: nameChangeHandler,
           },
         ]}
         richTextarea={{
           label: "Kratki sadržaj",
           name: "description",
-          value: richTextareaValue,
+          value: currentBookData.kratki_sadrzaj || richTextareaValue,
           valueUpdate: richTextareaChangeHandler,
         }}
         select={[
@@ -244,9 +275,8 @@ const NewBook = () => {
             type: "text",
             name: "year",
             value: yearValue,
-            hasError: yearHasError,
-            onChange: yearChangeHandler,
             onBlur: yearBlurHandler,
+            onChange: yearChangeHandler,
           },
           {
             label: "Količina",
@@ -254,9 +284,8 @@ const NewBook = () => {
             type: "text",
             name: "quantity",
             value: quantityValue,
-            hasError: quantityHasError,
-            onChange: quantityChangeHandler,
             onBlur: quantityBlurHandler,
+            onChange: quantityChangeHandler,
           },
         ]}
         reset={() => resetHandler()}

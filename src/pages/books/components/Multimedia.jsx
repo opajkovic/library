@@ -22,8 +22,7 @@ export default function NewBookMultimedia() {
   };
 
   const resetHandler = () => {
-    navigate("/books/new/osnovni-detalji");
-    dispatch(resetFormData());
+
   };
 
   return (
