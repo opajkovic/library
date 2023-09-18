@@ -23,7 +23,3 @@
     flex-wrap: wrap !important;
     height: fit-content !important;
 }
-
-.ck-editor__editable.invalid {
-  border: 1px solid red !important;
-}

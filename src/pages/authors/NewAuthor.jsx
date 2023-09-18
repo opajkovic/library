@@ -4,7 +4,8 @@ import SettingsForm from "../../components/UI/SettingsForm";
 import "./NewAuthor.css";
 import api from "../../api/apiCalls";
 
-const isNotEmptyString = (value) => value.trim().length > 0;
+const nameRegex = /^[A-Za-z]+ [A-Za-z]+(?: [A-Za-z]+)?$/;
+const nameTest = (value) => nameRegex.test(value.trim());
 
 const NewAuthor = () => {
   const {
@@ -14,7 +15,7 @@ const NewAuthor = () => {
     valueChangeHandler: authorChangeHandler,
     inputBlurHandler: authorBlurHandler,
     reset: resetAuthor,
-  } = useInput(isNotEmptyString);
+  } = useInput(nameTest);
 
   const [richTextareaValue, setRichTextareaValue] = useState("");
 
@@ -22,8 +23,10 @@ const NewAuthor = () => {
     setRichTextareaValue(newValue);
   };
 
+
+
   let formIsValid = false;
-  if (authorIsValid) {
+  if (authorIsValid && richTextareaValue !== "") {
     formIsValid = true;
   }
 

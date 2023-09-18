@@ -4,7 +4,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import "./RichTextarea.css";
 
 function RichTextarea(props) {
-  const { label, value, reset, valueUpdate} = props.richTextarea;
+  const { label, value, reset, valueUpdate } = props.richTextarea;
   const [editorData, setEditorData] = useState("");
 
   const handleEditorChange = (event, editor) => {

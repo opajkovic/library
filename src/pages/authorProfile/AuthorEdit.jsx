@@ -16,6 +16,12 @@ const EditAuthor = () => {
   const fetchedData = useLoaderData();
   const nameSurname = `${fetchedData.name} ${fetchedData.surname}`;
 
+  const [richTextareaValue, setRichTextareaValue] = useState(fetchedData.bio);
+
+  const richTextareaChangeHandler = (newValue) => {
+    setRichTextareaValue(newValue);
+  };
+
   useEffect(() => {
     setAuthorInfo({ ...fetchedData, name: nameSurname });
   }, []);
@@ -31,11 +37,10 @@ const EditAuthor = () => {
   const formData = {
     name: authorInfo.name.split(" ")[0],
     surname: authorInfo.name.split(" ")[1],
-    biography: authorInfo.bio,
+    biography: richTextareaValue,
     image: null,
   };
 
-  console.log(formData);
   const submitHandler = async () => {
     const response = await api.put(`/authors/${params.id}`, formData);
     if (response.status === 200) {
@@ -62,7 +67,8 @@ const EditAuthor = () => {
       ]}
       richTextarea={{
         label: "Opis",
-        value: authorInfo.bio,
+        value: richTextareaValue,
+        valueUpdate: richTextareaChangeHandler,
         reset: richTextReset,
       }}
       className="edit-author-form"
