@@ -78,11 +78,13 @@ const SettingsForm = (props) => {
             <InputSelect key={index} select={item} sup={true} />
           ))}
 
-        <FormSubmitButtons
-          disabled={!props.formIsValid}
-          submit={props.submit}
-          reset={props.reset}
-        />
+        {(props.input || props.select) && (
+            <FormSubmitButtons
+              disabled={!props.formIsValid}
+              submit={props.submit}
+              reset={props.reset}
+            />
+          )}
       </form>
     </>
   );

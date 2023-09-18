@@ -1,3 +1,16 @@
-.new-librarian-form{
+.new-librarian-form-left, .new-librarian-form-right{
     padding-top: 8rem;
+}
+
+.new-librarian-position-handler {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+}
+
+.new-librarian-form-right{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 50%;
 }
