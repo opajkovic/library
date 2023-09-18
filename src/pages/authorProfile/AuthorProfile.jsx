@@ -4,10 +4,13 @@ import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
 import { useLoaderData, useNavigate } from "react-router";
 import AuthorInfo from "./components/AuthorInfo";
 import api from "../../api/apiCalls";
+import { deleteAuthor } from "../../redux/actions";
+import { useDispatch } from "react-redux";
 
 export default function AuthorProfile() {
   const navigate = useNavigate();
-  let [author, setAuthor] = useState({ name: "loading..." });
+  const dispatch = useDispatch();
+  const [author, setAuthor] = useState({ name: "loading..." });
   const fetchedData = useLoaderData();
 
   useEffect(() => {
@@ -16,6 +19,7 @@ export default function AuthorProfile() {
 
   const handleDelete = async () => {
     api.delete(`/authors/${fetchedData.id}`)
+    dispatch(deleteAuthor(fetchedData, fetchedData.id));
     navigate("/authors")
   }
 

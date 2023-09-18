@@ -1,17 +1,27 @@
 import React, { useEffect } from "react";
 import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import UserInfo from "../studentProfile/components/UserInfo";
 import api from "../../api/apiCalls";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { deleteLibrarian } from "../../redux/actions";
 
 export default function LibrarianProfile() {
-  let [userInfo, setUserInfo] = useState({});
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [userInfo, setUserInfo] = useState({});
   const fetchedData = useLoaderData();
 
   useEffect(() => {
     setUserInfo(fetchedData);
   }, []);
+
+  const handleDelete = async () => {
+    api.delete(`/users/${fetchedData.id}`);
+    dispatch(deleteLibrarian(fetchedData, fetchedData.id));
+    navigate("/librarians");
+  };
 
   return (
     <div>
@@ -24,6 +34,7 @@ export default function LibrarianProfile() {
         reset={true}
         deleteMssg={true}
         editPath={`/librarians/${fetchedData.id}/edit`}
+        handleDelete={()=>handleDelete()}
       />
       <div className="student-info-wrapper">
         <UserInfo userInfo={userInfo} />

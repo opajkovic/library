@@ -8,7 +8,8 @@ import "./librarians.css";
 import { FaEdit, FaFile, FaTrash } from "react-icons/fa";
 import api from "../../api/apiCalls";
 import { useDispatch, useSelector } from "react-redux";
-import { filterSearchedData } from "../../redux/actions";
+import { deleteLibrarian, filterSearchedData } from "../../redux/actions";
+import { updateLibrariansData } from "../../redux/librarian-data";
 
 const headers = [
   { headerName: "Ime i prezime", sort: true, dropdown: false, dataKey: "name" },
@@ -22,12 +23,15 @@ const Librarians = () => {
   const navigate = useNavigate();
 
   const [librarians, setLibrarians] = useState([]);
+  const [search, setSearch] = useState("");
+
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(5);
-  const [search, setSearch] = useState("");
+  const [resetPagination, setResetPagination] = useState(false);  
 
   const fetchedData = useLoaderData();
   const searchData = useSelector((state) => state.search.searchData);
+  const librariansData = useSelector((state) => state.librarians);
 
   const handlePageClick = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
@@ -38,16 +42,24 @@ const Librarians = () => {
   };
 
   useEffect(() => {
+    dispatch(updateLibrariansData(fetchedData));
     setLibrarians(fetchedData)
   }, []);
 
   useEffect(() => {
-    if (search.length > 0) {
+    if(search !== "") {
       setLibrarians(searchData);
-    } else {
-      setLibrarians(fetchedData);
+      if (resetPagination) {
+        setCurrentPage(0);
+        setResetPagination(false);
+      }
     }
-  }, [search, fetchedData]);
+    else {
+      if(librariansData !== null){
+        setLibrarians(librariansData)
+      }
+    }
+  }, [search, librariansData]);
 
   const handleClick = () => {
     navigate("/librarians/new");
@@ -56,12 +68,26 @@ const Librarians = () => {
   const handleGlobalSearch = (event) => {
     const searchValue = event.target.value.toLowerCase();
     setSearch(searchValue);
+    setResetPagination(true);
     dispatch(filterSearchedData(fetchedData, headers, searchValue));
   };
 
   const handleColumnSearch = (headerName, searchValue) => {
     setSearch(searchValue);
+    setResetPagination(true);
     dispatch(filterSearchedData(fetchedData, headerName, searchValue));
+  };
+
+  const handleDelete = async (id) => {
+    api.delete(`/users/${id}`);
+    dispatch(deleteLibrarian(librariansData, id));
+    if(search !== ""){
+      setLibrarians(searchData.filter((item) => item.id !== id));
+    }
+    else{
+      setLibrarians(librariansData.filter(item => item.id !== id))
+    }
+    navigate("/librarians");
   };
 
   const startIndex = currentPage * itemsPerPage;
@@ -84,6 +110,7 @@ const Librarians = () => {
           headers={headers}
           tableData={librariansToDisplay}
           searchColumn={handleColumnSearch}
+          handleDelete={handleDelete}
           options={[
             {
               text: "Pogledaj detalje",

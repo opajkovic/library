@@ -1,19 +1,30 @@
 import React, { useEffect } from "react";
 import "./studentProfile.css";
 import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
-import { redirect, useLoaderData} from "react-router";
+import { redirect, useLoaderData, useNavigate} from "react-router";
 import LinkWrapper from "./components/LinkWrapper";
 import UserInfo from "./components/UserInfo";
 import { useState } from "react";
 import api from "../../api/apiCalls";
+import { deleteStudent } from "../../redux/actions";
+import { useDispatch } from "react-redux";
 
 export default function StudentProfile() {
-  let [userInfo, setUserInfo] = useState();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [userInfo, setUserInfo] = useState();
   const fetchedData = useLoaderData();
 
   useEffect(() => {
     setUserInfo(fetchedData);
   }, []);
+
+  const handleDelete = async () => {
+    api.delete(`/users/${fetchedData.id}`);
+    dispatch(deleteStudent(fetchedData, fetchedData.id));
+    navigate("/students");
+  };
+
   return (
     <div>
       <ProfileTitle
@@ -25,6 +36,7 @@ export default function StudentProfile() {
         reset={true}
         deleteMssg={true}
         editPath={`/students/${fetchedData.id}/edit`}
+        handleDelete={()=>handleDelete()}
       />
       <div className="student-info-wrapper">
         <LinkWrapper />

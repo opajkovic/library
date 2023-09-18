@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const studentsData = createSlice({
-  name: "newBookData",
+  name: "studentsData",
   initialState: null,
   reducers: {
     updateStudentsData: (state, action) => {
