@@ -18,7 +18,7 @@ const jmbgTest = (value) => jmbgRegex.test(value);
 const usernameRegex = /^[a-zA-Z0-9_.-]{3,15}$/;
 const usernameTest = (value) => usernameRegex.test(value);
 
-const passwordRegex = /^\d{8}$/;
+const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
 const passwordTest = (value) => passwordRegex.test(value);
 
 const NewLibrarian = () => {
@@ -80,7 +80,7 @@ const NewLibrarian = () => {
     emailIsValid &&
     usernameIsValid &&
     passwordIsValid &&
-    repeatPasswordIsValid
+    repeatPasswordIsValid 
   ) {
     formIsValid = true;
   }
@@ -178,7 +178,7 @@ const NewLibrarian = () => {
               ? "form-control invalid"
               : "form-control",
             type: "password",
-            placeholder: "min 8 karaktera",
+            placeholder: "min 8 karaktera (cifre + slova)",
             name: "password",
             value: passwordValue,
             hasError: passwordHasError,
@@ -187,11 +187,11 @@ const NewLibrarian = () => {
           },
           {
             label: "Ponovite lozinku",
-            inputClasses: repeatPasswordHasError
+            inputClasses: repeatPasswordHasError || repeatPasswordValue !== passwordValue
               ? "form-control invalid"
               : "form-control",
             type: "password",
-            placeholder: "min 8 karaktera",
+            placeholder: "Mora odgovarati prvobitno unesenoj lozinki",
             name: "username",
             value: repeatPasswordValue,
             hasError: repeatPasswordHasError,
