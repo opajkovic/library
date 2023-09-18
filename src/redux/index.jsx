@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import searchData from "./search-data";
 import newBookData from "./new-book-data";
 import authorsData from "./authors-data";
+import studentsData from "./student-data";
 import newBookCurrentData from "./new-book-current";
 
 const store = configureStore({
@@ -9,6 +10,7 @@ const store = configureStore({
     search: searchData.reducer,
     newBookData: newBookData.reducer,
     authors: authorsData.reducer,
+    students: studentsData.reducer,
     newBookCurrent: newBookCurrentData.reducer
   },
 });

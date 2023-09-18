@@ -13,12 +13,7 @@ import { updateAuthorsData } from "../../redux/authors-data";
 
 const headers = [
   { headerName: "Ime autora", sort: true, dropdown: false, dataKey: "name" },
-  {
-    headerName: "Prezime autora",
-    sort: false,
-    dropdown: true,
-    dataKey: "surname",
-  },
+  { headerName: "Prezime autora", sort: false, dropdown: true, dataKey: "surname" }
 ];
 
 export default function Authors() {

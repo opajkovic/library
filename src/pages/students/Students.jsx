@@ -6,8 +6,9 @@ import TableControl from "../../components/UI/TableControl";
 import Pagination from "../../components/UI/Pagination";
 import { FaEdit, FaFile, FaTrash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { filterSearchedData } from "../../redux/actions";
+import { deleteStudent, filterSearchedData } from "../../redux/actions";
 import api from "../../api/apiCalls";
+import { updateStudentsData } from "../../redux/student-data";
 
 const headers = [
   { headerName: "Ime i prezime", sort: true, dropdown: false, dataKey: "name" },
@@ -21,12 +22,15 @@ export default function Students() {
   const navigate = useNavigate();
 
   const [students, setStudents] = useState([]);
+  const [search, setSearch] = useState("");
+
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(5);
-  const [search, setSearch] = useState("");
+  const [resetPagination, setResetPagination] = useState(false);  
 
   const fetchedData = useLoaderData();
   const searchData = useSelector((state) => state.search.searchData);
+  const studentsData = useSelector((state) => state.students);
 
   const handlePageClick = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
@@ -37,16 +41,24 @@ export default function Students() {
   };
 
   useEffect(() => {
+    dispatch(updateStudentsData(fetchedData));
     setStudents(fetchedData);
   }, []);
 
   useEffect(() => {
-    if (search.length > 0) {
+    if(search !== "") {
       setStudents(searchData);
-    } else {
-      setStudents(fetchedData);
+      if (resetPagination) {
+        setCurrentPage(0);
+        setResetPagination(false);
+      }
     }
-  }, [search, fetchedData]);
+    else {
+      if(studentsData !== null){
+        setStudents(studentsData)
+      }
+    }
+  }, [search, studentsData]);
 
   const handleClick = () => {
     navigate("/students/new");
@@ -55,12 +67,26 @@ export default function Students() {
   const handleGlobalSearch = (event) => {
     const searchValue = event.target.value.toLowerCase();
     setSearch(searchValue);
+    setResetPagination(true);
     dispatch(filterSearchedData(fetchedData, headers, searchValue));
   };
 
   const handleColumnSearch = (headerName, searchValue) => {
     setSearch(searchValue);
+    setResetPagination(true);
     dispatch(filterSearchedData(fetchedData, headerName, searchValue));
+  };
+
+  const handleDelete = async (id) => {
+    api.delete(`/users/${id}`);
+    dispatch(deleteStudent(studentsData, id));
+    if(search !== ""){
+      setStudents(searchData.filter((item) => item.id !== id));
+    }
+    else{
+      setStudents(studentsData.filter(item => item.id !== id))
+    }
+    navigate("/students");
   };
 
   const startIndex = currentPage * itemsPerPage;
@@ -83,6 +109,7 @@ export default function Students() {
           headers={headers}
           tableData={studentsToDisplay}
           searchColumn={handleColumnSearch}
+          handleDelete={handleDelete}
           options={[
             {
               text: "Pogledaj detalje",
