@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import api from "../../api/apiCalls";
 import "./NewStudent.css";
 
-const nameRegex = /^[A-Za-z]+ [A-Za-z]+(?: [A-Za-z]+)?$/;
+const nameRegex = /^[A-Za-zćčžšđĆČŽŠĐ]+ [A-Za-zćčžšđĆČŽŠĐ]+(?: [A-Za-zćčžšđĆČŽŠĐ]+)?$/;
 const nameTest = (value) => nameRegex.test(value);
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;

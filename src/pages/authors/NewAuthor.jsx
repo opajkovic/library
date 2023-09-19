@@ -4,7 +4,7 @@ import SettingsForm from "../../components/UI/SettingsForm";
 import "./NewAuthor.css";
 import api from "../../api/apiCalls";
 
-const nameRegex = /^[A-Za-z]+ [A-Za-z]+(?: [A-Za-z]+)?$/;
+const nameRegex = /^[A-Za-zćčžšđĆČŽŠĐ]+ [A-Za-zćčžšđĆČŽŠĐ]+(?: [A-Za-zćčžšđĆČŽŠĐ]+)?$/;
 const nameTest = (value) => nameRegex.test(value.trim());
 
 const NewAuthor = () => {
