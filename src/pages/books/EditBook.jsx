@@ -4,10 +4,15 @@ import { createChangeHandler, getInvalidClass } from "../../util/Functions";
 import "./NewBook.css";
 import { useLoaderData, useParams } from "react-router";
 import api from "../../api/apiCalls";
+import { filterAndMap } from "../../util/Functions";
+import { useDispatch, useSelector } from "react-redux";
+import { updateEditData } from "../../redux/edit-book-data";
 
 const EditBook = () => {
   const fetchedData = useLoaderData();
+  const dispatch = useDispatch();
   const params = useParams();
+  const editedData = useSelector(state => state.editBookData);
 
   const [categoryIsValid, setCategoryIsValid] = useState(false);
   const [genreIsValid, setGenreIsValid] = useState(false);
@@ -46,9 +51,7 @@ const EditBook = () => {
     setGenreIsValid(value);
   };
 
-  const [authorValue, setAuthorValue] = useState(
-    fetchedData.book.authors[0].name + " " + fetchedData.book.authors[0].surname
-  );
+  const [authorValue, setAuthorValue] = useState(fetchedData.book.authors[0].name + " " + fetchedData.book.authors[0].surname);
   const authorChangeHandler = (newValue) => {
     setAuthorValue(newValue);
   };
@@ -56,9 +59,7 @@ const EditBook = () => {
     setAuthorIsValid(value);
   };
 
-  const [publisherValue, setPublisherValue] = useState(
-    fetchedData.book.publisher.name
-  );
+  const [publisherValue, setPublisherValue] = useState(fetchedData.book.publisher.name);
   const publisherChangeHandler = (newValue) => {
     setPublisherValue(newValue);
   };
@@ -92,21 +93,56 @@ const EditBook = () => {
     });
     setRichTextareaValue(fetchedData.book.description)
     setCategoryValue(fetchedData.book.categories[0].name);
-    setAuthorValue(
-      fetchedData.book.authors[0].name +
-        " " +
-        fetchedData.book.authors[0].surname
-    );
+    setAuthorValue(fetchedData.book.authors[0].name + " " + fetchedData.book.authors[0].surname)
     setPublisherValue(fetchedData.book.publisher.name);
     setGenreValue(fetchedData.book.genres[0].name);
   };
 
-  const submitHandler = () => {
-    // Post request
-    return null;
+  const submitHandler = async () => {
+    const updatedData = {
+      nazivKnjiga: bookInfo.name,
+      kratki_sadrzaj: richTextareaValue,
+      categories: filterAndMap(fetchedData.categories, categoryValue),
+      genres: filterAndMap(fetchedData.genres, genreValue),
+      authors: filterAndMap(fetchedData.authors, authorValue.split(' ')[0]),
+      izdavac: filterAndMap(fetchedData.publishers, publisherValue),
+      godinaIzdavanja: bookInfo.year,
+      knjigaKolicina: bookInfo.quantity,
+    }
+    dispatch(updateEditData(updatedData))
   };
 
+  const updatingFunction = async () => {
+      const response = await api.post(`/books/${params.id}/update`, editedData);
+      if(response.status === 200){
+        console.log("successfully updated")
+        return response
+      }
+      else {
+        console.log("unsuccesfull")
+      }
+  }
+
+  useEffect(()=>{
+    updatingFunction();
+  },[editedData])
+
   useEffect(() => {
+    dispatch(updateEditData({
+      nazivKnjiga: fetchedData.book.title,
+      kratki_sadrzaj: fetchedData.book.description,
+      categories: fetchedData.book.categories[0].id,
+      genres: fetchedData.book.genres[0].id,
+      authors: fetchedData.book.authors[0].id,
+      izdavac: fetchedData.book.publisher.id,
+      godinaIzdavanja: fetchedData.book.pDate,
+      knjigaKolicina: fetchedData.book.samples,
+      brStrana: fetchedData.book.pages,
+      povez: fetchedData.book.bookbind.id,
+      format: fetchedData.book.format.id,
+      pismo: fetchedData.book.script.id,
+      isbn: fetchedData.book.isbn,
+    }))
     resetHandler();
   }, []);
 
@@ -170,6 +206,7 @@ const EditBook = () => {
         ]}
         imagePath={bookInfo.photoPath}
         edit={true}
+        secondLevel={true}
       />
       <SettingsForm
         select={[

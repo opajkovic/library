@@ -1,21 +1,25 @@
 import SettingsForm from "../../../components/UI/SettingsForm";
 import { createChangeHandler, getInvalidClass } from "../../../util/Functions";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateEditData } from "../../../redux/edit-book-data";
+import { filterAndMap } from "../../../util/Functions";
+import api from "../../../api/apiCalls";
 import "./Specification.css";
 import { useLoaderData, useParams } from "react-router";
 
 export default function EditSpecification() {
+  const fetchedData = useLoaderData();
+  const dispatch = useDispatch();
+  const params = useParams();
+  const editedData = useSelector(state => state.editBookData);
+
   const [scriptIsValid, setScriptIsValid] = useState(false);
   const [bookbindIsValid, setBookbindIsValid] = useState(false);
   const [formatIsValid, setFormatIsValid] = useState(false);
-  const fetchedData = useLoaderData();
-  const params = useParams();
 
   const [bookInfo, setBookInfo] = useState({
     pages: "",
-    script: "",
-    bookbind: "",
-    format: "",
   });
 
   const [scriptValue, setScriptValue] = useState(fetchedData.book.script.name);
@@ -67,11 +71,46 @@ export default function EditSpecification() {
   };
 
   const submitHandler = () => {
-    // post request
-    return null;
+    const updatedData = {
+      brStrana: bookInfo.pages,
+      povez: filterAndMap(fetchedData.bookbinds, bookbindValue),
+      format: filterAndMap(fetchedData.formats, formatValue),
+      pismo: filterAndMap(fetchedData.scripts, scriptValue),
+    }
+    dispatch(updateEditData(updatedData))
   };
 
+  const updatingFunction = async () => {
+    const response = await api.post(`/books/${params.id}/update`, editedData);
+    if(response.status === 200){
+      console.log("successfully updated")
+      return response
+    }
+    else {
+      console.log("unsuccesfull")
+    }
+  }
+
+  useEffect(()=>{
+    updatingFunction();
+  },[editedData])
+
   useEffect(() => {
+    dispatch(updateEditData({
+      nazivKnjiga: fetchedData.book.title,
+      kratki_sadrzaj: fetchedData.book.description,
+      categories: fetchedData.book.categories[0].id,
+      genres: fetchedData.book.genres[0].id,
+      authors: fetchedData.book.authors[0].id,
+      izdavac: fetchedData.book.publisher.id,
+      godinaIzdavanja: fetchedData.book.pDate,
+      knjigaKolicina: fetchedData.book.samples,
+      brStrana: fetchedData.book.pages,
+      povez: fetchedData.book.bookbind.id,
+      format: fetchedData.book.format.id,
+      pismo: fetchedData.book.script.id,
+      isbn: fetchedData.book.isbn,
+    }))
     resetHandler();
   }, []);
 
@@ -131,6 +170,7 @@ export default function EditSpecification() {
         pathDashboard="/dashboard"
         formIsValid={formIsValid}
         headers={true}
+        secondLevel={true}
         editHeaders={[
           {
             details: `/books/${params.id}/edit`,
@@ -149,9 +189,6 @@ export default function EditSpecification() {
             disabled: true,
           },
         ]}
-        reset={() => resetHandler()}
-        formIsValid={formIsValid}
-        submit={() => submitHandler()}
         className="specification-serial-number"
       />
     </div>

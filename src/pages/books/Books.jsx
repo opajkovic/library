@@ -52,8 +52,10 @@ export default function Books() {
   };
 
   useEffect(() => {
-    setBooks(transformBookData(fetchedData));
-    setSearchBooks(transformBookData(fetchedData))
+    if(fetchedData){
+      setBooks(transformBookData(fetchedData));
+      setSearchBooks(transformBookData(fetchedData))
+    }
   }, []);
 
   useEffect(() => {

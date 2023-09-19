@@ -29,7 +29,6 @@ export default function SecondRowHeaders({
     },
   ];
 
-  console.log(nextLevel, secondLevel)
   return (
     <div className="second-headers-wrapper">
       {navLinks.map((item, index) => (
