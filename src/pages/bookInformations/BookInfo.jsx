@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./BookInfo.css";
 import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
-import { useLoaderData, useOutletContext } from "react-router";
+import { useLoaderData } from "react-router";
 import RightSide from "./components/RightSide";
 import api from "../../api/apiCalls";
 import ConditionalContainer from "./components/ConditionalContainer";
@@ -16,8 +16,8 @@ export default function BookInfo({
   excessEvidence,
   archivedEvidence,
 }) {
-  const { setRoute } = useOutletContext();
-  let [book, setBook] = useState({
+
+  const [book, setBook] = useState({
     title: "loading...",
     categories: [{ name: "loading...", surname: "loading..." }],
     authors: [{ name: "loading...", surname: "loading..." }],
@@ -35,7 +35,6 @@ export default function BookInfo({
 
   useEffect(() => {
     setBook(fetchedData);
-    setRoute("/books/:id/specifikacija");
   }, []);
   return (
     <div className="book-container">

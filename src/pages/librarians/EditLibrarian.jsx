@@ -8,7 +8,6 @@ const EditLibrarian = () => {
   const [librarianInfo, setLibrairanInfo] = useState({
     name: "",
     jmbg: "",
-    email: "",
     username: "",
   });
   const fetchedData = useLoaderData();
@@ -19,23 +18,26 @@ const EditLibrarian = () => {
 
   const nameHandler = createChangeHandler("name", setLibrairanInfo);
   const jmbgHandler = createChangeHandler("jmbg", setLibrairanInfo);
-  const emailHandler = createChangeHandler("email", setLibrairanInfo);
   const usernameHandler = createChangeHandler("username", setLibrairanInfo);
 
   const nameClass = getInvalidClass(librarianInfo.name);
-  const emailClass = getInvalidClass(librarianInfo.email);
   const jmbgClass = getInvalidClass(librarianInfo.jmbg);
   const usernameClass = getInvalidClass(librarianInfo.username);
 
   let formIsValid = false;
   if (
     nameClass === "form-control" &&
-    emailClass === "form-control" &&
     jmbgClass === "form-control" &&
     usernameClass === "form-control"
   ) {
     formIsValid = true;
   }
+
+  const submitHandler = () => {
+    const formData = {
+      
+    }
+  };
 
   const resetHandler = () => {
     setLibrairanInfo(fetchedData);
@@ -69,11 +71,10 @@ const EditLibrarian = () => {
         },
         {
           label: "Email",
-          inputClasses: emailClass,
           type: "email",
           name: "email",
           value: librarianInfo.email,
-          onChange: emailHandler,
+          disabled: true
         },
         {
           label: "Korisničko ime",
@@ -91,6 +92,7 @@ const EditLibrarian = () => {
       pathDashboard="/dashboard"
       formIsValid={formIsValid}
       reset={() => resetHandler()}
+      submit={() => submitHandler()}
       image={true}
       imagePath={librarianInfo.photoPath}
       edit={true}

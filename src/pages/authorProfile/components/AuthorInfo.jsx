@@ -1,6 +1,7 @@
 import "../AuthorProfile.css";
 
 export default function AuthorInfo({ userInfo }) {
+  const htmlString = userInfo.bio;
   return (
     <ul className="author-info-wrapper">
       <li>
@@ -9,7 +10,7 @@ export default function AuthorInfo({ userInfo }) {
       </li>
       <li>
         <span> Opis </span>
-        {userInfo.bio && userInfo.bio.replace(/<\/?p>/g, "")}
+        <div dangerouslySetInnerHTML={{ __html: htmlString }} />
       </li>
     </ul>
   );
