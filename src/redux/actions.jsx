@@ -1,4 +1,5 @@
 import { searchedData } from "./search-data";
+import { sortedData } from "./sort-data";
 import { updateAuthorsData } from "./authors-data";
 import { updateStudentsData } from "./student-data";
 import { updateLibrariansData } from "./librarian-data";
@@ -19,6 +20,17 @@ export const filterSearchedData = (data, headers, inputValue ) => {
       });
 
       dispatch(searchedData(filteredData || []));
+    } catch (error) {
+      console.error("Error filtering/searching data:", error);
+    }
+  };
+};
+
+export const sortData = (data) => {
+  return (dispatch) => {
+    try {
+      const sortData = data.slice().sort((a, b) =>  a.name.localeCompare(b.name));
+      dispatch(sortedData(sortData))
     } catch (error) {
       console.error("Error filtering/searching data:", error);
     }

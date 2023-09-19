@@ -7,9 +7,11 @@ import booksData from "./books-data";
 import newBookData from "./new-book-data";
 import newBookCurrentData from "./new-book-current";
 import editBookData from "./edit-book-data";
+import sortData from "./sort-data";
 
 const store = configureStore({
   reducer: {
+    sort: sortData.reducer,
     search: searchData.reducer,
     newBookCurrent: newBookCurrentData.reducer,
     newBookData: newBookData.reducer,

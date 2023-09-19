@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteStudent, filterSearchedData } from "../../redux/actions";
 import api from "../../api/apiCalls";
 import { updateStudentsData } from "../../redux/student-data";
+import { sortData } from "../../redux/actions";
+import { sortedData } from "../../redux/sort-data";
 
 const headers = [
   { headerName: "Ime i prezime", sort: true, dropdown: false, dataKey: "name" },
@@ -30,6 +32,7 @@ export default function Students() {
 
   const fetchedData = useLoaderData();
   const searchData = useSelector((state) => state.search.searchData);
+  const updatedSortedData = useSelector((state) => state.sort.sortedData);
   const studentsData = useSelector((state) => state.students);
 
   const handlePageClick = (selectedPage) => {
@@ -43,6 +46,7 @@ export default function Students() {
   useEffect(() => {
     dispatch(updateStudentsData(fetchedData));
     setStudents(fetchedData);
+    dispatch(sortedData(fetchedData))
   }, []);
 
   useEffect(() => {
@@ -77,6 +81,14 @@ export default function Students() {
     dispatch(filterSearchedData(fetchedData, headerName, searchValue));
   };
 
+  const handleSort = () => {
+    dispatch(sortData(students))
+  }
+
+  useEffect(()=>{
+    setStudents(updatedSortedData)
+  },[updatedSortedData])
+
   const handleDelete = async (id) => {
     api.delete(`/users/${id}`);
     dispatch(deleteStudent(studentsData, id));
@@ -110,6 +122,7 @@ export default function Students() {
           tableData={studentsToDisplay}
           searchColumn={handleColumnSearch}
           handleDelete={handleDelete}
+          handleSort={handleSort}
           options={[
             {
               text: "Pogledaj detalje",

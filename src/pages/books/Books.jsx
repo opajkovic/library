@@ -8,7 +8,8 @@ import Pagination from "../../components/UI/Pagination";
 import api from "../../api/apiCalls";
 import { filterSearchedData } from "../../redux/actions";
 import { deleteBook } from "../../redux/actions";
-
+import { sortData } from "../../redux/actions";
+import { sortedData } from "../../redux/sort-data";
 import {
   FaCalendar,
   FaEdit,
@@ -45,6 +46,7 @@ export default function Books() {
 
   const fetchedData = useLoaderData();
   const searchData = useSelector((state) => state.search.searchData);
+  const updatedSortedData = useSelector((state) => state.sort.sortedData);
   const bookData = useSelector((state) => state.books);
 
   const handlePageClick = (selectedPage) => {
@@ -59,6 +61,7 @@ export default function Books() {
   useEffect(() => {
       setBooks(transformedBooks);
       dispatch(updateBooksData(transformedBooks))
+      dispatch(sortedData(transformedBooks))
   }, [fetchedData]);
 
   useEffect(() => {
@@ -76,8 +79,6 @@ export default function Books() {
     }
   }, [search]);
 
-  console.log(books)
-  console.log(bookData)
   const handleGlobalSearch = (event) => {
     const searchValue = event.target.value.toLowerCase();
     setSearch(searchValue);
@@ -95,6 +96,14 @@ export default function Books() {
   const endIndex = startIndex + itemsPerPage;
   const booksToDisplay = books.slice(startIndex, endIndex);
   const pageCount = Math.ceil(books.length / itemsPerPage);
+
+  const handleSort = () => {
+    dispatch(sortData(books))
+  }
+
+  useEffect(()=>{
+    setBooks(updatedSortedData)
+  },[updatedSortedData])
 
   const handleDelete = async (id) => {
     api.delete(`/books/${id}/destroy`);
@@ -127,6 +136,7 @@ export default function Books() {
           tableData={booksToDisplay}
           searchColumn={handleColumnSearch}
           handleDelete={handleDelete}
+          handleSort={handleSort}
           options={[
             {
               text: "Pogledaj detalje",

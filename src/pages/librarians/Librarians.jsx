@@ -10,6 +10,8 @@ import api from "../../api/apiCalls";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteLibrarian, filterSearchedData } from "../../redux/actions";
 import { updateLibrariansData } from "../../redux/librarian-data";
+import { sortData } from "../../redux/actions";
+import { sortedData } from "../../redux/sort-data";
 
 const headers = [
   { headerName: "Ime i prezime", sort: true, dropdown: false, dataKey: "name" },
@@ -31,6 +33,7 @@ const Librarians = () => {
 
   const fetchedData = useLoaderData();
   const searchData = useSelector((state) => state.search.searchData);
+  const updatedSortedData = useSelector((state) => state.sort.sortedData);
   const librariansData = useSelector((state) => state.librarians);
 
   const handlePageClick = (selectedPage) => {
@@ -44,6 +47,7 @@ const Librarians = () => {
   useEffect(() => {
     dispatch(updateLibrariansData(fetchedData));
     setLibrarians(fetchedData)
+    dispatch(sortedData(fetchedData))
   }, []);
 
   useEffect(() => {
@@ -78,6 +82,14 @@ const Librarians = () => {
     dispatch(filterSearchedData(fetchedData, headerName, searchValue));
   };
 
+  const handleSort = () => {
+    dispatch(sortData(librarians))
+  }
+
+  useEffect(()=>{
+    setLibrarians(updatedSortedData)
+  },[updatedSortedData])
+
   const handleDelete = async (id) => {
     api.delete(`/users/${id}`);
     dispatch(deleteLibrarian(librariansData, id));
@@ -111,6 +123,7 @@ const Librarians = () => {
           tableData={librariansToDisplay}
           searchColumn={handleColumnSearch}
           handleDelete={handleDelete}
+          handleSort={handleSort}
           options={[
             {
               text: "Pogledaj detalje",

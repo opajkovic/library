@@ -2,7 +2,7 @@ import "../Table.css";
 import { FaLongArrowAltDown } from "react-icons/fa";
 import Input from "../Input";
 
-const Thead = ({ headers }) => {
+const Thead = ({ headers, handleSort }) => {
   return (
     <thead>
       <tr>
@@ -16,7 +16,7 @@ const Thead = ({ headers }) => {
             {item.headerName}
             {item.sort && (
               <sub>
-                <FaLongArrowAltDown className="arrow" />
+                <FaLongArrowAltDown onClick={handleSort} className="arrow" />
               </sub>
             )}
           </th>

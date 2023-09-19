@@ -10,6 +10,8 @@ import "./Author.css";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteAuthor, filterSearchedData } from "../../redux/actions";
 import { updateAuthorsData } from "../../redux/authors-data";
+import { sortedData } from "../../redux/sort-data";
+import { sortData } from "../../redux/actions";
 
 const headers = [
   { headerName: "Ime autora", sort: true, dropdown: false, dataKey: "name" },
@@ -29,6 +31,7 @@ export default function Authors() {
 
   const fetchedData = useLoaderData();
   const searchData = useSelector((state) => state.search.searchData);
+  const updatedSortedData = useSelector((state) => state.sort.sortedData);
   const authorData = useSelector((state) => state.authors);
 
   const handlePageClick = (selectedPage) => {
@@ -42,6 +45,7 @@ export default function Authors() {
   useEffect(() => {
     dispatch(updateAuthorsData(fetchedData));
     setAuthors(fetchedData);
+    dispatch(sortedData(fetchedData))
   }, []);
 
   useEffect(() => {
@@ -75,6 +79,14 @@ export default function Authors() {
     setResetPagination(true);
     dispatch(filterSearchedData(authorData, headerName, searchValue));
   };
+
+  const handleSort = () => {
+    dispatch(sortData(authors))
+  }
+
+  useEffect(()=>{
+    setAuthors(updatedSortedData)
+  },[updatedSortedData])
 
   const handleDelete = async (id) => {
     api.delete(`/authors/${id}`);
@@ -111,6 +123,7 @@ export default function Authors() {
           headers={headers}
           searchColumn={handleColumnSearch}
           handleDelete={handleDelete}
+          handleSort={handleSort}
           options={[
             {
               text: "Pogledaj detalje",
