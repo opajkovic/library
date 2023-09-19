@@ -19,8 +19,8 @@ export default function AuthorProfile() {
 
   const handleDelete = async () => {
     api.delete(`/authors/${fetchedData.id}`)
-    dispatch(deleteAuthor(fetchedData, fetchedData.id));
-    navigate("/authors")
+    dispatch(deleteAuthor([fetchedData], fetchedData.id));
+    window.location.href="/authors";
   }
 
   return (

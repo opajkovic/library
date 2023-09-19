@@ -2,6 +2,7 @@ import { searchedData } from "./search-data";
 import { updateAuthorsData } from "./authors-data";
 import { updateStudentsData } from "./student-data";
 import { updateLibrariansData } from "./librarian-data";
+import { updateBooksData } from "./books-data";
 
 export const filterSearchedData = (data, headers, inputValue ) => {
   return async (dispatch) => {
@@ -51,6 +52,17 @@ export const deleteLibrarian = (data, id ) => {
     try {
       const filteredData = data.filter((item) => item.id !== id)
       dispatch(updateLibrariansData(filteredData || []));
+    } catch (error) {
+      console.error("Error deleting author:", error);
+    }
+  };
+};
+
+export const deleteBook = (data, id ) => {
+  return async (dispatch) => {
+    try {
+      const filteredData = data.filter((item) => item.id !== id)
+      dispatch(updateBooksData(filteredData || []));
     } catch (error) {
       console.error("Error deleting author:", error);
     }

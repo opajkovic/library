@@ -20,7 +20,7 @@ export default function LibrarianProfile() {
   const handleDelete = async () => {
     api.delete(`/users/${fetchedData.id}`);
     dispatch(deleteLibrarian(fetchedData, fetchedData.id));
-    navigate("/librarians");
+    window.location.href="/librarians";
   };
 
   return (

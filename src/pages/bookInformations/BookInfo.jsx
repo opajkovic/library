@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./BookInfo.css";
 import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import RightSide from "./components/RightSide";
 import api from "../../api/apiCalls";
 import ConditionalContainer from "./components/ConditionalContainer";
+import { useDispatch } from "react-redux";
+import { deleteBook } from "../../redux/actions";
 
 export default function BookInfo({
   specification,
@@ -16,6 +18,9 @@ export default function BookInfo({
   excessEvidence,
   archivedEvidence,
 }) {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [book, setBook] = useState({
     title: "loading...",
@@ -36,6 +41,14 @@ export default function BookInfo({
   useEffect(() => {
     setBook(fetchedData);
   }, []);
+
+  
+  const handleDelete = async () => {
+    api.delete(`/books/${fetchedData.id}/destroy`);
+    dispatch(deleteBook([fetchedData], fetchedData.id));
+    window.location.href="/books";
+  };
+
   return (
     <div className="book-container">
       <ProfileTitle
@@ -48,6 +61,7 @@ export default function BookInfo({
         deleteMssg={true}
         booksSpecial={true}
         editPath={`/books/${fetchedData.id}/edit`}
+        handleDelete={handleDelete}
       />
       <div className="bottom-wrapper">
         <ConditionalContainer

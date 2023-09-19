@@ -21,8 +21,8 @@ export default function StudentProfile() {
 
   const handleDelete = async () => {
     api.delete(`/users/${fetchedData.id}`);
-    dispatch(deleteStudent(fetchedData, fetchedData.id));
-    navigate("/students");
+    dispatch(deleteStudent([fetchedData], fetchedData.id));
+    window.location.href="/students";
   };
 
   return (

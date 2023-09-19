@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 export const getInvalidClass = (value) => {
   if (typeof value === 'number') {
     return value === "" ? "form-control invalid" : "form-control";
@@ -25,16 +23,17 @@ export const filterAndMap = (dataArray, filterValue) => {
 };
 
 export function transformBookData(data) {
-  console.log(data)
-  return data.map((item) => ({
-    id: item.id,
-    name: item.title,
-    author: `${item.authors[0].name} ${item.authors[0].surname}`,
-    category: item.categories[0].name,
-    available: item.samples,
-    reserved: item.rSamples,
-    rented: item.bSamples,
-    excess: item.fSamples,
-    total: item.samples,
-  }));
+  return data.map((item) => {
+    return {
+      id: item.id || null,
+      name: item.title || null,
+      author: `${item.authors && item.authors[0]?.name || ''} ${item.authors && item.authors[0]?.surname || ''}`,
+      category: item.categories && item.categories[0]?.name || null,
+      available: item.samples ,
+      reserved: item.rSamples ,
+      rented: item.bSamples ,
+      excess: item.fSamples,
+      total: item.samples || null,
+    };
+  });
 }
