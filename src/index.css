@@ -91,6 +91,7 @@ ul li {
 .btn-disabled {
   background-color: var(--grey-200);
   margin-left: 0.5rem;
+  pointer-events: none !important;
 }
 .btn:hover {
   transform: scale(1.08);
