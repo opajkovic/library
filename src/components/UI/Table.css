@@ -8,19 +8,10 @@
   animation: glow 1s ease-in;
 }
 
-@keyframes glow {
-  0% {
-    box-shadow: 1.2rem 1.2rem 1.2rem rgb(49, 48, 48);
-  }
-  100% {
-    box-shadow: 0.5rem 0.5rem 0.5rem rgba(128, 128, 128, 0.527);
-  }
-}
-
-
 .table-container tr {
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 
 .table-container td,
@@ -121,6 +112,10 @@ td input {
   padding: 5px 10px;
   min-width: 150px;
   font-size: 12px;
+}
+
+.table-confirm-modal {
+  background-color: rgba(0, 0, 0, 0.1) !important;
 }
 
 @media (max-width: 1400px) {

@@ -10,7 +10,7 @@
 .authors-table th:nth-child(1) {
   width: 15rem;
 }
-.authors-table td:last-child,
-.authors-table th:last-child {
-  flex-grow: 1;
+.authors-table td:nth-child(2),
+.authors-table th:nth-child(2) {
+  width: 100%;
 }

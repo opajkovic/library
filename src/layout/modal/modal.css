@@ -14,7 +14,7 @@
     min-width: 9rem;
     width: unset;
     height: unset;
-    z-index: 11;
+    z-index: 12;
 }
 .closeModal{
     position: fixed;

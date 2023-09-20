@@ -122,11 +122,9 @@ ul li {
 }
 
 .page-wrapper {
-  width: 100%;
-  height: 100% !important;
+  padding: 5.5rem 2rem 0 2rem;
   display: flex;
   flex-direction: column;
-  padding: 0 5rem 0 2rem;
   animation: blur 0.5s ease forwards;
 }
 
@@ -171,8 +169,17 @@ p {
   }
 }
 
+@keyframes glow {
+  0% {
+    box-shadow: 1.2rem 1.2rem 1.2rem rgb(49, 48, 48);
+  }
+  100% {
+    box-shadow: 0.5rem 0.5rem 0.5rem rgba(128, 128, 128, 0.527);
+  }
+}
+
 @media (max-width: 1400px) {
   .page-wrapper {
-    padding: 0 2rem;
+    padding: 5.5rem 2rem;
   }
 }

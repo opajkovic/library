@@ -7,7 +7,7 @@ import ModalItem from "../../../layout/modal/modalItem/ModalItem";
 import Input from "../Input";
 import ConfirmModal from "../../../layout/modal/confirmModal/ConfirmModal";
 
-const MiddleDataCell = ({ item, headers, options, path, handleDelete }) => {
+const MiddleDataCell = ({ item, headers, options, path, handleDelete, className }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [rowId, setRowId] = useState(null);
   const [confirmModalState, setConfirmModalStat] = useState(false);
@@ -65,7 +65,7 @@ const MiddleDataCell = ({ item, headers, options, path, handleDelete }) => {
                     <ModalItem
                       setModalClose={() => {
                         handleCloseModal();
-                        setRowId(row.id)
+                        setRowId(row.id);
                       }}
                       key={i}
                       newClassName="modalItemChange"
@@ -90,15 +90,19 @@ const MiddleDataCell = ({ item, headers, options, path, handleDelete }) => {
               })}
             />
           )}
+          {confirmModalState && (
+            <ConfirmModal
+              className={`${className ? className : "table-confirm-modal"}`}
+              text={"Da li ste sigurni da želite da izbrišete?"}
+              setCloseModal={() => setConfirmModalStat(false)}
+              handleDelete={() => {
+                handleDelete(rowId);
+                setConfirmModalStat(false);
+              }}
+            />
+          )}
         </td>
       ))}
-      {confirmModalState && (
-        <ConfirmModal
-          text={"Jeste li sigurni da zelite da izbrisete?"}
-          setCloseModal={() => setConfirmModalStat(false)}
-          handleDelete={() => {handleDelete(rowId); setConfirmModalStat(false)}}
-        />
-      )}
     </tr>
   ));
 };

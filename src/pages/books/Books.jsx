@@ -21,6 +21,7 @@ import {
 } from "react-icons/fa";
 import { transformBookData } from "../../util/Functions";
 import { updateBooksData } from "../../redux/books-data";
+import "./Books.css"
 
 const headers = [
   { headerName: "Naziv knjige", sort: true, dropdown: false, dataKey: "name" },
@@ -137,6 +138,7 @@ export default function Books() {
           searchColumn={handleColumnSearch}
           handleDelete={handleDelete}
           handleSort={handleSort}
+          tableClassName="books-modal"
           options={[
             {
               text: "Pogledaj detalje",
