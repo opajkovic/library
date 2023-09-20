@@ -10,7 +10,7 @@ export default function Dashboard() {
   return (
     <>
       <PageTitle title="Dashboard" />
-      <div className="contentD">
+      <div className="dashboard-wrapper">
         <ActivityList />
         <div className="right-side">
           <ReservationList />

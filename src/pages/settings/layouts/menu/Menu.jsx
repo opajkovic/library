@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 
 export default function Menu({selectedSettings}) {
-  return (<div>
+  return (
     <div className='menu'>
         <Link className={(selectedSettings == 'polisa') ? 'linkMenu selectedLinkMenu' :'linkMenu'} to= '/settings'>Polisa</Link>
         <Link className={(selectedSettings == 'kategorije') ? 'linkMenu selectedLinkMenu' :'linkMenu'} to= '/settings/categories'>Kategorije</Link>
@@ -13,8 +13,6 @@ export default function Menu({selectedSettings}) {
         <Link className={(selectedSettings == 'povez') ? 'linkMenu selectedLinkMenu' :'linkMenu'} to= '/settings/povez'>Povez</Link>
         <Link className={(selectedSettings == 'format') ? 'linkMenu selectedLinkMenu' :'linkMenu'} to= '/settings/format'>Format</Link>
         <Link className={(selectedSettings == 'pismo') ? 'linkMenu selectedLinkMenu' :'linkMenu'} to= '/settings/pismo'>Pismo</Link>
-    </div>
-    <div className="paddingSettingsMenu"></div>
     </div>
   )
 }

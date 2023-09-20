@@ -1,12 +1,14 @@
 .menu {
   display: flex;
-  grid-gap: 70px;
+  grid-gap: 4rem;
   position: fixed;
   border-bottom: 1px solid gray;
-  padding: 0rem 2rem;
+  padding: 5.5rem 2rem 0 2rem;
   width: 100%;
   align-items: center;
   background-color: white;
+  overflow: hidden;
+  z-index: 1;
 }
 .menu .linkMenu {
   padding: 1.25rem 0;
@@ -14,9 +16,6 @@
 .menu .selectedLinkMenu {
   color: var(--secondary);
   border-bottom: 3px solid var(--secondary);
-}
-.paddingSettingsMenu {
-  padding-top: 62px;
 }
 
 @media (max-width: 1400px) {
