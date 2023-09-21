@@ -19,3 +19,14 @@
     flex-direction: column-reverse;
     padding: 1rem 0 0 0;
 }
+input {
+  position: relative;
+  display: inline-block;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+}

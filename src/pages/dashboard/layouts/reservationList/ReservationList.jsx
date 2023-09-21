@@ -17,7 +17,7 @@ export default function ReservationList() {
       <div>
         <div className="showAll">
           <FaCalendarAlt />
-          <Link to="/rentingBooks">Prikazi sve</Link>
+          <Link to="/rentingBooks/izdate-knjige">Prikazi sve</Link>
         </div>
       </div>
     </div>

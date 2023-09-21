@@ -13,7 +13,7 @@ export default function Activities() {
     <div className="activities">
       <PageTitle title={"Prikaz aktivnosti"} />
       {/* isprobavanje */}
-      <div className="activity-wrapper">
+      <div className="page-wrapper">
         <ActivitiItem />
         <ActivitiItem />
         <ActivitiItem />

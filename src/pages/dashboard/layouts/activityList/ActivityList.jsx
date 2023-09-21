@@ -6,7 +6,7 @@ import ActivitiItem from "../../../activities/components/ActivitiItem";
 export default function ActivityList({ hideTitle }) {
   return (
     <div className="activityList">
-      {!hideTitle && <h2 className="subtitle">Aktivnosti</h2>}
+      {!hideTitle && <h2 className="subTitle">Aktivnosti</h2>}
       <div className={hideTitle ? "book-activities" : "list"}>
         <ActivitiItem />
         <ActivitiItem />
