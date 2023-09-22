@@ -10,6 +10,7 @@ const EditStudent = () => {
     jmbg: "",
     email: "",
     username: "",
+    surname: ""
   });
 
   const fetchedData = useLoaderData();
@@ -49,7 +50,7 @@ const EditStudent = () => {
           inputClasses: nameClass,
           type: "text",
           name: "name",
-          value: studentInfo.name,
+          value: studentInfo.name + " " + studentInfo.surname,
           onChange: nameHandler,
         },
         {

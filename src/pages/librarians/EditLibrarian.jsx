@@ -9,6 +9,7 @@ const EditLibrarian = () => {
     name: "",
     jmbg: "",
     username: "",
+    surname: ""
   });
   const fetchedData = useLoaderData();
 
@@ -51,8 +52,7 @@ const EditLibrarian = () => {
           inputClasses: nameClass,
           type: "text",
           name: "name",
-          value: librarianInfo.name,
-          onChange: nameHandler,
+          value: librarianInfo.name + " " + librarianInfo.surname
         },
         {
           label: "Tip korisnika",

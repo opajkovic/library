@@ -47,6 +47,7 @@ function Sidebar({ route }) {
           active={route == "settings" ? true : false}
           path="settings"
           text="Settings"
+          setClose={()=>{setIsOpen(false)}}
           icon={
             <FaCog
               className={route == "settings" ? "icon activeIcon" : "icon"}
