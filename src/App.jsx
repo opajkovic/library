@@ -9,7 +9,7 @@ import {
 // Dashboard
 import AppLayout from "./layout/AppLayout";
 import Activities from "./pages/activities/Activities";
-import Dashboard from "./pages/dashboard/Dashboard";
+import Dashboard, { reservationLoader } from "./pages/dashboard/Dashboard";
 
 // Author
 import Authors, { LoaderAuthors } from "./pages/authors/Authors";
@@ -90,7 +90,7 @@ const router = createBrowserRouter(
     <Route>
       <Route element={<AppLayout />}>
         <Route index element={<Navigate replace to="/dashboard" />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} loader={reservationLoader} />
         <Route path="/activities" element={<Activities />} />
 
         {/* Books routes */}
