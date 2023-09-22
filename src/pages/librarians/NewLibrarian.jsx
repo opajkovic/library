@@ -4,7 +4,8 @@ import "./NewLibrarian.css";
 import { useNavigate } from "react-router";
 import api from "../../api/apiCalls";
 
-const nameRegex = /^[A-Za-zćčžšđĆČŽŠĐ]+ [A-Za-zćčžšđĆČŽŠĐ]+(?: [A-Za-zćčžšđĆČŽŠĐ]+)?$/;
+const nameRegex =
+  /^[A-Za-zćčžšđĆČŽŠĐ]+ [A-Za-zćčžšđĆČŽŠĐ]+(?: [A-Za-zćčžšđĆČŽŠĐ]+)?$/;
 const nameTest = (value) => nameRegex.test(value);
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -78,7 +79,7 @@ const NewLibrarian = () => {
     emailIsValid &&
     usernameIsValid &&
     passwordIsValid &&
-    repeatPasswordIsValid 
+    repeatPasswordIsValid
   ) {
     formIsValid = true;
   }
@@ -108,7 +109,7 @@ const NewLibrarian = () => {
       navigate("/librarians");
     }
   };
-  
+
   return (
     <div className="new-librarian-position-handler">
       <SettingsForm
@@ -186,9 +187,10 @@ const NewLibrarian = () => {
           },
           {
             label: "Ponovite lozinku",
-            inputClasses: repeatPasswordHasError || repeatPasswordValue !== passwordValue
-              ? "form-control invalid"
-              : "form-control",
+            inputClasses:
+              repeatPasswordHasError || repeatPasswordValue !== passwordValue
+                ? "form-control invalid"
+                : "form-control",
             type: "password",
             placeholder: "Mora odgovarati prvobitno unesenoj lozinki",
             name: "username",
@@ -207,7 +209,13 @@ const NewLibrarian = () => {
         reset={() => resetHandler()}
         submit={() => submitHandler()}
       />
-      <SettingsForm image={true} className="new-librarian-form-right" />
+      <SettingsForm
+        image={true}
+        className="new-librarian-form-right"
+        formIsValid={formIsValid}
+        reset={() => resetHandler()}
+        submit={() => submitHandler()}
+      />
     </div>
   );
 };

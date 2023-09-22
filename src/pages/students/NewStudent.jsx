@@ -4,7 +4,8 @@ import { useNavigate } from "react-router";
 import api from "../../api/apiCalls";
 import "./NewStudent.css";
 
-const nameRegex = /^[A-Za-zćčžšđĆČŽŠĐ]+ [A-Za-zćčžšđĆČŽŠĐ]+(?: [A-Za-zćčžšđĆČŽŠĐ]+)?$/;
+const nameRegex =
+  /^[A-Za-zćčžšđĆČŽŠĐ]+ [A-Za-zćčžšđĆČŽŠĐ]+(?: [A-Za-zćčžšđĆČŽŠĐ]+)?$/;
 const nameTest = (value) => nameRegex.test(value);
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -82,6 +83,8 @@ const NewStudent = () => {
   ) {
     formIsValid = true;
   }
+
+  console.log(formIsValid);
 
   const resetHandler = () => {
     resetName();
@@ -185,10 +188,9 @@ const NewStudent = () => {
           },
           {
             label: "Ponovite lozinku",
-            inputClasses:
-              repeatPasswordHasError || repeatPasswordValue !== passwordValue
-                ? "form-control invalid"
-                : "form-control",
+            inputClasses: repeatPasswordHasError || passwordValue !== repeatPasswordValue
+              ? "form-control invalid"
+              : "form-control",
             type: "password",
             placeholder: "Mora odgovarati prvobitno unesenoj lozinki",
             name: "username",
@@ -207,7 +209,13 @@ const NewStudent = () => {
         reset={() => resetHandler()}
         submit={() => submitHandler()}
       />
-      <SettingsForm image={true} className="new-student-form-right" />
+      <SettingsForm
+        image={true}
+        className="new-student-form-right"
+        formIsValid={formIsValid}
+        reset={() => resetHandler()}
+        submit={() => submitHandler()}
+      />
     </div>
   );
 };

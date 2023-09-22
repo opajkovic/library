@@ -77,6 +77,7 @@ ul li {
 .container {
   margin: 0 1rem;
 }
+
 .btn {
   cursor: pointer;
   border: 1px solid transparent;
@@ -88,11 +89,12 @@ ul li {
   letter-spacing: 1px;
   transition: transform 0.2s;
 }
+
 .btn-disabled {
   background-color: var(--grey-200);
   margin-left: 0.5rem;
-  pointer-events: none !important;
 }
+
 .btn:hover {
   transform: scale(1.08);
 }
