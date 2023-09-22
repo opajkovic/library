@@ -5,8 +5,9 @@ import { useLoaderData, useNavigate } from "react-router";
 import RightSide from "./components/RightSide";
 import api from "../../api/apiCalls";
 import ConditionalContainer from "./components/ConditionalContainer";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteBook } from "../../redux/actions";
+import { toast } from "react-toastify";
 
 export default function BookInfo({
   specification,
@@ -21,6 +22,7 @@ export default function BookInfo({
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const booksData = useSelector((state) => state.books);
 
   const [book, setBook] = useState({
     title: "loading...",
@@ -44,9 +46,14 @@ export default function BookInfo({
 
   
   const handleDelete = async () => {
-    api.delete(`/books/${fetchedData.id}/destroy`);
-    dispatch(deleteBook([fetchedData], fetchedData.id));
-    window.location.href="/books";
+    try{
+      const response = await api.delete(`/books/${fetchedData.id}/destroy`);
+      dispatch(deleteBook([booksData], fetchedData.id));
+      toast.success("Izbrisana knjiga");
+      navigate("/books");
+    }catch(err){
+      toast.error(err.response.data.message)
+    }
   };
 
   return (

@@ -5,23 +5,33 @@ import { useLoaderData, useNavigate } from "react-router";
 import AuthorInfo from "./components/AuthorInfo";
 import api from "../../api/apiCalls";
 import { deleteAuthor } from "../../redux/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 export default function AuthorProfile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [author, setAuthor] = useState({ name: "loading..." });
   const fetchedData = useLoaderData();
+  const authorsData = useSelector((state) => state.authors);
 
   useEffect(() => {
     setAuthor(fetchedData);
   }, []);
 
+  
   const handleDelete = async () => {
-    api.delete(`/authors/${fetchedData.id}`)
-    dispatch(deleteAuthor([fetchedData], fetchedData.id));
-    window.location.href="/authors";
+    try {
+      const response = await api.delete(`/authors/${fetchedData.id}`);
+      const data = await response.data;
+      dispatch(deleteAuthor([authorsData], fetchedData.id));
+      toast.success("Izbrisan autor")
+      navigate("/authors");
+    } catch (err) {
+      toast.error(err.response.data.data);
+    }
   }
+  
 
   return (
     <>

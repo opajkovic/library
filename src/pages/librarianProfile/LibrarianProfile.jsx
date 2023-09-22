@@ -4,23 +4,30 @@ import { useLoaderData, useNavigate } from "react-router";
 import UserInfo from "../studentProfile/components/UserInfo";
 import api from "../../api/apiCalls";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteLibrarian } from "../../redux/actions";
+import { toast } from "react-toastify";
 
 export default function LibrarianProfile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [userInfo, setUserInfo] = useState({});
   const fetchedData = useLoaderData();
+  const librariansData = useSelector((state) => state.librarians);
 
   useEffect(() => {
     setUserInfo(fetchedData);
   }, []);
 
   const handleDelete = async () => {
-    api.delete(`/users/${fetchedData.id}`);
-    dispatch(deleteLibrarian(fetchedData, fetchedData.id));
-    window.location.href="/librarians";
+    try{
+      api.delete(`/users/${fetchedData.id}`);
+      dispatch(deleteLibrarian(librariansData, fetchedData.id));
+      toast.success("Bibliotekar izbrisan")
+      navigate('/librarians')
+    }catch (err){
+      toast.error(err.response.data.date)
+    }
   };
 
   return (

@@ -12,6 +12,7 @@ import { deleteLibrarian, filterSearchedData } from "../../redux/actions";
 import { updateLibrariansData } from "../../redux/librarian-data";
 import { sortData } from "../../redux/actions";
 import { sortedData } from "../../redux/sort-data";
+import { toast } from "react-toastify";
 
 const headers = [
   { headerName: "Ime i prezime", sort: true, dropdown: false, dataKey: "name" },
@@ -91,16 +92,27 @@ const Librarians = () => {
   },[updatedSortedData])
 
   const handleDelete = async (id) => {
-    api.delete(`/users/${id}`);
-    dispatch(deleteLibrarian(librariansData, id));
-    if(search !== ""){
-      setLibrarians(searchData.filter((item) => item.id !== id));
+    try {
+      const response = await api.delete(`/users/${id}`);
+      toast.success("Izbrisan bibliotekar");
+      dispatch(deleteLibrarian(librariansData, id));
+  
+      if (search !== "") {
+        setLibrarians(searchData.filter((item) => item.id !== id));
+      } else {
+        setLibrarians(librariansData.filter((item) => item.id !== id));
+      }
+  
+      navigate("/librarians");
+    } catch (err) {
+      if (err.response && err.response.data.message) {
+        toast.error(err.response.data.message);
+      } else {
+        console.error(err);
+      }
     }
-    else{
-      setLibrarians(librariansData.filter(item => item.id !== id))
-    }
-    navigate("/librarians");
   };
+  
 
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;

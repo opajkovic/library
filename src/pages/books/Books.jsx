@@ -22,6 +22,7 @@ import {
 import { transformBookData } from "../../util/Functions";
 import { updateBooksData } from "../../redux/books-data";
 import "./Books.css"
+import { toast } from "react-toastify";
 
 const headers = [
   { headerName: "Naziv knjige", sort: true, dropdown: false, dataKey: "name" },
@@ -107,14 +108,20 @@ export default function Books() {
   },[updatedSortedData])
 
   const handleDelete = async (id) => {
-    api.delete(`/books/${id}/destroy`);
-    dispatch(deleteBook(bookData, id));
-    if(search !== ""){
-      setBooks(searchData.filter((item) => item.id !== id));
-    }
-    else{
-      setBooks(bookData.filter(item => item.id !== id))
-    }
+      try {
+        const response = await api.delete(`/books/${id}/destroy`);
+        const data = response.data;
+          toast.success("Izbrisana knjiga");
+          dispatch(deleteBook(bookData, id));
+          if (search !== "") {
+            setBooks(searchData.filter((item) => item.id !== id));
+          } else {
+            setBooks(bookData.filter((item) => item.id !== id));
+          }
+      } catch (err) { 
+        toast.error(err.response.data.message);
+      }
+    
   };
 
   const handleClick = () => {

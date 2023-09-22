@@ -11,6 +11,7 @@ import api from "../../api/apiCalls";
 import { updateStudentsData } from "../../redux/student-data";
 import { sortData } from "../../redux/actions";
 import { sortedData } from "../../redux/sort-data";
+import { toast } from "react-toastify";
 
 const headers = [
   { headerName: "Ime i prezime", sort: true, dropdown: false, dataKey: "name" },
@@ -90,16 +91,27 @@ export default function Students() {
   },[updatedSortedData])
 
   const handleDelete = async (id) => {
-    api.delete(`/users/${id}`);
-    dispatch(deleteStudent(studentsData, id));
-    if(search !== ""){
-      setStudents(searchData.filter((item) => item.id !== id));
+    try {
+      const response = await api.delete(`/users/${id}`);
+      toast.success("Izbrisan student");
+      dispatch(deleteStudent(studentsData, id));
+  
+      if (search !== "") {
+        setStudents(searchData.filter((item) => item.id !== id));
+      } else {
+        setStudents(studentsData.filter((item) => item.id !== id));
+      }
+  
+      navigate("/students");
+    } catch (err) {
+      if (err.response && err.response.data.message) {
+        toast.error(err.response.data.message);
+      } else {
+        console.error(err);
+      }
     }
-    else{
-      setStudents(studentsData.filter(item => item.id !== id))
-    }
-    navigate("/students");
   };
+  
 
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;

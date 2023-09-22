@@ -3,11 +3,14 @@ import useInput from "../../hooks/useInput";
 import SettingsForm from "../../components/UI/SettingsForm";
 import "./NewAuthor.css";
 import api from "../../api/apiCalls";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const nameRegex = /^[A-Za-zćčžšđĆČŽŠĐ]+ [A-Za-zćčžšđĆČŽŠĐ]+(?: [A-Za-zćčžšđĆČŽŠĐ]+)?$/;
 const nameTest = (value) => nameRegex.test(value.trim());
 
 const NewAuthor = () => {
+  const navigate = useNavigate()
   const {
     value: authorValue,
     isValid: authorIsValid,
@@ -36,11 +39,16 @@ const NewAuthor = () => {
   };
 
   const submitHandler = async () => {
-    const response = await api.post(`/authors/store`, formData);
-    if (response.status === 200) {
-      console.log("succssfully posted");
-      setRichTextareaValue("");
-      resetAuthor();
+    try{
+      const response = await api.post(`/authors/store`, formData);
+      if (response.status === 200) {
+        toast.success("Dodat autor")
+        setRichTextareaValue("");
+        resetAuthor();
+        navigate('/authors')
+      }
+    }catch(err){
+      toast.error(err.response.data.message)
     }
   };
 

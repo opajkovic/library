@@ -7,23 +7,35 @@ import UserInfo from "./components/UserInfo";
 import { useState } from "react";
 import api from "../../api/apiCalls";
 import { deleteStudent } from "../../redux/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 export default function StudentProfile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [userInfo, setUserInfo] = useState();
   const fetchedData = useLoaderData();
+  const studentsData = useSelector((state) => state.students);
 
   useEffect(() => {
     setUserInfo(fetchedData);
   }, []);
 
   const handleDelete = async () => {
-    api.delete(`/users/${fetchedData.id}`);
-    dispatch(deleteStudent([fetchedData], fetchedData.id));
-    window.location.href="/students";
+    try {
+      const response = await api.delete(`/users/${fetchedData.id}`);
+      toast.success("Izbrisan student");
+      dispatch(deleteStudent([studentsData], fetchedData.id));
+      navigate('/students');
+    } catch (err) {
+      if (err.response && err.response.data.message) {
+        toast.error(err.response.data.message);
+      } else {
+        console.error(err);
+      }
+    }
   };
+  
 
   return (
     <div>

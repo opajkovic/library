@@ -7,16 +7,16 @@ export default function RightSide({bookInfo, hide}) {
       <div className="book-count">
         <ul>
           <li>
-           Na raspolaganju <span> 5 primjeraka </span> 
+           Na raspolaganju <span >{bookInfo.samples - bookInfo.bSamples} primjeraka </span> 
           </li>
           <li>
-           Rezervisano  <span> 10 primjeraka </span> 
+           Rezervisano  <span> {bookInfo.rSamples} primjeraka </span> 
           </li>
           <li>
-           Izdato  <span> {bookInfo.rSamples} primjeraka </span> 
+           Izdato  <span> {bookInfo.bSamples} primjeraka </span> 
           </li>
           <li>
-           U prekoračenju <span> 5 primjeraka </span> 
+           U prekoračenju <span> {bookInfo.fSamples} primjeraka </span> 
           </li>
           <li>
            Ukupna količina  <span> {bookInfo.samples} primjeraka </span> 

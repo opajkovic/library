@@ -4,6 +4,7 @@ import "./AuthorEdit.css";
 import { useLoaderData, useNavigate, useParams } from "react-router";
 import { createChangeHandler, getInvalidClass } from "../../util/Functions";
 import api from "../../api/apiCalls";
+import { toast } from "react-toastify";
 
 const EditAuthor = () => {
   const [richTextReset, setRichTextReset] = useState(false);
@@ -42,10 +43,15 @@ const EditAuthor = () => {
   };
 
   const submitHandler = async () => {
-    const response = await api.put(`/authors/${params.id}`, formData);
-    if (response.status === 200) {
-      console.log("succssfully posted");
-      navigate("/authors")
+    try{
+      const response = await api.put(`/authors/${params.id}`, formData);
+      if (response.status === 200) {
+        console.log("succssfully posted");
+        toast.success("Autor izmijenjen")
+        navigate("/authors")
+      }
+    }catch(err){
+      toast.error(err.response.data.message)
     }
   };
 

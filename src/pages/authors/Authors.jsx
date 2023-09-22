@@ -12,6 +12,7 @@ import { deleteAuthor, filterSearchedData } from "../../redux/actions";
 import { updateAuthorsData } from "../../redux/authors-data";
 import { sortedData } from "../../redux/sort-data";
 import { sortData } from "../../redux/actions";
+import { toast } from "react-toastify";
 
 const headers = [
   { headerName: "Ime autora", sort: true, dropdown: false, dataKey: "name" },
@@ -89,16 +90,22 @@ export default function Authors() {
   },[updatedSortedData])
 
   const handleDelete = async (id) => {
-    api.delete(`/authors/${id}`);
-    dispatch(deleteAuthor(authorData, id));
-    if(search !== ""){
-      setAuthors(searchData.filter((item) => item.id !== id));
-    }
-    else{
-      setAuthors(authorData.filter(item => item.id !== id))
-    }
-  
-    navigate("/authors");
+      try {
+        const response = await api.delete(`/authors/${id}`);
+        const data = response.data;
+        toast.success("Izbrisan autor");
+        dispatch(deleteAuthor(authorData, id));
+        if (search !== "") {
+          setAuthors(searchData.filter((item) => item.id !== id));
+        } else {
+          setAuthors(authorData.filter((item) => item.id !== id));
+        }
+      } catch (err) {
+        toast.error("message: " + err.response.data.message + " , data: " + err.response.data.data);
+      }
+    
+     
+    // navigate("/authors");
   };
 
   const startIndex = currentPage * itemsPerPage;

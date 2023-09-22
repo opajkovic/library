@@ -13,8 +13,8 @@ export default function NewBookMultimedia() {
   const submitHandler = async () => {
     const response = await api.post(`/books/store`, newBook);
     if (response.status === 200) {
-      navigate("/books");
       dispatch(resetFormData());
+      navigate("/books");
     } else {
       navigate("/books/new/osnovni-detalji");
     }

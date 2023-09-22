@@ -3,6 +3,8 @@ import Header from "./header/Header";
 import "./AppLayout.css";
 import Sidebar from "./sidebar/Sidebar";
 import { useState } from "react";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function AppLayout() {
   let [route, setRoute] = useState("/");
@@ -16,6 +18,7 @@ function AppLayout() {
           <Outlet context={{ setRoute }} />
         </div>
       </main>
+        <ToastContainer />
     </>
   );
 }
