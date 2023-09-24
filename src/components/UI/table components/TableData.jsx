@@ -25,7 +25,16 @@ const MiddleDataCell = ({ item, headers, options, path, handleDelete, className 
   return item.map((row, rowIndex) => (
     <tr key={rowIndex}>
       {/* Uslovno prikazivanje kolona koje imaju props sort = true za checkbox */}
-      {headers.map((header, colIndex) => (
+      {headers.map((header, colIndex) => {
+        const cellData = header.dataKey.split('.').reduce((acc, key) => acc[key], row);
+
+        // samo za "Trenutno zadržavanje knjiga" u izdate-knjige
+        const currentDate = new Date();
+        const dayArraow = new Date(cellData);
+        const timeDifference = currentDate - dayArraow;
+        const daysDifference = Math.round(timeDifference / (1000 * 60 * 60 * 24))
+
+        return(
         <td key={colIndex}>
           {header.sort && (
             <div className="left-container">
@@ -35,13 +44,14 @@ const MiddleDataCell = ({ item, headers, options, path, handleDelete, className 
 
               {/* Uslovno dadavanje linka za autore, bibliotekare, studente i ucenike */}
               {path ? (
-                <Link to={`${path}/${row.id}`}>{row[header.dataKey]}</Link>
+                <Link to={`${path}/${row.id}`}>{cellData}</Link>
               ) : (
-                row[header.dataKey]
+                cellData
               )}
             </div>
           )}
-          {!header.sort && row[header.dataKey]}
+          
+          {(header.headerName == 'Trenutno zadržavanje knjiga') ? daysDifference+" days" : !header.sort && cellData}
 
           {/* Uslovno prikazivanje tackica ako je props dropdown === true */}
           {header.dropdown && (
@@ -102,7 +112,7 @@ const MiddleDataCell = ({ item, headers, options, path, handleDelete, className 
             />
           )}
         </td>
-      ))}
+      )})}
     </tr>
   ));
 };

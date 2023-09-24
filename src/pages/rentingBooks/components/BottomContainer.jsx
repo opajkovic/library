@@ -4,8 +4,6 @@ import Table from "../../../components/UI/Table";
 import TableControl from "../../../components/UI/TableControl";
 import Pagination from "../../../components/UI/Pagination";
 
-const DUMMY_TABLE_DATA = [];
-
 export default function BottomContainer(props) {
   return (
     <div className="bottom-container">
@@ -16,9 +14,9 @@ export default function BottomContainer(props) {
           mainHeader=""
           headers={props.headers}
           lastHeader=""
-          tableData={DUMMY_TABLE_DATA}
+          tableData={props.tableData}
         />
-        <Pagination items={DUMMY_TABLE_DATA} />
+        <Pagination items={props.tableData} />
       </div>
     </div>
   );

@@ -35,6 +35,7 @@ export default function ProfileEvidence(props) {
           title="Nova knjiga"
           headers={props.headers}
           paths={paths}
+          tableData={props.tableData}
         />
       </div>
     </div>

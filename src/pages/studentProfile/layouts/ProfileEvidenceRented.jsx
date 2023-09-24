@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router";
+import { useLoaderData, useNavigate, useParams } from "react-router";
 import ProfileEvidence from "../components/ProfileEvidence";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -8,6 +8,8 @@ export default function ProfileEvidenceRented() {
   let {id} = useParams()
   let [userInfo, setUserInfo] = useState()
   let navigate = useNavigate()
+  const fetchedData = useLoaderData();
+  let [tableData, setTableData] = useState([])
 
   let fetchUser = () =>{
     api.get(`/users/${id}`).then(response => {
@@ -25,15 +27,31 @@ export default function ProfileEvidenceRented() {
     });
   }
   const headers = [
-    { headerName: "Naziv knjige", sort: false, dropdown: false },
-    { headerName: "Izdato učeniku", sort: false, dropdown: false },
-    { headerName: "Datum izdavanja", sort: false, dropdown: false },
-    { headerName: "Trenutno zadržavanje knjiga", sort: false, dropdown: false },
-    { headerName: "Knjigu izdao", sort: false, dropdown: true },
+    { headerName: "Naziv knjige", sort: true, dropdown: false, dataKey: 'knjiga.title'},
+    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name' },
+    { headerName: "Datum izdavanja", sort: false, dropdown: false, dataKey: 'borrow_date' },
+    { headerName: "Trenutno zadržavanje knjiga", sort: false, dropdown: false, dataKey: 'borrow_date' },
+    { headerName: "Knjigu izdao", sort: false, dropdown: true, dataKey: 'bibliotekar0.name' },
   ];
   useEffect(()=>{
+    setTableData(fetchedData)
+    fetchedData
     fetchUser()
   },[])
 
-  return <ProfileEvidence userInfo={userInfo} headers={headers} />;
+  return <ProfileEvidence tableData={tableData} userInfo={userInfo} headers={headers} />;
 }
+  export const BooksRentingLoader = async ({params}) => {
+    const id = params.id;
+    try {
+      const response = await api.get(`/books/borrows`);
+      const responseData = response.data.data;
+      let responseData2 = responseData.izdate.filter(izdat => izdat.student.id == id)
+      console.log(responseData2)
+      return responseData2;
+    } catch (error) {
+      console.error("Loader function error:", error);
+      throw error;
+    }
+  };
+  
