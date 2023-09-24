@@ -12,14 +12,16 @@ const Input = (props) => {
     hasError,
     inputClasses,
     disabled,
+    id
   } = props.input;
 
   return (
     <div className={props.className}>
-      <label>
+      {label ? <label>
         {label} {props.sup && <sup>*</sup>}
-      </label>
+      </label> : <></>}
       <input
+        id={id}
         className={inputClasses}
         type={type}
         name={name}

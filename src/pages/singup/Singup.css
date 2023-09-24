@@ -65,3 +65,6 @@
     font-size: 12px;
     text-align: center;
 }
+.singupSection .error{
+    border-bottom: 2px solid red !important;
+}

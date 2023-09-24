@@ -9,9 +9,9 @@ export default function ReservationItem({reservation}) {
     <div className="ReservationItem">
       <div className="studentInfo">
         <img src={imagee} alt="student" />
-        <Link to={"/student/" + reservation.student.name }>{reservation.student.name + " " + reservation.student.surname}</Link>
+        <Link to={"/students/" + reservation.student.id }>{reservation.student.name + " " + reservation.student.surname}</Link>
       </div>
-      <Link className="book">{reservation.knjiga.title}</Link>
+      <Link to={'/books/'+reservation.knjiga.id} className="book">{reservation.knjiga.title}</Link>
       <div className="date">{reservation.action_date.split(" ")[0]}</div>
       <div className="status">
         <FaCheck />

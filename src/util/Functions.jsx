@@ -17,9 +17,13 @@ export const createChangeHandler = (key, setState) => (event) => {
 };
 
 export const filterAndMap = (dataArray, filterValue) => {
-  return +dataArray
-    .filter((item) => item.name === filterValue)
-    .map((item) => +item.id);
+  const filteredData = dataArray.filter((item) => item.name === filterValue);
+  
+  if (filteredData.length === 0) {
+    return false
+  }
+
+  return filteredData.map((item) => +item.id);
 };
 
 export function transformBookData(data) {

@@ -35,7 +35,6 @@ export async function reservationLoader() {
   try {
     const response = await api.get(`/books/reservations`);
     const responseData = response.data.data.active;
-    console.log(responseData)
     return responseData;
   } catch (error) {
     console.error("Loader function error:", error);
