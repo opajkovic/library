@@ -1,11 +1,11 @@
 import { FaCheck, FaTimes } from "react-icons/fa";
 import Button from "../Button";
 
-const FormSubmitButtons = ({ disabled, reset, submit }) => {
+const FormSubmitButtons = ({ disabled, reset, submit, succesText, dangerText }) => {
   return (
     <div className="flex-end btn-end">
       <Button btn="btn btn-danger" function={reset}>
-        Ponisti {<FaTimes />}
+        {dangerText} {<FaTimes />}
       </Button>
       <Button
         disabled={disabled}
@@ -13,7 +13,7 @@ const FormSubmitButtons = ({ disabled, reset, submit }) => {
         function={submit}
         type="submit"
       >
-        Sacuvaj {<FaCheck />}
+        {succesText} {<FaCheck />}
       </Button>
     </div>
   );

@@ -55,7 +55,7 @@ const BookInfoWrittenOff = () => {
         {data.length > 0 && (
           <Pagination onPageChange={handlePageClick} pageCount={pageCount} />
         )}
-        <FormSubmitButtons />
+        <FormSubmitButtons dangerText={'Ponisti'} succesText={'Otpisi knjigu'} />
       </div>
     </>
   );

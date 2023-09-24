@@ -99,16 +99,6 @@ export default function BookInfoRentingBook() {
     : "form-control";
 
 
-    let fetchRentBook = async({params, info}) => {
-      try {
-        const response = await api.post(`/books/${id}/izdaj`, info);
-        const responseData = response.data.data;
-        console.log(responseData);
-      } catch (error) {
-        console.error("Loader function error:", error);
-        throw error;
-      }
-    }
   return (
     <>
       <ProfileTitle

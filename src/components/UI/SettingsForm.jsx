@@ -82,6 +82,8 @@ const SettingsForm = (props) => {
           disabled={!props.formIsValid}
           submit={props.submit}
           reset={props.reset}
+          dangerText={'Ponisti'}
+          succesText={'Sacuvaj'}
         />
       </form>
     </>
