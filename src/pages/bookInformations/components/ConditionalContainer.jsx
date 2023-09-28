@@ -74,7 +74,7 @@ export default function ConditionalContainer({
            data={izdavanja}
           headers={[
             { headerName: "Izdato uceniku", sort: false, dropdown: false,
-            dataKey: 'student.name' },
+            dataKey: 'student.name+student.surname' },
             {
               headerName: "Datum izdavanja",
               sort: false,
@@ -91,7 +91,7 @@ export default function ConditionalContainer({
               headerName: "Knjigu izdao",
               sort: false,
               dropdown: false,
-              dataKey: 'bibliotekar0.name'
+              dataKey: 'bibliotekar0.name+bibliotekar0.surname'
             },
             { headerName: "Status", sort: false, dropdown: true,
             dataKey: 'status' },
@@ -103,7 +103,7 @@ export default function ConditionalContainer({
         <EvidenceTable
         data={vracene}
           headers={[
-            { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name' },
+            { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname' },
             { headerName: "Datum izdavanja", sort: false, dropdown: false, dataKey: 'borrow_date' },
             { headerName: "Datum vraćanja", sort: false, dropdown: false, dataKey: 'return_date' },
             {
@@ -115,7 +115,7 @@ export default function ConditionalContainer({
               headerName: "Knjigu primio",
               sort: false,
               dropdown: true,
-              dataKey: 'bibliotekar0.name'
+              dataKey: 'bibliotekar0.name+bibliotekar0.surname'
             },
           ]}
         />
@@ -125,8 +125,8 @@ export default function ConditionalContainer({
         <EvidenceTable
         data={prekoracene}
           headers={[
+            { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname' },
             { headerName: "Datum izdavanja", sort: false, dropdown: false, dataKey: 'borrow_date' },
-            { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name' },
             {
               headerName: "Prekoračenje u danima",
               sort: false,
@@ -158,7 +158,7 @@ export default function ConditionalContainer({
             {
               headerName: "Rezervaciju podnio",
               sort: false,
-              dropdown: false, dataKey: 'student.name'
+              dropdown: false, dataKey: 'student.name+student.surname'
             },
             { headerName: "Status", sort: false, dropdown: true, dataKey: 'status' },
           ]}
@@ -182,7 +182,7 @@ export default function ConditionalContainer({
             {
               headerName: "Rezervaciju podnio",
               sort: false,
-              dropdown: false, dataKey: 'student.name'
+              dropdown: false, dataKey: 'student.name+student.surname'
             },
             { headerName: "Status", sort: false, dropdown: true, dataKey: 'status' },
           ]}

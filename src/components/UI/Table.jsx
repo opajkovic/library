@@ -3,7 +3,7 @@ import Thead from "./table components/Thead";
 import TableData from "./table components/TableData";
 import SearchTableInputs from "./table components/SearchTableInputs";
 
-const Table = ({ headers, tableData, options, path, className, searchColumn, handleDelete, handleSort, tableClassName}) => {
+const Table = ({ headers,checkChanged, tableData, options, path, className, searchColumn, handleDelete, handleSort, tableClassName}) => {
   return (
     <table className={`${className} table-container`}>
       <Thead headers={headers} handleSort={handleSort}/>
@@ -20,6 +20,7 @@ const Table = ({ headers, tableData, options, path, className, searchColumn, han
             path={path}
             handleDelete={handleDelete}
             className={tableClassName}
+            checkChanged={checkChanged}
           />
         )}
         <SearchTableInputs headers={headers} searchColumn={searchColumn} />

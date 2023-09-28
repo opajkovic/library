@@ -8,7 +8,7 @@ import Pagination from "../../components/UI/Pagination";
 import FormSubmitButtons from "../../components/UI/settingsForm components/FormSubmitButtons";
 
 const headers = [
-  { headerName: "Izdato učeniku", sort: true, dropdown: false },
+  { headerName: "Izdato učeniku", sort: true, dropdown: false, dataKey: 'student.name+student.surname' },
   { headerName: "Datum izdavanja", sort: false, dropdown: false },
   { headerName: "Trenutno zadržavanje knjiga", sort: false, dropdown: false },
   { headerName: "Prekoračenje u danima", sort: false, dropdown: false },

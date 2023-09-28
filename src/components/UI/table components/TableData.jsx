@@ -14,6 +14,7 @@ const MiddleDataCell = ({
   path,
   handleDelete,
   className,
+  checkChanged
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [rowId, setRowId] = useState(null);
@@ -66,7 +67,7 @@ const MiddleDataCell = ({
             {header.sort && (
               <div className="left-container">
                 <Input
-                  input={{ type: "checkbox", className: "table-checkbox" }}
+                  input={{ type: "checkbox", className: "table-checkbox", onChange: checkChanged, id: row.id}}
                 />
 
                 {/* Uslovno dadavanje linka za autore, bibliotekare, studente i ucenike */}
