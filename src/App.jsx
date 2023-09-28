@@ -47,11 +47,11 @@ import BookSpecification from "./pages/bookInformations/layouts/BookSpecificatio
 import BookMultimedia from "./pages/bookInformations/layouts/BookMultimedia";
 import BookRentEvidence from "./pages/bookInformations/layouts/BookRentEvidence";
 import RentedEvidence from "./pages/bookInformations/layouts/table-layouts/RentedEvidence";
-import RentingBooks from "./pages/rentingBooks/rentingBooks";
+import RentingBooks, { LoaderRented } from "./pages/rentingBooks/rentingBooks";
 import ReturnedBooks from "./pages/rentingBooks/layouts/returnedBooks";
 import WrittenOffBooks from "./pages/rentingBooks/layouts/writtenOffBooks";
 import InExcessBooks from "./pages/rentingBooks/layouts/inExcessBooks";
-import ActiveReservations from "./pages/rentingBooks/layouts/activeReservation";
+import ActiveReservations, { LoaderReservations } from "./pages/rentingBooks/layouts/activeReservation";
 import ArchivedReservations from "./pages/rentingBooks/layouts/archivedReservations";
 import ReturnedEvidence from "./pages/bookInformations/layouts/table-layouts/ReturnedEvidence";
 import ExcessEvidence from "./pages/bookInformations/layouts/table-layouts/ExcessEvidence";
@@ -195,26 +195,31 @@ const router = createBrowserRouter(
         <Route path="/authors/new" element={<NewAuthor />} />
 
         {/* Izdavanje knjiga routes */}
-        <Route path="/rentingBooks/izdate-knjige" element={<RentingBooks />} />
+        <Route path="/rentingBooks/izdate-knjige" loader={LoaderRented} element={<RentingBooks />} />
         <Route
           path="/rentingBooks/vracene-knjige"
           element={<ReturnedBooks />}
+          loader={LoaderRented} 
         />
         <Route
           path="/rentingBooks/otpisane-knjige"
           element={<WrittenOffBooks />}
+          loader={LoaderRented} 
         />
         <Route
           path="/rentingBooks/knjige-u-prekoracenju"
+          loader={LoaderRented} 
           element={<InExcessBooks />}
         />
         <Route
           path="/rentingBooks/aktivne-rezervacije"
           element={<ActiveReservations />}
+          loader={LoaderReservations}
         />
         <Route
           path="/rentingBooks/arhivirane-rezervacije"
           element={<ArchivedReservations />}
+          loader={LoaderReservations}
         />
 
         {/* settings routes */}
