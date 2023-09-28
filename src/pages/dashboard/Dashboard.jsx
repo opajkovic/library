@@ -15,7 +15,7 @@ export default function Dashboard() {
   const fetchedDataReservation = useLoaderData();
 
   useEffect(()=>{
-    console.log(fetchedDataReservation);
+    setReservations(fetchedDataReservation);
   },[])
 
   return (
@@ -24,7 +24,7 @@ export default function Dashboard() {
       <div className="dashboard-wrapper">
         <ActivityList />
         <div className="right-side">
-          <ReservationList />
+          <ReservationList reservations={reservations.active}  />
           <Chart />
         </div>
       </div>
