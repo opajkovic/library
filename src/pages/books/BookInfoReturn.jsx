@@ -39,28 +39,20 @@ const BookInfoReturn = () => {
     setItemsPerPage(value);
   };
   useEffect(()=>{
-    const fetchData = async () => {
+  
+    let fetchRentedBooks = async()=>{
       try {
-        const result = await fetchRentedBooks();
-        setRentedBooks(result);
+        const response = await api.get(`/books/borrows`);
+        const responseData = response.data.data.izdate;
+        setRentedBooks(responseData);
       } catch (error) {
         console.error("Loader function error:", error);
+        throw error;
       }
-    };
-  
-    fetchData();
+    }
+    fetchRentedBooks();
   },[])
 
-  let fetchRentedBooks = async()=>{
-    try {
-      const response = await api.get(`/books/borrows`);
-      const responseData = response.data.data.izdate;
-      return responseData;
-    } catch (error) {
-      console.error("Loader function error:", error);
-      throw error;
-    }
-  }
 
   return (
     <>
@@ -78,7 +70,7 @@ const BookInfoReturn = () => {
       <div className="return-table-wrapper">
         <h1>Vrati knjigu</h1>
         <TableControl hide={true} itemsPerPageHandler={itemPerPageHandler} />
-        <Table headers={headers} tableData={[...rentedBooks]} options={[]} />
+        <Table headers={headers} tableData={rentedBooks} options={[]} />
         {data.length > 0 && (
           <Pagination onPageChange={handlePageClick} pageCount={pageCount} />
         )}

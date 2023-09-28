@@ -8,8 +8,10 @@ import {
 } from "react-icons/fa";
 import "./EvidenceTable.css";
 import Table from "../../../components/UI/Table";
+import { useEffect, useState } from "react";
+import api from "../../../api/apiCalls";
 
-export default function EvidenceTable({ headers }) {
+export default function EvidenceTable({ headers, data }) {
   const params = useParams();
 
   const titles = [
@@ -39,6 +41,9 @@ export default function EvidenceTable({ headers }) {
       image: <FaCalendarAlt />,
     },
   ];
+
+  useEffect(()=>{
+  },[])
   return (
     <div>
       <ul className="evidence-list">
@@ -59,7 +64,7 @@ export default function EvidenceTable({ headers }) {
         ))}
       </ul>
       <div className="page-wrapper">
-        <Table headers={headers} />
+        <Table headers={headers} tableData={data} />
       </div>
     </div>
   );

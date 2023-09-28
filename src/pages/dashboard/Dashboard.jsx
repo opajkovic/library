@@ -11,11 +11,11 @@ import api from "../../api/apiCalls";
 
 export default function Dashboard() {
 
-  let [reservations, setReservations] = useState([{student: {name: 'loading...', surname: "loading..."}, knjiga: {title: "loading..."}, action_date: 'loading...'}])
+  let [reservations, setReservations] = useState({active: [{student: {name: 'loading...', surname: "loading..."}, knjiga: {title: "loading..."}, action_date: 'loading...'}]})
   const fetchedDataReservation = useLoaderData();
 
   useEffect(()=>{
-    setReservations(fetchedDataReservation);
+    console.log(fetchedDataReservation);
   },[])
 
   return (
@@ -24,7 +24,7 @@ export default function Dashboard() {
       <div className="dashboard-wrapper">
         <ActivityList />
         <div className="right-side">
-          <ReservationList reservations={reservations} />
+          <ReservationList />
           <Chart />
         </div>
       </div>
@@ -34,7 +34,7 @@ export default function Dashboard() {
 export async function reservationLoader() {
   try {
     const response = await api.get(`/books/reservations`);
-    const responseData = response.data.data.active;
+    const responseData = response.data.data;
     return responseData;
   } catch (error) {
     console.error("Loader function error:", error);

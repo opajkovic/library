@@ -311,6 +311,7 @@ const router = createBrowserRouter(
         <Route
           path="/students/:id/evidencija/aktivne-rezervacije"
           element={<ProfileEvidenceReserved />}
+          loader={reservationLoader}
         />
         <Route
           path="/students/:id/evidencija/arhivirane-rezervacije"

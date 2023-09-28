@@ -26,7 +26,7 @@ const MiddleDataCell = ({ item, headers, options, path, handleDelete, className 
     <tr key={rowIndex}>
       {/* Uslovno prikazivanje kolona koje imaju props sort = true za checkbox */}
       {headers.map((header, colIndex) => {
-        const cellData = header.dataKey.split('.').reduce((acc, key) => acc[key], row);
+        const cellData = header.dataKey ? header.dataKey.split('.').reduce((acc, key) => acc[key], row) : '';
 
         // samo za "Trenutno zadržavanje knjiga" u izdate-knjige
         const currentDate = new Date();
