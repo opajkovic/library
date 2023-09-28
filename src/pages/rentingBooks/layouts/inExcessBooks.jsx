@@ -7,7 +7,7 @@ import { useLoaderData } from "react-router";
 export default function InExcessBooks() {
   const headers = [
     { headerName: "Naziv knjige", sort: false, dropdown: false, dataKey: 'knjiga.title' },
-    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name' },
+    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname' },
     { headerName: "Datum izdavanja", sort: false, dropdown: false, dataKey: 'borrow_date' },
     { headerName: "Prekoračenje u danima", sort: false, dropdown: false, dataKey: '' },
     { headerName: "Trenutno zadržavanje knjige", sort: false, dropdown: true, dataKey: '' },

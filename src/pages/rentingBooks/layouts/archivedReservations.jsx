@@ -11,7 +11,7 @@ export default function ArchivedReservations() {
     { headerName: "Naziv knjige", sort: false, dropdown: false, dataKey: 'knjiga.title' },
     { headerName: "Datum rezervacije", sort: false, dropdown: false, dataKey: 'action_date' },
     { headerName: "Rezervacija zatvorena", sort: false, dropdown: false },
-    { headerName: "Rezervaciju podnio", sort: false, dropdown: false, dataKey: 'student.name' },
+    { headerName: "Rezervaciju podnio", sort: false, dropdown: false, dataKey: 'student.name+student.surname' },
     { headerName: "Status", sort: false, dropdown: true, dataKey: 'status' },
   ];
   let fetchedData = useLoaderData()

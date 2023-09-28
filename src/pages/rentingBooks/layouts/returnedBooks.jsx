@@ -8,7 +8,7 @@ export default function ReturnedBooks() {
 
   const headers = [
     { headerName: "Naziv knjige", sort: false, dropdown: false, dataKey: 'knjiga.title' },
-    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name' },
+    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname' },
     { headerName: "Datum izdavanja", sort: false, dropdown: false, dataKey: 'borrow_date' },
     { headerName: "Datum vraćanja", sort: false, dropdown: false, dataKey: 'return_date' },
     { headerName: "Zadržavanje knjige", sort: false, dropdown: false, dataKey: '' },

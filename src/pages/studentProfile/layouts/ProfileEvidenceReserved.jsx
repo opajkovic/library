@@ -3,6 +3,7 @@ import ProfileEvidence from "../components/ProfileEvidence";
 import { useLoaderData, useNavigate, useParams } from "react-router";
 import { useState } from "react";
 import api from '../../../api/apiCalls'
+import { reservationLoader } from "../../dashboard/Dashboard";
 
 export default function ProfileEvidenceReserved() {
   let {id} = useParams()
@@ -30,13 +31,20 @@ export default function ProfileEvidenceReserved() {
     { headerName: "Naziv knjige", sort: false, dropdown: false, dataKey: 'knjiga.title' },
     { headerName: "Datum rezervacije", sort: false, dropdown: false,dataKey: 'borrow_date' },
     { headerName: "Rezervacija ističe", sort: false, dropdown: false,dataKey: 'return_date'},
-    { headerName: "Rezervaciju podnio", sort: false, dropdown: false, dataKey: 'bibliotekar0.name' },
+    { headerName: "Rezervaciju podnio", sort: false, dropdown: false, dataKey: 'bibliotekar0.name+bibliotekar0.surname' },
     { headerName: "Status", sort: false, dropdown: true, dataKey: "status" },
   ];
   useEffect(()=>{
-    let reservationsTest = fetchData
-    setReservations(reservationsTest.active.filter(item => item.student.id == id));
-    console.log(reservationsTest.active[0])
+    const fetchData = async () => {
+      try {
+        const responseData = await reservationLoader();
+        let responseData2 = responseData.active.filter(el => el.student.id == id)
+        setReservations(responseData2);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+    fetchData()
     fetchUser()
   },[])
   return <ProfileEvidence tableData={reservations} userInfo={userInfo} headers={headers} />;

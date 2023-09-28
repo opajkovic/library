@@ -15,7 +15,7 @@ import { sortedData } from "../../redux/sort-data";
 import { toast } from "react-toastify";
 
 const headers = [
-  { headerName: "Ime i prezime", sort: true, dropdown: false, dataKey: "name" },
+  { headerName: "Ime i prezime", sort: true, dropdown: false, dataKey: "name+surname" },
   { headerName: "email", sort: false, dropdown: false, dataKey: "email" },
   { headerName: "role", sort: false, dropdown: false, dataKey: "role" },
   { headerName: "Username", sort: false, dropdown: true, dataKey: "username" },

@@ -1,14 +1,14 @@
-import { useLoaderData, useNavigate, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import ProfileEvidence from "../components/ProfileEvidence";
 import { useState } from "react";
 import { useEffect } from "react";
 import api from '../../../api/apiCalls'
+import { LoaderRented } from "../../rentingBooks/rentingBooks";
 
 export default function ProfileEvidenceRented() {
   let {id} = useParams()
   let [userInfo, setUserInfo] = useState()
   let navigate = useNavigate()
-  const fetchedData = useLoaderData();
   let [tableData, setTableData] = useState([])
 
   let fetchUser = () =>{
@@ -28,30 +28,26 @@ export default function ProfileEvidenceRented() {
   }
   const headers = [
     { headerName: "Naziv knjige", sort: true, dropdown: false, dataKey: 'knjiga.title'},
-    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name' },
+    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname' },
     { headerName: "Datum izdavanja", sort: false, dropdown: false, dataKey: 'borrow_date' },
     { headerName: "Trenutno zadržavanje knjiga", sort: false, dropdown: false, dataKey: 'borrow_date' },
-    { headerName: "Knjigu izdao", sort: false, dropdown: true, dataKey: 'bibliotekar0.name' },
+    { headerName: "Knjigu izdao", sort: false, dropdown: true, dataKey: 'bibliotekar0.name+bibliotekar0.surname' },
   ];
   useEffect(()=>{
-    setTableData(fetchedData)
-    fetchedData
+    const fetchData = async () => {
+      try {
+        const responseData = await LoaderRented();
+        let responseData2 = responseData.izdate.filter(el => el.student.id == id)
+        setTableData(responseData2);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+    fetchData()
+    
     fetchUser()
   },[])
 
   return <ProfileEvidence tableData={tableData} userInfo={userInfo} headers={headers} />;
 }
-  export const BooksRentingLoader = async ({params}) => {
-    const id = params.id;
-    try {
-      const response = await api.get(`/books/borrows`);
-      const responseData = response.data.data;
-      let responseData2 = responseData.izdate.filter(izdat => izdat.student.id == id)
-      console.log(responseData2)
-      return responseData2;
-    } catch (error) {
-      console.error("Loader function error:", error);
-      throw error;
-    }
-  };
   

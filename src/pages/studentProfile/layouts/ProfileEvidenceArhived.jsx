@@ -3,10 +3,12 @@ import ProfileEvidence from "../components/ProfileEvidence";
 import { useNavigate, useParams } from "react-router";
 import { useState } from "react";
 import api from "../../../api/apiCalls";
+import { reservationLoader } from "../../dashboard/Dashboard";
 
 export default function ProfileEvidenceArchived() {
   let { id } = useParams();
   let [userInfo, setUserInfo] = useState();
+  let [data, setData] = useState([]);
   let navigate = useNavigate();
 
   let fetchUser = () => {
@@ -26,14 +28,24 @@ export default function ProfileEvidenceArchived() {
       });
   };
   const headers = [
-    { headerName: "Naziv knjige", sort: false, dropdown: false },
-    { headerName: "Datum rezervacije", sort: false, dropdown: false },
-    { headerName: "Rezervacija zatvorena", sort: false, dropdown: false },
-    { headerName: "Rezervaciju podnio", sort: false, dropdown: false },
-    { headerName: "Status", sort: false, dropdown: true },
+    { headerName: "Naziv knjige", sort: false, dropdown: false, dataKey: 'knjiga.title' },
+    { headerName: "Datum rezervacije", sort: false, dropdown: false, dataKey: 'borrow_date' },
+    { headerName: "Rezervacija zatvorena", sort: false, dropdown: false, dataKey: '' },
+    { headerName: "Rezervaciju podnio", sort: false, dropdown: false, dataKey: 'bibliotekar0.name+bibliotekar0.surname' },
+    { headerName: "Status", sort: false, dropdown: true, dataKey: 'status' },
   ];
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const responseData = await reservationLoader();
+        let responseData2 = responseData.archive.filter(el => el.student.id == id)
+        setData(responseData2);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+    fetchData()
     fetchUser();
   }, []);
-  return <ProfileEvidence userInfo={userInfo} headers={headers} />;
+  return <ProfileEvidence tableData={data} userInfo={userInfo} headers={headers} />;
 }

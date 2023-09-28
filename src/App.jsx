@@ -27,7 +27,7 @@ import ProfileEvidenceWrittenOff from "./pages/studentProfile/layouts/ProfileEvi
 import ProfileEvidenceExcess from "./pages/studentProfile/layouts/ProfileEvidenceExcess";
 import ProfileEvidenceReserved from "./pages/studentProfile/layouts/ProfileEvidenceReserved";
 import ProfileEvidenceArchived from "./pages/studentProfile/layouts/ProfileEvidenceArhived";
-import ProfileEvidenceRented, { BooksRentingLoader } from "./pages/studentProfile/layouts/ProfileEvidenceRented";
+import ProfileEvidenceRented from "./pages/studentProfile/layouts/ProfileEvidenceRented";
 
 // Librarian
 import Librarians, { LoaderLibrarians } from "./pages/librarians/Librarians";
@@ -299,7 +299,6 @@ const router = createBrowserRouter(
         <Route
           path="/students/:id/evidencija/izdate-knjige"
           element={<ProfileEvidenceRented />}
-          loader={BooksRentingLoader}
         />
         <Route
           path="/students/:id/evidencija/vracene-knjige"
