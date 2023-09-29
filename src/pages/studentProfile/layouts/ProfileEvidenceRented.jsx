@@ -27,11 +27,11 @@ export default function ProfileEvidenceRented() {
     });
   }
   const headers = [
-    { headerName: "Naziv knjige", sort: true, dropdown: false, dataKey: 'knjiga.title'},
+    { headerName: "Naziv knjige", sort: true, dropdown: false, dataKey: 'knjiga.title', path: '/books/:id', pathId: 'knjiga'},
     { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname' },
     { headerName: "Datum izdavanja", sort: false, dropdown: false, dataKey: 'borrow_date' },
     { headerName: "Trenutno zadržavanje knjiga", sort: false, dropdown: false, dataKey: 'borrow_date' },
-    { headerName: "Knjigu izdao", sort: false, dropdown: true, dataKey: 'bibliotekar0.name+bibliotekar0.surname' },
+    { headerName: "Knjigu izdao", sort: false, dropdown: true, dataKey: 'bibliotekar0.name+bibliotekar0.surname', path: '/librarians/:id', pathId: 'bibliotekar' },
   ];
   useEffect(()=>{
     const fetchData = async () => {

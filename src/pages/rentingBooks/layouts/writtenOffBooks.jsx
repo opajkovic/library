@@ -7,8 +7,8 @@ import { useLoaderData } from "react-router";
 export default function WrittenOffBooks() {
 
   const headers = [
-    { headerName: "Naziv knjige", sort: false, dropdown: false, dataKey: 'knjiga.title' },
-    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname' },
+    { headerName: "Naziv knjige", sort: false, dropdown: false, dataKey: 'knjiga.title', path: '/books/:id', pathId: 'knjiga' },
+    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname', path: '/students/:id', pathId: 'student' },
     { headerName: "Datum izdavanja", sort: false, dropdown: false },
     { headerName: "Datum otpisivanja", sort: false, dropdown: false },
     { headerName: "Zadržavanje knjige", sort: false, dropdown: false },

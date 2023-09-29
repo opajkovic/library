@@ -8,11 +8,11 @@ import { useLoaderData } from "react-router";
 export default function RentingBooks(props) {
 
   const headers = [
-    { headerName: "Naziv knjige", sort: false, dropdown: false, dataKey: 'knjiga.title' },
-    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname' },
+    { headerName: "Naziv knjige", sort: false, dropdown: false, dataKey: 'knjiga.title', path: `/books/:id`, pathId: 'knjiga' },
+    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname', path: '/students/:id', pathId: 'student' },
     { headerName: "Datum izdavanja", sort: false, dropdown: false, dataKey: 'borrow_date' },
     { headerName: "Trenutno zadržavanje knjiga", sort: false, dropdown: false, dataKey: '' },
-    { headerName: "Knjigu izdao", sort: false, dropdown: true, dataKey: 'bibliotekar0.name+bibliotekar0.surname' },
+    { headerName: "Knjigu izdao", sort: false, dropdown: true, dataKey: 'bibliotekar0.name+bibliotekar0.surname', path: '/librarians/:id', pathId: 'bibliotekar' },
   ];
   let [izdate, setIzdate] = useState([])
   const fetchedData = useLoaderData();

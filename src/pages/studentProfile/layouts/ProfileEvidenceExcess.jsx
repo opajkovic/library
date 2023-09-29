@@ -27,8 +27,8 @@ export default function ProfileEvidenceExcess() {
     });
   }
   const headers = [
-    { headerName: "Naziv knjige", sort: false, dropdown: false, dataKey: 'knjiga.title' },
-    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname' },
+    { headerName: "Naziv knjige", sort: false, dropdown: false, dataKey: 'knjiga.title', path: '/books/:id', pathId: 'knjiga'  },
+    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname'},
     { headerName: "Datum izdavanja", sort: false, dropdown: false, dataKey: '' },
     { headerName: "Prekoračenje u danima", sort: false, dropdown: false, dataKey: '' },
     { headerName: "Trenutno zadržavanje knjige", sort: false, dropdown: true, dataKey: 'status' },
@@ -38,6 +38,7 @@ export default function ProfileEvidenceExcess() {
       try {
         const responseData = await LoaderRented();
         let responseData2 = responseData.prekoracene.filter(el => el.student.id == id)
+        console.log(responseData)
         setData(responseData2);
       } catch (error) {
         console.error("Error fetching data:", error);

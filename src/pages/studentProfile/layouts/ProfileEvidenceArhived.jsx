@@ -28,10 +28,10 @@ export default function ProfileEvidenceArchived() {
       });
   };
   const headers = [
-    { headerName: "Naziv knjige", sort: false, dropdown: false, dataKey: 'knjiga.title' },
+    { headerName: "Naziv knjige", sort: false, dropdown: false, dataKey: 'knjiga.title', path: '/books/:id', pathId: 'knjiga'  },
     { headerName: "Datum rezervacije", sort: false, dropdown: false, dataKey: 'borrow_date' },
     { headerName: "Rezervacija zatvorena", sort: false, dropdown: false, dataKey: '' },
-    { headerName: "Rezervaciju podnio", sort: false, dropdown: false, dataKey: 'bibliotekar0.name+bibliotekar0.surname' },
+    { headerName: "Rezervaciju podnio", sort: false, dropdown: false, dataKey: 'bibliotekar0.name+bibliotekar0.surname', path: '/librarians/:id', pathId: 'bibliotekar'  },
     { headerName: "Status", sort: false, dropdown: true, dataKey: 'status' },
   ];
   useEffect(() => {

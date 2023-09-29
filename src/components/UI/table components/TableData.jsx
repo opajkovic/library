@@ -1,7 +1,7 @@
 import "../Table.css";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Modal from "../../../layout/modal/Modal";
 import ModalItem from "../../../layout/modal/modalItem/ModalItem";
 import Input from "../Input";
@@ -19,6 +19,7 @@ const MiddleDataCell = ({
   const [modalOpen, setModalOpen] = useState(false);
   const [rowId, setRowId] = useState(null);
   const [confirmModalState, setConfirmModalStat] = useState(false);
+  const navigate = useNavigate()
 
   const handleOpenModal = (rowId) => {
     setRowId(rowId);
@@ -73,15 +74,35 @@ const MiddleDataCell = ({
                 {/* Uslovno dadavanje linka za autore, bibliotekare, studente i ucenike */}
                 {path ? (
                   <Link to={`${path}/${row.id}`}>{cellData}</Link>
-                ) : (
-                  cellData
-                )}
+                ) : 
+                  <span className={header.pathId ? 'linkCell' : ""} onClick={()=>{
+                    if(header.pathId == 'knjiga'){
+                      navigate(header.path.replace(":id", row.knjiga.id))
+                    }
+                  }}>{cellData}</span>
+                }
               </div>
             )}
 
             {header.headerName == "Trenutno zadržavanje knjiga"
               ? daysDifference + " days"
-              : !header.sort && cellData}
+              : !header.sort && (<span className={header.path ?"linkCell":''} onClick={()=>{
+                if(header.path){
+                  if(header.pathId){
+                    if(header.pathId == 'knjiga'){
+                      navigate(header.path.replace(":id", row.knjiga.id))
+                    }else if(header.pathId == 'student'){
+                      navigate(header.path.replace(":id", row.student.id))
+                    }else if(header.pathId == 'id'){
+                      navigate(header.path.replace(":id", row.id))
+                    }else if(header.pathId == 'bibliotekar'){
+                      navigate(header.path.replace(":id", row.bibliotekar0.id))
+                    }else if(header.pathId == 'autor'){
+                      navigate(header.path.replace(":id", row.authors[0].id))
+                    }
+                  }
+                }
+              }}>{cellData}</span>)}
 
             {/* Uslovno prikazivanje tackica ako je props dropdown === true */}
             {header.dropdown && (

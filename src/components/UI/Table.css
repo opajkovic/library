@@ -7,7 +7,12 @@
   min-width: calc(1400px - 7rem);
   animation: glow 1s ease-in;
 }
-
+.linkCell{
+  cursor: pointer;
+}
+.linkCell:hover{
+  color: blue;
+}
 .table-container tr {
   display: flex;
   flex-direction: row;

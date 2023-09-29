@@ -8,10 +8,10 @@ import { useEffect, useState } from "react";
 export default function ArchivedReservations() {
 
   const headers = [
-    { headerName: "Naziv knjige", sort: false, dropdown: false, dataKey: 'knjiga.title' },
+    { headerName: "Naziv knjige", sort: false, dropdown: false, dataKey: 'knjiga.title', path: '/books/:id', pathId: 'knjiga' },
     { headerName: "Datum rezervacije", sort: false, dropdown: false, dataKey: 'action_date' },
     { headerName: "Rezervacija zatvorena", sort: false, dropdown: false },
-    { headerName: "Rezervaciju podnio", sort: false, dropdown: false, dataKey: 'student.name+student.surname' },
+    { headerName: "Rezervaciju podnio", sort: false, dropdown: false, dataKey: 'student.name+student.surname', path: '/students/:id', pathId: 'student' },
     { headerName: "Status", sort: false, dropdown: true, dataKey: 'status' },
   ];
   let fetchedData = useLoaderData()
