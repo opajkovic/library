@@ -122,7 +122,7 @@ const NewBook = () => {
       categories: filterAndMap(data.categories, categoryValue),
       genres: filterAndMap(data.genres, genreValue),
       authors: filterAndMap(data.authors, authorValue),
-      izdavac: filterAndMap(data.publishers, publisherValue),
+      izdavac: Number(filterAndMap(data.publishers, publisherValue)),
       godinaIzdavanja: yearValue,
       knjigaKolicina: quantityValue,
     };

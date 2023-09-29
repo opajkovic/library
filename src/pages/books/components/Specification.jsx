@@ -66,9 +66,9 @@ export default function NewBookSpecification() {
     setSecondLevel(true);
     const formData = {
       brStrana: pagesValue,
-      pismo: filterAndMap(data.scripts, scriptValue),
-      povez: filterAndMap(data.bookbinds, bookbindValue),
-      format: filterAndMap(data.formats, formatValue),
+      pismo: Number(filterAndMap(data.scripts, scriptValue)),
+      povez: Number(filterAndMap(data.bookbinds, bookbindValue)),
+      format: Number(filterAndMap(data.formats, formatValue)),
       isbn: 1234567891011,
     };
     dispatch(updateFormData(formData));

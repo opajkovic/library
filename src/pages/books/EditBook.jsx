@@ -2,17 +2,19 @@ import { useState, useEffect } from "react";
 import SettingsForm from "../../components/UI/SettingsForm";
 import { createChangeHandler, getInvalidClass } from "../../util/Functions";
 import "./NewBook.css";
-import { useLoaderData, useParams } from "react-router";
+import { useLoaderData, useNavigate, useParams } from "react-router";
 import api from "../../api/apiCalls";
 import { filterAndMap } from "../../util/Functions";
 import { useDispatch, useSelector } from "react-redux";
 import { updateEditData } from "../../redux/edit-book-data";
+import { toast } from "react-toastify";
 
 const EditBook = () => {
   const fetchedData = useLoaderData();
   const dispatch = useDispatch();
   const params = useParams();
   const editedData = useSelector(state => state.editBookData);
+  const navigate = useNavigate()
 
   const [categoryIsValid, setCategoryIsValid] = useState(false);
   const [genreIsValid, setGenreIsValid] = useState(false);
@@ -97,31 +99,33 @@ const EditBook = () => {
     setPublisherValue(fetchedData.book.publisher.name);
     setGenreValue(fetchedData.book.genres[0].name);
   };
-
-  const submitHandler = async () => {
+  const  updatingFunction  = async () => {
     const updatedData = {
       nazivKnjiga: bookInfo.name,
       kratki_sadrzaj: richTextareaValue,
       categories: filterAndMap(fetchedData.categories, categoryValue),
       genres: filterAndMap(fetchedData.genres, genreValue),
       authors: filterAndMap(fetchedData.authors, authorValue.split(' ')[0]),
-      izdavac: filterAndMap(fetchedData.publishers, publisherValue),
+      izdavac: Number(filterAndMap(fetchedData.publishers, publisherValue)),
       godinaIzdavanja: bookInfo.year,
       knjigaKolicina: bookInfo.quantity,
     }
     dispatch(updateEditData(updatedData))
   };
 
-  const updatingFunction = async () => {
-      const response = await api.post(`/books/${params.id}/update`, editedData);
-      if(response.status === 200){
-        console.log("successfully updated")
+  const submitHandler = async () => {
+    try{
+        const response = await api.post(`/books/${params.id}/update`, editedData);
+        toast.success("successfully updated")
+        console.log(response)
+        navigate(`/books/${params.id}`)
         return response
       }
-      else {
-        console.log("unsuccesfull")
+      catch(err) {
+        toast.error(err.response.data.message)
       }
   }
+  
 
   useEffect(()=>{
     updatingFunction();

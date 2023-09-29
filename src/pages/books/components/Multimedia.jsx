@@ -4,6 +4,7 @@ import { resetFormData } from "../../../redux/new-book-data";
 import api from "../../../api/apiCalls";
 import "./Multimedia.css";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 export default function NewBookMultimedia() {
   const navigate = useNavigate();
@@ -11,11 +12,15 @@ export default function NewBookMultimedia() {
   const newBook = useSelector((state) => state.newBookData);
 
   const submitHandler = async () => {
-    const response = await api.post(`/books/store`, newBook);
-    if (response.status === 200) {
+    try {
+      const response = await api.post(`/books/store`, newBook);
       dispatch(resetFormData());
+      toast.success("Dodata knjiga")
       navigate("/books");
-    } else {
+      return response
+    } catch(err) {
+      console.log(err)
+      toast.error(err.response.data.message)
       navigate("/books/new/osnovni-detalji");
     }
   };
