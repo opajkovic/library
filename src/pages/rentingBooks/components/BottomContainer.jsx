@@ -16,7 +16,7 @@ export default function BottomContainer(props) {
           headers={props.headers}
           lastHeader=""
           tableData={props.tableData}
-          // path={"/izdavanje"}
+          path={"/books:bookid"}
           options={[
             {
               text: "Pogledaj detalje",

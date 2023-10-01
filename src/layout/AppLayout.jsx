@@ -6,11 +6,15 @@ import { useState } from "react";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import GlobalSpinner from "./GlobalSpinner/GlobalSpinner";
+import { useEffect } from "react";
 
 function AppLayout() {
   let [route, setRoute] = useState("/");
   const navigation = useNavigation();
 
+  useEffect(()=>{
+    window.scrollTo({top: 0})
+  },[navigation.state])
   return (
     <>
       <Header />

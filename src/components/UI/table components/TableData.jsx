@@ -137,7 +137,17 @@ const MiddleDataCell = ({
                         closeModals={setModalOpen}
                       />
                     );
-                  } else {
+                  }  else if(path.includes(":bookid")){
+                    return (
+                      <ModalItem
+                        key={i}
+                        newClassName="modalItemChange"
+                        icon={option.icon}
+                        text={option.text}
+                        path={`${path.replace(':bookid', '')}/${row.knjiga.id}/${option.path}`}
+                      />
+                    );
+                  }else {
                     return (
                       <ModalItem
                         key={i}
