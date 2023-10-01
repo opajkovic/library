@@ -108,9 +108,8 @@ td input {
   justify-content: center !important;
 }
 
-.dots {
-  position: absolute;
-  right: 1rem;
+.dots { 
+  margin-left: auto;
 }
 
 .modalItemChange{

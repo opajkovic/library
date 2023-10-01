@@ -1,13 +1,15 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigation } from "react-router-dom";
 import Header from "./header/Header";
 import "./AppLayout.css";
 import Sidebar from "./sidebar/Sidebar";
 import { useState } from "react";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import GlobalSpinner from "./GlobalSpinner/GlobalSpinner";
 
 function AppLayout() {
   let [route, setRoute] = useState("/");
+  const navigation = useNavigation();
 
   return (
     <>
@@ -15,7 +17,8 @@ function AppLayout() {
       <main className="main">
         <Sidebar route={route} />
         <div className="outlet">
-          <Outlet context={{ setRoute }} />
+          {navigation.state === "loading" ? <GlobalSpinner />:
+          <Outlet context={{ setRoute }} />}
         </div>
       </main>
         <ToastContainer />
