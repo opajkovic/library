@@ -114,6 +114,7 @@ const NewStudent = () => {
         navigate("/students");
       }
     }catch (err){
+      console.log(err)
       toast.error(err.response.data.message)
     }
   };
