@@ -22,12 +22,12 @@ import Students, { LoaderStudents } from "./pages/students/Students";
 import NewStudent from "./pages/students/NewStudent";
 import EditStudent from "./pages/students/EditStudent";
 import StudentProfile, { StudentProfileLoader } from "./pages/studentProfile/StudentProfile";
-import ProfileEvidenceReturned from "./pages/studentProfile/layouts/ProfileEvidenceReturned";
-import ProfileEvidenceWrittenOff from "./pages/studentProfile/layouts/ProfileEvidenceWrittenOff";
-import ProfileEvidenceExcess from "./pages/studentProfile/layouts/ProfileEvidenceExcess";
-import ProfileEvidenceReserved from "./pages/studentProfile/layouts/ProfileEvidenceReserved";
-import ProfileEvidenceArchived from "./pages/studentProfile/layouts/ProfileEvidenceArhived";
-import ProfileEvidenceRented from "./pages/studentProfile/layouts/ProfileEvidenceRented";
+import ProfileEvidenceReturned, { loaderTestReturned } from "./pages/studentProfile/layouts/ProfileEvidenceReturned";
+import ProfileEvidenceWrittenOff, { loaderTestWrittenOff } from "./pages/studentProfile/layouts/ProfileEvidenceWrittenOff";
+import ProfileEvidenceExcess, { loaderTest } from "./pages/studentProfile/layouts/ProfileEvidenceExcess";
+import ProfileEvidenceReserved, { loaderTestActive } from "./pages/studentProfile/layouts/ProfileEvidenceReserved";
+import ProfileEvidenceArchived, { loaderTestArchived } from "./pages/studentProfile/layouts/ProfileEvidenceArhived";
+import ProfileEvidenceRented, { loaderTestRented } from "./pages/studentProfile/layouts/ProfileEvidenceRented";
 
 // Librarian
 import Librarians, { LoaderLibrarians } from "./pages/librarians/Librarians";
@@ -299,27 +299,32 @@ const router = createBrowserRouter(
         <Route
           path="/students/:id/evidencija/izdate-knjige"
           element={<ProfileEvidenceRented />}
+          loader={loaderTestRented}
         />
         <Route
           path="/students/:id/evidencija/vracene-knjige"
           element={<ProfileEvidenceReturned />}
+          loader={loaderTestReturned}
         />
         <Route
           path="/students/:id/evidencija/otpisane-knjige"
           element={<ProfileEvidenceWrittenOff />}
+          loader={loaderTestWrittenOff}
         />
         <Route
           path="/students/:id/evidencija/knjige-u-prekoracenju"
           element={<ProfileEvidenceExcess />}
+          loader={loaderTest}
         />
         <Route
           path="/students/:id/evidencija/aktivne-rezervacije"
           element={<ProfileEvidenceReserved />}
-          loader={reservationLoader}
+          loader={loaderTestActive}
         />
         <Route
           path="/students/:id/evidencija/arhivirane-rezervacije"
           element={<ProfileEvidenceArchived />}
+          loader={loaderTestArchived}
         />
       </Route>
       <Route path="*" element={<PageNotFound />} />

@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router";
+import { useLoaderData, useNavigate, useParams } from "react-router";
 import ProfileEvidence from "../components/ProfileEvidence";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -10,10 +10,21 @@ export default function ProfileEvidenceRented() {
   let [userInfo, setUserInfo] = useState()
   let navigate = useNavigate()
   let [tableData, setTableData] = useState([])
+  let loaderData = useLoaderData()
 
-  let fetchUser = () =>{
+  const headers = [
+    { headerName: "Naziv knjige", sort: true, dropdown: false, dataKey: 'knjiga.title', path: '/books/:id', pathId: 'knjiga'},
+    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname' },
+    { headerName: "Datum izdavanja", sort: false, dropdown: false, dataKey: 'borrow_date' },
+    { headerName: "Trenutno zadržavanje knjiga", sort: false, dropdown: false, dataKey: 'borrow_date' },
+    { headerName: "Knjigu izdao", sort: false, dropdown: true, dataKey: 'bibliotekar0.name+bibliotekar0.surname', path: '/librarians/:id', pathId: 'bibliotekar' },
+  ];
+  useEffect(()=>{
+    let dataUn = loaderData
+    setTableData(dataUn)
     api.get(`/users/${id}`).then(response => {
       if(response.data.data.role == 'Učenik'){
+        console.log(response.data.data)
         setUserInfo(response.data.data)
       }
       else if(response.data.data.role == "Bibliotekar"){
@@ -25,29 +36,21 @@ export default function ProfileEvidenceRented() {
     .catch(error => {
       console.error('Error:', error);
     });
-  }
-  const headers = [
-    { headerName: "Naziv knjige", sort: true, dropdown: false, dataKey: 'knjiga.title', path: '/books/:id', pathId: 'knjiga'},
-    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname' },
-    { headerName: "Datum izdavanja", sort: false, dropdown: false, dataKey: 'borrow_date' },
-    { headerName: "Trenutno zadržavanje knjiga", sort: false, dropdown: false, dataKey: 'borrow_date' },
-    { headerName: "Knjigu izdao", sort: false, dropdown: true, dataKey: 'bibliotekar0.name+bibliotekar0.surname', path: '/librarians/:id', pathId: 'bibliotekar' },
-  ];
-  useEffect(()=>{
-    const fetchData = async () => {
-      try {
-        const responseData = await LoaderRented();
-        let responseData2 = responseData.izdate.filter(el => el.student.id == id)
-        setTableData(responseData2);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    }
-    fetchData()
-    
-    fetchUser()
   },[])
 
   return <ProfileEvidence tableData={tableData} userInfo={userInfo} headers={headers} />;
 }
-  
+  export let loaderTestRented = async({ params }) => {
+  let data = []
+  const id = params.id;
+  try {
+    const responseData = await LoaderRented();
+    let responseData2 = responseData.izdate.filter(el => el.student.id == id)
+    console.log(responseData2)
+    data = responseData2
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+
+  return data
+}
