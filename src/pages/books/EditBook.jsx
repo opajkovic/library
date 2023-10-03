@@ -53,7 +53,7 @@ const EditBook = () => {
     setGenreIsValid(value);
   };
 
-  const [authorValue, setAuthorValue] = useState(fetchedData.book.authors[0].name + " " + fetchedData.book.authors[0].surname);
+  const [authorValue, setAuthorValue] = useState(fetchedData.book.authors.length > 0 ? fetchedData.book.authors[0].name + " " + fetchedData.book.authors[0].surname : '');
   const authorChangeHandler = (newValue) => {
     setAuthorValue(newValue);
   };
@@ -114,6 +114,8 @@ const EditBook = () => {
   };
 
   const submitHandler = async () => {
+
+    console.log(editedData)
     try{
         const response = await api.post(`/books/${params.id}/update`, editedData);
         toast.success("successfully updated")
@@ -137,7 +139,7 @@ const EditBook = () => {
       kratki_sadrzaj: fetchedData.book.description,
       categories: fetchedData.book.categories[0].id,
       genres: fetchedData.book.genres[0].id,
-      authors: fetchedData.book.authors[0].id,
+      authors: fetchedData.book.authors.length > 0 ? fetchedData.book.authors[0].id : 0,
       izdavac: fetchedData.book.publisher.id,
       godinaIzdavanja: fetchedData.book.pDate,
       knjigaKolicina: fetchedData.book.samples,

@@ -46,6 +46,8 @@ const NewAuthor = () => {
         setRichTextareaValue("");
         resetAuthor();
         navigate('/authors')
+        console.log(response)
+        console.log(localStorage.getItem("token"))
       }
     }catch(err){
       toast.error(err.response.data.message)

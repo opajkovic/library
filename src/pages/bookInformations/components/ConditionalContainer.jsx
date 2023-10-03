@@ -29,6 +29,8 @@ export default function ConditionalContainer({
   let [arhiviraneRezervacije, setArhiviraneRezervacije] = useState([{knjiga:{title: 'loading...'}, bibliotekar0:{name: 'loading...'}, student: {name: 'Loading...'}}])
 
   async function fetchKnjige() {
+    if(evidence || returnedEvidence || excessEvidence) {
+
       try {
         const response = await api.get(`/books/borrows`);
         const responseData = response.data.data;
@@ -43,19 +45,22 @@ export default function ConditionalContainer({
         console.error("Loader function error:", error);
         throw error;
       }
-      try {
-        const response = await api.get(`/books/reservations`);
-        const responseData = response.data.data;
-        let aktivneRezervacije2 = responseData.active.filter(activ => activ.knjiga.id == params.id)
-        let arhiviraneRezervacije2 = responseData.archive.filter(arhiv => arhiv.knjiga.id == params.id)
-       setAktivneRezervacije(aktivneRezervacije2)
-       setArhiviraneRezervacije(arhiviraneRezervacije2)
-        console.log(responseData)
-
-        return responseData;
-      } catch (error) {
-        console.error("Loader function error:", error);
-        throw error;
+    }
+      else if(reservationEvidence || archivedEvidence){
+        try {
+          const response = await api.get(`/books/reservations`);
+          const responseData = response.data.data;
+          let aktivneRezervacije2 = responseData.active.filter(activ => activ.knjiga.id == params.id)
+          let arhiviraneRezervacije2 = responseData.archive.filter(arhiv => arhiv.knjiga.id == params.id)
+          setAktivneRezervacije(aktivneRezervacije2)
+          setArhiviraneRezervacije(arhiviraneRezervacije2)
+          console.log(responseData)
+  
+          return responseData;
+        } catch (error) {
+          console.error("Loader function error:", error);
+          throw error;
+        }
       }
   }
 
@@ -74,7 +79,7 @@ export default function ConditionalContainer({
            data={izdavanja}
           headers={[
             { headerName: "Izdato uceniku", sort: false, dropdown: false,
-            dataKey: 'student.name+student.surname' },
+            dataKey: 'student.name+student.surname', pathId: 'student', path: '/students/:id' },
             {
               headerName: "Datum izdavanja",
               sort: false,
@@ -91,7 +96,8 @@ export default function ConditionalContainer({
               headerName: "Knjigu izdao",
               sort: false,
               dropdown: false,
-              dataKey: 'bibliotekar0.name+bibliotekar0.surname'
+              dataKey: 'bibliotekar0.name+bibliotekar0.surname',
+              pathId: 'bibliotekar', path: '/librarians/:id'
             },
             { headerName: "Status", sort: false, dropdown: true,
             dataKey: 'status' },
@@ -103,7 +109,7 @@ export default function ConditionalContainer({
         <EvidenceTable
         data={vracene}
           headers={[
-            { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname' },
+            { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname', pathId: 'student', path: '/students/:id' },
             { headerName: "Datum izdavanja", sort: false, dropdown: false, dataKey: 'borrow_date' },
             { headerName: "Datum vraćanja", sort: false, dropdown: false, dataKey: 'return_date' },
             {
@@ -115,7 +121,9 @@ export default function ConditionalContainer({
               headerName: "Knjigu primio",
               sort: false,
               dropdown: true,
-              dataKey: 'bibliotekar0.name+bibliotekar0.surname'
+              dataKey: 'bibliotekar0.name+bibliotekar0.surname',
+              pathId: 'bibliotekar', 
+              path: '/librarians/:id'
             },
           ]}
         />
@@ -158,7 +166,9 @@ export default function ConditionalContainer({
             {
               headerName: "Rezervaciju podnio",
               sort: false,
-              dropdown: false, dataKey: 'student.name+student.surname'
+              dropdown: false, dataKey: 'student.name+student.surname',
+              pathId: 'student', 
+              path: '/students/:id'
             },
             { headerName: "Status", sort: false, dropdown: true, dataKey: 'status' },
           ]}
@@ -182,7 +192,9 @@ export default function ConditionalContainer({
             {
               headerName: "Rezervaciju podnio",
               sort: false,
-              dropdown: false, dataKey: 'student.name+student.surname'
+              dropdown: false, dataKey: 'student.name+student.surname',
+              pathId: 'student', 
+              path: '/students/:id'
             },
             { headerName: "Status", sort: false, dropdown: true, dataKey: 'status' },
           ]}

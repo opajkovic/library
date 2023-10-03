@@ -17,6 +17,7 @@
 .ReservationItem .studentInfo img{
     border-radius: 50%;
     width: 2rem;
+    margin-right: .5rem;
 }
 .ReservationItem .status{
     display: flex;

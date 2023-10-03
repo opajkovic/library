@@ -52,7 +52,7 @@ const EditLibrarian = () => {
           inputClasses: nameClass,
           type: "text",
           name: "name",
-          value: librarianInfo.name + " " + librarianInfo.surname
+          value: librarianInfo.name + " " + librarianInfo.surname,
         },
         {
           label: "Tip korisnika",

@@ -26,7 +26,7 @@ import { toast } from "react-toastify";
 
 const headers = [
   { headerName: "Naziv knjige", sort: true, dropdown: false, dataKey: "name" },
-  { headerName: "Autor", sort: false, dropdown: false, dataKey: "author" },
+  { headerName: "Autor", sort: false, dropdown: false, dataKey: "author", path: '/authors/:id', pathId: 'autor' },
   { headerName: "Kategorija", sort: false, dropdown: false, dataKey: "category" },
   { headerName: "Na raspolaganju",sort: false,dropdown: false,dataKey: "available" },
   { headerName: "Rezervisano", sort: false, dropdown: false, dataKey: "reserved" },

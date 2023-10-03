@@ -16,9 +16,7 @@ export default function ModalItem({
     <>
       {noPath && !close && (
         <div
-          onClick={() => {
-            onClickModalItem();
-          }}
+          onClick={onClickModalItem}
           className={newClassName ? `modalItem ${newClassName}` : "modalItem"}
         >
           {icon}

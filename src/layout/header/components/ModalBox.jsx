@@ -24,6 +24,11 @@ const ModalBox = ({ changeModal, modalProfileShow, setModalClose }) => {
     }
   };
 
+  let logOut = () => {
+    localStorage.removeItem('token');
+    console.log("loggedout")
+    navigate("/login")
+  }
   return (
     <div className="modalBox">
       <FaBookReader onClick={changeModal} />
@@ -44,7 +49,8 @@ const ModalBox = ({ changeModal, modalProfileShow, setModalClose }) => {
                 setModalClose={setModalClose}
                 icon={<FaSignOutAlt className="modalIcon" />}
                 text={"Log out"}
-                path={"/login"}
+                onClickModalItem={logOut}
+                noPath={true}
               />
             </div>
           }

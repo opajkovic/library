@@ -38,6 +38,7 @@ export function transformBookData(data) {
       rented: item.bSamples ,
       excess: item.fSamples,
       total: item.samples || null,
+      authors: [{id: item.authors.length > 0 ? item.authors[0].id : 0 }]
     };
   });
 }

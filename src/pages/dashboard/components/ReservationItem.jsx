@@ -48,7 +48,7 @@ export default function ReservationItem({ reservation }) {
       );
       const responseData = response.data;
       console.log(responseData);
-      e.target.parentElement.parentElement.parentElement.style.cssText = "display: none"
+      e.target.parentElement.parentElement.style.cssText = "display: none"
       toast.success(responseData.message);
     } catch (error) {
       console.log(err);
@@ -76,8 +76,8 @@ export default function ReservationItem({ reservation }) {
   return (
     <div className="ReservationItem">
       <div className="studentInfo">
-        <img src={imagee} alt="student" />
         <Link to={"/students/" + reservation.student.id}>
+         <img src={imagee} alt="student" />
           {reservation.student.name + " " + reservation.student.surname}
         </Link>
       </div>
