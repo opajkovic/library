@@ -128,9 +128,12 @@ export default function Singup() {
     let user = {
       name: nameRef.current.value,
       surname: surnameRef.current.value,
+      username: userNameRef.current.value,
       email: emailRef.current.value,
       password: passwordRef.current.value,
-      password_confirmation: password_confirmationRef.current.value
+      password_confirmation: password_confirmationRef.current.value,
+      device: "DivajsNejm"
+      
     }
     try{
       const response = await api.post('/register', user)

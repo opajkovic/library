@@ -19,6 +19,7 @@ const EditStudent = () => {
   }, []);
 
   const nameHandler = createChangeHandler("name", setStudentInfo);
+  const surnameHandler = createChangeHandler("surname", setStudentInfo);
   const jmbgHandler = createChangeHandler("jmbg", setStudentInfo);
   const emailHandler = createChangeHandler("email", setStudentInfo);
   const usernameHandler = createChangeHandler("username", setStudentInfo);
@@ -46,12 +47,20 @@ const EditStudent = () => {
     <SettingsForm
       input={[
         {
-          label: "Ime i prezime",
+          label: "Ime",
           inputClasses: nameClass,
           type: "text",
           name: "name",
-          value: studentInfo.name + " " + studentInfo.surname,
+          value: studentInfo.name,
           onChange: nameHandler,
+        },
+        {
+          label: "Prezime",
+          inputClasses: nameClass,
+          type: "text",
+          name: "name",
+          value: studentInfo.surname,
+          onChange: surnameHandler,
         },
         {
           label: "Tip korisnika",

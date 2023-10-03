@@ -18,6 +18,7 @@ const EditLibrarian = () => {
   }, []);
 
   const nameHandler = createChangeHandler("name", setLibrairanInfo);
+  const surnameHandler = createChangeHandler("surname", setLibrairanInfo);
   const jmbgHandler = createChangeHandler("jmbg", setLibrairanInfo);
   const usernameHandler = createChangeHandler("username", setLibrairanInfo);
 
@@ -48,11 +49,20 @@ const EditLibrarian = () => {
     <SettingsForm
       input={[
         {
-          label: "Ime i prezime",
+          label: "Ime",
           inputClasses: nameClass,
           type: "text",
           name: "name",
-          value: librarianInfo.name + " " + librarianInfo.surname,
+          value: librarianInfo.name,
+          onChange: nameHandler
+        },
+        {
+          label: "Prezime",
+          inputClasses: nameClass,
+          type: "text",
+          name: "surname",
+          value: librarianInfo.surname,
+          onChange: surnameHandler
         },
         {
           label: "Tip korisnika",

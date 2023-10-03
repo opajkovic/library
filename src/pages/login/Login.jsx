@@ -15,8 +15,9 @@ export default function Login() {
   let logIn = async() => {
     try{
       const response = await apiCalls.post("/login",{
-        username: userNameRef.current.value,
-        password: passwordRef.current.value
+        username: "bibliotekar",
+        password: "password",
+        device: "DivajsNejm"
       })
       console.log(response)
     }catch(err){
