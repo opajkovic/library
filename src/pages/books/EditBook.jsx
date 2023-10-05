@@ -270,7 +270,7 @@ export default EditBook;
 
 export const EditBookLoader = async ({ params }) => {
   const id = params.id;
-  const isAuthenticated = auth.getAuthStatus();
+  const isAuthenticated = auth.adminRole();
   if (isAuthenticated) {
     try {
       const response = await api.get(`/books/${id}/edit`);

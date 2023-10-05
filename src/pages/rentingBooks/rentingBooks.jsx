@@ -31,7 +31,7 @@ export default function RentingBooks(props) {
   );
 }
 export async function LoaderRented() {
-  const isAuthenticated = auth.getAuthStatus();
+  const isAuthenticated = auth.bibliotekarRole();
   if (isAuthenticated) {
     try {
       const response = await api.get(`/books/borrows`);

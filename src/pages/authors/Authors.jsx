@@ -91,6 +91,7 @@ export default function Authors() {
   },[updatedSortedData])
 
   const handleDelete = async (id) => {
+    if(localStorage.getItem("role") == 'Bibliotekar' || localStorage.getItem("role") == "Administrator"){
       try {
         const response = await api.delete(`/authors/${id}`);
         const data = response.data;
@@ -104,6 +105,9 @@ export default function Authors() {
       } catch (err) {
         toast.error("message: " + err.response.data.message + " , data: " + err.response.data.data);
       }
+    }else{
+      toast.error("Nemate pravo izbrisati autora!")
+    }
     
      
     // navigate("/authors");

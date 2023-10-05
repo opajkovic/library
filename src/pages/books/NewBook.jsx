@@ -301,7 +301,7 @@ const NewBook = () => {
 export default NewBook;
 
 export async function LoaderCreateBook() {
-  const isAuthenticated = auth.getAuthStatus();
+  const isAuthenticated = auth.bibliotekarRole();
   if (isAuthenticated) {
     try {
       const response = await api.get(`/books/create`);

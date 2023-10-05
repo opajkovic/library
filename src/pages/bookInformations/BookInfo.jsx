@@ -91,7 +91,7 @@ export default function BookInfo({
 }
 export const BookLoader = async ({ params }) => {
   const id = params.id;
-  const isAuthenticated = auth.getAuthStatus();
+  const isAuthenticated = auth.bibliotekarRole();
   if (isAuthenticated) {
     try {
       const response = await api.get(`/books/${id}`);

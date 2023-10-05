@@ -45,7 +45,7 @@ export default function Dashboard() {
 }
 export async function reservationLoader() {
   const isAuthenticated = auth.getAuthStatus();
-  if (isAuthenticated) {
+  if (isAuthenticated && auth.bibliotekarRole()) {
     try {
       const response = await api.get(`/books/reservations`);
       const responseData = response.data.data;

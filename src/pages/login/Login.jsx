@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import apiCalls, { apiSing } from "../../api/apiCalls";
 import "react-toastify/dist/ReactToastify.css";
+import { auth } from "../../services/AuthService";
 
 
 export default function Login() {
@@ -21,6 +22,16 @@ export default function Login() {
         device: "DivajsNejm"
       })
       localStorage.setItem("token", response.data.data.token)
+      auth.setJWT(response.data.data.token)
+      try{
+        const response2 = await apiCalls.post("/users/me", null , {
+          'Authorization': `Bearer ${response.data.data.token}`,
+        })
+        localStorage.setItem("id",response2.data.data.id)
+        localStorage.setItem("role",response2.data.data.role)
+      }catch(err){
+        console.log(err)
+      }
       toast.success("Uspjesna prijava")
       setTimeout(() => {
         navigate('/')

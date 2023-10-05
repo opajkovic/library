@@ -21,13 +21,17 @@ export default function LibrarianProfile() {
   }, []);
 
   const handleDelete = async () => {
-    try{
-      api.delete(`/users/${fetchedData.id}`);
-      dispatch(deleteLibrarian(librariansData, fetchedData.id));
-      toast.success("Bibliotekar izbrisan")
-      navigate('/librarians')
-    }catch (err){
-      toast.error(err.response.data.date)
+    if (!!localStorage.getItem('token') && ((localStorage.getItem("role") == 'Bibliotekar' && localStorage.getItem("id") == fetchedData.id) || localStorage.getItem("role") == 'Administrator')) {  
+      try{
+        api.delete(`/users/${fetchedData.id}`);
+        dispatch(deleteLibrarian(librariansData, fetchedData.id));
+        toast.success("Bibliotekar izbrisan")
+        navigate('/librarians')
+      }catch (err){
+        toast.error(err.response.data.date)
+      }
+    }else{
+      toast.error("Nemate pravo iizbrisati ovog bibliotekara!")
     }
   };
 
@@ -52,9 +56,9 @@ export default function LibrarianProfile() {
 }
 
 export const LibrarianProfileLoader = async ({ params }) => {
-  const id = params.id;
-  const isAuthenticated = auth.getAuthStatus();
+  const isAuthenticated = auth.bibliotekarRole();
   if (isAuthenticated) {
+    const id = params.id;
     try {
       const response = await api.get(`/users/${id}`);
       const responseData = response.data.data;

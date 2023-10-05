@@ -101,7 +101,7 @@ export default function Izdavac() {
 }
 
 export const PublisherLoader = async () => {
-  const isAuthenticated = auth.getAuthStatus();
+  const isAuthenticated = auth.bibliotekarRole();
   if (isAuthenticated) {
     try {
       const response = await api.get(`/books/create`);

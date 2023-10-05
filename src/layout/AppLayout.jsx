@@ -21,7 +21,7 @@ function AppLayout() {
       <main className="main">
         <Sidebar route={route} />
         <div className="outlet">
-          {navigation.state === "loading" ? <GlobalSpinner />:
+          {navigation.state === "loading" ? <p>loading..</p>:
           <Outlet context={{ setRoute }} />}
         </div>
       </main>

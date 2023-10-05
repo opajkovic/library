@@ -30,7 +30,7 @@ export default function ActiveReservations() {
   );
 }
 export async function LoaderReservations() {
-  const isAuthenticated = auth.getAuthStatus();
+  const isAuthenticated = auth.bibliotekarRole();
   if (isAuthenticated) {
     try {
       const response = await api.get(`/books/reservations`);

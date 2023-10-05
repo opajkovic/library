@@ -93,6 +93,7 @@ const Librarians = () => {
   },[updatedSortedData])
 
   const handleDelete = async (id) => {
+    if (!!localStorage.getItem('token') && ((localStorage.getItem("role") == 'Bibliotekar' && localStorage.getItem("id") == fetchedData.id) || localStorage.getItem("role") == 'Administrator')) { 
     try {
       const response = await api.delete(`/users/${id}`);
       toast.success("Izbrisan bibliotekar");
@@ -112,6 +113,10 @@ const Librarians = () => {
         console.error(err);
       }
     }
+  }else{
+
+    toast.error("Nemate pravo izbrisati ovog bibliotekara!")
+  }
   };
   
 
@@ -166,7 +171,7 @@ const Librarians = () => {
 export default Librarians;
 
 export async function LoaderLibrarians() {
-  const isAuthenticated = auth.getAuthStatus();
+  const isAuthenticated = auth.bibliotekarRole();
   if (isAuthenticated) {
     try {
       const response = await api.get(`/users`);

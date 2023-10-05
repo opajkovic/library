@@ -86,61 +86,65 @@ import Singup from "./pages/singup/Singup";
 import Login from "./pages/login/Login";
 import { GuestRoute } from "./services/GuestRoute";
 import { PrivateRoute } from "./services/PrivateRoute";
+import { AdminRoute } from "./services/AdminRoute";
+import { BibliotekarRoute } from "./services/BibliotekarRoute";
+import { SelfOrBibliotekarRoute } from "./services/SelfOrBibliotekar";
+import { SelfRoute } from "./services/SelfRoute";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route element={<PrivateRoute><AppLayout /></PrivateRoute>}>
         <Route index element={<Navigate replace to="/dashboard" />} />
-        <Route path="/dashboard" element={<Dashboard />} loader={reservationLoader} />
-        <Route path="/activities" element={<Activities />} />
+        <Route path="/dashboard" element={<BibliotekarRoute><Dashboard /></BibliotekarRoute>} loader={reservationLoader} />
+        <Route path="/activities" element={<BibliotekarRoute><Activities /></BibliotekarRoute>} />
 
         {/* Books routes */}
         <Route path="/books" element={<Books />} loader={BooksLoader} />
         <Route path="/books/:id" element={<BookInfo />} loader={BookLoader} />
         <Route
           path="/books/:id/edit"
-          element={<EditBook />}
+          element={<AdminRoute><EditBook /></AdminRoute>}
           loader={EditBookLoader}
         />
         <Route
           path="/books/:id/edit/specification"
-          element={<EditSpecification />}
+          element={<AdminRoute><EditSpecification /></AdminRoute>}
           loader={EditBookLoader}
         />
-        <Route path="/books/:id/edit/multimedia" element={<EditMultimedia />} />
+        <Route path="/books/:id/edit/multimedia" element={<AdminRoute><EditMultimedia /></AdminRoute>} />
         <Route
           path="/books/:id/otpisi-knjigu"
-          element={<BookInfoWrittenOff />}
+          element={<BibliotekarRoute><BookInfoWrittenOff /></BibliotekarRoute>}
           loader={BookLoader}
         />
         <Route
           path="/books/:id/vrati-knjigu"
-          element={<BookInfoReturn />}
+          element={<BibliotekarRoute><BookInfoReturn /></BibliotekarRoute>}
           loader={BookLoader}
         />
 
         <Route
           path="/books/:id/izdaj-knjigu"
-          element={<BookInfoRentingBook />}
+          element={<BibliotekarRoute><BookInfoRentingBook /></BibliotekarRoute>}
           loader={BookLoader}
         />
         <Route
           path="/books/:id/rezervisi-knjigu"
-          element={<BookInfoReserve />}
+          element={<BibliotekarRoute><BookInfoReserve /></BibliotekarRoute>}
           loader={BookLoader}
         />
         <Route
           path="/books/new/osnovni-detalji"
-          element={<NewBook />}
+          element={<AdminRoute><NewBook /></AdminRoute>}
           loader={LoaderCreateBook}
         />
         <Route
           path="/books/new/specifikacija"
-          element={<NewBookSpecification />}
+          element={<AdminRoute><NewBookSpecification /></AdminRoute>}
           loader={LoaderCreateBook}
         />
-        <Route path="/books/new/multimedija" element={<NewBookMultimedia />} />
+        <Route path="/books/new/multimedija" element={<AdminRoute><NewBookMultimedia /></AdminRoute>} />
         <Route
           path="/books/:id/specifikacija"
           element={<BookSpecification />}
@@ -153,32 +157,32 @@ const router = createBrowserRouter(
         />
         <Route
           path="/books/:id/evidencija/izdate-knjige"
-          element={<BookRentEvidence />}
+          element={<BibliotekarRoute><BookRentEvidence /></BibliotekarRoute>}
           loader={BookLoader}
         />
         <Route
           path="/books/:id/evidencija/izdate-knjige"
-          element={<RentedEvidence />}
+          element={<BibliotekarRoute><RentedEvidence /></BibliotekarRoute>}
           loader={BookLoader}
         />
         <Route
           path="/books/:id/evidencija/vracene-knjige"
-          element={<ReturnedEvidence />}
+          element={<BibliotekarRoute><ReturnedEvidence /></BibliotekarRoute>}
           loader={BookLoader}
         />
         <Route
           path="/books/:id/evidencija/knjige-u-prekoracenju"
-          element={<ExcessEvidence />}
+          element={<BibliotekarRoute><ExcessEvidence /></BibliotekarRoute>}
           loader={BookLoader}
         />
         <Route
           path="/books/:id/evidencija/aktivne-rezervacije"
-          element={<ReservationEvidence />}
+          element={<BibliotekarRoute><ReservationEvidence /></BibliotekarRoute>}
           loader={BookLoader}
         />
         <Route
           path="/books/:id/evidencija/arhivirane-rezervacije"
-          element={<ArchivedEvidence />}
+          element={<BibliotekarRoute><ArchivedEvidence /></BibliotekarRoute>}
           loader={BookLoader}
         />
 
@@ -191,53 +195,53 @@ const router = createBrowserRouter(
         />
         <Route
           path="/authors/:id/edit"
-          element={<EditAuthor />}
+          element={<AdminRoute><EditAuthor /></AdminRoute>}
           loader={LoaderAuthorProfile}
         />
-        <Route path="/authors/new" element={<NewAuthor />} />
+        <Route path="/authors/new" element={<AdminRoute><NewAuthor /></AdminRoute>} />
 
         {/* Izdavanje knjiga routes */}
-        <Route path="/rentingBooks/izdate-knjige" loader={LoaderRented} element={<RentingBooks />} />
+        <Route path="/rentingBooks/izdate-knjige" loader={LoaderRented} element={<BibliotekarRoute><RentingBooks /></BibliotekarRoute>} />
         <Route
           path="/rentingBooks/vracene-knjige"
-          element={<ReturnedBooks />}
+          element={<BibliotekarRoute><ReturnedBooks /></BibliotekarRoute>}
           loader={LoaderRented} 
         />
         <Route
           path="/rentingBooks/otpisane-knjige"
-          element={<WrittenOffBooks />}
+          element={<BibliotekarRoute><WrittenOffBooks /></BibliotekarRoute>}
           loader={LoaderRented} 
         />
         <Route
           path="/rentingBooks/knjige-u-prekoracenju"
           loader={LoaderRented} 
-          element={<InExcessBooks />}
+          element={<BibliotekarRoute><InExcessBooks /></BibliotekarRoute>}
         />
         <Route
           path="/rentingBooks/aktivne-rezervacije"
-          element={<ActiveReservations />}
+          element={<BibliotekarRoute><ActiveReservations /></BibliotekarRoute>}
           loader={LoaderReservations}
         />
         <Route
           path="/rentingBooks/arhivirane-rezervacije"
-          element={<ArchivedReservations />}
+          element={<BibliotekarRoute><ArchivedReservations /></BibliotekarRoute>}
           loader={LoaderReservations}
         />
 
         {/* settings routes */}
-        <Route path="/settings" element={<Polisa />} />
+        <Route path="/settings" element={<BibliotekarRoute><Polisa /></BibliotekarRoute>} />
         <Route
           path="/settings/categories"
-          element={<Kategorije />}
+          element={<BibliotekarRoute><Kategorije /></BibliotekarRoute>}
           loader={CategoryLoader}
         />
-        <Route path="/settings/categories/new" element={<NovaKategorija />} />
+        <Route path="/settings/categories/new" element={<AdminRoute><NovaKategorija /></AdminRoute>} />
         <Route
           path="/settings/zanrovi"
           element={<Zanrovi />}
           loader={GenresLoader}
         />
-        <Route path="/settings/zanrovi/new" element={<NoviZanr />} />
+        <Route path="/settings/zanrovi/new" element={<AdminRoute><NoviZanr /></AdminRoute>} />
         <Route
           path="/settings/izdavac"
           element={<Izdavac />}
@@ -248,7 +252,7 @@ const router = createBrowserRouter(
           element={<Povez />}
           loader={BookbindsLoader}
         />
-        <Route path="/settings/povez/new" element={<NoviPovez />} />
+        <Route path="/settings/povez/new" element={<AdminRoute><NoviPovez /></AdminRoute>} />
         <Route
           path="/settings/format"
           element={<Format />}
@@ -259,73 +263,73 @@ const router = createBrowserRouter(
           element={<Pismo />}
           loader={LanguagesLoader}
         />
-        <Route path="/settings/pismo/new" element={<NovoPismo />} />
-        <Route path="/settings/izdavac/new" element={<NoviIzdavac />} />
-        <Route path="/settings/format/new" element={<NoviFormat />} />
+        <Route path="/settings/pismo/new" element={<AdminRoute><NovoPismo /></AdminRoute>} />
+        <Route path="/settings/izdavac/new" element={<AdminRoute><NoviIzdavac /></AdminRoute>} />
+        <Route path="/settings/format/new" element={<AdminRoute><NoviFormat /></AdminRoute>} />
 
         {/* Librairan routes */}
         <Route
           path="/librarians"
-          element={<Librarians />}
+          element={<BibliotekarRoute><Librarians /></BibliotekarRoute>}
           loader={LoaderLibrarians}
         />
-        <Route path="/librarians/new" element={<NewLibrarian />} />
+        <Route path="/librarians/new" element={<AdminRoute><NewLibrarian /></AdminRoute>} />
         <Route
           path="/librarians/:id"
-          element={<LibrarianProfile />}
+          element={<BibliotekarRoute><LibrarianProfile /></BibliotekarRoute>}
           loader={LibrarianProfileLoader}
         />
         <Route
           path="/librarians/:id/edit"
-          element={<EditLibrarian />}
+          element={<SelfRoute role={"Bibliotekar"}><EditLibrarian /></SelfRoute>}
           loader={LibrarianProfileLoader}
         />
 
         {/* student routes */}
         <Route
           path="/students"
-          element={<Students />}
+          element={<BibliotekarRoute><Students /></BibliotekarRoute>}
           loader={LoaderStudents}
         />
-        <Route path="/students/new" element={<NewStudent />} />
+        <Route path="/students/new" element={<BibliotekarRoute><NewStudent /></BibliotekarRoute>} />
         <Route
           path="/students/:id"
-          element={<StudentProfile />}
+          element={<SelfOrBibliotekarRoute role='Student'><StudentProfile /></SelfOrBibliotekarRoute>}
           loader={StudentProfileLoader}
         />
         <Route
           path="/students/:id/edit"
-          element={<EditStudent />}
+          element={<SelfOrBibliotekarRoute role='Student'><EditStudent /></SelfOrBibliotekarRoute>}
           loader={StudentProfileLoader}
         />
         <Route
           path="/students/:id/evidencija/izdate-knjige"
-          element={<ProfileEvidenceRented />}
+          element={<SelfOrBibliotekarRoute role='Student'><ProfileEvidenceRented /></SelfOrBibliotekarRoute>}
           loader={loaderTestRented}
         />
         <Route
           path="/students/:id/evidencija/vracene-knjige"
-          element={<ProfileEvidenceReturned />}
+          element={<SelfOrBibliotekarRoute role='Student'><ProfileEvidenceReturned /></SelfOrBibliotekarRoute>}
           loader={loaderTestReturned}
         />
         <Route
           path="/students/:id/evidencija/otpisane-knjige"
-          element={<ProfileEvidenceWrittenOff />}
+          element={<SelfOrBibliotekarRoute role='Student'><ProfileEvidenceWrittenOff /></SelfOrBibliotekarRoute>}
           loader={loaderTestWrittenOff}
         />
         <Route
           path="/students/:id/evidencija/knjige-u-prekoracenju"
-          element={<ProfileEvidenceExcess />}
+          element={<SelfOrBibliotekarRoute role='Student'><ProfileEvidenceExcess /></SelfOrBibliotekarRoute>}
           loader={loaderTest}
         />
         <Route
           path="/students/:id/evidencija/aktivne-rezervacije"
-          element={<ProfileEvidenceReserved />}
+          element={<SelfOrBibliotekarRoute role='Student'><ProfileEvidenceReserved /></SelfOrBibliotekarRoute>}
           loader={loaderTestActive}
         />
         <Route
           path="/students/:id/evidencija/arhivirane-rezervacije"
-          element={<ProfileEvidenceArchived />}
+          element={<SelfOrBibliotekarRoute role='Student'><ProfileEvidenceArchived /></SelfOrBibliotekarRoute>}
           loader={loaderTestArchived}
         />
       </Route>

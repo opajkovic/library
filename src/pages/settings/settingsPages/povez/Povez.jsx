@@ -99,7 +99,7 @@ export default function Povez() {
 }
 
 export const BookbindsLoader = async () => {
-  const isAuthenticated = auth.getAuthStatus();
+  const isAuthenticated = auth.bibliotekarRole();
   if (isAuthenticated) {
     try {
       const response = await api.get(`/books/create`);

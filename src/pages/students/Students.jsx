@@ -92,24 +92,28 @@ export default function Students() {
   },[updatedSortedData])
 
   const handleDelete = async (id) => {
-    try {
-      const response = await api.delete(`/users/${id}`);
-      toast.success("Izbrisan student");
-      dispatch(deleteStudent(studentsData, id));
-  
-      if (search !== "") {
-        setStudents(searchData.filter((item) => item.id !== id));
-      } else {
-        setStudents(studentsData.filter((item) => item.id !== id));
+    if(localStorage.getItem("role") != 'Student' || (localStorage.getItem("role") == 'Student') && localStorage.getItem("id") == id){
+      try {
+        const response = await api.delete(`/users/${id}`);
+        toast.success("Izbrisan student");
+        dispatch(deleteStudent(studentsData, id));
+    
+        if (search !== "") {
+          setStudents(searchData.filter((item) => item.id !== id));
+        } else {
+          setStudents(studentsData.filter((item) => item.id !== id));
+        }
+    
+        navigate("/students");
+      } catch (err) {
+        if (err.response && err.response.data.message) {
+          toast.error(err.response.data.message);
+        } else {
+          console.error(err);
+        }
       }
-  
-      navigate("/students");
-    } catch (err) {
-      if (err.response && err.response.data.message) {
-        toast.error(err.response.data.message);
-      } else {
-        console.error(err);
-      }
+    }else{
+      toast.error("Nemate pravo izbrisati drugog studenta!")
     }
   };
   
