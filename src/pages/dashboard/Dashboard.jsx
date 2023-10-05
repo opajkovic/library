@@ -15,7 +15,7 @@ export default function Dashboard() {
 
   let [reservations, setReservations] = useState({active: [{student: {name: 'loading...', surname: "loading..."}, knjiga: {title: "loading..."}, action_date: 'loading...'}]})
   const fetchedDataReservation = useLoaderData();
-  let [izdate, setIzdate] = useState({izdate: [], prekoracene: []})
+  let [izdate, setIzdate] = useState({izdate: [{bibliotekar0: {name: 'loading...', surname: 'loading...'}, knjiga: {title: 'loading...'}, student: {name: 'loading...', surname: 'loading...'}}], prekoracene: []})
 
   useEffect(()=>{
     setReservations(fetchedDataReservation);
@@ -34,7 +34,7 @@ export default function Dashboard() {
     <>
       <PageTitle title="Dashboard" />
       <div className="dashboard-wrapper">
-        <ActivityList />
+        <ActivityList izdate={izdate.izdate} />
         <div className="right-side">
           <ReservationList reservations={reservations.active}  />
           <Chart reservations={reservations.active.length} izdate={{izdate: izdate.izdate.length, prekoracene: izdate.prekoracene.length}} />

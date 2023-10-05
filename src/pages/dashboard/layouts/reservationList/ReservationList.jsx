@@ -10,7 +10,9 @@ export default function ReservationList({reservations}) {
       <h2 className="subTitle">Rezervacije knjiga</h2>
       <div className="list">
         {reservations.map((reservation, i) => {
-          return<ReservationItem key={i} reservation={reservation} />
+          if(i < 5){
+            return<ReservationItem key={i} reservation={reservation} />
+          }
         })}
       </div>
       <div>
