@@ -8,6 +8,7 @@ import { filterAndMap } from "../../util/Functions";
 import { useDispatch, useSelector } from "react-redux";
 import { updateEditData } from "../../redux/edit-book-data";
 import { toast } from "react-toastify";
+import { auth } from "../../services/AuthService";
 
 const EditBook = () => {
   const fetchedData = useLoaderData();
@@ -269,12 +270,17 @@ export default EditBook;
 
 export const EditBookLoader = async ({ params }) => {
   const id = params.id;
-  try {
-    const response = await api.get(`/books/${id}/edit`);
-    const responseData = response.data.data;
-    return responseData;
-  } catch (error) {
-    console.error("Loader function error:", error);
-    throw error;
+  const isAuthenticated = auth.getAuthStatus();
+  if (isAuthenticated) {
+    try {
+      const response = await api.get(`/books/${id}/edit`);
+      const responseData = response.data.data;
+      return responseData;
+    } catch (error) {
+      console.error("Loader function error:", error);
+      throw error;
+    }
+  }else{
+    return []
   }
 };

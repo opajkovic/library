@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import api from '../../../api/apiCalls'
 import { LoaderRented } from "../../rentingBooks/rentingBooks";
+import { auth } from "../../../services/AuthService";
 
 export default function ProfileEvidenceRented() {
   let {id} = useParams()
@@ -43,14 +44,19 @@ export default function ProfileEvidenceRented() {
   export let loaderTestRented = async({ params }) => {
   let data = []
   const id = params.id;
-  try {
-    const responseData = await LoaderRented();
-    let responseData2 = responseData.izdate.filter(el => el.student.id == id)
-    console.log(responseData2)
-    data = responseData2
-  } catch (error) {
-    console.error("Error fetching data:", error);
+  const isAuthenticated = auth.getAuthStatus();
+  if (isAuthenticated) {
+    try {
+      const responseData = await LoaderRented();
+      let responseData2 = responseData.izdate.filter(el => el.student.id == id)
+      console.log(responseData2)
+      data = responseData2
+      return data
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }else{
+    return []
   }
 
-  return data
 }

@@ -3,6 +3,7 @@ import ProfileEvidence from "../components/ProfileEvidence";
 import { useLoaderData, useNavigate, useParams } from "react-router";
 import { useState } from "react";
 import api from '../../../api/apiCalls'
+import { auth } from "../../../services/AuthService";
 
 export default function ProfileEvidenceReserved() {
   let {id} = useParams()
@@ -42,14 +43,19 @@ export default function ProfileEvidenceReserved() {
 export let loaderTestActive= async({ params }) => {
   let data = []
   const id = params.id;
-  try {
-    const response = await api.get(`/books/reservations`);
-    const responseData = response.data.data;
-    let responseData2 = responseData.active.filter(el => el.student.id == id)
-    data = responseData2
-  } catch (error) {
-    console.error("Loader function error:", error);
-    throw error;
+  const isAuthenticated = auth.getAuthStatus();
+  if (isAuthenticated) {
+    try {
+      const response = await api.get(`/books/reservations`);
+      const responseData = response.data.data;
+      let responseData2 = responseData.active.filter(el => el.student.id == id)
+      data = responseData2
+    } catch (error) {
+      console.error("Loader function error:", error);
+      throw error;
+    }
+  }else{
+    return []
   }
 
   return data

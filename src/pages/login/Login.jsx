@@ -2,27 +2,36 @@ import React, { useRef } from "react";
 import imgSingup from "../../assets/login.png";
 import { FaAt, FaLock } from "react-icons/fa";
 import "../singup/Singup.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import apiCalls from "../../api/apiCalls";
+import apiCalls, { apiSing } from "../../api/apiCalls";
 import "react-toastify/dist/ReactToastify.css";
 
 
 export default function Login() {
   let userNameRef = useRef()
   let passwordRef = useRef()
+  let navigate = useNavigate()
 
   let logIn = async() => {
     try{
-      const response = await apiCalls.post("/login",{
-        username: "bibliotekar",
-        password: "password",
+      const response = await apiSing.post("/login",{
+        username: userNameRef.current.value,
+        password: passwordRef.current.value,
         device: "DivajsNejm"
       })
-      console.log(response)
+      localStorage.setItem("token", response.data.data.token)
+      toast.success("Uspjesna prijava")
+      setTimeout(() => {
+        navigate('/')
+      }, 100);
     }catch(err){
       console.log(err)
-      toast.error(err.response.data.error)
+      if(!err.response.data.data.error){
+        toast.error(err.response.data.message)
+      }else{
+        toast.error(err.response.data.data.error)
+      }
     }
   }
   return (

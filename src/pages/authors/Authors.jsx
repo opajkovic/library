@@ -13,6 +13,7 @@ import { updateAuthorsData } from "../../redux/authors-data";
 import { sortedData } from "../../redux/sort-data";
 import { sortData } from "../../redux/actions";
 import { toast } from "react-toastify";
+import { auth } from "../../services/AuthService";
 
 const headers = [
   { headerName: "Ime autora", sort: true, dropdown: false, dataKey: "name" },
@@ -155,12 +156,17 @@ export default function Authors() {
   );
 }
 export async function LoaderAuthors() {
-  try {
-    const response = await api.get(`/authors`);
-    const responseData = response.data.data;
-    return responseData;
-  } catch (error) {
-    console.error("Loader function error:", error);
-    throw error;
+  const isAuthenticated = auth.getAuthStatus();
+  if (isAuthenticated) {
+    try {
+      const response = await api.get(`/authors`);
+      const responseData = response.data.data;
+      return responseData;
+    } catch (error) {
+      console.error("Loader function error:", error);
+      throw error;
+    }
+  }else{
+    return []
   }
 }

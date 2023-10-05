@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateFormData } from "../../redux/new-book-data";
 import api from "../../api/apiCalls";
 import { updateCurrentData } from "../../redux/new-book-current";
+import { auth } from "../../services/AuthService";
 
 const NewBook = () => {
   const dispatch = useDispatch();
@@ -300,12 +301,17 @@ const NewBook = () => {
 export default NewBook;
 
 export async function LoaderCreateBook() {
-  try {
-    const response = await api.get(`/books/create`);
-    const responseData = response.data.data;
-    return responseData;
-  } catch (error) {
-    console.error("Loader function error:", error);
-    throw error;
+  const isAuthenticated = auth.getAuthStatus();
+  if (isAuthenticated) {
+    try {
+      const response = await api.get(`/books/create`);
+      const responseData = response.data.data;
+      return responseData;
+    } catch (error) {
+      console.error("Loader function error:", error);
+      throw error;
+    }
+  }else{
+    return []
   }
 }

@@ -8,6 +8,7 @@ import ConditionalContainer from "./components/ConditionalContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteBook } from "../../redux/actions";
 import { toast } from "react-toastify";
+import { auth } from "../../services/AuthService";
 
 export default function BookInfo({
   specification,
@@ -90,12 +91,17 @@ export default function BookInfo({
 }
 export const BookLoader = async ({ params }) => {
   const id = params.id;
-  try {
-    const response = await api.get(`/books/${id}`);
-    const responseData = response.data.data;
-    return responseData;
-  } catch (error) {
-    console.error("Loader function error:", error);
-    throw error;
+  const isAuthenticated = auth.getAuthStatus();
+  if (isAuthenticated) {
+    try {
+      const response = await api.get(`/books/${id}`);
+      const responseData = response.data.data;
+      return responseData;
+    } catch (error) {
+      console.error("Loader function error:", error);
+      throw error;
+    }
+  }else{
+    return []
   }
 };

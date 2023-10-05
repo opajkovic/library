@@ -4,6 +4,7 @@ import { useLoaderData, useNavigate, useParams } from "react-router";
 import { useState } from "react";
 import api from '../../../api/apiCalls'
 import { LoaderRented } from "../../rentingBooks/rentingBooks";
+import { auth } from "../../../services/AuthService";
 
 export default function ProfileEvidenceWrittenOff() {
   let {id} = useParams()
@@ -44,13 +45,18 @@ export default function ProfileEvidenceWrittenOff() {
 export let loaderTestWrittenOff= async({ params }) => {
   let data = []
   const id = params.id;
-  try {
-    const responseData = await LoaderRented();
-    let responseData2 = responseData.otpisane.filter(el => el.student.id == id)
-    console.log(responseData2)
-    data = responseData2
-  } catch (error) {
-    console.error("Error fetching data:", error);
+  const isAuthenticated = auth.getAuthStatus();
+  if (isAuthenticated) {
+    try {
+      const responseData = await LoaderRented();
+      let responseData2 = responseData.otpisane.filter(el => el.student.id == id)
+      console.log(responseData2)
+      data = responseData2
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }else{
+    return []
   }
   return data
 }

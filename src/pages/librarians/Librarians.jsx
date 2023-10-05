@@ -13,6 +13,7 @@ import { updateLibrariansData } from "../../redux/librarian-data";
 import { sortData } from "../../redux/actions";
 import { sortedData } from "../../redux/sort-data";
 import { toast } from "react-toastify";
+import { auth } from "../../services/AuthService";
 
 const headers = [
   { headerName: "Ime i prezime", sort: true, dropdown: false, dataKey: "name+surname" },
@@ -165,15 +166,20 @@ const Librarians = () => {
 export default Librarians;
 
 export async function LoaderLibrarians() {
-  try {
-    const response = await api.get(`/users`);
-    const responseData = response.data.data;
-    const listOfBibliotekars = responseData.filter(
-      (item) => item.role === "Bibliotekar"
-    );
-    return listOfBibliotekars;
-  } catch (error) {
-    console.error("Loader function error:", error);
-    throw error;
+  const isAuthenticated = auth.getAuthStatus();
+  if (isAuthenticated) {
+    try {
+      const response = await api.get(`/users`);
+      const responseData = response.data.data;
+      const listOfBibliotekars = responseData.filter(
+        (item) => item.role === "Bibliotekar"
+      );
+      return listOfBibliotekars;
+    } catch (error) {
+      console.error("Loader function error:", error);
+      throw error;
+    }
+  }else{
+    return []
   }
 }

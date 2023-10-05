@@ -12,6 +12,7 @@ import { updateStudentsData } from "../../redux/student-data";
 import { sortData } from "../../redux/actions";
 import { sortedData } from "../../redux/sort-data";
 import { toast } from "react-toastify";
+import { auth } from "../../services/AuthService";
 
 const headers = [
   { headerName: "Ime i prezime", sort: true, dropdown: false, dataKey: "name+surname" },
@@ -162,21 +163,26 @@ export default function Students() {
 }
 
 export async function LoaderStudents() {
-  try {
-    const response = await api.get(`/users`);
-    const responseData = response.data.data;
-    let listOfStudents = [];
-
-    responseData.forEach((element) => {
-      if (element.role === "Učenik") {
-        listOfStudents = [...listOfStudents, element];
-      }
-    });
-
-    // Now 'listOfStudents' contains the array of students.
-    return listOfStudents;
-  } catch (error) {
-    console.error("Loader function error:", error);
-    throw error;
+  const isAuthenticated = auth.getAuthStatus();
+  if (isAuthenticated) {
+    try {
+      const response = await api.get(`/users`);
+      const responseData = response.data.data;
+      let listOfStudents = [];
+  
+      responseData.forEach((element) => {
+        if (element.role === "Učenik") {
+          listOfStudents = [...listOfStudents, element];
+        }
+      });
+  
+      // Now 'listOfStudents' contains the array of students.
+      return listOfStudents;
+    } catch (error) {
+      console.error("Loader function error:", error);
+      throw error;
+    }
+  }else{
+    return []
   }
 }

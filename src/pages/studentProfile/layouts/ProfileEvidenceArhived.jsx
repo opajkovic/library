@@ -4,6 +4,7 @@ import { useLoaderData, useNavigate, useParams } from "react-router";
 import { useState } from "react";
 import api from "../../../api/apiCalls";
 import { reservationLoader } from "../../dashboard/Dashboard";
+import { auth } from "../../../services/AuthService";
 
 export default function ProfileEvidenceArchived() {
   let {id} = useParams()
@@ -42,12 +43,17 @@ export default function ProfileEvidenceArchived() {
 export let loaderTestArchived = async({ params }) => {
   let data = [{},{}]
   const id = params.id;
-  try {
-    const responseData = await reservationLoader();
-    let responseData2 = responseData.archive.filter(el => el.student.id == id)
-    data = responseData2
-  } catch (error) {
-    console.error("Error fetching data:", error);
+  const isAuthenticated = auth.getAuthStatus();
+  if (isAuthenticated) {
+    try {
+      const responseData = await reservationLoader();
+      let responseData2 = responseData.archive.filter(el => el.student.id == id)
+      data = responseData2
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }else{
+    return []
   }
 
     return data

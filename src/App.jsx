@@ -84,11 +84,13 @@ import NoviZanr from "./pages/settings/settingsPages/zanrovi/NoviZanr";
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
 import Singup from "./pages/singup/Singup";
 import Login from "./pages/login/Login";
+import { GuestRoute } from "./services/GuestRoute";
+import { PrivateRoute } from "./services/PrivateRoute";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route element={<AppLayout />}>
+      <Route element={<PrivateRoute><AppLayout /></PrivateRoute>}>
         <Route index element={<Navigate replace to="/dashboard" />} />
         <Route path="/dashboard" element={<Dashboard />} loader={reservationLoader} />
         <Route path="/activities" element={<Activities />} />
@@ -328,8 +330,8 @@ const router = createBrowserRouter(
         />
       </Route>
       <Route path="*" element={<PageNotFound />} />
-      <Route path="/singup" element={<Singup />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/singup" element={<GuestRoute><Singup /></GuestRoute>} />
+      <Route path="/login" element={<GuestRoute><Login /></GuestRoute>} />
     </Route>
   )
 );

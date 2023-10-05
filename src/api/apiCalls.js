@@ -7,6 +7,15 @@ export default axios.create({
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
-    Authorization: "Bearer 18|m6tz6lkk4ppTRAtQeiY8Vg6KQXmKXG2MAQQPZno9",
+    // Authorization: `Bearer ${localStorage.getItem("token")}`,
   },
 });
+export const apiSing = axios.create({
+  baseURL: url,
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+    Authorization: "Bearer b3Rvcmlub2xhcmluZ29sb2dpamE=",
+  },
+}) 
+

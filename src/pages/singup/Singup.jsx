@@ -2,9 +2,9 @@ import React, { useRef } from "react";
 import "./Singup.css";
 import imgSingup from "../../assets/login.png";
 import { FaAt, FaEnvelope, FaUserAlt, FaLock } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import api from "../../api/apiCalls";
+import api, { apiSing } from "../../api/apiCalls";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Singup() {
@@ -13,7 +13,8 @@ export default function Singup() {
   let nameRef = useRef();
   let surnameRef = useRef();
   let emailRef = useRef();
-  let password_confirmationRef = useRef();
+  let password_confirmationRef = useRef()
+  const navigate = useNavigate()
 
   const patternUsername = /^[A-Za-z0-9_]+$/;
   const patternName = /^[A-Za-zćčžšđĆČŽŠĐ]+$/;
@@ -136,12 +137,16 @@ export default function Singup() {
       
     }
     try{
-      const response = await api.post('/register', user)
+      const response = await apiSing.post('/register', user)
+      toast.success("Uspjesno napravljen nalog")
+      localStorage.setItem("token", response.data.data.token)
       console.log(response)
-      toast.success("Uspjesno")
+      setTimeout(() => {
+        navigate("/")
+      }, 1000);
     }catch(err){
+      toast.error(err.response.data.message)
       console.log(err)
-      toast.error(err.response.data.error)
     }
   };
   return (

@@ -7,6 +7,7 @@ import api from "../../api/apiCalls";
 import { deleteAuthor } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { auth } from "../../services/AuthService";
 
 export default function AuthorProfile() {
   const navigate = useNavigate();
@@ -51,12 +52,17 @@ export default function AuthorProfile() {
 }
 export async function LoaderAuthorProfile({ params }) {
   const id = params.id;
-  try {
-    const response = await api.get(`/authors/${id}`);
-    const responseData = response.data.data;
-    return responseData;
-  } catch (error) {
-    console.error("Loader function error:", error);
-    throw error;
+  const isAuthenticated = auth.getAuthStatus();
+  if (isAuthenticated) {
+    try {
+      const response = await api.get(`/authors/${id}`);
+      const responseData = response.data.data;
+      return responseData;
+    } catch (error) {
+      console.error("Loader function error:", error);
+      throw error;
+    }
+  }else{
+    return []
   }
 }

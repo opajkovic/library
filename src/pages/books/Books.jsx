@@ -23,6 +23,7 @@ import { transformBookData } from "../../util/Functions";
 import { updateBooksData } from "../../redux/books-data";
 import "./Books.css"
 import { toast } from "react-toastify";
+import { auth } from "../../services/AuthService";
 
 const headers = [
   { headerName: "Naziv knjige", sort: true, dropdown: false, dataKey: "name" },
@@ -194,12 +195,17 @@ export default function Books() {
 }
 
 export const BooksLoader = async () => {
-  try {
-    const response = await api.get(`/books`);
-    const responseData = response.data.data;
-    return responseData;
-  } catch (error) {
-    console.error("Loader function error:", error);
-    throw error;
+  const isAuthenticated = auth.getAuthStatus();
+  if (isAuthenticated) {
+    try {
+      const response = await api.get(`/books`);
+      const responseData = response.data.data;
+      return responseData;
+    } catch (error) {
+      console.error("Loader function error:", error);
+      throw error;
+    }
+  }else{
+    return []
   }
 };

@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteLibrarian } from "../../redux/actions";
 import { toast } from "react-toastify";
+import { auth } from "../../services/AuthService";
 
 export default function LibrarianProfile() {
   const navigate = useNavigate();
@@ -52,17 +53,22 @@ export default function LibrarianProfile() {
 
 export const LibrarianProfileLoader = async ({ params }) => {
   const id = params.id;
-  try {
-    const response = await api.get(`/users/${id}`);
-    const responseData = response.data.data;
-
-    if (responseData.role == "Bibliotekar") {
-      return responseData;
-    } else {
-      return null;
+  const isAuthenticated = auth.getAuthStatus();
+  if (isAuthenticated) {
+    try {
+      const response = await api.get(`/users/${id}`);
+      const responseData = response.data.data;
+  
+      if (responseData.role == "Bibliotekar") {
+        return responseData;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.error("Loader function error:", error);
+      throw error;
     }
-  } catch (error) {
-    console.error("Loader function error:", error);
-    throw error;
+  }else{
+    return []
   }
 };

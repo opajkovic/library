@@ -8,6 +8,7 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import api from "../../../../api/apiCalls";
 import { useDispatch, useSelector } from "react-redux";
 import { filterSearchedData } from "../../../../redux/actions";
+import { auth } from "../../../../services/AuthService";
 
 const headers = [
   { headerName: "Izdavac", sort: true, dropdown: true, dataKey: "name" },
@@ -100,12 +101,17 @@ export default function Izdavac() {
 }
 
 export const PublisherLoader = async () => {
-  try {
-    const response = await api.get(`/books/create`);
-    const responseData = response.data.data.publishers;
-    return responseData;
-  } catch (error) {
-    console.error("Loader function error:", error);
-    throw error;
+  const isAuthenticated = auth.getAuthStatus();
+  if (isAuthenticated) {
+    try {
+      const response = await api.get(`/books/create`);
+      const responseData = response.data.data.publishers;
+      return responseData;
+    } catch (error) {
+      console.error("Loader function error:", error);
+      throw error;
+    }
+  }else{
+    return []
   }
 };

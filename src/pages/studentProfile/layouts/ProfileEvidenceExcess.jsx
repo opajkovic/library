@@ -4,6 +4,7 @@ import { useState } from "react";
 import api from '../../../api/apiCalls'
 import { useEffect } from "react";
 import { LoaderRented } from "../../rentingBooks/rentingBooks";
+import { auth } from "../../../services/AuthService";
 
 export default function ProfileEvidenceExcess() {
   let {id} = useParams()
@@ -43,13 +44,18 @@ export default function ProfileEvidenceExcess() {
 export let loaderTest = async({ params }) => {
   let data = []
   const id = params.id;
-  try {
-    const responseData = await LoaderRented();
-    let responseData2 = responseData.prekoracene.filter(el => el.student.id == id)
-    console.log(responseData2)
-    data = responseData2
-  } catch (error) {
-    console.error("Error fetching data:", error);
+  const isAuthenticated = auth.getAuthStatus();
+  if (isAuthenticated) {
+    try {
+      const responseData = await LoaderRented();
+      let responseData2 = responseData.prekoracene.filter(el => el.student.id == id)
+      console.log(responseData2)
+      data = responseData2
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }else{
+    return []
   }
 
 

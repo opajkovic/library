@@ -4,6 +4,7 @@ import "./rentingBooks.css";
 import BottomContainer from "./components/BottomContainer";
 import api from "../../api/apiCalls";
 import { useLoaderData } from "react-router";
+import { auth } from "../../services/AuthService";
 
 export default function RentingBooks(props) {
 
@@ -30,13 +31,18 @@ export default function RentingBooks(props) {
   );
 }
 export async function LoaderRented() {
-  try {
-    const response = await api.get(`/books/borrows`);
-    const responseData = response.data.data;
-    console.log(responseData)
-    return responseData;
-  } catch (error) {
-    console.error("Loader function error:", error);
-    throw error;
+  const isAuthenticated = auth.getAuthStatus();
+  if (isAuthenticated) {
+    try {
+      const response = await api.get(`/books/borrows`);
+      const responseData = response.data.data;
+      console.log(responseData)
+      return responseData;
+    } catch (error) {
+      console.error("Loader function error:", error);
+      throw error;
+    }
+  }else{
+    return []
   }
 }

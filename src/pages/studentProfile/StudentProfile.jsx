@@ -9,6 +9,7 @@ import api from "../../api/apiCalls";
 import { deleteStudent } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { auth } from "../../services/AuthService";
 
 export default function StudentProfile() {
   const navigate = useNavigate();
@@ -60,19 +61,24 @@ export default function StudentProfile() {
 
 export const StudentProfileLoader = async ({ params }) => {
   const id = params.id;
-  try {
-    const response = await api.get(`/users/${id}`);
-    const responseData = response.data.data;
-
-    if (responseData.role == "Učenik") {
-      return responseData;
-    } else if (response.data.data.role == "Bibliotekar") {
-      return redirect(`/librarians/${id}`);
-    } else if (response.data.data.role == "Administrator") {
-      return redirect(`/administrators/${id}`);
+  const isAuthenticated = auth.getAuthStatus();
+  if (isAuthenticated) {
+    try {
+      const response = await api.get(`/users/${id}`);
+      const responseData = response.data.data;
+  
+      if (responseData.role == "Učenik") {
+        return responseData;
+      } else if (response.data.data.role == "Bibliotekar") {
+        return redirect(`/librarians/${id}`);
+      } else if (response.data.data.role == "Administrator") {
+        return redirect(`/administrators/${id}`);
+      }
+    } catch (error) {
+      console.error("Loader function error:", error);
+      throw error;
     }
-  } catch (error) {
-    console.error("Loader function error:", error);
-    throw error;
+  }else{
+    return []
   }
 };

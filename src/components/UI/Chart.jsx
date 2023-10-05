@@ -1,22 +1,22 @@
 import "./Chart.css";
 import ReactApexChart from "react-apexcharts";
 
-const Chart = () => {
+const Chart = ({izdate, reservations}) => {
   const chartData = {
     series: [
       {
         data: [
           {
             x: "Izdate knjige",
-            y: 73,
+            y: izdate.izdate,
           },
           {
             x: "Rezervisane knjige",
-            y: 44,
+            y: reservations,
           },
           {
             x: "Knjige u prekoračenju",
-            y: 25,
+            y: izdate.prekoracene,
           },
         ],
       },

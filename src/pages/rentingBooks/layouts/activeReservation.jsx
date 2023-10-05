@@ -4,6 +4,7 @@ import BottomContainer from "../components/BottomContainer";
 import { useLoaderData } from "react-router";
 import { useEffect, useState } from "react";
 import api from "../../../api/apiCalls";
+import { auth } from "../../../services/AuthService";
 
 export default function ActiveReservations() {
   const headers = [
@@ -29,13 +30,18 @@ export default function ActiveReservations() {
   );
 }
 export async function LoaderReservations() {
-  try {
-    const response = await api.get(`/books/reservations`);
-    const responseData = response.data.data;
-    console.log(responseData)
-    return responseData;
-  } catch (error) {
-    console.error("Loader function error:", error);
-    throw error;
+  const isAuthenticated = auth.getAuthStatus();
+  if (isAuthenticated) {
+    try {
+      const response = await api.get(`/books/reservations`);
+      const responseData = response.data.data;
+      console.log(responseData)
+      return responseData;
+    } catch (error) {
+      console.error("Loader function error:", error);
+      throw error;
+    }
+  }else{
+    return []
   }
 }
