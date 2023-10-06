@@ -109,6 +109,7 @@ export default function Books() {
   },[updatedSortedData])
 
   const handleDelete = async (id) => {
+    if(auth.adminRole()){
       try {
         const response = await api.delete(`/books/${id}/destroy`);
         const data = response.data;
@@ -123,6 +124,9 @@ export default function Books() {
         console.log(err)
         toast.error(err.response.data.data.errors);
       }
+    }else{
+      toast.error("Nemate prava za brisanje knjige.")
+    }
     
   };
 

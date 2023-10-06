@@ -91,7 +91,7 @@ export default function Authors() {
   },[updatedSortedData])
 
   const handleDelete = async (id) => {
-    if(localStorage.getItem("role") == 'Bibliotekar' || localStorage.getItem("role") == "Administrator"){
+    if(auth.adminRole()){
       try {
         const response = await api.delete(`/authors/${id}`);
         const data = response.data;

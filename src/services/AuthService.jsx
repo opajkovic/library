@@ -45,7 +45,7 @@ class AuthService {
     let id1 = localStorage.getItem("id");
     if (
       !!token &&
-      (role1 == "Administrator" || role == "Bibliotekar" || (role == role1 && id == id1))
+      (role1 == "Administrator" || role1 == "Bibliotekar" || (role == role1 && id == id1))
     ){
       this.setJWT(token);
       return true

@@ -22,14 +22,18 @@ export default function AuthorProfile() {
 
   
   const handleDelete = async () => {
-    try {
-      const response = await api.delete(`/authors/${fetchedData.id}`);
-      const data = await response.data;
-      dispatch(deleteAuthor([authorsData], fetchedData.id));
-      toast.success("Izbrisan autor")
-      navigate("/authors");
-    } catch (err) {
-      toast.error(err.response.data.data);
+    if(auth.adminRole()){
+      try {
+        const response = await api.delete(`/authors/${fetchedData.id}`);
+        const data = await response.data;
+        dispatch(deleteAuthor([authorsData], fetchedData.id));
+        toast.success("Izbrisan autor")
+        navigate("/authors");
+      } catch (err) {
+        toast.error(err.response.data.data);
+      }
+    }else{
+      toast.error("Nemate prava za brisanje autora.")
     }
   }
   

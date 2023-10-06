@@ -92,7 +92,7 @@ export default function Students() {
   },[updatedSortedData])
 
   const handleDelete = async (id) => {
-    if(localStorage.getItem("role") != 'Student' || (localStorage.getItem("role") == 'Student') && localStorage.getItem("id") == id){
+    if(localStorage.getItem("role") != 'Student' || (localStorage.getItem("role") == 'Student' && localStorage.getItem("id") == id)){
       try {
         const response = await api.delete(`/users/${id}`);
         toast.success("Izbrisan student");

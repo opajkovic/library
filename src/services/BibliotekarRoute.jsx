@@ -1,12 +1,17 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { auth } from "./AuthService";
 
 export const BibliotekarRoute = ({ children }) => {
+  let navigate = useNavigate()
   
   if (!auth.bibliotekarRole()) {
-    return <Navigate replace to="/login" />;
+    toast.error("Nemate pravo")
+    setTimeout(() => {
+      navigate(-1)
+    }, 1000);
+  }else{
+    return children;
   }
 
-  return children;
 };

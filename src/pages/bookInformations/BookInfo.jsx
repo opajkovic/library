@@ -47,13 +47,17 @@ export default function BookInfo({
 
   
   const handleDelete = async () => {
-    try{
-      const response = await api.delete(`/books/${fetchedData.id}/destroy`);
-      dispatch(deleteBook([booksData], fetchedData.id));
-      toast.success("Izbrisana knjiga");
-      navigate("/books");
-    }catch(err){
-      toast.error(err.response.data.message)
+    if(auth.adminRole()){
+      try{
+        const response = await api.delete(`/books/${fetchedData.id}/destroy`);
+        dispatch(deleteBook([booksData], fetchedData.id));
+        toast.success("Izbrisana knjiga");
+        navigate("/books");
+      }catch(err){
+        toast.error(err.response.data.message)
+      }
+    }else{
+      toast.error("Nemate pravo izbrisati knjigu")
     }
   };
 
@@ -91,7 +95,7 @@ export default function BookInfo({
 }
 export const BookLoader = async ({ params }) => {
   const id = params.id;
-  const isAuthenticated = auth.bibliotekarRole();
+  const isAuthenticated = auth.getAuthStatus();
   if (isAuthenticated) {
     try {
       const response = await api.get(`/books/${id}`);
