@@ -8,7 +8,7 @@ import newBookData from "./new-book-data";
 import newBookCurrentData from "./new-book-current";
 import editBookData from "./edit-book-data";
 import sortData from "./sort-data";
-import borrowedBooksData from "./rentingBooks/borrowed-books";
+import rentingData from "./renting-books";
 
 const store = configureStore({
   reducer: {
@@ -21,7 +21,7 @@ const store = configureStore({
     students: studentsData.reducer,
     librarians: librariansData.reducer,
     books: booksData.reducer,
-    borrowedBooks: borrowedBooksData.reducer,
+    rentingBooks: rentingData.reducer,
   },
 });
 

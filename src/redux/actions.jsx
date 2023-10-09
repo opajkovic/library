@@ -6,7 +6,7 @@ import { updateLibrariansData } from "./librarian-data";
 import { updateBooksData } from "./books-data";
 
 export const filterSearchedData = (data, headers, inputValue) => {
-  console.log(data, headers, inputValue);
+
   return async (dispatch) => {
     try {
       const filteredData = data.filter((item) => {

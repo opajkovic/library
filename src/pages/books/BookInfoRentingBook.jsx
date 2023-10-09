@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./BookInfoRentingBook.css";
 import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
-import { redirect, useLoaderData, useOutletContext, useParams } from "react-router";
+import { useLoaderData, useOutletContext, useParams } from "react-router";
 import SettingsForm from "../../components/UI/SettingsForm";
 import useInput from "../../hooks/useInput";
 import RightSide from "../bookInformations/components/RightSide";

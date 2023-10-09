@@ -5,7 +5,7 @@ import PageTitle from "../../components/pageTitle/PageTitle";
 import BottomContainer from "./components/BottomContainer";
 import api from "../../api/apiCalls";
 import { auth } from "../../services/AuthService";
-import { updateBorrowedBooksData } from "../../redux/rentingBooks/borrowed-books";
+import { updateRentingData } from "../../redux/renting-books";
 import { filterSearchedData } from "../../redux/actions";
 import "./rentingBooks.css";
 
@@ -61,7 +61,7 @@ export default function RentingBooks(props) {
 
   const fetchedData = useLoaderData();
   const searchData = useSelector((state) => state.search.searchData);
-  const borrowedData = useSelector((state) => state.borrowedBooks);
+  const borrowedData = useSelector((state) => state.rentingBooks);
 
   const handlePageClick = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
@@ -72,7 +72,7 @@ export default function RentingBooks(props) {
   };
 
   useEffect(() => {
-    dispatch(updateBorrowedBooksData(fetchedData.izdate));
+    dispatch(updateRentingData(fetchedData.izdate));
     setBorrowedBooks(fetchedData.izdate);
     setSearchBorrows(fetchedData.izdate);
   }, []);
