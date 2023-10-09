@@ -32,8 +32,6 @@ export default function BookInfoRentingBook() {
     fetchStudents()
     setBook(fetchedData);
     setRoute("/books/:id/izdaj-knjigu");
-    // eslint-disable-next-line
-
   }, []);
 
   const {

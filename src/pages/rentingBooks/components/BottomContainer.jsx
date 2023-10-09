@@ -10,12 +10,18 @@ export default function BottomContainer(props) {
     <div className="bottom-container">
       <RentingOptions paths={props.paths} />
       <div className="table-wrapper">
-        <TableControl title={props.title} hide="true" />
+        <TableControl
+          title={props.title}
+          hide="true"
+          searchGlobal={props.searchGlobal}
+          itemsPerPageHandler={props.itemPerPageHandler}
+        />
         <Table
           mainHeader=""
           headers={props.headers}
           lastHeader=""
           tableData={props.tableData}
+          searchColumn={props.searchColumn}
           path={"/books:bookid"}
           options={[
             {
@@ -35,7 +41,11 @@ export default function BottomContainer(props) {
             },
           ]}
         />
-        <Pagination items={props.tableData} />
+        <Pagination
+          items={props.tableData}
+          onPageChange={props.onPageChange}
+          pageCount={props.pageCount}
+        />
       </div>
     </div>
   );

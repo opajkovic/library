@@ -7,10 +7,10 @@
   min-width: calc(1400px - 7rem);
   animation: glow 1s ease-in;
 }
-.linkCell{
+.linkCell {
   cursor: pointer;
 }
-.linkCell:hover{
+.linkCell:hover {
   color: blue;
 }
 .table-container tr {
@@ -97,7 +97,7 @@ td input {
   flex-direction: row;
 }
 
-.left-container a:hover{
+.left-container a:hover {
   color: var(--primary) !important;
   font-weight: 500;
 }
@@ -109,11 +109,11 @@ td input {
   width: 100% !important;
 }
 
-.dots { 
+.dots {
   margin-left: auto;
 }
 
-.modalItemChange{
+.modalItemChange {
   padding: 5px 10px;
   min-width: 150px;
   font-size: 12px;

@@ -4,7 +4,6 @@ import { auth } from "./AuthService";
 import { toast } from "react-toastify";
 
 export const PrivateRoute = ({ children }) => {
-  console.log(children)
   let navigate = useNavigate();
 
   useEffect(() => {

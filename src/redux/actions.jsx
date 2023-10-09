@@ -6,23 +6,34 @@ import { updateLibrariansData } from "./librarian-data";
 import { updateBooksData } from "./books-data";
 
 export const filterSearchedData = (data, headers, inputValue) => {
+  console.log(data, headers, inputValue);
   return async (dispatch) => {
     try {
       const filteredData = data.filter((item) => {
         return headers.some((header) => {
-          const splitDataKey = header.dataKey.split("+");
-          console.log(splitDataKey)
           let columnValue = "";
-          if (splitDataKey.length > 1) {
-            columnValue = item[splitDataKey[0]] + " " + item[splitDataKey[1]];
-            console.log("im here")
-          } else if (splitDataKey.length === 1){
-            console.log("im here in correct")
-            console.log(item)
-            columnValue = item[header.dataKey];
+          if (!header.dataKey.includes(".")) {
+            const splitDataKey = header.dataKey.split("+");
+            if (splitDataKey.length > 1) {
+              columnValue = item[splitDataKey[0]] + " " + item[splitDataKey[1]];
+            } else if (splitDataKey.length === 1) {
+              columnValue = item[header.dataKey];
+            }
+          } else {
+            if (header.dataKey.includes("+")) {
+              const splitPlus = header.dataKey.split("+");
+              const splitPlusFirst = splitPlus[0].split(".");
+              console.log(splitPlusFirst);
+              const splitPlusSecond = splitPlus[1].split(".");
+              columnValue =
+                item[splitPlusFirst[0]][splitPlusFirst[1]] +
+                " " +
+                item[splitPlusSecond[0]][splitPlusSecond[1]];
+            } else {
+              const splitDot = header.dataKey.split(".");
+              columnValue = item[splitDot[0]][splitDot[1]];
+            }
           }
-
-          console.log(columnValue)
 
           if (typeof columnValue === "string") {
             return columnValue.toLowerCase().includes(inputValue.toLowerCase());
