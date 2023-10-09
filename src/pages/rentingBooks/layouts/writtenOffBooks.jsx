@@ -5,7 +5,6 @@ import { updateRentingData } from "../../../redux/renting-books";
 import { filterSearchedData } from "../../../redux/actions";
 import PageTitle from "../../../components/pageTitle/PageTitle";
 import BottomContainer from "../components/BottomContainer";
-
 import "../rentingBooks.css";
 
 const headers = [
