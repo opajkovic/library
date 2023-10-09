@@ -15,7 +15,12 @@ import { toast } from "react-toastify";
 import { auth } from "../../services/AuthService";
 
 const headers = [
-  { headerName: "Ime i prezime", sort: true, dropdown: false, dataKey: "name+surname" },
+  {
+    headerName: "Ime i prezime",
+    sort: true,
+    dropdown: false,
+    dataKey: "name+surname",
+  },
   { headerName: "email", sort: false, dropdown: false, dataKey: "email" },
   { headerName: "role", sort: false, dropdown: false, dataKey: "role" },
   { headerName: "Username", sort: false, dropdown: true, dataKey: "username" },
@@ -30,7 +35,7 @@ export default function Students() {
 
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(5);
-  const [resetPagination, setResetPagination] = useState(false);  
+  const [resetPagination, setResetPagination] = useState(false);
 
   const fetchedData = useLoaderData();
   const searchData = useSelector((state) => state.search.searchData);
@@ -48,20 +53,19 @@ export default function Students() {
   useEffect(() => {
     dispatch(updateStudentsData(fetchedData));
     setStudents(fetchedData);
-    dispatch(sortedData(fetchedData))
+    dispatch(sortedData(fetchedData));
   }, []);
 
   useEffect(() => {
-    if(search !== "") {
+    if (search !== "") {
       setStudents(searchData);
       if (resetPagination) {
         setCurrentPage(0);
         setResetPagination(false);
       }
-    }
-    else {
-      if(studentsData !== null){
-        setStudents(studentsData)
+    } else {
+      if (studentsData !== null) {
+        setStudents(studentsData);
       }
     }
   }, [search, studentsData]);
@@ -84,26 +88,30 @@ export default function Students() {
   };
 
   const handleSort = () => {
-    dispatch(sortData(students))
-  }
+    dispatch(sortData(students));
+  };
 
-  useEffect(()=>{
-    setStudents(updatedSortedData)
-  },[updatedSortedData])
+  useEffect(() => {
+    setStudents(updatedSortedData);
+  }, [updatedSortedData]);
 
   const handleDelete = async (id) => {
-    if(localStorage.getItem("role") != 'Student' || (localStorage.getItem("role") == 'Student' && localStorage.getItem("id") == id)){
+    if (
+      localStorage.getItem("role") != "Student" ||
+      (localStorage.getItem("role") == "Student" &&
+        localStorage.getItem("id") == id)
+    ) {
       try {
         const response = await api.delete(`/users/${id}`);
         toast.success("Izbrisan student");
         dispatch(deleteStudent(studentsData, id));
-    
+
         if (search !== "") {
           setStudents(searchData.filter((item) => item.id !== id));
         } else {
           setStudents(studentsData.filter((item) => item.id !== id));
         }
-    
+
         navigate("/students");
       } catch (err) {
         if (err.response && err.response.data.message) {
@@ -112,11 +120,10 @@ export default function Students() {
           console.error(err);
         }
       }
-    }else{
-      toast.error("Nemate pravo izbrisati drugog studenta!")
+    } else {
+      toast.error("Nemate pravo izbrisati drugog studenta!");
     }
   };
-  
 
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -144,12 +151,12 @@ export default function Students() {
             {
               text: "Pogledaj detalje",
               icon: <FaFile />,
-              path: ""
+              path: "",
             },
             {
               text: "Izmijeni korisnika",
               icon: <FaEdit />,
-              path: "edit"
+              path: "edit",
             },
             {
               text: "Izbrisi korisnika",
@@ -173,20 +180,20 @@ export async function LoaderStudents() {
       const response = await api.get(`/users`);
       const responseData = response.data.data;
       let listOfStudents = [];
-  
+
       responseData.forEach((element) => {
         if (element.role === "Učenik") {
           listOfStudents = [...listOfStudents, element];
         }
       });
-  
+
       // Now 'listOfStudents' contains the array of students.
       return listOfStudents;
     } catch (error) {
       console.error("Loader function error:", error);
       throw error;
     }
-  }else{
-    return []
+  } else {
+    return [];
   }
 }

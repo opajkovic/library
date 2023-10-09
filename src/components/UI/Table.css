@@ -106,6 +106,7 @@ td input {
   text-align: center;
   align-items: center !important;
   justify-content: center !important;
+  width: 100% !important;
 }
 
 .dots { 
