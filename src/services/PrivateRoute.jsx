@@ -1,17 +1,19 @@
-import React from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "./AuthService";
+import { toast } from "react-toastify";
 
 export const PrivateRoute = ({ children }) => {
-  
-  let navigate = useNavigate()
-  if (!auth.getAuthStatus()) {
-    toast.error("Nemate pravo")
-    setTimeout(() => {
-      navigate(-1)
-    }, 1000);
-  }else{
-    return children;
-  }
+  console.log(children)
+  let navigate = useNavigate();
 
+  useEffect(() => {
+    if (!auth.getAuthStatus()) {
+      toast.error("Neautorizovanim korisisnicima nije dozvoljen pristup");
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000);
+    }
+  }, []);
+  return children;
 };

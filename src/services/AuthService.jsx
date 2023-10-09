@@ -10,18 +10,18 @@ class AuthService {
   adminRole = () => {
     let token = localStorage.getItem("token");
     let role = localStorage.getItem("role");
-    if (!!token && role == "Administrator"){
+    if (!!token && role == "Administrator") {
       this.setJWT(token);
-      return true
-    } 
+      return true;
+    }
     return false;
   };
   bibliotekarRole = () => {
     let token = localStorage.getItem("token");
     let role = localStorage.getItem("role");
-    if (!!token && (role == "Administrator" || role == "Bibliotekar")){
+    if (!!token && (role == "Administrator" || role == "Bibliotekar")) {
       this.setJWT(token);
-      return true
+      return true;
     }
     return false;
   };
@@ -30,11 +30,11 @@ class AuthService {
     let token = localStorage.getItem("token");
     let role1 = localStorage.getItem("role");
     let id1 = localStorage.getItem("id");
-    console.log(role)
-    console.log(id + " - " + id1)
-    if (!!token && (role1 == "Administrator" || (role == role1 && id == id1))){
+    console.log(role);
+    console.log(id + " - " + id1);
+    if (!!token && (role1 == "Administrator" || (role == role1 && id == id1))) {
       this.setJWT(token);
-      return true
+      return true;
     }
     return false;
   };
@@ -45,10 +45,12 @@ class AuthService {
     let id1 = localStorage.getItem("id");
     if (
       !!token &&
-      (role1 == "Administrator" || role1 == "Bibliotekar" || (role == role1 && id == id1))
-    ){
+      (role1 == "Administrator" ||
+        role1 == "Bibliotekar" ||
+        (role == role1 && id == id1))
+    ) {
       this.setJWT(token);
-      return true
+      return true;
     }
     return false;
   };
