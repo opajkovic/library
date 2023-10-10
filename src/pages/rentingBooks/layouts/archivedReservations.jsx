@@ -26,7 +26,7 @@ const headers = [
     headerName: "Rezervacija zatvorena",
     sort: false,
     dropdown: false,
-    dataKey: "",
+    dataKey: "status",
   },
   {
     headerName: "Rezervaciju podnio",

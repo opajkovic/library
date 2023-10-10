@@ -50,7 +50,6 @@ export default function ProfileEvidenceRented() {
   const navigate = useNavigate();
   const { id } = useParams();
 
-
   const [userInfo, setUserInfo] = useState();
   const [rentData, setRentData] = useState([]);
   const [searchRent, setSearchRent] = useState([]);
