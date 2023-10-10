@@ -70,7 +70,7 @@ export default function BookInfoReserve() {
       const responseData = response.data;
       toast.success(responseData.message);
     } catch (error) {
-      console.log(error.response)
+      console.error(error.response)
       toast.error(error.response.data.data.errors)
       throw error;
     }

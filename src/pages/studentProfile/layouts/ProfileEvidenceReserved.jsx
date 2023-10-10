@@ -24,7 +24,6 @@ export default function ProfileEvidenceReserved() {
     setReservations(dataUn)
     api.get(`/users/${id}`).then(response => {
       if(response.data.data.role == 'Učenik'){
-        console.log(response.data.data)
         setUserInfo(response.data.data)
       }
       else if(response.data.data.role == "Bibliotekar"){

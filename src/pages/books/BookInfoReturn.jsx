@@ -47,7 +47,6 @@ const BookInfoReturn = () => {
       try {
         const response = await api.get(`/books/borrows`);
         const responseData = response.data.data.izdate.filter(el => el.knjiga.id == id);
-        console.log(responseData)
         setRentedBooks(responseData);
       } catch (error) {
         console.error("Loader function error:", error);
@@ -70,7 +69,6 @@ let submitReturn = async() => {
   }else{
     try{
       let response = await api.post('/books/vrati', { "toReturn": checkedList})
-      console.log(response)
       toast.success("Vracene knjige")
       return response
     }catch(err){

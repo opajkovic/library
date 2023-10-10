@@ -14,7 +14,7 @@ export default function ActivityList({ hideTitle, izdate }) {
           }
         }) : 'loading...'}
         <Link to="/activities">
-          <button className="showBtn">SHOW</button>
+          <button className="showBtn">SHOW MORE...</button>
         </Link>
       </div>
     </div>

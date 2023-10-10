@@ -26,7 +26,6 @@ export default function ProfileEvidenceWrittenOff() {
     setData(dataUn)
     api.get(`/users/${id}`).then(response => {
       if(response.data.data.role == 'Učenik'){
-        console.log(response.data.data)
         setUserInfo(response.data.data)
       }
       else if(response.data.data.role == "Bibliotekar"){
@@ -50,7 +49,6 @@ export let loaderTestWrittenOff= async({ params }) => {
     try {
       const responseData = await LoaderRented();
       let responseData2 = responseData.otpisane.filter(el => el.student.id == id)
-      console.log(responseData2)
       data = responseData2
     } catch (error) {
       console.error("Error fetching data:", error);

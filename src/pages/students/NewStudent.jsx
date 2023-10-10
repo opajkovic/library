@@ -85,7 +85,6 @@ const NewStudent = () => {
     formIsValid = true;
   }
 
-  console.log(formIsValid);
 
   const resetHandler = () => {
     resetName();

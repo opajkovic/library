@@ -17,7 +17,7 @@ export default function Activities() {
         let response = await LoaderRented()
         setIzdate(response)
       }catch(err){
-        console.log(err)
+        console.error(err)
       }
     }
     fetchBorrows()

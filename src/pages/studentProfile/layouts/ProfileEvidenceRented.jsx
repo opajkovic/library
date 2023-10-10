@@ -25,7 +25,6 @@ export default function ProfileEvidenceRented() {
     setTableData(dataUn)
     api.get(`/users/${id}`).then(response => {
       if(response.data.data.role == 'Učenik'){
-        console.log(response.data.data)
         setUserInfo(response.data.data)
       }
       else if(response.data.data.role == "Bibliotekar"){
@@ -49,7 +48,6 @@ export default function ProfileEvidenceRented() {
     try {
       const responseData = await LoaderRented();
       let responseData2 = responseData.izdate.filter(el => el.student.id == id)
-      console.log(responseData2)
       data = responseData2
       return data
     } catch (error) {

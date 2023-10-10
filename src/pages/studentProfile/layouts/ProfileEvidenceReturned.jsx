@@ -50,7 +50,6 @@ export let loaderTestReturned = async({ params }) => {
     try {
       const responseData = await LoaderRented();
       let responseData2 = responseData.vracene.filter(el => el.student.id == id)
-      console.log(responseData2)
       data = responseData2
     } catch (error) {
       console.error("Error fetching data:", error);

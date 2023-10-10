@@ -115,12 +115,9 @@ const EditBook = () => {
   };
 
   const submitHandler = async () => {
-
-    console.log(editedData)
     try{
         const response = await api.post(`/books/${params.id}/update`, editedData);
         toast.success("successfully updated")
-        console.log(response)
         navigate(`/books/${params.id}`)
         return response
       }

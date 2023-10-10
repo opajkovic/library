@@ -47,11 +47,10 @@ export default function ReservationItem({ reservation }) {
         info
       );
       const responseData = response.data;
-      console.log(responseData);
       e.target.parentElement.parentElement.style.cssText = "display: none"
       toast.success(responseData.message);
     } catch (error) {
-      console.log(err);
+      console.error(err);
       toast.error(error.response.data.data.errors);
       throw error;
     }
@@ -64,11 +63,10 @@ export default function ReservationItem({ reservation }) {
       }
       );
       const responseData = response.data;
-      console.log(responseData);
       e.target.parentElement.parentElement.style.cssText = "display: none"
       toast.success(responseData.message);
     } catch (error) {
-      console.log(err);
+      console.error(err);
       toast.error(error.response.data.data.errors);
       throw error;
     }
