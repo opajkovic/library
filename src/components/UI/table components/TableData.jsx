@@ -72,7 +72,7 @@ const MiddleDataCell = ({
                 />
 
                 {/* Uslovno dadavanje linka za autore, bibliotekare, studente i ucenike */}
-                {path ? (
+                {(path && !header.path) ? (
                   <Link to={`${path}/${row.id}`}>{cellData}</Link>
                 ) : 
                   <span className={header.pathId ? 'linkCell' : ""} onClick={()=>{

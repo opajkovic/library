@@ -14,8 +14,12 @@ export default function ProfileEvidenceWrittenOff() {
   let loaderData = useLoaderData()
 
   const headers = [
-    { headerName: "Naziv knjige", sort: false, dropdown: false, dataKey: 'knjiga.title' },
-    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname' },
+    { headerName: "Naziv knjige", sort: false, dropdown: false, dataKey: 'knjiga.title',
+    path: "/books/:id",
+    pathId: "knjiga", },
+    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname',
+    path: "/students/:id",
+    pathId: "student", },
     { headerName: "Datum izdavanja", sort: false, dropdown: false, dataKey: 'borrow_date' },
     { headerName: "Datum otpisivanja", sort: false, dropdown: false },
     { headerName: "Zadržavanje knjige", sort: false, dropdown: false },

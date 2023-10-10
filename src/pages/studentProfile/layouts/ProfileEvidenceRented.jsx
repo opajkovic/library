@@ -14,8 +14,12 @@ export default function ProfileEvidenceRented() {
   let loaderData = useLoaderData()
 
   const headers = [
-    { headerName: "Naziv knjige", sort: true, dropdown: false, dataKey: 'knjiga.title', path: '/books/:id', pathId: 'knjiga'},
-    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname' },
+    { headerName: "Naziv knjige", sort: true, dropdown: false, dataKey: 'knjiga.title',
+    path: "/books/:id",
+    pathId: "knjiga"},
+    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname',
+    path: "/students/:id",
+    pathId: "student", },
     { headerName: "Datum izdavanja", sort: false, dropdown: false, dataKey: 'borrow_date' },
     { headerName: "Trenutno zadržavanje knjiga", sort: false, dropdown: false, dataKey: 'borrow_date' },
     { headerName: "Knjigu izdao", sort: false, dropdown: true, dataKey: 'bibliotekar0.name+bibliotekar0.surname', path: '/librarians/:id', pathId: 'bibliotekar' },

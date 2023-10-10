@@ -1,25 +1,41 @@
 import Table from "../../components/UI/Table";
 import "./BookInfoWrittenOff.css";
 import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
-import { useLoaderData } from "react-router";
-import { useState } from "react";
+import { useLoaderData, useParams } from "react-router";
+import { useEffect, useState } from "react";
 import TableControl from "../../components/UI/TableControl";
 import Pagination from "../../components/UI/Pagination";
 import FormSubmitButtons from "../../components/UI/settingsForm components/FormSubmitButtons";
+import api from "../../api/apiCalls";
+import { toast } from "react-toastify";
 
 const headers = [
-  { headerName: "Izdato učeniku", sort: true, dropdown: false, dataKey: 'student.name+student.surname' },
-  { headerName: "Datum izdavanja", sort: false, dropdown: false },
-  { headerName: "Trenutno zadržavanje knjiga", sort: false, dropdown: false },
-  { headerName: "Prekoračenje u danima", sort: false, dropdown: false },
-  { headerName: "Knjigu izdao", sort: false, dropdown: true },
+  { headerName: "Izdato učeniku", sort: true, dropdown: false, dataKey: 'student.name+student.surname',
+  path: "/students/:id",
+  pathId: "student", },
+  { headerName: "Datum izdavanja", sort: false, dropdown: false, dataKey: 'borrow_date' },
+  { headerName: "Trenutno zadržavanje knjiga", sort: false, dropdown: false, dataKey: 'borrow_date' },
+  { headerName: "Prekoračenje u danima", sort: false, dropdown: false , dataKey: 'borrow_date'},
+  { headerName: "Knjigu izdao", sort: false, dropdown: true, dataKey: 'bibliotekar0.name+bibliotekar0.surname',
+  path: "/librarians/:id",
+  pathId: "bibliotekar", },
 ];
 
 const BookInfoWrittenOff = () => {
   const fetchedData = useLoaderData();
+  let {id} = useParams()
+  let checkedList = []
+  let checkChanged = (e) =>{
+    if(e.target.checked == true && !checkedList.includes(e.target.id)){
+      checkedList[checkedList.length] = e.target.id
+    }else{
+      checkedList = checkedList.filter(el => el != e.target.id)
+    }
+  }
 
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [tableData, setTableData] = useState([{student:{name: 'loading...'}}]);
 
   const data = [];
   const startIndex = currentPage * itemsPerPage;
@@ -34,7 +50,34 @@ const BookInfoWrittenOff = () => {
   const itemPerPageHandler = (value) => {
     setItemsPerPage(value);
   };
-
+  useEffect(()=>{
+    let fetchRentedBooks = async()=>{
+      try {
+        const response = await api.get(`/books/borrows`);
+        const responseData = response.data.data.izdate.filter(el => el.knjiga.id == id);
+        setTableData(responseData);
+      } catch (error) {
+        console.error("Loader function error:", error);
+        throw error;
+      }
+    }
+    fetchRentedBooks();
+  },[])
+  let submitReturn = async() => {
+    console.log(checkedList)
+    if(checkedList.length < 0){
+      toast.error("Select something")
+    }else{
+      try{
+        let response = await api.post('/books/otpisi', { "toWriteoff": checkedList})
+        toast.success("Otpisane knjige")
+        return response
+      }catch(err){
+        toast.error(err.response.data.message)
+        return err.response
+      }
+    }
+  }
   return (
     <>
       <ProfileTitle
@@ -51,11 +94,11 @@ const BookInfoWrittenOff = () => {
       <div className="written-off-table-wrapper">
         <h1>Otpiši knjigu</h1>
         <TableControl hide={true} itemsPerPageHandler={itemPerPageHandler} />
-        <Table headers={headers} tableData={booksToDisplay} />
+        <Table checkChanged={checkChanged} headers={headers} tableData={tableData} options={[]} />
         {data.length > 0 && (
           <Pagination onPageChange={handlePageClick} pageCount={pageCount} />
         )}
-        <FormSubmitButtons dangerText={'Ponisti'} succesText={'Otpisi knjigu'} />
+        <FormSubmitButtons submit={submitReturn} dangerText={'Ponisti'} succesText={'Otpisi knjigu'} />
       </div>
     </>
   );

@@ -24,7 +24,7 @@ const BookInfoReturn = () => {
 
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(5);
-  const [rentedBooks, setRentedBooks] = useState([]);
+  const [rentedBooks, setRentedBooks] = useState([{student: {name: 'loading'}}]);
 
   let checkedList = []
 

@@ -14,8 +14,12 @@ export default function ProfileEvidenceReturned() {
   let loaderData = useLoaderData()
 
   const headers = [
-    { headerName: "Naziv knjige", sort: false, dropdown: false, dataKey: 'knjiga.title', path: '/books/:id', pathId: 'knjiga' },
-    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname' },
+    { headerName: "Naziv knjige", sort: false, dropdown: false, dataKey: 'knjiga.title',
+    path: "/books/:id",
+    pathId: "knjiga"},
+    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname',
+    path: "/students/:id",
+    pathId: "student", },
     { headerName: "Datum izdavanja", sort: false, dropdown: false, dataKey: 'borrow_date' },
     { headerName: "Datum vraćanja", sort: false, dropdown: false, dataKey: 'return_date' },
     { headerName: "Zadržavanje knjige", sort: false, dropdown: false, dataKey: '' },

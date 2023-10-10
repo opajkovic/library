@@ -14,8 +14,12 @@ export default function ProfileEvidenceExcess() {
   let loaderData = useLoaderData()
 
   const headers = [
-    { headerName: "Naziv knjige", sort: false, dropdown: false, dataKey: 'knjiga.title', path: '/books/:id', pathId: 'knjiga'  },
-    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname'},
+    { headerName: "Naziv knjige", sort: false, dropdown: false, dataKey: 'knjiga.title',
+    path: "/books/:id",
+    pathId: "knjiga"},
+    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname',
+    path: "/students/:id",
+    pathId: "student",},
     { headerName: "Datum izdavanja", sort: false, dropdown: false, dataKey: '' },
     { headerName: "Prekoračenje u danima", sort: false, dropdown: false, dataKey: '' },
     { headerName: "Trenutno zadržavanje knjige", sort: false, dropdown: true, dataKey: 'status' },
