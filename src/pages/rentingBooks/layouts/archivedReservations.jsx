@@ -22,7 +22,12 @@ const headers = [
     dropdown: false,
     dataKey: "action_date",
   },
-  { headerName: "Rezervacija zatvorena", sort: false, dropdown: false, dataKey:""},
+  {
+    headerName: "Rezervacija zatvorena",
+    sort: false,
+    dropdown: false,
+    dataKey: "",
+  },
   {
     headerName: "Rezervaciju podnio",
     sort: false,
@@ -57,7 +62,6 @@ export default function ArchivedarchivedBookss() {
     setItemsPerPage(value);
   };
 
-  console.log(fetchedData)
   useEffect(() => {
     dispatch(updateRentingData(fetchedData.archive));
     setArchivedBooks(fetchedData.archive);

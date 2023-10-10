@@ -32,6 +32,11 @@ export default function ProfileEvidence(props) {
       <div className="student-info-wrapper">
         <LinkWrapper />
         <BottomContainer
+          searchColumn={props.searchColumn}
+          searchGlobal={props.searchGlobal}
+          itemsPerPageHandler={props.itemsPerPageHandler}
+          onPageChange={props.onPageChange}
+          pageCount={props.pageCount}
           title="Nova knjiga"
           headers={props.headers}
           paths={paths}
