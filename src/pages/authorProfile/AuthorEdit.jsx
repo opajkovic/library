@@ -46,7 +46,6 @@ const EditAuthor = () => {
     try{
       const response = await api.put(`/authors/${params.id}`, formData);
       if (response.status === 200) {
-        console.log("succssfully posted");
         toast.success("Autor izmijenjen")
         navigate("/authors")
       }

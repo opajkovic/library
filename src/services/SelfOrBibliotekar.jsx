@@ -8,7 +8,7 @@ export const SelfOrBibliotekarRoute = ({ children, role }) => {
   if (!auth.selfOrBibliotekarRole({role: role})) {
     toast.error("Nemate pravo")
     setTimeout(() => {
-      navigate(-1)
+      navigate("/login");
     }, 1000);
   }else{
     return children;

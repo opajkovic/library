@@ -28,7 +28,7 @@ const headers = [
     headerName: "Rezervacija ističe",
     sort: false,
     dropdown: false,
-    dataKey: "",
+    dataKey: "borrow_date"
   },
   {
     headerName: "Rezervaciju podnio",

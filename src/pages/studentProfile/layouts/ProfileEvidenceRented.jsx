@@ -50,10 +50,41 @@ export default function ProfileEvidenceRented() {
   const navigate = useNavigate();
   const { id } = useParams();
 
+<<<<<<< HEAD
   const [userInfo, setUserInfo] = useState();
   const [rentData, setRentData] = useState([]);
   const [searchRent, setSearchRent] = useState([]);
   const [search, setSearch] = useState("");
+=======
+  const headers = [
+    { headerName: "Naziv knjige", sort: true, dropdown: false, dataKey: 'knjiga.title',
+    path: "/books/:id",
+    pathId: "knjiga"},
+    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname',
+    path: "/students/:id",
+    pathId: "student", },
+    { headerName: "Datum izdavanja", sort: false, dropdown: false, dataKey: 'borrow_date' },
+    { headerName: "Trenutno zadržavanje knjiga", sort: false, dropdown: false, dataKey: 'borrow_date' },
+    { headerName: "Knjigu izdao", sort: false, dropdown: true, dataKey: 'bibliotekar0.name+bibliotekar0.surname', path: '/librarians/:id', pathId: 'bibliotekar' },
+  ];
+  useEffect(()=>{
+    let dataUn = loaderData
+    setTableData(dataUn)
+    api.get(`/users/${id}`).then(response => {
+      if(response.data.data.role == 'Učenik'){
+        setUserInfo(response.data.data)
+      }
+      else if(response.data.data.role == "Bibliotekar"){
+        navigate(`/librarians/${id}`)
+      }else if(response.data.data.role == "Administrator"){
+        navigate(`/administrators/${id}`)
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  },[])
+>>>>>>> 01765ffbbd3fc98aebe424e2279ecee0e2ef5f63
 
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(5);
@@ -144,7 +175,13 @@ export const loaderTestRented = async ({ params }) => {
   if (isAuthenticated) {
     try {
       const responseData = await LoaderRented();
+<<<<<<< HEAD
       return responseData.izdate.filter((el) => el.student.id == id);
+=======
+      let responseData2 = responseData.izdate.filter(el => el.student.id == id)
+      data = responseData2
+      return data
+>>>>>>> 01765ffbbd3fc98aebe424e2279ecee0e2ef5f63
     } catch (error) {
       console.error("Error fetching data:", error);
     }

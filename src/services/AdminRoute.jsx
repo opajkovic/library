@@ -9,7 +9,7 @@ export const AdminRoute = ({ children }) => {
   if (!auth.adminRole()) {
     toast.error("Nemate pravo")
     setTimeout(() => {
-      navigate(-1)
+      navigate("/login");
     }, 1000);
   }else{
     return children;

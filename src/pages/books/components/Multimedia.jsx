@@ -19,7 +19,7 @@ export default function NewBookMultimedia() {
       navigate("/books");
       return response
     } catch(err) {
-      console.log(err)
+      console.error(err)
       toast.error(err.response.data.message)
       navigate("/books/new/osnovni-detalji");
     }

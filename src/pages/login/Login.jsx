@@ -30,14 +30,14 @@ export default function Login() {
         localStorage.setItem("id",response2.data.data.id)
         localStorage.setItem("role",response2.data.data.role)
       }catch(err){
-        console.log(err)
+        console.error(err)
       }
       toast.success("Uspjesna prijava")
       setTimeout(() => {
         navigate('/')
       }, 100);
     }catch(err){
-      console.log(err)
+      console.error(err)
       if(!err.response.data.data.error){
         toast.error(err.response.data.message)
       }else{

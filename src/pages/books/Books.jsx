@@ -154,7 +154,7 @@ export default function Books() {
           setBooks(bookData.filter((item) => item.id !== id));
         }
       } catch (err) {
-        console.log(err);
+        console.error(err);
         toast.error(err.response.data.data.errors);
       }
     } else {

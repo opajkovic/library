@@ -24,10 +24,10 @@ const headers = [
     path: "/students/:id",
     pathId: "student",
   },
-  { headerName: "Datum izdavanja", sort: false, dropdown: false },
-  { headerName: "Datum otpisivanja", sort: false, dropdown: false },
-  { headerName: "Zadržavanje knjige", sort: false, dropdown: false },
-  { headerName: "Knjigu otpisao", sort: false, dropdown: true },
+  { headerName: "Datum izdavanja", sort: false, dropdown: false, dataKey:'bibliotekar1.name+bibliotekar1.surname' },
+  { headerName: "Datum otpisivanja", sort: false, dropdown: false, dataKey: 'action_date' },
+  { headerName: "Zadržavanje knjige", sort: false, dropdown: false, dataKey: 'borrow_date' },
+  { headerName: "Knjigu otpisao", sort: false, dropdown: true, dataKey:'bibliotekar1.name+bibliotekar1.surname'  },
 ];
 
 export default function WrittenOffBooks() {

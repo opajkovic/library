@@ -9,7 +9,7 @@ export const SelfRoute = ({ children, role }) => {
   if (!auth.selfRole({ role: role })) {
     toast.error("Nemate pravo");
     setTimeout(() => {
-      navigate(-1);
+      navigate("/login");
     }, 1000);
   } else {
     return children;

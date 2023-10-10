@@ -39,6 +39,7 @@ const headers = [
   { headerName: "Status", sort: false, dropdown: true, dataKey: "status" },
 ];
 
+<<<<<<< HEAD
 export default function ProfileEvidenceReserved() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -81,6 +82,21 @@ export default function ProfileEvidenceReserved() {
         }
       } catch (error) {
         console.error("Error:", error);
+=======
+  const headers = [
+    { headerName: "Naziv knjige", sort: false, dropdown: false, dataKey: 'knjiga.title', path: '/books/:id', pathId: 'knjiga'  },
+    { headerName: "Datum rezervacije", sort: false, dropdown: false,dataKey: 'borrow_date' },
+    { headerName: "Rezervacija ističe", sort: false, dropdown: false,dataKey: 'return_date'},
+    { headerName: "Rezervaciju podnio", sort: false, dropdown: false, dataKey: 'bibliotekar0.name+bibliotekar0.surname', path: '/librarians/:id', pathId: 'bibliotekar'  },
+    { headerName: "Status", sort: false, dropdown: true, dataKey: "status" },
+  ];
+  useEffect(()=>{
+    let dataUn = loaderData
+    setReservations(dataUn)
+    api.get(`/users/${id}`).then(response => {
+      if(response.data.data.role == 'Učenik'){
+        setUserInfo(response.data.data)
+>>>>>>> 01765ffbbd3fc98aebe424e2279ecee0e2ef5f63
       }
     };
     loaderFunction();

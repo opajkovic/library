@@ -8,7 +8,7 @@ export const BibliotekarRoute = ({ children }) => {
   if (!auth.bibliotekarRole()) {
     toast.error("Nemate pravo");
     setTimeout(() => {
-      navigate(-1);
+      navigate("/login");
     }, 1000);
   } else {
     return children;

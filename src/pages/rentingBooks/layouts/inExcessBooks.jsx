@@ -34,13 +34,13 @@ const headers = [
     headerName: "Prekoračenje u danima",
     sort: false,
     dropdown: false,
-    dataKey: "",
+    dataKey: "borrow_date"
   },
   {
     headerName: "Trenutno zadržavanje knjige",
     sort: false,
     dropdown: true,
-    dataKey: "",
+    dataKey: "borrow_date"
   },
 ];
 

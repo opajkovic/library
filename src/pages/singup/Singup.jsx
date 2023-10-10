@@ -140,13 +140,12 @@ export default function Singup() {
       const response = await apiSing.post('/register', user)
       toast.success("Uspjesno napravljen nalog")
       localStorage.setItem("token", response.data.data.token)
-      console.log(response)
       setTimeout(() => {
         navigate("/")
       }, 1000);
     }catch(err){
       toast.error(err.response.data.message)
-      console.log(err)
+      console.error(err)
     }
   };
   return (

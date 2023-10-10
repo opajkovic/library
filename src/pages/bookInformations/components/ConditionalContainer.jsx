@@ -54,8 +54,6 @@ export default function ConditionalContainer({
           let arhiviraneRezervacije2 = responseData.archive.filter(arhiv => arhiv.knjiga.id == params.id)
           setAktivneRezervacije(aktivneRezervacije2)
           setArhiviraneRezervacije(arhiviraneRezervacije2)
-          console.log(responseData)
-  
           return responseData;
         } catch (error) {
           console.error("Loader function error:", error);
