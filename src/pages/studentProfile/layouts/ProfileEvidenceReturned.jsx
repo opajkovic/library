@@ -54,7 +54,6 @@ export default function ProfileEvidenceReturned() {
   const navigate = useNavigate();
   const { id } = useParams();
 
-<<<<<<< HEAD
   const [userInfo, setUserInfo] = useState();
   const [returnData, setReturnData] = useState([]);
   const [searchReturn, setsearchReturn] = useState([]);
@@ -92,27 +91,6 @@ export default function ProfileEvidenceReturned() {
         }
       } catch (error) {
         console.error("Error:", error);
-=======
-  const headers = [
-    { headerName: "Naziv knjige", sort: false, dropdown: false, dataKey: 'knjiga.title',
-    path: "/books/:id",
-    pathId: "knjiga"},
-    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname',
-    path: "/students/:id",
-    pathId: "student", },
-    { headerName: "Datum izdavanja", sort: false, dropdown: false, dataKey: 'borrow_date' },
-    { headerName: "Datum vraćanja", sort: false, dropdown: false, dataKey: 'return_date' },
-    { headerName: "Zadržavanje knjige", sort: false, dropdown: false, dataKey: '' },
-    { headerName: "Trenutno zadržavanje knjige", sort: false, dropdown: true, dataKey: 'status' },
-  ];
-  useEffect(()=>{
-    let dataUn = loaderData
-    setData(dataUn)
-    api.get(`/users/${id}`).then(response => {
-      if(response.data.data.role == 'Učenik'){
-        console.log(response.data.data)
-       setUserInfo(response.data.data)
->>>>>>> 01765ffbbd3fc98aebe424e2279ecee0e2ef5f63
       }
     };
     loaderFunction();
@@ -170,12 +148,7 @@ export let loaderTestReturned = async ({ params }) => {
   if (isAuthenticated) {
     try {
       const responseData = await LoaderRented();
-<<<<<<< HEAD
       return responseData.vracene.filter((el) => el.student.id == id);
-=======
-      let responseData2 = responseData.vracene.filter(el => el.student.id == id)
-      data = responseData2
->>>>>>> 01765ffbbd3fc98aebe424e2279ecee0e2ef5f63
     } catch (error) {
       console.error("Error fetching data:", error);
     }

@@ -44,7 +44,6 @@ export default function ProfileEvidenceWrittenOff() {
   const navigate = useNavigate();
   const { id } = useParams();
 
-<<<<<<< HEAD
   const [userInfo, setUserInfo] = useState();
   const [writtenOffData, setWrittenOffData] = useState([]);
   const [searchWrittenOff, setSearchWrittenOff] = useState([]);
@@ -82,26 +81,6 @@ export default function ProfileEvidenceWrittenOff() {
         }
       } catch (error) {
         console.error("Error:", error);
-=======
-  const headers = [
-    { headerName: "Naziv knjige", sort: false, dropdown: false, dataKey: 'knjiga.title',
-    path: "/books/:id",
-    pathId: "knjiga", },
-    { headerName: "Izdato učeniku", sort: false, dropdown: false, dataKey: 'student.name+student.surname',
-    path: "/students/:id",
-    pathId: "student", },
-    { headerName: "Datum izdavanja", sort: false, dropdown: false, dataKey: 'borrow_date' },
-    { headerName: "Datum otpisivanja", sort: false, dropdown: false },
-    { headerName: "Zadržavanje knjige", sort: false, dropdown: false },
-    { headerName: "Knjigu otpisao", sort: false, dropdown: true,dataKey: 'bibliotekar0.name+bibliotekar0.surname', path: '/librarians/:id', pathId: 'bibliotekar' },
-  ];
-  useEffect(()=>{
-    let dataUn = loaderData
-    setData(dataUn)
-    api.get(`/users/${id}`).then(response => {
-      if(response.data.data.role == 'Učenik'){
-        setUserInfo(response.data.data)
->>>>>>> 01765ffbbd3fc98aebe424e2279ecee0e2ef5f63
       }
     };
     loaderFunction();
@@ -159,12 +138,7 @@ export const loaderTestWrittenOff = async ({ params }) => {
   if (isAuthenticated) {
     try {
       const responseData = await LoaderRented();
-<<<<<<< HEAD
       return responseData.otpisane.filter((el) => el.student.id == id);
-=======
-      let responseData2 = responseData.otpisane.filter(el => el.student.id == id)
-      data = responseData2
->>>>>>> 01765ffbbd3fc98aebe424e2279ecee0e2ef5f63
     } catch (error) {
       console.error("Error fetching data:", error);
     }
