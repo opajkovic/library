@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import SettingsForm from "../../components/UI/SettingsForm";
-import "./EditStudent.css";
 import { useLoaderData } from "react-router";
+import SettingsForm from "../../components/UI/SettingsForm";
 import { createChangeHandler, getInvalidClass } from "../../util/Functions";
+import "./EditStudent.css";
 
 const EditStudent = () => {
   const [studentInfo, setStudentInfo] = useState({

@@ -1,12 +1,12 @@
-import React, { useRef } from "react";
-import imgSingup from "../../assets/login.png";
-import { FaAt, FaLock } from "react-icons/fa";
-import "../singup/Singup.css";
+import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import imgSingup from "../../assets/login.png";
+import { FaAt, FaLock } from "react-icons/fa";
 import apiCalls, { apiSing } from "../../api/apiCalls";
-import "react-toastify/dist/ReactToastify.css";
 import { auth } from "../../services/AuthService";
+import "react-toastify/dist/ReactToastify.css";
+import "../singup/Singup.css";
 
 
 export default function Login() {

@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
-import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
+import { useEffect, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
 import UserInfo from "../studentProfile/components/UserInfo";
 import api from "../../api/apiCalls";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { deleteLibrarian } from "../../redux/actions";
-import { toast } from "react-toastify";
 import { auth } from "../../services/AuthService";
 
 export default function LibrarianProfile() {
@@ -21,17 +20,22 @@ export default function LibrarianProfile() {
   }, []);
 
   const handleDelete = async () => {
-    if (!!localStorage.getItem('token') && ((localStorage.getItem("role") == 'Bibliotekar' && localStorage.getItem("id") == fetchedData.id) || localStorage.getItem("role") == 'Administrator')) {  
-      try{
-        api.delete(`/users/${fetchedData.id}`);
+    if (
+      !!localStorage.getItem("token") &&
+      ((localStorage.getItem("role") == "Bibliotekar" &&
+        localStorage.getItem("id") == fetchedData.id) ||
+        localStorage.getItem("role") == "Administrator")
+    ) {
+      try {
+        await api.delete(`/users/${fetchedData.id}`);
         dispatch(deleteLibrarian(librariansData, fetchedData.id));
-        toast.success("Bibliotekar izbrisan")
-        navigate('/librarians')
-      }catch (err){
-        toast.error(err.response.data.date)
+        toast.success("Bibliotekar izbrisan");
+        navigate("/librarians");
+      } catch (err) {
+        toast.error(err.response.data.date);
       }
-    }else{
-      toast.error("Nemate pravo iizbrisati ovog bibliotekara!")
+    } else {
+      toast.error("Nemate pravo iizbrisati ovog bibliotekara!");
     }
   };
 
@@ -46,7 +50,7 @@ export default function LibrarianProfile() {
         reset={true}
         deleteMssg={true}
         editPath={`/librarians/${fetchedData.id}/edit`}
-        handleDelete={()=>handleDelete()}
+        handleDelete={() => handleDelete()}
       />
       <div className="student-info-wrapper">
         <UserInfo userInfo={userInfo} />
@@ -62,7 +66,6 @@ export const LibrarianProfileLoader = async ({ params }) => {
     try {
       const response = await api.get(`/users/${id}`);
       const responseData = response.data.data;
-  
       if (responseData.role == "Bibliotekar") {
         return responseData;
       } else {
@@ -72,7 +75,7 @@ export const LibrarianProfileLoader = async ({ params }) => {
       console.error("Loader function error:", error);
       throw error;
     }
-  }else{
-    return []
+  } else {
+    return [];
   }
 };

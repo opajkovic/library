@@ -1,6 +1,5 @@
+import { NavLink, useParams } from "react-router-dom";
 import "./Titles.css";
-import { useParams } from "react-router";
-import { NavLink } from "react-router-dom";
 
 export default function Titles() {
   const params = useParams();
@@ -16,7 +15,7 @@ export default function Titles() {
         ? "active-evidence-link"
         : undefined,
     },
-    
+
     { to: `/books/${params.id}/multimedija`, label: "Multimedija" },
   ];
   return (

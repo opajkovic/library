@@ -1,17 +1,16 @@
-import React from "react";
-import "./ReservationList.css";
+import { Link } from "react-router-dom";
 import ReservationItem from "../../components/ReservationItem";
 import { FaCalendarAlt } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import "./ReservationList.css";
 
-export default function ReservationList({reservations}) {
+export default function ReservationList({ reservations }) {
   return (
     <div className="reservationList">
       <h2 className="subTitle">Rezervacije knjiga</h2>
       <div className="list">
-        {reservations.map((reservation, i) => {
-          if(i < 5){
-            return<ReservationItem key={i} reservation={reservation} />
+        {reservations.map((item, index) => {
+          if (index < 5) {
+            return <ReservationItem key={index} reservation={item} />;
           }
         })}
       </div>

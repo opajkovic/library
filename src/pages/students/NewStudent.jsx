@@ -1,9 +1,9 @@
+import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 import useInput from "../../hooks/useInput";
 import SettingsForm from "../../components/UI/SettingsForm";
-import { useNavigate } from "react-router";
 import api from "../../api/apiCalls";
 import "./NewStudent.css";
-import { toast } from "react-toastify";
 
 const nameRegex =
   /^[A-Za-zćčžšđĆČŽŠĐ]+ [A-Za-zćčžšđĆČŽŠĐ]+(?: [A-Za-zćčžšđĆČŽŠĐ]+)?$/;

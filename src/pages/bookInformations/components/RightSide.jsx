@@ -1,5 +1,5 @@
-import "../BookInfo.css";
 import ActivityList from "../../dashboard/layouts/activityList/ActivityList";
+import "../BookInfo.css";
 
 export default function RightSide({bookInfo, hide}) {
   return (

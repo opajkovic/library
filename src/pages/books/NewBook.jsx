@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import SettingsForm from "../../components/UI/SettingsForm";
-import "./NewBook.css";
 import { useLoaderData, useNavigate } from "react-router";
-import { filterAndMap } from "../../util/Functions";
 import { useDispatch, useSelector } from "react-redux";
+import SettingsForm from "../../components/UI/SettingsForm";
+import { filterAndMap } from "../../util/Functions";
 import { updateFormData } from "../../redux/new-book-data";
 import api from "../../api/apiCalls";
 import { updateCurrentData } from "../../redux/new-book-current";
 import { auth } from "../../services/AuthService";
+import "./NewBook.css";
 
 const NewBook = () => {
   const dispatch = useDispatch();
@@ -172,7 +172,6 @@ const NewBook = () => {
     setPublisherValue(currentBookData.izdavac);
     setAuthorValue(currentBookData.authors);
     setNextLevel(false);
-
     setNameIsValid(nameValue !== "");
     setYearIsValid(yearValue !== "");
     setQuantityIsValid(quantityValue !== "");

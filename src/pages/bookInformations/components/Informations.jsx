@@ -17,7 +17,9 @@ export default function Informations({ bookInfo }) {
         </li>
         <li>
           <span> Autor </span>{" "}
-          {bookInfo.authors.length > 0 ? bookInfo.authors[0].name + " " + bookInfo.authors[0].surname : ''}
+          {bookInfo.authors.length > 0
+            ? bookInfo.authors[0].name + " " + bookInfo.authors[0].surname
+            : ""}
           {/* {bookInfo.authors[0].name + " " + bookInfo.authors[0].surname} */}
         </li>
         <li>
@@ -28,8 +30,8 @@ export default function Informations({ bookInfo }) {
         </li>
       </ul>
       <div className="book-description">
-        <span> Kratki sadržaj (Storyline) </span> 
-        <div dangerouslySetInnerHTML={{__html:htmlString}}/>
+        <span> Kratki sadržaj (Storyline) </span>
+        <div dangerouslySetInnerHTML={{ __html: htmlString }} />
       </div>
     </div>
   );

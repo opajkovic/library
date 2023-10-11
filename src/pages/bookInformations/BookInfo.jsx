@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import "./BookInfo.css";
-import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
 import { useLoaderData, useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
 import RightSide from "./components/RightSide";
 import api from "../../api/apiCalls";
 import ConditionalContainer from "./components/ConditionalContainer";
-import { useDispatch, useSelector } from "react-redux";
 import { deleteBook } from "../../redux/actions";
-import { toast } from "react-toastify";
 import { auth } from "../../services/AuthService";
+import "./BookInfo.css";
 
 export default function BookInfo({
   specification,
@@ -20,7 +20,6 @@ export default function BookInfo({
   excessEvidence,
   archivedEvidence,
 }) {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const booksData = useSelector((state) => state.books);
@@ -45,19 +44,18 @@ export default function BookInfo({
     setBook(fetchedData);
   }, []);
 
-  
   const handleDelete = async () => {
-    if(auth.adminRole()){
-      try{
-        const response = await api.delete(`/books/${fetchedData.id}/destroy`);
+    if (auth.adminRole()) {
+      try {
+        await api.delete(`/books/${fetchedData.id}/destroy`);
         dispatch(deleteBook([booksData], fetchedData.id));
         toast.success("Izbrisana knjiga");
         navigate("/books");
-      }catch(err){
-        toast.error(err.response.data.message)
+      } catch (err) {
+        toast.error(err.response.data.message);
       }
-    }else{
-      toast.error("Nemate pravo izbrisati knjigu")
+    } else {
+      toast.error("Nemate pravo izbrisati knjigu");
     }
   };
 
@@ -105,7 +103,7 @@ export const BookLoader = async ({ params }) => {
       console.error("Loader function error:", error);
       throw error;
     }
-  }else{
-    return []
+  } else {
+    return [];
   }
 };

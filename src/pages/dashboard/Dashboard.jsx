@@ -1,18 +1,16 @@
-import React from "react";
+import { useState, useEffect } from "react";
+import { useLoaderData } from "react-router";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import ReservationList from "./layouts/reservationList/ReservationList";
 import ActivityList from "./layouts/activityList/ActivityList";
 import Chart from "../../components/UI/Chart";
-import { useEffect } from "react";
-import { useLoaderData } from "react-router";
-import { useState } from "react";
 import api from "../../api/apiCalls";
 import { auth } from "../../services/AuthService";
 import { LoaderRented } from "../rentingBooks/rentingBooks";
 import "./dashboard.css";
 
 export default function Dashboard() {
-  let [reservations, setReservations] = useState({
+  const [reservations, setReservations] = useState({
     active: [
       {
         student: { name: "loading...", surname: "loading..." },
@@ -21,8 +19,8 @@ export default function Dashboard() {
       },
     ],
   });
-  const fetchedDataReservation = useLoaderData();
-  let [izdate, setIzdate] = useState({
+
+  const [rented, setRented] = useState({
     izdate: [
       {
         bibliotekar0: { name: "loading...", surname: "loading..." },
@@ -33,31 +31,33 @@ export default function Dashboard() {
     prekoracene: [],
   });
 
+  const fetchedDataReservation = useLoaderData();
+
   useEffect(() => {
     setReservations(fetchedDataReservation);
-    let fetchBorrows = async () => {
+    const fetchData = async () => {
       try {
-        let response = await LoaderRented();
-        setIzdate(response);
+        const data = await LoaderRented();
+        setRented(data);
       } catch (err) {
         console.error(err);
       }
     };
-    fetchBorrows();
+    fetchData();
   }, []);
 
   return (
     <>
       <PageTitle title="Dashboard" />
       <div className="dashboard-wrapper">
-        <ActivityList izdate={izdate.izdate} />
+        <ActivityList rented={rented.izdate} />
         <div className="right-side">
           <ReservationList reservations={reservations.active} />
           <Chart
             reservations={reservations.active.length}
             izdate={{
-              izdate: izdate.izdate.length,
-              prekoracene: izdate.prekoracene.length,
+              izdate: rented.izdate.length,
+              prekoracene: rented.prekoracene.length,
             }}
           />
         </div>

@@ -1,4 +1,4 @@
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useParams} from "react-router-dom";
 import {
   FaCopy,
   FaFile,
@@ -6,10 +6,8 @@ import {
   FaCalendarCheck,
   FaCalendarAlt,
 } from "react-icons/fa";
-import "./EvidenceTable.css";
 import Table from "../../../components/UI/Table";
-import { useEffect, useState } from "react";
-import api from "../../../api/apiCalls";
+import "./EvidenceTable.css";
 
 export default function EvidenceTable({ headers, data }) {
   const params = useParams();
@@ -42,8 +40,6 @@ export default function EvidenceTable({ headers, data }) {
     },
   ];
 
-  useEffect(()=>{
-  },[])
   return (
     <div>
       <ul className="evidence-list">

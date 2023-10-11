@@ -1,16 +1,17 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 import useInput from "../../hooks/useInput";
 import SettingsForm from "../../components/UI/SettingsForm";
-import "./NewAuthor.css";
 import api from "../../api/apiCalls";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router";
+import "./NewAuthor.css";
 
-const nameRegex = /^[A-Za-zćčžšđĆČŽŠĐ]+ [A-Za-zćčžšđĆČŽŠĐ]+(?: [A-Za-zćčžšđĆČŽŠĐ]+)?$/;
+const nameRegex =
+  /^[A-Za-zćčžšđĆČŽŠĐ]+ [A-Za-zćčžšđĆČŽŠĐ]+(?: [A-Za-zćčžšđĆČŽŠĐ]+)?$/;
 const nameTest = (value) => nameRegex.test(value.trim());
 
 const NewAuthor = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const {
     value: authorValue,
     isValid: authorIsValid,
@@ -39,16 +40,16 @@ const NewAuthor = () => {
   };
 
   const submitHandler = async () => {
-    try{
+    try {
       const response = await api.post(`/authors/store`, formData);
       if (response.status === 200) {
-        toast.success("Dodat autor")
+        toast.success("Dodat autor");
         setRichTextareaValue("");
         resetAuthor();
-        navigate('/authors')
+        navigate("/authors");
       }
-    }catch(err){
-      toast.error(err.response.data.message)
+    } catch (err) {
+      toast.error(err.response.data.message);
     }
   };
 
@@ -86,8 +87,8 @@ const NewAuthor = () => {
       path="/authors"
       pathDashboard="/dashboard"
       formIsValid={formIsValid}
-      reset={()=>resetHandler()}
-      submit={()=>submitHandler()}
+      reset={() => resetHandler()}
+      submit={() => submitHandler()}
       className="new-author-form"
     />
   );

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { redirect, useLoaderData, useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileTitle from "../../layout/profileTitle/ProfileTitle";

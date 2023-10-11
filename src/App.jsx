@@ -200,7 +200,7 @@ const router = createBrowserRouter(
         />
         <Route path="/authors/new" element={<AdminRoute><NewAuthor /></AdminRoute>} />
 
-        {/* Izdavanje knjiga routes */}
+        {/* Renting routes */}
         <Route path="/rentingBooks/izdate-knjige" loader={LoaderRented} element={<BibliotekarRoute><RentingBooks /></BibliotekarRoute>} />
         <Route
           path="/rentingBooks/vracene-knjige"

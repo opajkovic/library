@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import "./AuthorProfile.css";
-import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
+import { useEffect, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
 import AuthorInfo from "./components/AuthorInfo";
 import api from "../../api/apiCalls";
 import { deleteAuthor } from "../../redux/actions";
-import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
 import { auth } from "../../services/AuthService";
+import "./AuthorProfile.css";
 
 export default function AuthorProfile() {
   const navigate = useNavigate();
@@ -20,23 +20,20 @@ export default function AuthorProfile() {
     setAuthor(fetchedData);
   }, []);
 
-  
   const handleDelete = async () => {
-    if(auth.adminRole()){
+    if (auth.adminRole()) {
       try {
-        const response = await api.delete(`/authors/${fetchedData.id}`);
-        const data = await response.data;
+        await api.delete(`/authors/${fetchedData.id}`);
         dispatch(deleteAuthor([authorsData], fetchedData.id));
-        toast.success("Izbrisan autor")
+        toast.success("Izbrisan autor");
         navigate("/authors");
       } catch (err) {
         toast.error(err.response.data.data);
       }
-    }else{
-      toast.error("Nemate prava za brisanje autora.")
+    } else {
+      toast.error("Nemate prava za brisanje autora.");
     }
-  }
-  
+  };
 
   return (
     <>
@@ -48,12 +45,13 @@ export default function AuthorProfile() {
         change={true}
         deleteMssg={true}
         editPath={`/authors/${fetchedData.id}/edit`}
-        handleDelete={()=>handleDelete()}
+        handleDelete={() => handleDelete()}
       />
       <AuthorInfo userInfo={author} />
     </>
   );
 }
+
 export async function LoaderAuthorProfile({ params }) {
   const id = params.id;
   const isAuthenticated = auth.getAuthStatus();
@@ -66,7 +64,7 @@ export async function LoaderAuthorProfile({ params }) {
       console.error("Loader function error:", error);
       throw error;
     }
-  }else{
-    return []
+  } else {
+    return [];
   }
 }

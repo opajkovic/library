@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import SettingsForm from "../../components/UI/SettingsForm";
-import "./AuthorEdit.css";
 import { useLoaderData, useNavigate, useParams } from "react-router";
+import { toast } from "react-toastify";
+import SettingsForm from "../../components/UI/SettingsForm";
 import { createChangeHandler, getInvalidClass } from "../../util/Functions";
 import api from "../../api/apiCalls";
-import { toast } from "react-toastify";
+import "./AuthorEdit.css";
 
 const EditAuthor = () => {
   const [richTextReset, setRichTextReset] = useState(false);
@@ -43,14 +43,14 @@ const EditAuthor = () => {
   };
 
   const submitHandler = async () => {
-    try{
+    try {
       const response = await api.put(`/authors/${params.id}`, formData);
       if (response.status === 200) {
-        toast.success("Autor izmijenjen")
-        navigate("/authors")
+        toast.success("Autor izmijenjen");
+        navigate("/authors");
       }
-    }catch(err){
-      toast.error(err.response.data.message)
+    } catch (err) {
+      toast.error(err.response.data.message);
     }
   };
 
@@ -58,6 +58,7 @@ const EditAuthor = () => {
     setAuthorInfo({ ...fetchedData, name: nameSurname });
     setRichTextReset(!richTextReset);
   };
+
   return (
     <SettingsForm
       input={[

@@ -1,37 +1,45 @@
-import React, { useEffect, useState } from "react";
-import "./activities.css";
+import { useEffect, useState } from "react";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import ActivitiItem from "./components/ActivitiItem";
-import { useOutletContext } from "react-router";
 import { LoaderRented } from "../rentingBooks/rentingBooks";
+import "./activities.css";
 
 export default function Activities() {
-  const { setRoute } = useOutletContext();  
-  let [izdate, setIzdate] = useState({izdate: [{bibliotekar0: {name: 'loading...', surname: 'loading...'}, knjiga: {title: 'loading...'}, student: {name: 'loading...', surname: 'loading...'}}], prekoracene: []})
+  const [rented, setRented] = useState({
+    izdate: [
+      {
+        bibliotekar0: { name: "loading...", surname: "loading..." },
+        knjiga: { title: "loading..." },
+        student: { name: "loading...", surname: "loading..." },
+      },
+    ],
+    prekoracene: [],
+  });
 
   useEffect(() => {
-    window.scrollTo({top: 0})
-    setRoute("activities");
-    let fetchBorrows = async() => {
-      try{
-        let response = await LoaderRented()
-        setIzdate(response)
-      }catch(err){
-        console.error(err)
+    window.scrollTo({ top: 0 });
+    const fetchData = async () => {
+      try {
+        const response = await LoaderRented();
+        setRented(response);
+      } catch (err) {
+        console.error(err);
       }
-    }
-    fetchBorrows()
+    };
+    fetchData();
   }, []);
+
   return (
     <div className="activities">
       <PageTitle title={"Prikaz aktivnosti"} />
-      {/* isprobavanje */}
       <div className="page-wrapper">
-      {(izdate.izdate != undefined && izdate.izdate[0].bibliotekar0.name != 'loading...') ? izdate.izdate.map((izdat, i) => {
-            return(<ActivitiItem key={i} data={izdat} />)
-        }) : 'loading...'}
+        {rented.izdate != undefined &&
+        rented.izdate[0].bibliotekar0.name != "loading..."
+          ? rented.izdate.map((item, index) => {
+              return <ActivitiItem key={index} data={item} />;
+            })
+          : "loading..."}
       </div>
-      {/* kraj  isprobavanja */}
     </div>
   );
 }
