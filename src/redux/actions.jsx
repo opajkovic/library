@@ -23,7 +23,6 @@ export const filterSearchedData = (data, headers, inputValue) => {
             if (header.dataKey.includes("+")) {
               const splitPlus = header.dataKey.split("+");
               const splitPlusFirst = splitPlus[0].split(".");
-              console.log(splitPlusFirst);
               const splitPlusSecond = splitPlus[1].split(".");
               columnValue =
                 item[splitPlusFirst[0]][splitPlusFirst[1]] +
@@ -42,7 +41,6 @@ export const filterSearchedData = (data, headers, inputValue) => {
           }
         });
       });
-
       dispatch(searchedData(filteredData || []));
     } catch (error) {
       console.error("Error filtering/searching data:", error);

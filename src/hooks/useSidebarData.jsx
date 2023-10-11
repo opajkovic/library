@@ -117,7 +117,6 @@ export function useSidebarData(
   const dataToDisplay = data.slice(startIndex, endIndex);
   const pageCount = Math.ceil(data.length / itemsPerPage);
 
-  console.log(dataToDisplay)
   return {
     dataToDisplay,
     pageCount,

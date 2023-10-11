@@ -69,7 +69,7 @@ export default function ProfileEvidenceReturned() {
   );
 }
 
-export let loaderTestReturned = async ({ params }) => {
+export const loaderTestReturned = async ({ params }) => {
   const id = params.id;
   const isAuthenticated = auth.getAuthStatus();
   if (isAuthenticated) {

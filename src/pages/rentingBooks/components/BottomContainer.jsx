@@ -1,9 +1,9 @@
-import "../rentingBooks.css";
 import RentingOptions from "../../rentingBooks/components/RentingOptions";
 import Table from "../../../components/UI/Table";
 import TableControl from "../../../components/UI/TableControl";
 import Pagination from "../../../components/UI/Pagination";
 import { FaLevelUpAlt, FaRedo, FaRegFile } from "react-icons/fa";
+import "../rentingBooks.css";
 
 export default function BottomContainer(props) {
   return (
@@ -14,7 +14,7 @@ export default function BottomContainer(props) {
           title={props.title}
           hide="true"
           searchGlobal={props.searchGlobal}
-          itemsPerPageHandler={props.itemPerPageHandler}
+          itemsPerPageHandler={props.itemsPerPageHandler}
         />
         <Table
           mainHeader=""

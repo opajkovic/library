@@ -12,7 +12,7 @@ export function useProfileEvidence(headers) {
 
   const [userInfo, setUserInfo] = useState();
   const [data, setData] = useState([]);
-  const [searchData, setSearchData] = useState();
+  const [searchData, setSearchData] = useState([]);
   const [search, setSearch] = useState("");
 
   const [currentPage, setCurrentPage] = useState(0);
@@ -41,7 +41,7 @@ export function useProfileEvidence(headers) {
 
   useEffect(() => {
     if (search !== "") {
-      setData(filterSearchedData(fetchData, headers, search));
+      setData(searchedData);
       if (resetPagination) {
         setCurrentPage(0);
         setResetPagination(false);
