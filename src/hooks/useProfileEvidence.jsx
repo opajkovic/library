@@ -21,6 +21,7 @@ export function useProfileEvidence(headers) {
 
   const fetchData = useLoaderData();
   const searchedData = useSelector((state) => state.search.searchData);
+  const rentingData = useSelector(state => state.rentingBooks);
 
   const handlePageClick = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
@@ -47,11 +48,11 @@ export function useProfileEvidence(headers) {
         setResetPagination(false);
       }
     } else {
-      if (searchedData !== null && searchedData.length !== 0) {
-        setData(searchedData);
+      if (rentingData !== null && rentingData.length !== 0) {
+        setData(rentingData);
       }
     }
-  }, [search, searchedData]);
+  }, [search, rentingData]);
 
   const handleGlobalSearch = (event) => {
     const searchValue = event.target.value.toLowerCase();
