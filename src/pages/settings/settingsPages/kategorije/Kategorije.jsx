@@ -1,70 +1,26 @@
-import "./kategorije.css";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
 import Menu from "../../layouts/menu/Menu";
-import { useNavigate, useLoaderData } from "react-router";
-import { useEffect, useState } from "react";
 import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import api from "../../../../api/apiCalls";
-import { useDispatch, useSelector } from "react-redux";
-import { filterSearchedData } from "../../../../redux/actions";
+import { useSettingsData } from "../../../../hooks/useSettings";
 import { auth } from "../../../../services/AuthService";
+import "./kategorije.css";
 
 const headers = [
   { headerName: "Kategorije", sort: true, dropdown: true, dataKey: "name" },
 ];
 
 export default function Kategorije() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const [categories, setCategories] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
-  const [search, setSearch] = useState("");
-
-  const fetchedData = useLoaderData();
-  const searchData = useSelector((state) => state.search.searchData);
-
-  const handlePageClick = (selectedPage) => {
-    setCurrentPage(selectedPage.selected);
-  };
-
-  const itemPerPageHandler = (value) => {
-    setItemsPerPage(value);
-  };
-
-  useEffect(() => {
-    setCategories(fetchedData);
-  }, []);
-
-  useEffect(() => {
-    if (search.length > 0) {
-      setCategories(searchData);
-    } else {
-      setCategories(fetchedData);
-    }
-  }, [search, fetchedData]);
-
-  const handleClick = () => {
-    navigate("./new");
-  };
-
-  const handleGlobalSearch = (event) => {
-    const searchValue = event.target.value.toLowerCase();
-    setSearch(searchValue);
-    dispatch(filterSearchedData(fetchedData, headers, searchValue));
-  };
-
-  const handleColumnSearch = (headerName, searchValue) => {
-    setSearch(searchValue);
-    dispatch(filterSearchedData(fetchedData, headerName, searchValue));
-  };
-
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const categoriesToDisplay = categories.slice(startIndex, endIndex);
-  const pageCount = Math.ceil(categories.length / itemsPerPage);
+  const {
+    dataToDisplay: categoriesToDisplay,
+    pageCount,
+    handlePageClick,
+    itemPerPageHandler,
+    handleGlobalSearch,
+    searchColumn,
+    handleClick,
+  } = useSettingsData(headers);
 
   return (
     <div>
@@ -78,7 +34,7 @@ export default function Kategorije() {
           headers={headers}
           tableData={categoriesToDisplay}
           searchGlobal={handleGlobalSearch}
-          searchColumn={handleColumnSearch}
+          searchColumn={searchColumn}
           options={[
             {
               text: "Izmijeni kategoriju",
@@ -111,7 +67,7 @@ export const CategoryLoader = async () => {
       console.error("Loader function error:", error);
       throw error;
     }
-  }else{
-    return []
+  } else {
+    return [];
   }
 };

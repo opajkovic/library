@@ -1,70 +1,26 @@
-import React, { useEffect, useState } from "react";
-import "./pismo.css";
 import PageTitle from "../../../../components/pageTitle/PageTitle";
 import Menu from "../../layouts/menu/Menu";
-import { useLoaderData, useNavigate } from "react-router";
 import SettingsTable from "../../components/SettingsTable";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import api from "../../../../api/apiCalls";
-import { useDispatch, useSelector } from "react-redux";
-import { filterSearchedData } from "../../../../redux/actions";
 import { auth } from "../../../../services/AuthService";
+import { useSettingsData } from "../../../../hooks/useSettings";
+import "./pismo.css";
 
 const headers = [
   { headerName: "Pismo", sort: true, dropdown: true, dataKey: "name" },
 ];
 
 export default function Pismo() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const [language, setLanguage] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
-  const [search, setSearch] = useState("");
-
-  const fetchedData = useLoaderData();
-  const searchData = useSelector((state) => state.search.searchData);
-
-  const handlePageClick = (selectedPage) => {
-    setCurrentPage(selectedPage.selected);
-  };
-
-  const itemPerPageHandler = (value) => {
-    setItemsPerPage(value);
-  };
-
-  useEffect(() => {
-    setLanguage(fetchedData);
-  }, []);
-
-  useEffect(() => {
-    if (search.length > 0) {
-      setLanguage(searchData);
-    } else {
-      setLanguage(fetchedData);
-    }
-  }, [search, fetchedData]);
-
-  const handleClick = () => {
-    navigate("./new");
-  };
-
-  const handleGlobalSearch = (event) => {
-    const searchValue = event.target.value.toLowerCase();
-    setSearch(searchValue);
-    dispatch(filterSearchedData(fetchedData, headers, searchValue));
-  };
-
-  const handleColumnSearch = (headerName, searchValue) => {
-    setSearch(searchValue);
-    dispatch(filterSearchedData(fetchedData, headerName, searchValue));
-  };
-
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const languageToDisplay = language.slice(startIndex, endIndex);
-  const pageCount = Math.ceil(language.length / itemsPerPage);
+  const {
+    dataToDisplay: languageToDisplay,
+    pageCount,
+    handlePageClick,
+    itemPerPageHandler,
+    handleGlobalSearch,
+    searchColumn,
+    handleClick,
+  } = useSettingsData(headers);
 
   return (
     <div>
@@ -78,7 +34,7 @@ export default function Pismo() {
           tableData={languageToDisplay}
           headers={headers}
           searchGlobal={handleGlobalSearch}
-          searchColumn={handleColumnSearch}
+          searchColumn={searchColumn}
           options={[
             {
               text: "Izmijeni pismo",
@@ -111,7 +67,7 @@ export const LanguagesLoader = async () => {
       console.error("Loader function error:", error);
       throw error;
     }
-  }else{
-    return []
+  } else {
+    return [];
   }
 };

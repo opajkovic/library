@@ -9,7 +9,7 @@ export default function SettingsTable(props) {
       <TableControl
         title={props.title}
         onClick={props.onClick}
-        itemsPerPageHandler={props.itemPerPageHandler}
+        itemsPerPageHandler={props.itemsPerPageHandler}
         searchGlobal={props.searchGlobal}
       />
       <Table
