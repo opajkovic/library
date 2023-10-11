@@ -6,6 +6,7 @@ import { filterSearchedData } from "../../../redux/actions";
 import ProfileEvidence from "../components/ProfileEvidence";
 import api from "../../../api/apiCalls";
 import { auth } from "../../../services/AuthService";
+import { userInfoLoader } from "../../../util/UserInfo";
 
 const headers = [
   {
@@ -69,21 +70,7 @@ export default function ProfileEvidenceReserved() {
     dispatch(updateRentingData(loaderData));
     setSearchReserve(loaderData);
     setReserveData(loaderData);
-    const loaderFunction = async () => {
-      try {
-        const response = await api.get(`/users/${id}`);
-        if (response.data.data.role === "Učenik") {
-          setUserInfo(response.data.data);
-        } else if (response.data.data.role === "Bibliotekar") {
-          navigate(`/librarians/${id}`);
-        } else if (response.data.data.role === "Administrator") {
-          navigate(`/administrators/${id}`);
-        }
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    };
-    loaderFunction();
+    userInfoLoader(id, setUserInfo, navigate);
   }, []);
 
   useEffect(() => {

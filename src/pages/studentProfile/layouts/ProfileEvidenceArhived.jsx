@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateRentingData } from "../../../redux/renting-books";
 import { filterSearchedData } from "../../../redux/actions";
 import ProfileEvidence from "../components/ProfileEvidence";
-import api from "../../../api/apiCalls";
+import { userInfoLoader } from "../../../util/UserInfo";
 import { auth } from "../../../services/AuthService";
 import { reservationLoader } from "../../dashboard/Dashboard";
 
@@ -70,21 +70,7 @@ export default function ProfileEvidenceArchived() {
     dispatch(updateRentingData(loaderData));
     setSearchArchive(loaderData);
     setArchiveData(loaderData);
-    const loaderFunction = async () => {
-      try {
-        const response = await api.get(`/users/${id}`);
-        if (response.data.data.role === "Učenik") {
-          setUserInfo(response.data.data);
-        } else if (response.data.data.role === "Bibliotekar") {
-          navigate(`/librarians/${id}`);
-        } else if (response.data.data.role === "Administrator") {
-          navigate(`/administrators/${id}`);
-        }
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    };
-    loaderFunction();
+    userInfoLoader(id, setUserInfo, navigate);
   }, []);
 
   useEffect(() => {
@@ -139,7 +125,6 @@ export const loaderTestArchived = async ({ params }) => {
   if (isAuthenticated) {
     try {
       const responseData = await reservationLoader();
-      console.log(responseData.archive);
       return responseData.archive.filter((el) => el.student.id == id);
     } catch (error) {
       console.error("Error fetching data:", error);

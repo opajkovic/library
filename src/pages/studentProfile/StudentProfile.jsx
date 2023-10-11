@@ -1,15 +1,14 @@
-import React, { useEffect } from "react";
-import "./studentProfile.css";
+import React, { useEffect, useState } from "react";
+import { redirect, useLoaderData, useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
 import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
-import { redirect, useLoaderData, useNavigate} from "react-router";
 import LinkWrapper from "./components/LinkWrapper";
 import UserInfo from "./components/UserInfo";
-import { useState } from "react";
 import api from "../../api/apiCalls";
 import { deleteStudent } from "../../redux/actions";
-import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { auth } from "../../services/AuthService";
+import "./studentProfile.css";
 
 export default function StudentProfile() {
   const navigate = useNavigate();
@@ -23,24 +22,27 @@ export default function StudentProfile() {
   }, []);
 
   const handleDelete = async () => {
-    if(localStorage.getItem("role") != 'Student' || (localStorage.getItem("role") == 'Student' && localStorage.getItem("id") == id)){
-    try {
-      const response = await api.delete(`/users/${fetchedData.id}`);
-      toast.success("Izbrisan student");
-      dispatch(deleteStudent([studentsData], fetchedData.id));
-      navigate('/students');
-    } catch (err) {
-      if (err.response && err.response.data.message) {
-        toast.error(err.response.data.message);
-      } else {
-        console.error(err);
+    if (
+      localStorage.getItem("role") != "Student" ||
+      (localStorage.getItem("role") == "Student" &&
+        localStorage.getItem("id") == id)
+    ) {
+      try {
+        await api.delete(`/users/${fetchedData.id}`);
+        toast.success("Izbrisan student");
+        dispatch(deleteStudent([studentsData], fetchedData.id));
+        navigate("/students");
+      } catch (err) {
+        if (err.response && err.response.data.message) {
+          toast.error(err.response.data.message);
+        } else {
+          console.error(err);
+        }
       }
+    } else {
+      toast.error("Nemate pravo izbrisati drugog studenta!");
     }
-  }else{
-    toast.error("Nemate pravo izbrisati drugog studenta!")
-  }
   };
-  
 
   return (
     <div>
@@ -53,7 +55,7 @@ export default function StudentProfile() {
         reset={true}
         deleteMssg={true}
         editPath={`/students/${fetchedData.id}/edit`}
-        handleDelete={()=>handleDelete()}
+        handleDelete={() => handleDelete()}
       />
       <div className="student-info-wrapper">
         <LinkWrapper />
@@ -70,7 +72,7 @@ export const StudentProfileLoader = async ({ params }) => {
     try {
       const response = await api.get(`/users/${id}`);
       const responseData = response.data.data;
-  
+
       if (responseData.role == "Učenik") {
         return responseData;
       } else if (response.data.data.role == "Bibliotekar") {
@@ -82,7 +84,7 @@ export const StudentProfileLoader = async ({ params }) => {
       console.error("Loader function error:", error);
       throw error;
     }
-  }else{
-    return []
+  } else {
+    return [];
   }
 };

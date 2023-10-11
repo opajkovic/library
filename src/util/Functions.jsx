@@ -1,5 +1,5 @@
 export const getInvalidClass = (value) => {
-  if (typeof value === 'number') {
+  if (typeof value === "number") {
     return value === "" ? "form-control invalid" : "form-control";
   }
 
@@ -18,9 +18,9 @@ export const createChangeHandler = (key, setState) => (event) => {
 
 export const filterAndMap = (dataArray, filterValue) => {
   const filteredData = dataArray.filter((item) => item.name === filterValue);
-  
+
   if (filteredData.length === 0) {
-    return false
+    return false;
   }
 
   return filteredData.map((item) => +item.id);
@@ -31,14 +31,16 @@ export function transformBookData(data) {
     return {
       id: item.id || null,
       name: item.title || null,
-      author: `${item.authors && item.authors[0]?.name || ''} ${item.authors && item.authors[0]?.surname || ''}`,
-      category: item.categories && item.categories[0]?.name || null,
-      available: item.samples ,
-      reserved: item.rSamples ,
-      rented: item.bSamples ,
+      author: `${(item.authors && item.authors[0]?.name) || ""} ${
+        (item.authors && item.authors[0]?.surname) || ""
+      }`,
+      category: (item.categories && item.categories[0]?.name) || null,
+      available: item.samples,
+      reserved: item.rSamples,
+      rented: item.bSamples,
       excess: item.fSamples,
       total: item.samples || null,
-      authors: [{id: item.authors.length > 0 ? item.authors[0].id : 0 }]
+      authors: [{ id: item.authors.length > 0 ? item.authors[0].id : 0 }],
     };
   });
 }
