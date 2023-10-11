@@ -1,16 +1,12 @@
 import { useEffect, useState } from "react";
-import { useLoaderData, useNavigate, useParams } from "react-router";
+import { useLoaderData } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { updateRentingData } from "../redux/renting-books";
 import { filterSearchedData } from "../redux/actions";
-import { userInfoLoader } from "../util/UserInfo";
 
-export function useProfileEvidence(headers) {
+export function useRenting(headers, path) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { id } = useParams();
 
-  const [userInfo, setUserInfo] = useState();
   const [data, setData] = useState([]);
   const [searchData, setSearchData] = useState([]);
   const [search, setSearch] = useState("");
@@ -32,13 +28,12 @@ export function useProfileEvidence(headers) {
   };
 
   useEffect(() => {
-    if (fetchData && fetchData.length !== 0) {
-      dispatch(updateRentingData(fetchData));
-      setData(fetchData);
-      setSearchData(fetchData);
-      userInfoLoader(id, setUserInfo, navigate);
+    if (fetchData) {
+      dispatch(updateRentingData(fetchData[path]));
+      setData(fetchData[path]);
+      setSearchData(fetchData[path]);
     }
-  }, [fetchData]);
+  }, [fetchData, path]);
 
   useEffect(() => {
     if (search !== "") {
@@ -81,6 +76,5 @@ export function useProfileEvidence(headers) {
     onPageChange: handlePageClick,
     pageCount: pageCount,
     tableData: dataToDisplay,
-    userInfo: userInfo,
   };
 }
