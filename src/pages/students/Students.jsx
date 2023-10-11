@@ -1,18 +1,13 @@
-import { useEffect, useState } from "react";
-import { useLoaderData, useNavigate } from "react-router";
 import PageTitle from "../../components/pageTitle/PageTitle";
 import Table from "../../components/UI/Table";
 import TableControl from "../../components/UI/TableControl";
 import Pagination from "../../components/UI/Pagination";
 import { FaEdit, FaFile, FaTrash } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteStudent, filterSearchedData } from "../../redux/actions";
+import { deleteStudent } from "../../redux/actions";
 import api from "../../api/apiCalls";
 import { updateStudentsData } from "../../redux/student-data";
-import { sortData } from "../../redux/actions";
-import { sortedData } from "../../redux/sort-data";
-import { toast } from "react-toastify";
 import { auth } from "../../services/AuthService";
+import { useSidebarData } from "../../hooks/useSidebarData";
 
 const headers = [
   {
@@ -27,108 +22,24 @@ const headers = [
 ];
 
 export default function Students() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const [students, setStudents] = useState([]);
-  const [search, setSearch] = useState("");
-
-  const [currentPage, setCurrentPage] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
-  const [resetPagination, setResetPagination] = useState(false);
-
-  const fetchedData = useLoaderData();
-  const searchData = useSelector((state) => state.search.searchData);
-  const updatedSortedData = useSelector((state) => state.sort.sortedData);
-  const studentsData = useSelector((state) => state.students);
-
-  const handlePageClick = (selectedPage) => {
-    setCurrentPage(selectedPage.selected);
-  };
-
-  const itemPerPageHandler = (value) => {
-    setItemsPerPage(value);
-  };
-
-  useEffect(() => {
-    dispatch(updateStudentsData(fetchedData));
-    setStudents(fetchedData);
-    dispatch(sortedData(fetchedData));
-  }, []);
-
-  useEffect(() => {
-    if (search !== "") {
-      setStudents(searchData);
-      if (resetPagination) {
-        setCurrentPage(0);
-        setResetPagination(false);
-      }
-    } else {
-      if (studentsData !== null) {
-        setStudents(studentsData);
-      }
-    }
-  }, [search, studentsData]);
-
-  const handleClick = () => {
-    navigate("/students/new");
-  };
-
-  const handleGlobalSearch = (event) => {
-    const searchValue = event.target.value.toLowerCase();
-    setSearch(searchValue);
-    setResetPagination(true);
-    dispatch(filterSearchedData(fetchedData, headers, searchValue));
-  };
-
-  const handleColumnSearch = (headerName, searchValue) => {
-    setSearch(searchValue);
-    setResetPagination(true);
-    dispatch(filterSearchedData(fetchedData, headerName, searchValue));
-  };
-
-  const handleSort = () => {
-    dispatch(sortData(students));
-  };
-
-  useEffect(() => {
-    setStudents(updatedSortedData);
-  }, [updatedSortedData]);
-
-  const handleDelete = async (id) => {
-    if (
-      localStorage.getItem("role") != "Student" ||
-      (localStorage.getItem("role") == "Student" &&
-        localStorage.getItem("id") == id)
-    ) {
-      try {
-        const response = await api.delete(`/users/${id}`);
-        toast.success("Izbrisan student");
-        dispatch(deleteStudent(studentsData, id));
-
-        if (search !== "") {
-          setStudents(searchData.filter((item) => item.id !== id));
-        } else {
-          setStudents(studentsData.filter((item) => item.id !== id));
-        }
-
-        navigate("/students");
-      } catch (err) {
-        if (err.response && err.response.data.message) {
-          toast.error(err.response.data.message);
-        } else {
-          console.error(err);
-        }
-      }
-    } else {
-      toast.error("Nemate pravo izbrisati drugog studenta!");
-    }
-  };
-
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const studentsToDisplay = students.slice(startIndex, endIndex);
-  const pageCount = Math.ceil(students.length / itemsPerPage);
+  const {
+    dataToDisplay: studentsToDisplay,
+    pageCount,
+    handlePageClick,
+    itemPerPageHandler,
+    handleGlobalSearch,
+    handleSort,
+    handleClick,
+    handleDelete,
+    handleColumnSearch,
+  } = useSidebarData(
+    headers,
+    "students",
+    deleteStudent,
+    updateStudentsData,
+    "/students/new",
+    false
+  );
 
   return (
     <>
@@ -165,9 +76,7 @@ export default function Students() {
             },
           ]}
         />
-        {students.length > 0 && (
-          <Pagination onPageChange={handlePageClick} pageCount={pageCount} />
-        )}
+        <Pagination onPageChange={handlePageClick} pageCount={pageCount} />
       </div>
     </>
   );
@@ -186,8 +95,6 @@ export async function LoaderStudents() {
           listOfStudents = [...listOfStudents, element];
         }
       });
-
-      // Now 'listOfStudents' contains the array of students.
       return listOfStudents;
     } catch (error) {
       console.error("Loader function error:", error);

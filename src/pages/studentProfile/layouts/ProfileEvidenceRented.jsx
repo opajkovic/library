@@ -41,7 +41,6 @@ const headers = [
 ];
 
 export default function ProfileEvidenceRented() {
-
   const {
     searchColumn,
     searchGlobal,

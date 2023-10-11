@@ -20,7 +20,6 @@ export function useProfileEvidence(headers) {
   const [resetPagination, setResetPagination] = useState(false);
 
   const fetchData = useLoaderData();
-  console.log(fetchData)
   const searchedData = useSelector((state) => state.search.searchData);
 
   const handlePageClick = (selectedPage) => {

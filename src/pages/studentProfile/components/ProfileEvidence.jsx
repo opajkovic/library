@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import "../studentProfile.css";
-import ProfileTitle from "../../../layout/profileTitle/ProfileTitle";
 import { useOutletContext, useParams } from "react-router";
+import ProfileTitle from "../../../layout/profileTitle/ProfileTitle";
 import LinkWrapper from "./LinkWrapper";
 import BottomContainer from "../../rentingBooks/components/BottomContainer";
+import "../studentProfile.css";
 
 export default function ProfileEvidence(props) {
   const params = useParams();

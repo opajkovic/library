@@ -1,6 +1,6 @@
-import "../studentProfile.css";
 import { useParams } from "react-router";
 import { NavLink } from "react-router-dom";
+import "../studentProfile.css";
 
 export default function LinkWrapper() {
   const params = useParams();
