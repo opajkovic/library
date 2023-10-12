@@ -14,10 +14,6 @@ const NewBook = () => {
   const navigate = useNavigate();
   const currentBookData = useSelector((state) => state.newBookCurrent);
 
-  const [categoryIsValid, setCategoryIsValid] = useState(false);
-  const [genreIsValid, setGenreIsValid] = useState(false);
-  const [authorIsValid, setAuthorIsValid] = useState(false);
-  const [publisherIsValid, setPublisherIsValid] = useState(false);
   const [nameIsValid, setNameIsValid] = useState(false);
   const [quantityIsValid, setQuantityIsValid] = useState(false);
   const [yearIsValid, setYearIsValid] = useState(false);
@@ -48,32 +44,20 @@ const NewBook = () => {
   const categoryChangeHandler = (newValue) => {
     setCategoryValue(newValue);
   };
-  const categoryHandler = (value) => {
-    setCategoryIsValid(value);
-  };
 
   const [genreValue, setGenreValue] = useState("");
   const genreChangeHandler = (newValue) => {
     setGenreValue(newValue);
-  };
-  const genreHandler = (value) => {
-    setGenreIsValid(value);
   };
 
   const [authorValue, setAuthorValue] = useState("");
   const authorChangeHandler = (newValue) => {
     setAuthorValue(newValue);
   };
-  const authorHandler = (value) => {
-    setAuthorIsValid(value);
-  };
 
   const [publisherValue, setPublisherValue] = useState("");
   const publisherChangeHandler = (newValue) => {
     setPublisherValue(newValue);
-  };
-  const publisherHandler = (value) => {
-    setPublisherIsValid(value);
   };
 
   const [nameValue, setNameValue] = useState(currentBookData.nazivKnjiga || "");
@@ -101,6 +85,11 @@ const NewBook = () => {
   const fetchedData = useLoaderData();
   const [data, setData] = useState({});
   const [authors, setAuthors] = useState([]);
+
+  const categoryIsValid = categoryValue !== "" ? true : false;
+  const genreIsValid = categoryValue !== "" ? true : false;
+  const authorIsValid = categoryValue !== "" ? true : false;
+  const publisherIsValid = categoryValue !== "" ? true : false;
 
   let formIsValid = false;
   if (
@@ -153,7 +142,7 @@ const NewBook = () => {
   const yearClasses =
     !yearIsValid && clickedYear ? "form-control invalid" : "form-control";
 
-  let fetchAuthors = async () => {
+  const fetchAuthors = async () => {
     try {
       const response = await api.get(`/authors`);
       const responseData = response.data.data;
@@ -188,6 +177,8 @@ const NewBook = () => {
     setNameValue("");
   };
 
+  console.log(categoryValue, genreValue, authorValue, publisherValue)
+
   return (
     <div className="new-book-position-handler">
       <SettingsForm
@@ -211,25 +202,13 @@ const NewBook = () => {
         select={[
           {
             options: data.categories,
-            input: {
-              label: "Izaberite kategoriju",
-              type: "text",
-              name: "category",
-              value: categoryValue,
-              onChange: categoryChangeHandler,
-            },
-            validHandler: categoryHandler,
+            label: "Izaberite kategoriju",
+            onChange: categoryChangeHandler,
           },
           {
             options: data.genres,
-            input: {
-              label: "Izaberite žanr",
-              type: "text",
-              name: "genre",
-              value: genreValue,
-              onChange: genreChangeHandler,
-            },
-            validHandler: genreHandler,
+            label: "Izaberite žanr",
+            onChange: genreChangeHandler,
           },
         ]}
         title="Nova knjiga"
@@ -247,25 +226,13 @@ const NewBook = () => {
         select={[
           {
             options: data.publishers,
-            input: {
-              label: "Izaberite izdavača",
-              type: "text",
-              name: "publishers",
-              value: publisherValue,
-              onChange: publisherChangeHandler,
-            },
-            validHandler: publisherHandler,
+            label: "Izaberite izdavača",
+            onChange: publisherChangeHandler,
           },
           {
             options: authors,
-            input: {
-              label: "Izaberite autore",
-              type: "text",
-              name: "authors",
-              value: authorValue,
-              onChange: authorChangeHandler,
-            },
-            validHandler: authorHandler,
+            label: "Izaberite autore",
+            onChange: authorChangeHandler,
           },
         ]}
         input={[
@@ -310,7 +277,7 @@ export async function LoaderCreateBook() {
       console.error("Loader function error:", error);
       throw error;
     }
-  }else{
-    return []
+  } else {
+    return [];
   }
 }

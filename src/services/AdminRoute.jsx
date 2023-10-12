@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "./AuthService";
 import { toast } from "react-toastify";
