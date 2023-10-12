@@ -11,6 +11,7 @@ import SecondRowHeaders from "./settingsForm components/SecondRowHeaders";
 const SettingsForm = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
+    props.submit();
   };
 
   return (
@@ -80,7 +81,7 @@ const SettingsForm = (props) => {
 
         <FormSubmitButtons
           disabled={!props.formIsValid}
-          submit={props.submit}
+          // submit={props.submit}
           reset={props.reset}
           dangerText={'Ponisti'}
           succesText={'Sacuvaj'}

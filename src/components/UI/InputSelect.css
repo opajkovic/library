@@ -1,4 +1,5 @@
 .input-select-container,
 .basic-multi-select {
   width: 100%;
+  max-width: 600px;
 }

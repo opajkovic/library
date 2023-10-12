@@ -7,11 +7,15 @@ import { updateFormData } from "../../redux/new-book-data";
 import api from "../../api/apiCalls";
 import { updateCurrentData } from "../../redux/new-book-current";
 import { auth } from "../../services/AuthService";
+import { blurHandler } from "../../util/NewBookFunctions";
+import { fetchAuthors } from "../../util/NewBookFunctions";
+import { getClasses } from "../../util/NewBookFunctions";
 import "./NewBook.css";
 
 const NewBook = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [nextLevel, setNextLevel] = useState(false);
   const currentBookData = useSelector((state) => state.newBookCurrent);
 
   const [nameIsValid, setNameIsValid] = useState(false);
@@ -21,41 +25,43 @@ const NewBook = () => {
   const [clickedName, setClickedName] = useState(false);
   const [clickedYear, setClickedYear] = useState(false);
   const [clickedQuantity, setClickedQuantity] = useState(false);
-  const [nextLevel, setNextLevel] = useState(false);
 
-  const nameBlurHandler = () => {
-    setClickedName(true);
-  };
-
-  const quantityBlurHandler = () => {
-    setClickedQuantity(true);
-  };
-
-  const yearBlurHandler = () => {
-    setClickedYear(true);
-  };
+  const nameBlurHandler = blurHandler(setClickedName);
+  const quantityBlurHandler = blurHandler(setClickedQuantity);
+  const yearBlurHandler = blurHandler(setClickedYear);
 
   const [richTextareaValue, setRichTextareaValue] = useState("");
   const richTextareaChangeHandler = (newValue) => {
     setRichTextareaValue(newValue);
   };
-
-  const [categoryValue, setCategoryValue] = useState("");
+  const [categoryValue, setCategoryValue] = useState({
+    value: "",
+    label: "",
+  });
   const categoryChangeHandler = (newValue) => {
     setCategoryValue(newValue);
   };
 
-  const [genreValue, setGenreValue] = useState("");
+  const [genreValue, setGenreValue] = useState({
+    value: "",
+    label: "",
+  });
   const genreChangeHandler = (newValue) => {
     setGenreValue(newValue);
   };
 
-  const [authorValue, setAuthorValue] = useState("");
+  const [authorValue, setAuthorValue] = useState({
+    value: "",
+    label: "",
+  });
   const authorChangeHandler = (newValue) => {
     setAuthorValue(newValue);
   };
 
-  const [publisherValue, setPublisherValue] = useState("");
+  const [publisherValue, setPublisherValue] = useState({
+    value: "",
+    label: "",
+  });
   const publisherChangeHandler = (newValue) => {
     setPublisherValue(newValue);
   };
@@ -65,7 +71,6 @@ const NewBook = () => {
     setNameValue(event.target.value);
     setNameIsValid(event.target.value !== "");
   };
-
   const [yearValue, setYearValue] = useState(
     currentBookData.godinaIzdavanja || ""
   );
@@ -73,7 +78,6 @@ const NewBook = () => {
     setYearValue(event.target.value);
     setYearIsValid(event.target.value !== "");
   };
-
   const [quantityValue, setQuantityValue] = useState(
     currentBookData.knjigaKolicina || ""
   );
@@ -81,16 +85,14 @@ const NewBook = () => {
     setQuantityValue(event.target.value);
     setQuantityIsValid(event.target.value !== "");
   };
-
   const fetchedData = useLoaderData();
   const [data, setData] = useState({});
   const [authors, setAuthors] = useState([]);
 
-  const categoryIsValid = categoryValue !== "" ? true : false;
-  const genreIsValid = categoryValue !== "" ? true : false;
-  const authorIsValid = categoryValue !== "" ? true : false;
-  const publisherIsValid = categoryValue !== "" ? true : false;
-
+  const categoryIsValid = categoryValue.value !== "";
+  const genreIsValid = genreValue.value !== "";
+  const authorIsValid = authorValue.value !== "";
+  const publisherIsValid = publisherValue.value !== "";
   let formIsValid = false;
   if (
     nameIsValid &&
@@ -117,7 +119,6 @@ const NewBook = () => {
       knjigaKolicina: quantityValue,
     };
     dispatch(updateFormData(formData));
-
     dispatch(
       updateCurrentData({
         nazivKnjiga: nameValue,
@@ -133,51 +134,34 @@ const NewBook = () => {
     navigate("/books/new/specifikacija");
   };
 
-  const nameClasses =
-    !nameIsValid && clickedName ? "form-control invalid" : "form-control";
-  const quantityClasses =
-    !quantityIsValid && clickedQuantity
-      ? "form-control invalid"
-      : "form-control";
-  const yearClasses =
-    !yearIsValid && clickedYear ? "form-control invalid" : "form-control";
-
-  const fetchAuthors = async () => {
-    try {
-      const response = await api.get(`/authors`);
-      const responseData = response.data.data;
-      setAuthors(responseData);
-    } catch (error) {
-      console.error("Loader function error:", error);
-      throw error;
-    }
-  };
+  const nameClasses = getClasses(nameIsValid, clickedName);
+  const quantityClasses = getClasses(quantityIsValid, clickedQuantity);
+  const yearClasses = getClasses(yearIsValid, clickedYear);
 
   useEffect(() => {
-    fetchAuthors();
+    const fetchingAuthorData = async () => {
+      const data = await fetchAuthors();
+      setAuthors(data);
+    };
+    fetchingAuthorData();
     setData(fetchedData);
     setGenreValue(currentBookData.genres);
     setCategoryValue(currentBookData.categories);
     setPublisherValue(currentBookData.izdavac);
     setAuthorValue(currentBookData.authors);
-    setNextLevel(false);
     setNameIsValid(nameValue !== "");
     setYearIsValid(yearValue !== "");
     setQuantityIsValid(quantityValue !== "");
+
+    setNextLevel(false);
   }, []);
 
   const resetHandler = () => {
-    setGenreValue("");
-    setCategoryValue("");
     setRichTextareaValue("");
-    setPublisherValue("");
-    setAuthorValue("");
     setQuantityValue("");
     setYearValue("");
     setNameValue("");
   };
-
-  console.log(categoryValue, genreValue, authorValue, publisherValue)
 
   return (
     <div className="new-book-position-handler">
@@ -203,11 +187,13 @@ const NewBook = () => {
           {
             options: data.categories,
             label: "Izaberite kategoriju",
+            value: currentBookData.categories || categoryValue.value,
             onChange: categoryChangeHandler,
           },
           {
             options: data.genres,
             label: "Izaberite žanr",
+            value: currentBookData.genres || genreValue.value,
             onChange: genreChangeHandler,
           },
         ]}
@@ -227,11 +213,13 @@ const NewBook = () => {
           {
             options: data.publishers,
             label: "Izaberite izdavača",
+            value: currentBookData.izdavac || publisherValue.value,
             onChange: publisherChangeHandler,
           },
           {
             options: authors,
             label: "Izaberite autore",
+            value: currentBookData.authors || authorValue.value,
             onChange: authorChangeHandler,
           },
         ]}

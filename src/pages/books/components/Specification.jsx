@@ -11,10 +11,6 @@ export default function NewBookSpecification() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const currentBookData = useSelector((state) => state.newBookCurrent);
-
-  const [scriptIsValid, setScriptIsValid] = useState(false);
-  const [bookbindIsValid, setBookbindIsValid] = useState(false);
-  const [formatIsValid, setFormatIsValid] = useState(false);
   const [pagesIsValid, setPagesIsValid] = useState(false);
 
   const [clickedPages, setClickedPages] = useState(false);
@@ -23,28 +19,28 @@ export default function NewBookSpecification() {
   const fetchedData = useLoaderData();
   const [data, setData] = useState({});
 
-  const [scriptValue, setScriptValue] = useState(currentBookData.pismo || "");
+  const [scriptValue, setScriptValue] = useState({
+    value: "",
+    label: "",
+  });
   const scriptChangeHandler = (newValue) => {
     setScriptValue(newValue);
   };
-  const scriptHandler = (value) => {
-    setScriptIsValid(value);
-  };
 
-  const [bookbindValue, setBookbindValue] = useState(currentBookData.povez || "");
+  const [bookbindValue, setBookbindValue] = useState({
+    value: "",
+    label: "",
+  });
   const bookbindChangeHandler = (newValue) => {
     setBookbindValue(newValue);
   };
-  const bookbindHandler = (value) => {
-    setBookbindIsValid(value);
-  };
 
-  const [formatValue, setFormatValue] = useState(currentBookData.format || "");
+  const [formatValue, setFormatValue] = useState({
+    value: "",
+    label: "",
+  });
   const formatChangeHandler = (newValue) => {
     setFormatValue(newValue);
-  };
-  const formatHandler = (value) => {
-    setFormatIsValid(value);
   };
 
   const pagesBlurHandler = () => {
@@ -57,6 +53,9 @@ export default function NewBookSpecification() {
     setPagesIsValid(pagesValue !== "");
   };
 
+  const scriptIsValid = scriptValue.value !== "";
+  const bookbindIsValid = bookbindValue.value !== "";
+  const formatIsValid = formatValue.value !== "";
   let formIsValid = false;
   if (pagesIsValid && scriptIsValid && bookbindIsValid && formatIsValid) {
     formIsValid = true;
@@ -72,31 +71,37 @@ export default function NewBookSpecification() {
       isbn: 1234567891011,
     };
     dispatch(updateFormData(formData));
-    dispatch(updateCurrentData({
-      brStrana: pagesValue,
-      povez: bookbindValue,
-      format: formatValue,
-      pismo: scriptValue,
-    })
-    )
+    dispatch(
+      updateCurrentData({
+        brStrana: pagesValue,
+        povez: bookbindValue,
+        format: formatValue,
+        pismo: scriptValue,
+      })
+    );
     navigate("/books/new/multimedija");
   };
 
-  const pagesClasses = !pagesIsValid && clickedPages ? "form-control invalid" : "form-control";
+  const pagesClasses =
+    !pagesIsValid && clickedPages ? "form-control invalid" : "form-control";
 
   useEffect(() => {
     setData(fetchedData);
     setSecondLevel(false);
+    setBookbindValue(currentBookData.povez);
+    setScriptValue(currentBookData.pismo);
+    setFormatValue(currentBookData.format);
     setPagesIsValid(pagesValue !== "");
   }, []);
 
   const resetHandler = () => {
-    setPagesValue("")
+    setPagesValue("");
     setScriptValue("");
     setBookbindValue("");
     setFormatValue("");
   };
 
+  console.log(formIsValid)
   return (
     <div className="new-book-specification-wrapper">
       <SettingsForm
@@ -114,36 +119,21 @@ export default function NewBookSpecification() {
         select={[
           {
             options: data.scripts,
-            input: {
-              label: "Izaberite pismo",
-              type: "text",
-              name: "language",
-              value: scriptValue,
-              onChange: scriptChangeHandler,
-            },
-            validHandler: scriptHandler,
+            label: "Izaberite pismo",
+            value: currentBookData.pismo || scriptValue.value,
+            onChange: scriptChangeHandler,
           },
           {
             options: data.bookbinds,
-            input: {
-              label: "Izaberite povez",
-              type: "text",
-              name: "bookbind",
-              value: bookbindValue,
-              onChange: bookbindChangeHandler,
-            },
-            validHandler: bookbindHandler,
+            label: "Izaberite povez",
+            value: currentBookData.povez || bookbindValue.value,
+            onChange: bookbindChangeHandler,
           },
           {
             options: data.formats,
-            input: {
-              label: "Izaberite format",
-              type: "text",
-              name: "format",
-              value: formatValue,
-              onChange: formatChangeHandler,
-            },
-            validHandler: formatHandler,
+            label: "Izaberite format",
+            value: currentBookData.format || formatValue.value,
+            onChange: formatChangeHandler,
           },
         ]}
         reset={() => resetHandler()}
