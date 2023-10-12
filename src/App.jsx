@@ -156,27 +156,27 @@ const router = createBrowserRouter(
         <Route
           path="/books/:id/edit"
           element={
-            <AdminRoute>
+            // <AdminRoute>
               <EditBook />
-            </AdminRoute>
+            // </AdminRoute> 
           }
           loader={EditBookLoader}
         />
         <Route
           path="/books/:id/edit/specification"
           element={
-            <AdminRoute>
+            // <AdminRoute>
               <EditSpecification />
-            </AdminRoute>
+            // </AdminRoute>
           }
           loader={EditBookLoader}
         />
         <Route
           path="/books/:id/edit/multimedia"
           element={
-            <AdminRoute>
+            // <AdminRoute>
               <EditMultimedia />
-            </AdminRoute>
+            // </AdminRoute>
           }
         />
         <Route

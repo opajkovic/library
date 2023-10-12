@@ -14,13 +14,8 @@ const EditBook = () => {
   const fetchedData = useLoaderData();
   const dispatch = useDispatch();
   const params = useParams();
-  const editedData = useSelector(state => state.editBookData);
-  const navigate = useNavigate()
-
-  const [categoryIsValid, setCategoryIsValid] = useState(false);
-  const [genreIsValid, setGenreIsValid] = useState(false);
-  const [authorIsValid, setAuthorIsValid] = useState(false);
-  const [publisherIsValid, setPublisherIsValid] = useState(false);
+  const editedData = useSelector((state) => state.editBookData);
+  const navigate = useNavigate();
 
   const [bookInfo, setBookInfo] = useState({
     name: "",
@@ -36,45 +31,49 @@ const EditBook = () => {
   const quantityClass = getInvalidClass(bookInfo.quantity);
   const yearClass = getInvalidClass(bookInfo.year);
 
-  const [categoryValue, setCategoryValue] = useState(
-    fetchedData.book.categories[0].name
-  );
+  const [categoryValue, setCategoryValue] = useState({
+    value: fetchedData.book.categories[0].name,
+    label: fetchedData.book.categories[0].name,
+  });
   const categoryChangeHandler = (newValue) => {
     setCategoryValue(newValue);
   };
-  const categoryHandler = (value) => {
-    setCategoryIsValid(value);
-  };
 
-  const [genreValue, setGenreValue] = useState(fetchedData.book.genres[0].name);
+  const [genreValue, setGenreValue] = useState({
+    value: fetchedData.book.genres[0].name,
+    label: fetchedData.book.genres[0].name,
+  });
   const genreChangeHandler = (newValue) => {
     setGenreValue(newValue);
   };
-  const genreHandler = (value) => {
-    setGenreIsValid(value);
-  };
 
-  const [authorValue, setAuthorValue] = useState(fetchedData.book.authors.length > 0 ? fetchedData.book.authors[0].name + " " + fetchedData.book.authors[0].surname : '');
+  const [authorValue, setAuthorValue] = useState({
+    value: fetchedData.book.authors[0].name,
+    label: fetchedData.book.authors[0].name,
+  });
   const authorChangeHandler = (newValue) => {
     setAuthorValue(newValue);
   };
-  const authorHandler = (value) => {
-    setAuthorIsValid(value);
-  };
 
-  const [publisherValue, setPublisherValue] = useState(fetchedData.book.publisher.name);
+  const [publisherValue, setPublisherValue] = useState({
+    value: fetchedData.book.publisher.name,
+    label: fetchedData.book.publisher.name,
+  });
   const publisherChangeHandler = (newValue) => {
     setPublisherValue(newValue);
   };
-  const publisherHandler = (value) => {
-    setPublisherIsValid(value);
-  };
 
-  const [richTextareaValue, setRichTextareaValue] = useState(fetchedData.book.description);
+  const [richTextareaValue, setRichTextareaValue] = useState(
+    fetchedData.book.description
+  );
   const richTextareaChangeHandler = (newValue) => {
     setRichTextareaValue(newValue);
   };
 
+  const categoryIsValid = categoryValue.value !== "";
+  const genreIsValid = genreValue.value !== "";
+  const authorIsValid = authorValue.value !== "";
+  const publisherIsValid = publisherValue.value !== "";
   let formIsValid = false;
   if (
     nameClass === "form-control" &&
@@ -94,62 +93,73 @@ const EditBook = () => {
       year: fetchedData.book.pDate,
       quantity: fetchedData.book.samples,
     });
-    setRichTextareaValue(fetchedData.book.description)
-    setCategoryValue(fetchedData.book.categories[0].name);
-    setAuthorValue(fetchedData.book.authors[0].name + " " + fetchedData.book.authors[0].surname)
-    setPublisherValue(fetchedData.book.publisher.name);
-    setGenreValue(fetchedData.book.genres[0].name);
   };
-  const  updatingFunction  = async () => {
+
+  const updatingFunction = async () => {
     const updatedData = {
       nazivKnjiga: bookInfo.name,
       kratki_sadrzaj: richTextareaValue,
-      categories: filterAndMap(fetchedData.categories, categoryValue),
-      genres: filterAndMap(fetchedData.genres, genreValue),
-      authors: filterAndMap(fetchedData.authors, authorValue.split(' ')[0]),
-      izdavac: Number(filterAndMap(fetchedData.publishers, publisherValue)),
+      categories: filterAndMap(fetchedData.categories, categoryValue.value),
+      genres: filterAndMap(fetchedData.genres, genreValue.value),
+      authors: filterAndMap(fetchedData.authors, authorValue.value),
+      izdavac: Number(
+        filterAndMap(fetchedData.publishers, publisherValue.value)
+      ),
       godinaIzdavanja: bookInfo.year,
       knjigaKolicina: bookInfo.quantity,
-    }
-    dispatch(updateEditData(updatedData))
+    };
+    dispatch(updateEditData(updatedData));
   };
 
-  const submitHandler = async () => {
-    try{
-        const response = await api.post(`/books/${params.id}/update`, editedData);
-        toast.success("successfully updated")
-        navigate(`/books/${params.id}`)
-        return response
-      }
-      catch(err) {
-        toast.error(err.response.data.message)
-      }
-  }
-  
-
-  useEffect(()=>{
+  useEffect(() => {
     updatingFunction();
-  },[editedData])
+  }, [
+    categoryValue,
+    richTextareaValue,
+    genreValue,
+    bookInfo,
+    genreValue,
+    authorValue,
+  ]);
+
+  const submitHandler = async () => {
+    try {
+      const response = await api.post(`/books/${params.id}/update`, editedData);
+      toast.success("successfully updated");
+      navigate(`/books/${params.id}`);
+      return response;
+    } catch (err) {
+      toast.error(err.response.data.message);
+    }
+  };
+
+  console.log(filterAndMap(fetchedData.authors, authorValue.value));
 
   useEffect(() => {
-    dispatch(updateEditData({
-      nazivKnjiga: fetchedData.book.title,
-      kratki_sadrzaj: fetchedData.book.description,
-      categories: fetchedData.book.categories[0].id,
-      genres: fetchedData.book.genres[0].id,
-      authors: fetchedData.book.authors.length > 0 ? fetchedData.book.authors[0].id : 0,
-      izdavac: fetchedData.book.publisher.id,
-      godinaIzdavanja: fetchedData.book.pDate,
-      knjigaKolicina: fetchedData.book.samples,
-      brStrana: fetchedData.book.pages,
-      povez: fetchedData.book.bookbind.id,
-      format: fetchedData.book.format.id,
-      pismo: fetchedData.book.script.id,
-      isbn: fetchedData.book.isbn,
-    }))
+    dispatch(
+      updateEditData({
+        nazivKnjiga: fetchedData.book.title,
+        kratki_sadrzaj: fetchedData.book.description,
+        categories: fetchedData.book.categories[0].id,
+        genres: fetchedData.book.genres[0].id,
+        authors:
+          fetchedData.book.authors.length > 0
+            ? fetchedData.book.authors[0].id
+            : 0,
+        izdavac: fetchedData.book.publisher.id,
+        godinaIzdavanja: fetchedData.book.pDate,
+        knjigaKolicina: fetchedData.book.samples,
+        brStrana: fetchedData.book.pages,
+        povez: fetchedData.book.bookbind.id,
+        format: fetchedData.book.format.id,
+        pismo: fetchedData.book.script.id,
+        isbn: fetchedData.book.isbn,
+      })
+    );
     resetHandler();
   }, []);
 
+  console.log(editedData);
   return (
     <div className="new-book-position-handler">
       <SettingsForm
@@ -171,25 +181,15 @@ const EditBook = () => {
         select={[
           {
             options: fetchedData.categories,
-            input: {
-              label: "Izaberite kategoriju",
-              type: "text",
-              name: "category",
-              value: categoryValue,
-              onChange: categoryChangeHandler,
-            },
-            validHandler: categoryHandler,
+            label: "Izaberite kategoriju",
+            value: categoryValue,
+            onChange: categoryChangeHandler,
           },
           {
             options: fetchedData.genres,
-            input: {
-              label: "Izaberite žanr",
-              type: "text",
-              name: "genre",
-              value: genreValue,
-              onChange: genreChangeHandler,
-            },
-            validHandler: genreHandler,
+            label: "Izaberite žanr",
+            value: genreValue,
+            onChange: genreChangeHandler,
           },
         ]}
         reset={() => resetHandler()}
@@ -216,25 +216,15 @@ const EditBook = () => {
         select={[
           {
             options: fetchedData.publishers,
-            input: {
-              label: "Izaberite izdavača",
-              type: "text",
-              name: "publishers",
-              value: publisherValue,
-              onChange: publisherChangeHandler,
-            },
-            validHandler: publisherHandler,
+            label: "Izaberite izdavača",
+            value: publisherValue,
+            onChange: publisherChangeHandler,
           },
           {
             options: fetchedData.authors,
-            input: {
-              label: "Izaberite autore",
-              type: "text",
-              name: "authors",
-              value: authorValue,
-              onChange: authorChangeHandler,
-            },
-            validHandler: authorHandler,
+            label: "Izaberite autore",
+            value: authorValue,
+            onChange: authorChangeHandler,
           },
         ]}
         input={[
@@ -267,7 +257,7 @@ export default EditBook;
 
 export const EditBookLoader = async ({ params }) => {
   const id = params.id;
-  const isAuthenticated = auth.adminRole();
+  const isAuthenticated = auth.bibliotekarRole();
   if (isAuthenticated) {
     try {
       const response = await api.get(`/books/${id}/edit`);
@@ -277,7 +267,7 @@ export const EditBookLoader = async ({ params }) => {
       console.error("Loader function error:", error);
       throw error;
     }
-  }else{
-    return []
+  } else {
+    return [];
   }
 };

@@ -12,7 +12,7 @@ const InputSelect = (props) => {
         classNamePrefix="select"
         id="select"
         name="colors"
-        defaultValue={value}
+        value={value}
         options={
           options !== undefined &&
           options.map((item) => ({
