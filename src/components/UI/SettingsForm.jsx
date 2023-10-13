@@ -6,7 +6,7 @@ import ImageUploader from "./ImageUploader";
 import RichTextarea from "./RichTextarea";
 import InputSelect from "./InputSelect";
 import SecondRowHeaders from "./settingsForm components/SecondRowHeaders";
-import "./settingsForm.css";
+import "./SettingsForm.css";
 
 const SettingsForm = (props) => {
   const submitHandler = (event) => {
