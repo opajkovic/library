@@ -156,27 +156,27 @@ const router = createBrowserRouter(
         <Route
           path="/books/:id/edit"
           element={
-            // <AdminRoute>
+            <AdminRoute>
               <EditBook />
-            // </AdminRoute> 
+            </AdminRoute>
           }
           loader={EditBookLoader}
         />
         <Route
           path="/books/:id/edit/specification"
           element={
-            // <AdminRoute>
+            <AdminRoute>
               <EditSpecification />
-            // </AdminRoute>
+            </AdminRoute>
           }
           loader={EditBookLoader}
         />
         <Route
           path="/books/:id/edit/multimedia"
           element={
-            // <AdminRoute>
+            <AdminRoute>
               <EditMultimedia />
-            // </AdminRoute>
+            </AdminRoute>
           }
         />
         <Route
@@ -218,26 +218,29 @@ const router = createBrowserRouter(
         />
         <Route
           path="/books/new/osnovni-detalji"
-          element={<NewBook />}
-          // element={<AdminRoute><NewBook /></AdminRoute>}
+          element={
+            <AdminRoute>
+              <NewBook />
+            </AdminRoute>
+          }
           loader={LoaderCreateBook}
         />
         <Route
           path="/books/new/specifikacija"
-          element={<NewBookSpecification />}
-          // element={<AdminRoute><NewBookSpecification /></AdminRoute>}
+          element={
+            <AdminRoute>
+              <NewBookSpecification />
+            </AdminRoute>
+          }
           loader={LoaderCreateBook}
         />
         <Route
           path="/books/new/multimedija"
-           element={
+          element={
+            <AdminRoute>
               <NewBookMultimedia />
+            </AdminRoute>
           }
-          // element={
-          //   <AdminRoute>
-          //     <NewBookMultimedia />
-          //   </AdminRoute>
-          // }
         />
         <Route
           path="/books/:id/specifikacija"

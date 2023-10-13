@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "./activitiItem.css";
 import { Link } from "react-router-dom";
 import photo from "../../../assets/profileStudent.jpg";
+import "./activitiItem.css";
 
 export default function ActivitiItem({data}) {
-  let [daysAgo, setDaysAgo] = useState('')
+  const [daysAgo, setDaysAgo] = useState('')
   useEffect(()=>{
     const currentDate = new Date();
     const dayArraow = new Date(data.borrow_date);

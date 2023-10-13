@@ -152,7 +152,6 @@ const NewBook = () => {
     setNameIsValid(nameValue !== "");
     setYearIsValid(yearValue !== "");
     setQuantityIsValid(quantityValue !== "");
-
     setNextLevel(false);
   }, []);
 
@@ -187,13 +186,13 @@ const NewBook = () => {
           {
             options: data.categories,
             label: "Izaberite kategoriju",
-            value: currentBookData.categories || categoryValue.value,
+            value: currentBookData.categories || categoryValue,
             onChange: categoryChangeHandler,
           },
           {
             options: data.genres,
             label: "Izaberite žanr",
-            value: currentBookData.genres || genreValue.value,
+            value: currentBookData.genres || genreValue,
             onChange: genreChangeHandler,
           },
         ]}
@@ -213,13 +212,13 @@ const NewBook = () => {
           {
             options: data.publishers,
             label: "Izaberite izdavača",
-            value: currentBookData.izdavac || publisherValue.value,
+            value: currentBookData.izdavac || publisherValue,
             onChange: publisherChangeHandler,
           },
           {
             options: authors,
             label: "Izaberite autore",
-            value: currentBookData.authors || authorValue.value,
+            value: currentBookData.authors || authorValue,
             onChange: authorChangeHandler,
           },
         ]}

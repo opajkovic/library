@@ -16,8 +16,8 @@ const InputSelect = (props) => {
         options={
           options !== undefined &&
           options.map((item) => ({
-            value: item.name,
-            label: item.name,
+            value: item.surname ? item.name + " " + item.surname : item.name,
+            label: item.surname ? item.name + " " + item.surname : item.name,
           }))
         }
         onChange={(selectedOption) => onChange(selectedOption)}
