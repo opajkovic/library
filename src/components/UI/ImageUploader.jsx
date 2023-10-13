@@ -1,6 +1,7 @@
 import { useRef } from "react";
-import "./ImageUploader.css";
 import image from "../../assets/insert.png";
+import "./ImageUploader.css";
+
 
 const ImageUploader = (props) => {
   const fileInputRef = useRef(null);

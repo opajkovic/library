@@ -1,8 +1,8 @@
 import Button from "./Button";
-import { FaPlus, FaSearch } from "react-icons/fa";
 import Input from "./Input";
-import "./TableControl.css";
 import Select from "./Select";
+import { FaPlus, FaSearch } from "react-icons/fa";
+import "./TableControl.css";
 
 const TableControl = ({hide, onClick, title, itemsPerPageHandler, searchGlobal}) => {
   return (

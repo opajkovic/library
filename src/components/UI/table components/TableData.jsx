@@ -1,13 +1,13 @@
-import "../Table.css";
-import { BsThreeDotsVertical } from "react-icons/bs";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { BsThreeDotsVertical } from "react-icons/bs";
 import Modal from "../../../layout/modal/Modal";
 import ModalItem from "../../../layout/modal/modalItem/ModalItem";
 import Input from "../Input";
 import ConfirmModal from "../../../layout/modal/confirmModal/ConfirmModal";
+import "../Table.css";
 
-const MiddleDataCell = ({
+const TableData = ({
   item,
   headers,
   options,
@@ -179,4 +179,4 @@ const MiddleDataCell = ({
   ));
 };
 
-export default MiddleDataCell;
+export default TableData;

@@ -1,7 +1,7 @@
-import "./Table.css";
 import Thead from "./table components/Thead";
 import TableData from "./table components/TableData";
 import SearchTableInputs from "./table components/SearchTableInputs";
+import "./Table.css";
 
 const Table = ({
   headers,

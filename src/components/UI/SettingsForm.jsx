@@ -2,11 +2,11 @@ import FormSubmitButtons from "./settingsForm components/FormSubmitButtons";
 import FormTitle from "./settingsForm components/FormTitle";
 import Input from "./Input";
 import Textarea from "./Textarea";
-import "./settingsForm.css";
 import ImageUploader from "./ImageUploader";
 import RichTextarea from "./RichTextarea";
 import InputSelect from "./InputSelect";
 import SecondRowHeaders from "./settingsForm components/SecondRowHeaders";
+import "./settingsForm.css";
 
 const SettingsForm = (props) => {
   const submitHandler = (event) => {

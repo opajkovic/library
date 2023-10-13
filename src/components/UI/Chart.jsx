@@ -1,5 +1,6 @@
-import "./Chart.css";
 import ReactApexChart from "react-apexcharts";
+import "./Chart.css";
+
 
 const Chart = ({izdate, reservations}) => {
   const chartData = {

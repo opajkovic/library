@@ -1,6 +1,6 @@
-import "../Table.css";
 import { FaLongArrowAltDown } from "react-icons/fa";
 import Input from "../Input";
+import "../Table.css";
 
 const Thead = ({ headers, handleSort }) => {
   return (
