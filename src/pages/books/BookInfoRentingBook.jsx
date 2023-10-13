@@ -60,7 +60,7 @@ export default function BookInfoRentingBook() {
   };
 
   const submitHandler = async () => {
-    const studentId = filterAndMap(students, studentSelected.value)[0];
+    const studentId = filterAndMap(students, studentSelected.value.split(" ")[0])[0];
     const info = {
       student_id: studentId,
       datumIzdavanja: rentingValue,

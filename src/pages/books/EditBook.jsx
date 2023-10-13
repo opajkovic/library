@@ -48,8 +48,8 @@ const EditBook = () => {
   };
 
   const [authorValue, setAuthorValue] = useState({
-    value: fetchedData.book.authors[0].name,
-    label: fetchedData.book.authors[0].name,
+    value: fetchedData.book.authors[0].name + " " + fetchedData.book.authors[0].surname,
+    label: fetchedData.book.authors[0].name + " " + fetchedData.book.authors[0].surname,
   });
   const authorChangeHandler = (newValue) => {
     setAuthorValue(newValue);
@@ -74,6 +74,7 @@ const EditBook = () => {
   const genreIsValid = genreValue.value !== "";
   const authorIsValid = authorValue.value !== "";
   const publisherIsValid = publisherValue.value !== "";
+
   let formIsValid = false;
   if (
     nameClass === "form-control" &&
@@ -101,7 +102,7 @@ const EditBook = () => {
       kratki_sadrzaj: richTextareaValue,
       categories: filterAndMap(fetchedData.categories, categoryValue.value),
       genres: filterAndMap(fetchedData.genres, genreValue.value),
-      authors: filterAndMap(fetchedData.authors, authorValue.value),
+      authors: filterAndMap(fetchedData.authors, authorValue.value.split(" ")[0]),
       izdavac: Number(
         filterAndMap(fetchedData.publishers, publisherValue.value)
       ),
@@ -133,8 +134,6 @@ const EditBook = () => {
     }
   };
 
-  console.log(filterAndMap(fetchedData.authors, authorValue.value));
-
   useEffect(() => {
     dispatch(
       updateEditData({
@@ -159,7 +158,6 @@ const EditBook = () => {
     resetHandler();
   }, []);
 
-  console.log(editedData);
   return (
     <div className="new-book-position-handler">
       <SettingsForm

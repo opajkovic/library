@@ -113,7 +113,7 @@ const NewBook = () => {
       kratki_sadrzaj: richTextareaValue,
       categories: filterAndMap(data.categories, categoryValue),
       genres: filterAndMap(data.genres, genreValue),
-      authors: filterAndMap(data.authors, authorValue),
+      authors: filterAndMap(data.authors, authorValue.split(" ")[0]),
       izdavac: Number(filterAndMap(data.publishers, publisherValue)),
       godinaIzdavanja: yearValue,
       knjigaKolicina: quantityValue,
