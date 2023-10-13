@@ -1,37 +1,34 @@
 import { useEffect, useState } from "react";
-import "./BookInfoRentingBook.css";
+import { useLoaderData, useParams } from "react-router";
+import { toast } from "react-toastify";
 import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
-import { useLoaderData, useOutletContext, useParams } from "react-router";
 import SettingsForm from "../../components/UI/SettingsForm";
 import useInput from "../../hooks/useInput";
 import RightSide from "../bookInformations/components/RightSide";
 import { LoaderStudents } from "../students/Students";
 import { filterAndMap } from "../../util/Functions";
 import api from "../../api/apiCalls";
-import { toast } from "react-toastify";
+import "./BookInfoRentingBook.css";
 
 const isNotEmpty = (value) => value.trim() !== "";
 
 export default function BookInfoRentingBook() {
-  const {id} = useParams();
-  const { setRoute } = useOutletContext();
+  const { id } = useParams();
   const [book, setBook] = useState({});
-  const [nameIsValid, setNameIsValid] = useState(false);
   const fetchedData = useLoaderData();
-  let [students, setStudents] = useState()
+  const [students, setStudents] = useState();
 
-  async function fetchStudents() {
+  const fetchStudents = async () => {
     try {
       const students = await LoaderStudents();
       setStudents(students);
     } catch (error) {
       console.error("Error fetching students:", error);
     }
-  }
+  };
   useEffect(() => {
-    fetchStudents()
+    fetchStudents();
     setBook(fetchedData);
-    setRoute("/books/:id/izdaj-knjigu");
   }, []);
 
   const {
@@ -41,7 +38,7 @@ export default function BookInfoRentingBook() {
     valueChangeHandler: rentingChangeHandler,
     inputBlurHandler: rentingBlurHandler,
   } = useInput(isNotEmpty);
-  
+
   const {
     value: returnValue,
     isValid: returnIsValid,
@@ -50,36 +47,34 @@ export default function BookInfoRentingBook() {
     inputBlurHandler: returnBlurHandler,
   } = useInput(isNotEmpty);
 
-  const [studentSelected, setStudentSelected] = useState("");
+  const [studentSelected, setStudentSelected] = useState({
+    value: "",
+    label: "",
+  });
+
   const studentChange = (newValue) => {
     setStudentSelected(newValue);
   };
-  const nameHandler = (value) => {
-    if(students && filterAndMap(students, studentSelected)){
-      setNameIsValid(value);
-    }else{
-      setNameIsValid(false);
-    }
-  };
 
-  const submitHandler = async() => {
-    let studentId = filterAndMap(students, studentSelected)[0]
-    let info = {
+  const submitHandler = async () => {
+    const studentId = filterAndMap(students, studentSelected.value)[0];
+    const info = {
       student_id: studentId,
       datumIzdavanja: rentingValue,
-      datumVracanja: returnValue
-    }
+      datumVracanja: returnValue,
+    };
     try {
       const response = await api.post(`/books/${id}/izdaj`, info);
       const responseData = response.data;
       toast.success(responseData.message);
     } catch (error) {
-      toast.error(error.response.data.data.errors)
+      toast.error(error.response.data.data.errors);
       throw error;
     }
     return null;
-  }
+  };
 
+  const nameIsValid = studentSelected.value !== "";
   let formIsValid = false;
   if (nameIsValid && returnIsValid && rentingIsValid) {
     formIsValid = true;
@@ -89,13 +84,13 @@ export default function BookInfoRentingBook() {
     window.location.href = `/books/${book.id}/izdaj-knjigu`;
   };
 
+
   const rentingClasses = rentingHasError
     ? "form-control invalid"
     : "form-control";
   const returnClasses = returnHasError
     ? "form-control invalid"
     : "form-control";
-
 
   return (
     <>
@@ -116,14 +111,9 @@ export default function BookInfoRentingBook() {
             select={[
               {
                 options: students,
-                input: {
-                  label: "Izaberite učenika koji zadužuje knjigu",
-                  type: "text",
-                  name: "name",
-                  value: studentSelected,
-                  onChange: studentChange 
-                },
-                validHandler: nameHandler,
+                label: "Izaberite učenika koji zadužuje knjigu",
+                value: studentSelected,
+                onChange: studentChange,
               },
             ]}
             input={[
@@ -135,7 +125,7 @@ export default function BookInfoRentingBook() {
                 value: returnValue,
                 hasError: returnHasError,
                 onChange: returnChangeHandler,
-                onBlur: returnBlurHandler
+                onBlur: returnBlurHandler,
               },
               {
                 label: "Datum izdavanja",
