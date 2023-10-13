@@ -3,3 +3,8 @@
   width: 100%;
   max-width: 600px;
 }
+
+.basic-single{
+  border: 1px solid var(--grey-200) !important;
+  border-radius: 0.25rem;
+}

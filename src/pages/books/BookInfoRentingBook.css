@@ -19,6 +19,10 @@
   border: 0;
 }
 
+.renting-table-wrapper select {
+  border: unset;
+}
+
 .bottom-wrapper {
   display: flex;
   flex-direction: row;
@@ -33,7 +37,7 @@
   border: 0;
 }
 
-.edit-renting-book{
+.edit-renting-book {
   display: flex;
   flex-direction: column-reverse;
   padding: 1rem 0 0 0;

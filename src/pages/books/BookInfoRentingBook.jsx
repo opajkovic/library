@@ -26,6 +26,7 @@ export default function BookInfoRentingBook() {
       console.error("Error fetching students:", error);
     }
   };
+
   useEffect(() => {
     fetchStudents();
     setBook(fetchedData);
@@ -37,6 +38,7 @@ export default function BookInfoRentingBook() {
     hasError: rentingHasError,
     valueChangeHandler: rentingChangeHandler,
     inputBlurHandler: rentingBlurHandler,
+    reset: resetRentingValue
   } = useInput(isNotEmpty);
 
   const {
@@ -45,6 +47,7 @@ export default function BookInfoRentingBook() {
     hasError: returnHasError,
     valueChangeHandler: returnChangeHandler,
     inputBlurHandler: returnBlurHandler,
+    reset:resetReturnValue
   } = useInput(isNotEmpty);
 
   const [studentSelected, setStudentSelected] = useState({
@@ -81,9 +84,13 @@ export default function BookInfoRentingBook() {
   }
 
   const resetHandler = () => {
-    window.location.href = `/books/${book.id}/izdaj-knjigu`;
+    resetRentingValue();
+    resetReturnValue();
+    setStudentSelected({
+      value: "",
+      label: "",
+    });
   };
-
 
   const rentingClasses = rentingHasError
     ? "form-control invalid"

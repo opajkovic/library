@@ -1,34 +1,42 @@
 import { useEffect, useState } from "react";
-import "./BookInfoReserve.css";
+import { useLoaderData, useParams } from "react-router";
+import { toast } from "react-toastify";
 import ProfileTitle from "../../layout/profileTitle/ProfileTitle";
-import { redirect, useLoaderData, useParams } from "react-router";
 import SettingsForm from "../../components/UI/SettingsForm";
 import useInput from "../../hooks/useInput";
 import { LoaderStudents } from "../students/Students";
 import { filterAndMap } from "../../util/Functions";
-import { toast } from "react-toastify";
 import api from "../../api/apiCalls";
+import "./BookInfoReserve.css";
 
 const isNotEmpty = (value) => value.trim() !== "";
 
 export default function BookInfoReserve() {
   const [book, setBook] = useState({});
-  const [nameIsValid, setNameIsValid] = useState(false);
-  const [selectedStudent, setSelectedStudent] = useState('');
   const fetchedData = useLoaderData();
-  let [students, setStudents] = useState()
-  const {id} = useParams()
+  const [students, setStudents] = useState();
+  const { id } = useParams();
 
-  async function fetchStudents() {
+  const fetchStudents = async () => {
     try {
       const students = await LoaderStudents();
       setStudents(students);
     } catch (error) {
       console.error("Error fetching students:", error);
     }
-  }
+  };
+
+  const [studentSelected, setStudentSelected] = useState({
+    value: "",
+    label: "",
+  });
+
+  const studentChange = (newValue) => {
+    setStudentSelected(newValue);
+  };
+
   useEffect(() => {
-    fetchStudents()
+    fetchStudents();
     setBook(fetchedData);
   }, []);
 
@@ -38,53 +46,49 @@ export default function BookInfoReserve() {
     hasError: reserveHasError,
     valueChangeHandler: reserveChangeHandler,
     inputBlurHandler: reserveBlurHandler,
+    reset: resetDateHandler,
   } = useInput(isNotEmpty);
 
-  const nameHandler = (value) => {
-    if(students && filterAndMap(students, selectedStudent)){
-      setNameIsValid(value);
-    }else{
-      setNameIsValid(false);
-    }
-  };
-
-  const submitHandler = async() => {
-    let studentId = filterAndMap(students, selectedStudent)[0]
+  const submitHandler = async () => {
+    const studentId = filterAndMap(students, studentSelected.value)[0];
     function formatDate(date) {
       const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-      const day = String(date.getDate()).padStart(2, '0');
-    
+      const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
+      const day = String(date.getDate()).padStart(2, "0");
       return `${month}/${day}/${year}`;
     }
-    
+
     // Usage
     const currentDate = new Date(); // Get the current date
     const formattedDate = formatDate(currentDate); // Format it as "MM/DD/YYYY"
-    let info = {
+    const info = {
       student_id: studentId,
-      datumRezervisanja: formattedDate
-  }
+      datumRezervisanja: formattedDate,
+    };
     try {
       const response = await api.post(`/books/${id}/reserve`, info);
       const responseData = response.data;
       toast.success(responseData.message);
     } catch (error) {
-      console.error(error.response)
-      toast.error(error.response.data.data.errors)
+      console.error(error.response);
+      toast.error(error.response.data.data.errors);
       throw error;
     }
-    
     // return null;
-  }
+  };
 
+  const nameIsValid = studentSelected.value !== "";
   let formIsValid = false;
   if (nameIsValid && reserveIsValid) {
     formIsValid = true;
   }
 
   const resetHandler = () => {
-    window.location.href = `/books/${book.id}/rezervisi-knjigu`;
+    resetDateHandler();
+    setStudentSelected({
+      value: "",
+      label: "",
+    });
   };
 
   const reserveClasses = reserveHasError
@@ -121,14 +125,9 @@ export default function BookInfoReserve() {
           select={[
             {
               options: students,
-              input: {
-                label: "Izaberite učenika koji rezerviše knjigu",
-                type: "text",
-                name: "name",
-                value: selectedStudent,
-                onChange: (newValue)=>{setSelectedStudent(newValue)}
-              },
-              validHandler: nameHandler,
+              label: "Izaberite učenika koji rezerviše knjigu",
+              value: studentSelected,
+              onChange: studentChange,
             },
           ]}
           submit={() => submitHandler()}
