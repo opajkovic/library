@@ -60,7 +60,7 @@ export default function Login() {
             </label>
             <label htmlFor="input2" className="input">
               <FaLock className="icon" />
-              <input ref={passwordRef} placeholder="Username" id="input2" type="password" />
+              <input ref={passwordRef} placeholder="Password" id="input2" type="password" />
             </label>
             <button onClick={logIn} className="registerBtn">Login</button>
             <Link to="/singup" className="diffPage">
