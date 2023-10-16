@@ -1,10 +1,10 @@
-import SettingsForm from "../../../components/UI/SettingsForm";
+import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { resetFormData } from "../../../redux/new-book-data";
 import api from "../../../api/apiCalls";
+import SettingsForm from "../../../components/UI/SettingsForm";
 import "./Multimedia.css";
-import { useNavigate } from "react-router";
-import { toast } from "react-toastify";
 
 export default function NewBookMultimedia() {
   const navigate = useNavigate();
@@ -15,19 +15,16 @@ export default function NewBookMultimedia() {
     try {
       const response = await api.post(`/books/store`, newBook);
       dispatch(resetFormData());
-      toast.success("Dodata knjiga")
+      toast.success("Dodata knjiga");
       navigate("/books");
-      return response
-    } catch(err) {
-      console.error(err)
-      toast.error(err.response.data.message)
+      return response;
+    } catch (err) {
+      console.error(err);
+      toast.error(err.response.data.message);
       navigate("/books/new/osnovni-detalji");
     }
   };
-
-  const resetHandler = () => {
-
-  };
+  const resetHandler = () => {};
 
   return (
     <div className="new-book-multimedia">

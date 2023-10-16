@@ -50,7 +50,10 @@ export default function BookInfoReserve() {
   } = useInput(isNotEmpty);
 
   const submitHandler = async () => {
-    const studentId = filterAndMap(students, studentSelected.value.split(" ")[0])[0];
+    const studentId = filterAndMap(
+      students,
+      studentSelected.value.split(" ")[0]
+    )[0];
     function formatDate(date) {
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based

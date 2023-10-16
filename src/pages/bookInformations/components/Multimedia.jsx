@@ -3,9 +3,9 @@ import "./Multimedia.css";
 export default function Multimedia({ photos }) {
   return (
     <ul className="multimedia-wrapper">
-      {photos.map((photo, i) => {
+      {photos.map((photo, index) => {
         return (
-          <li key={i}>
+          <li key={index}>
             <img src={photo} />
           </li>
         );

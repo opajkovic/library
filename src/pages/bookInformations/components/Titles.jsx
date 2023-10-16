@@ -7,7 +7,6 @@ export default function Titles() {
   const navLinks = [
     { to: `/books/${params.id}`, label: "Osnovni detalji" },
     { to: `/books/${params.id}/specifikacija`, label: "Specifikacija" },
-
     {
       to: `/books/${params.id}/evidencija/izdate-knjige`,
       label: "Evidencija iznajmljivanja",
@@ -15,9 +14,9 @@ export default function Titles() {
         ? "active-evidence-link"
         : undefined,
     },
-
     { to: `/books/${params.id}/multimedija`, label: "Multimedija" },
   ];
+
   return (
     <div className="title-bar-wrapper">
       {navLinks.map((item, index) => (

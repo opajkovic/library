@@ -23,12 +23,13 @@ export default function BookInfo({
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const booksData = useSelector((state) => state.books);
+  const fetchedData = useLoaderData();
 
   const [book, setBook] = useState({
     title: "loading...",
-    categories: [{ name: "loading...", surname: "loading..." }],
+    categories: [{ name: "loading..." }],
     authors: [{ name: "loading...", surname: "loading..." }],
-    genres: [{ name: "loading...", surname: "loading..." }],
+    genres: [{ name: "loading..." }],
     publisher: { name: "loading..." },
     pDate: "2023",
     description: "loading...",
@@ -38,7 +39,6 @@ export default function BookInfo({
     isbn: "loading...",
     photo: "",
   });
-  const fetchedData = useLoaderData();
 
   useEffect(() => {
     setBook(fetchedData);
@@ -75,22 +75,25 @@ export default function BookInfo({
       />
       <div className="bottom-wrapper">
         <ConditionalContainer
-          specification={specification}
-          multimedia={multimedia}
-          evidence={evidence}
-          rentedEvidence={rentedEvidence}
-          returnedEvidence={returnedEvidence}
-          reservationEvidence={reservationEvidence}
-          excessEvidence={excessEvidence}
-          archivedEvidence={archivedEvidence}
-          book={book}
-          photo={book.photo}
+          conditionals={{
+            specification: specification,
+            multimedia: multimedia,
+            evidence: evidence,
+            rentedEvidence: rentedEvidence,
+            returnedEvidence: returnedEvidence,
+            reservationEvidence: reservationEvidence,
+            excessEvidence: excessEvidence,
+            archivedEvidence: archivedEvidence,
+            book: book,
+            photo: book.photo,
+          }}
         />
         <RightSide bookInfo={book} />
       </div>
     </div>
   );
 }
+
 export const BookLoader = async ({ params }) => {
   const id = params.id;
   const isAuthenticated = auth.getAuthStatus();

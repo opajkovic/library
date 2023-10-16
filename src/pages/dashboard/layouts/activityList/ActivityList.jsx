@@ -8,7 +8,7 @@ export default function ActivityList({ hideTitle, rented }) {
     <div className="activityList">
       {!hideTitle && <h2 className="subTitle">Aktivnosti</h2>}
       <div className={hideTitle ? "book-activities" : "list"}>
-        {rented != undefined && rented[0].bibliotekar0.name != "loading..."
+        {rented !== undefined && rented[0].bibliotekar0.name !== "loading..."
           ? rented.map((item, index) => {
               if (index < 5) {
                 return <ActivitiItem key={index} data={item} />;

@@ -8,48 +8,51 @@ import EvidenceTable from "../components/EvidenceTable";
 import api from "../../../api/apiCalls";
 import "../BookInfo.css";
 
-export default function ConditionalContainer({
-  specification,
-  multimedia,
-  evidence,
-  rentedEvidence,
-  returnedEvidence,
-  reservationEvidence,
-  excessEvidence,
-  archivedEvidence,
-  book,
-  photo,
-}) {
+export default function ConditionalContainer(props) {
+
+  const {
+    specification,
+    multimedia,
+    evidence,
+    rentedEvidence,
+    returnedEvidence,
+    reservationEvidence,
+    excessEvidence,
+    archivedEvidence,
+    book,
+    photo,
+  } = props.conditionals;
+
   const params = useParams();
-  const [izdavanja, setIzdavanja] = useState([
+  const [rented, setRented] = useState([
     {
       knjiga: { title: "loading..." },
       bibliotekar0: { name: "loading..." },
       student: { name: "Loading..." },
     },
   ]);
-  const [prekoracene, setPrekoracene] = useState([
+  const [excessed, setExcessed] = useState([
     {
       knjiga: { title: "loading..." },
       bibliotekar0: { name: "loading..." },
       student: { name: "Loading..." },
     },
   ]);
-  const [vracene, setVracene] = useState([
+  const [returned, setReturned] = useState([
     {
       knjiga: { title: "loading..." },
       bibliotekar0: { name: "loading..." },
       student: { name: "Loading..." },
     },
   ]);
-  const [aktivneRezervacije, setAktivneRezervacije] = useState([
+  const [reserved, setReserved] = useState([
     {
       knjiga: { title: "loading..." },
       bibliotekar0: { name: "loading..." },
       student: { name: "Loading..." },
     },
   ]);
-  const [arhiviraneRezervacije, setArhiviraneRezervacije] = useState([
+  const [archived, setArchived] = useState([
     {
       knjiga: { title: "loading..." },
       bibliotekar0: { name: "loading..." },
@@ -62,19 +65,18 @@ export default function ConditionalContainer({
       try {
         const response = await api.get(`/books/borrows`);
         const responseData = response.data.data;
-        const izdavanja2 = responseData.izdate.filter(
-          (izdat) => izdat.knjiga.id == params.id
+        const rentedData = responseData.izdate.filter(
+          (item) => item.knjiga.id == params.id
         );
-        const prekoracene2 = responseData.prekoracene.filter(
-          (prekoracen) => prekoracen.knjiga.id == params.id
+        const excessedData = responseData.prekoracene.filter(
+          (item) => item.knjiga.id == params.id
         );
-        const vracene2 = responseData.vracene.filter(
-          (vracen) => vracen.knjiga.id == params.id
+        const returnedData = responseData.vracene.filter(
+          (item) => item.knjiga.id == params.id
         );
-
-        setIzdavanja(izdavanja2);
-        setPrekoracene(prekoracene2);
-        setVracene(vracene2);
+        setRented(rentedData);
+        setExcessed(excessedData);
+        setReturned(returnedData);
       } catch (error) {
         console.error("Loader function error:", error);
         throw error;
@@ -83,14 +85,14 @@ export default function ConditionalContainer({
       try {
         const response = await api.get(`/books/reservations`);
         const responseData = response.data.data;
-        const aktivneRezervacije2 = responseData.active.filter(
-          (activ) => activ.knjiga.id == params.id
+        const reserveData = responseData.active.filter(
+          (item) => item.knjiga.id == params.id
         );
-        const arhiviraneRezervacije2 = responseData.archive.filter(
-          (arhiv) => arhiv.knjiga.id == params.id
+        const archiveData = responseData.archive.filter(
+          (item) => item.knjiga.id == params.id
         );
-        setAktivneRezervacije(aktivneRezervacije2);
-        setArhiviraneRezervacije(arhiviraneRezervacije2);
+        setReserved(reserveData);
+        setArchived(archiveData);
         return responseData;
       } catch (error) {
         console.error("Loader function error:", error);
@@ -112,7 +114,7 @@ export default function ConditionalContainer({
 
       {evidence && (
         <EvidenceTable
-          data={izdavanja}
+          data={rented}
           headers={[
             {
               headerName: "Izdato uceniku",
@@ -154,7 +156,7 @@ export default function ConditionalContainer({
 
       {returnedEvidence && (
         <EvidenceTable
-          data={vracene}
+          data={returned}
           headers={[
             {
               headerName: "Izdato učeniku",
@@ -196,7 +198,7 @@ export default function ConditionalContainer({
 
       {excessEvidence && (
         <EvidenceTable
-          data={prekoracene}
+          data={excessed}
           headers={[
             {
               headerName: "Izdato učeniku",
@@ -228,7 +230,7 @@ export default function ConditionalContainer({
 
       {reservationEvidence && (
         <EvidenceTable
-          data={aktivneRezervacije}
+          data={reserved}
           headers={[
             {
               headerName: "Datum rezervacije",
@@ -262,7 +264,7 @@ export default function ConditionalContainer({
 
       {archivedEvidence && (
         <EvidenceTable
-          data={arhiviraneRezervacije}
+          data={archived}
           headers={[
             {
               headerName: "Datum rezervacije",

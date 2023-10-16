@@ -1,11 +1,11 @@
-import SettingsForm from "../../../components/UI/SettingsForm";
 import { useEffect, useState } from "react";
-import "./Specification.css";
-import { filterAndMap } from "../../../util/Functions";
-import { useDispatch, useSelector } from "react-redux";
-import { updateFormData } from "../../../redux/new-book-data";
 import { useLoaderData, useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { filterAndMap } from "../../../util/Functions";
+import { updateFormData } from "../../../redux/new-book-data";
+import SettingsForm from "../../../components/UI/SettingsForm";
 import { updateCurrentData } from "../../../redux/new-book-current";
+import "./Specification.css";
 
 export default function NewBookSpecification() {
   const dispatch = useDispatch();
@@ -101,7 +101,6 @@ export default function NewBookSpecification() {
     setFormatValue("");
   };
 
-  console.log(formIsValid)
   return (
     <div className="new-book-specification-wrapper">
       <SettingsForm
