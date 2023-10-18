@@ -49,7 +49,7 @@
   margin: 0;
 }
 
-.subtitle {
+.title-wrapper.subtitle {
   margin: 0;
   line-height: 1rem;
   font-size: 1rem;
@@ -79,7 +79,7 @@
     font-size: 0.8rem;
   }
 
-  .name{
+  .name {
     white-space: nowrap;
     font-size: 1.25rem;
   }

@@ -1,12 +1,12 @@
-.activitiItem {
+.activity-item {
   display: flex;
   gap: 0.6rem;
   align-items: center;
   padding: 5px;
   font-size: 0.85rem;
 }
-.activitiItem .img img {  
-  width: 5rem;
+.activity-item .img img {
+  width: 4rem;
   border-radius: 50%;
 }
 span {
@@ -18,19 +18,20 @@ span {
   flex-direction: column;
   grid-gap: 0.4rem;
 }
-.details .librarianName {
+.details .librarian-name {
   color: var(--secondary);
   font-weight: 500;
   margin-right: 0.2rem;
 }
-.studentName {
+.student-name {
   color: var(--secondary);
   font-weight: 500;
   margin-right: 0.2rem;
 }
-.showDetails {
-  color: var(--secondary);
+.show-details {
+  color: var(--primary);
   font-weight: 500;
+  margin-left: 0.25rem;
 }
 
 .showBtn {
@@ -42,8 +43,8 @@ span {
   margin: 0;
 }
 
-@media (max-width: 1400px){
-  .activitiItem .img img {  
+@media (max-width: 1400px) {
+  .activity-item .img img {
     width: 4rem;
   }
 }

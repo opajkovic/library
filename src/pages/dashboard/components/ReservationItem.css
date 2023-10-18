@@ -1,32 +1,37 @@
-.ReservationItem{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    min-width: 20vw;
-    padding: 1rem 0;
-    border-bottom: 1px solid rgb(181, 181, 181);
-    /* grid-gap: 10%; */
-    font-size: 0.85rem;
+.reservation-item-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--grey-900);
+  font-size: 0.85rem;
 }
-.ReservationItem .studentInfo{
-    display: flex;
-    align-items: center;
-    grid-gap: 0.4rem;
-    font-weight: 500;
+.student-info,
+.book {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  width: 30%;
+  white-space: noWrap;
+  overflow: hidden;
 }
-.ReservationItem .studentInfo img{
-    border-radius: 50%;
-    width: 2rem;
-    margin-right: .5rem;
+
+.student-info img {
+  border-radius: 50%;
+  width: 2rem;
+  margin-right: 0.5rem;
 }
-.ReservationItem .status{
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
+
+.status {
+  display: flex;
+  flex-direction: row;
+  gap: 0.6rem;
 }
-.ReservationItem .status svg{
-    cursor: pointer;
+
+.status svg {
+  cursor: pointer;
 }
-.ReservationItem .status svg:hover{
-    opacity: .7;
+
+.status svg:hover {
+  opacity: 0.7;
 }

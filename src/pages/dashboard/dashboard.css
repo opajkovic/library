@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 7.5rem 4rem 2rem 2rem;
-  grid-gap: 30px;
+  grid-gap: 2rem;
   animation: blur 0.5s ease forwards;
 }
 

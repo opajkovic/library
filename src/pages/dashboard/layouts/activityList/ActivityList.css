@@ -1,29 +1,25 @@
-.activityList {
+.activity-list {
   width: 100%;
 }
 
-.activityList .subtitle {
+.activity-list .subtitle {
   font-size: 1.25rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   text-transform: uppercase;
+  text-align: left;
 }
 
 .list {
   display: flex;
   flex-direction: column;
-  grid-gap: 1rem;
+  gap: 1rem;
 }
-.activityList .subTitle {
-  font-size: 1.25rem;
-  margin-bottom: 2rem;
-  text-align: left;
-  text-transform: uppercase;
-}
-.showBtn {
+
+.show-more-btn {
   cursor: pointer;
   width: 100%;
   padding: 0.5rem;
-  max-width: 650px;
+  max-width: 850px;
 }
 
 .book-activities {
@@ -34,6 +30,9 @@
 }
 
 @media (max-width: 1400px) {
+  .activity-list {
+    max-width: 500px;
+  }
   .book-activities {
     grid-gap: 0.5rem;
     padding: 1rem;

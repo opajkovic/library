@@ -1,69 +1,58 @@
-import React from "react";
-import "./ReservationItem.css";
-import { FaCheck, FaTimes } from "react-icons/fa";
-import imagee from "../../../assets/profileStudent.jpg";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { FaCheck, FaTimes } from "react-icons/fa";
+import image from "../../../assets/profileStudent.jpg";
 import api from "../../../api/apiCalls";
+import "./ReservationItem.css";
 
 export default function ReservationItem({ reservation }) {
-  // Function to format date as "mm/dd/yyyy"
   function formatDate(date) {
-    let month = date.getMonth() + 1; // Months are zero-based
+    let month = date.getMonth() + 1;
     let day = date.getDate();
-    let year = date.getFullYear();
-
-    // Add leading zeros if necessary
+    const year = date.getFullYear();
     if (month < 10) {
       month = "0" + month;
     }
     if (day < 10) {
       day = "0" + day;
     }
-
     return `${month}/${day}/${year}`;
   }
-  let borrowBook = async (e) => {
-    // Get today's date
-    let today = new Date();
 
-    // Create a new date by adding 20 days to today's date
-    let vracanjaDate = new Date(today);
-    vracanjaDate.setDate(today.getDate() + 20);
+  const borrowBook = async () => {
+    const today = new Date();
+    const returnDate = new Date(today);
+    returnDate.setDate(today.getDate() + 20);
 
-    // Format the dates as "mm/dd/yyyy"
-    let formattedIzdavanja = formatDate(today);
-    let formattedVracanja = formatDate(vracanjaDate);
+    const rentFormatted = formatDate(today);
+    const returnFormatted = formatDate(returnDate);
 
-    // Create the info object
-    let info = {
+    const info = {
       student_id: reservation.student.id,
-      datumIzdavanja: formattedIzdavanja,
-      datumVracanja: formattedVracanja,
+      datumIzdavanja: rentFormatted,
+      datumVracanja: returnFormatted,
     };
+
     try {
       const response = await api.post(
         `/books/${reservation.knjiga.id}/izdaj`,
         info
       );
       const responseData = response.data;
-      e.target.parentElement.parentElement.style.cssText = "display: none"
       toast.success(responseData.message);
     } catch (error) {
       console.error(err);
       toast.error(error.response.data.data.errors);
       throw error;
     }
-    
   };
-  let cancelReservation = async (e) => {
+
+  const cancelReservation = async () => {
     try {
-      const response = await api.post(`books/reservations/cancel`,{
-        reservation_id: reservation.id
-      }
-      );
+      const response = await api.post(`books/reservations/cancel`, {
+        reservation_id: reservation.id,
+      });
       const responseData = response.data;
-      e.target.parentElement.parentElement.style.cssText = "display: none"
       toast.success(responseData.message);
     } catch (error) {
       console.error(err);
@@ -71,11 +60,12 @@ export default function ReservationItem({ reservation }) {
       throw error;
     }
   };
+
   return (
-    <div className="ReservationItem">
-      <div className="studentInfo">
+    <div className="reservation-item-wrapper">
+      <div className="student-info">
         <Link to={"/students/" + reservation.student.id}>
-         <img src={imagee} alt="student" />
+          <img src={image} alt="student" />
           {reservation.student.name + " " + reservation.student.surname}
         </Link>
       </div>

@@ -65,6 +65,7 @@ export default function Dashboard() {
     </>
   );
 }
+
 export async function reservationLoader() {
   const isAuthenticated = auth.getAuthStatus();
   if (isAuthenticated && auth.bibliotekarRole()) {

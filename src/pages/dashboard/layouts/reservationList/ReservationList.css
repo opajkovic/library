@@ -1,19 +1,23 @@
-.reservationList{
-    width: 100%;
+.reservation-list {
+  width: 100%;
 }
-.reservationList .subTitle{
-    font-size: 1.25rem;
-    margin-bottom: 2rem;
-    text-align: left;
-    text-transform: uppercase;
+.reservation-list .subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  text-align: left;
+  text-transform: uppercase;
 }
-.reservationList .list{
-    display: flex;
-    flex-direction: column;
-    gap: unset;
+.reservation-list .list {
+  display: flex;
+  flex-direction: column;
+  gap: unset;
 }
-.reservationList .showAll{
-    color: var(--secondary);
-    text-align: right;
-    margin-top: 10px;
+.reservation-list .show-all {
+  color: var(--secondary);
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 1rem;
+  width: 100%;
 }

@@ -77,7 +77,6 @@ export default function BookInfoReserve() {
       toast.error(error.response.data.data.errors);
       throw error;
     }
-    // return null;
   };
 
   const nameIsValid = studentSelected.value !== "";

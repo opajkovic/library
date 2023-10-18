@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import PageTitle from "../../components/pageTitle/PageTitle";
-import ActivitiItem from "./components/ActivitiItem";
+import ActivityItem from "./components/ActivityItem";
 import { LoaderRented } from "../rentingBooks/rentingBooks";
 import "./activities.css";
 
@@ -36,7 +36,7 @@ export default function Activities() {
         {rented.izdate != undefined &&
         rented.izdate[0].bibliotekar0.name != "loading..."
           ? rented.izdate.map((item, index) => {
-              return <ActivitiItem key={index} data={item} />;
+              return <ActivityItem key={index} data={item} />;
             })
           : "loading..."}
       </div>

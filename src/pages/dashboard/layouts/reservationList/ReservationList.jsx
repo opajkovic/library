@@ -5,8 +5,8 @@ import "./ReservationList.css";
 
 export default function ReservationList({ reservations }) {
   return (
-    <div className="reservationList">
-      <h2 className="subTitle">Rezervacije knjiga</h2>
+    <div className="reservation-list">
+      <h2 className="subtitle">Rezervacije knjiga</h2>
       <div className="list">
         {reservations.map((item, index) => {
           if (index < 5) {
@@ -15,7 +15,7 @@ export default function ReservationList({ reservations }) {
         })}
       </div>
       <div>
-        <div className="showAll">
+        <div className="show-all">
           <FaCalendarAlt />
           <Link to="/rentingBooks/aktivne-rezervacije">Prikazi sve</Link>
         </div>
