@@ -12,7 +12,7 @@
   height: 5rem;
   font-size: 1.5rem;
   background-color: var(--primary);
-  color: white;
+  color: var(--white);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -49,9 +49,15 @@
   flex-direction: row;
   align-items: center;
   height: 100%;
-  background-color:rgb(63, 81, 181);
+  background-color: rgb(63, 81, 181);
   padding: 0 2rem;
 }
+
+.online-library span,
+.online-library svg {
+  color: var(--white);
+}
+
 .headerRight {
   display: flex;
   flex-direction: row;

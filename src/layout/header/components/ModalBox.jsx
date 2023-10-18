@@ -1,10 +1,10 @@
+import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 import { FaBookReader, FaFile, FaSignOutAlt } from "react-icons/fa";
-import "../header.css";
 import Modal from "../../modal/Modal";
 import ModalItem from "../../modal/modalItem/ModalItem";
 import api from "../../../api/apiCalls";
-import { useNavigate } from "react-router";
-import { toast } from "react-toastify";
+import "../header.css";
 
 const ModalBox = ({ changeModal, modalProfileShow, setModalClose }) => {
   let navigate = useNavigate();
@@ -18,7 +18,7 @@ const ModalBox = ({ changeModal, modalProfileShow, setModalClose }) => {
       } else if (responseData.role == "Ucenik") {
         navigate(`/students/${responseData.id}`);
       }
-      console.log(response)
+      console.log(response);
       setModalClose(false);
     } catch (error) {
       console.error("Loader function error:", error);
@@ -27,11 +27,11 @@ const ModalBox = ({ changeModal, modalProfileShow, setModalClose }) => {
   };
 
   let logOut = () => {
-    localStorage.removeItem('token');
-    localStorage.clear()
-    toast.success("Odjavljeni ste")
-    navigate("/login")
-  }
+    localStorage.removeItem("token");
+    localStorage.clear();
+    toast.success("Odjavljeni ste");
+    navigate("/login");
+  };
   return (
     <div className="modalBox">
       <FaBookReader onClick={changeModal} />

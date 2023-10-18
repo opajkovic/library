@@ -1,6 +1,6 @@
 import React from "react";
-import "../profileTitle.css";
 import { Link, useParams } from "react-router-dom";
+import "../profileTitle.css";
 
 export default function HeaderName({
   userInfo,

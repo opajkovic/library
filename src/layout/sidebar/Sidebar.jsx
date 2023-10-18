@@ -1,16 +1,15 @@
-import "./Sidebar.css";
-import { FaCog } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import { FaCog } from "react-icons/fa";
 import NavItem from "./components/NavItem";
 import NavList from "./components/NavList";
-import ExpandItem from "./components/ExpandItem";
 import HamburgerBtn from "./components/HamburgerBtn";
+import "./Sidebar.css";
 
 function Sidebar({ route }) {
-  var [isOpen, setIsOpen] = useState(false);
-  var [isExtendOpen, setIsExtendOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isExtendOpen, setIsExtendOpen] = useState(false);
 
-  let changeExpand = () => {
+  const changeExpand = () => {
     if (isExtendOpen == false) {
       setIsOpen(true);
     }
@@ -36,18 +35,15 @@ function Sidebar({ route }) {
         setClose={() => setIsOpen(false)}
       />
       <ul>
-        <NavList isOpen={isOpen} setClose={() => setIsOpen(false)}/>
-        <ExpandItem
-          isOpen={isOpen}
-          isExtendOpen={isExtendOpen}
-          changeExpand={() => changeExpand()}
-        />
+        <NavList isOpen={isOpen} setClose={() => setIsOpen(false)} />
         <NavItem
           isOpen={isOpen}
           active={route == "settings" ? true : false}
           path="settings"
           text="Settings"
-          setClose={()=>{setIsOpen(false)}}
+          setClose={() => {
+            setIsOpen(false);
+          }}
           icon={
             <FaCog
               className={route == "settings" ? "icon activeIcon" : "icon"}

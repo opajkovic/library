@@ -1,9 +1,9 @@
-import { Link, NavLink } from "react-router-dom";
-import { FaBookReader, FaBell } from "react-icons/fa";
-import "./header.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { FaBookReader, FaBell } from "react-icons/fa";
 import ModalBox from "./components/ModalBox";
 import BellModalBox from "./components/BellModalBox";
+import "./header.css";
 
 const Header = () => {
   const [modalProfileShow, setModalProfileShow] = useState(false);
@@ -26,10 +26,10 @@ const Header = () => {
 
   return (
     <header className="header">
-      <NavLink to="./dashboard" className="online-library">
+      <Link to="./dashboard" className="online-library">
         <FaBookReader />
         <span>Online biblioteka</span>
-      </NavLink>
+      </Link>
 
       <div className="headerRight">
         <Link to={"/activities"} className="bell">
@@ -43,9 +43,9 @@ const Header = () => {
           changeModal={() => openModalPlus()}
         />
 
-        <NavLink to="/dashboard">
+        <Link to="/dashboard">
           <span className="bild">DataDesign</span>
-        </NavLink>
+        </Link>
 
         <ModalBox
           modalProfileShow={modalProfileShow}
@@ -58,4 +58,3 @@ const Header = () => {
 };
 
 export default Header;
-

@@ -1,4 +1,4 @@
-import "../profileTitle.css";
+import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
   FaEdit,
@@ -10,10 +10,10 @@ import {
   FaTrash,
   FaBookmark,
 } from "react-icons/fa";
-import { useState } from "react";
 import Modal from "../../modal/Modal";
 import ModalItem from "../../modal/modalItem/ModalItem";
 import ConfirmModal from "../../modal/confirmModal/ConfirmModal";
+import "../profileTitle.css";
 
 export default function HeaderOptions({
   reset,
