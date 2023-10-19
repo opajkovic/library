@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useOutletContext, useParams } from "react-router";
+import { useParams } from "react-router";
 import ProfileTitle from "../../../layout/profileTitle/ProfileTitle";
 import LinkWrapper from "./LinkWrapper";
 import BottomContainer from "../../rentingBooks/components/BottomContainer";
@@ -7,10 +6,6 @@ import "../studentProfile.css";
 
 export default function ProfileEvidence(props) {
   const params = useParams();
-  const { setRoute } = useOutletContext();
-  useEffect(() => {
-    setRoute("students");
-  }, []);
 
   const paths = [
     `/students/${params.id}/evidencija/izdate-knjige`,

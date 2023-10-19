@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLoaderData, useNavigate, useParams } from "react-router";
+import { useLoaderData, useParams, useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { updateRentingData } from "../redux/renting-books";
 import { filterSearchedData } from "../redux/actions";
@@ -31,14 +31,19 @@ export function useProfileEvidence(headers) {
     setItemsPerPage(value);
   };
 
+  const userDataFetcher = async () => {
+    const userData = await userInfoLoader(id, navigate);
+    setUserInfo(userData);
+  };
+
   useEffect(() => {
     if (fetchData && fetchData.length !== 0) {
       dispatch(updateRentingData(fetchData));
       setData(fetchData);
       setSearchData(fetchData);
-      userInfoLoader(id, setUserInfo, navigate);
+      userDataFetcher();
     }
-  }, [fetchData]);
+  }, [fetchData, navigate]);
 
   useEffect(() => {
     if (search !== "") {
@@ -72,6 +77,7 @@ export function useProfileEvidence(headers) {
   const dataToDisplay = data.slice(startIndex, endIndex);
   const pageCount = Math.ceil(data.length / itemsPerPage);
 
+  console.log(userInfo);
   return {
     searchColumn: (headerName, searchValue) => {
       handleColumnSearch(headerName, searchValue);

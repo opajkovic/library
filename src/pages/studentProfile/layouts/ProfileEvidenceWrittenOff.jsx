@@ -55,6 +55,7 @@ export default function ProfileEvidenceWrittenOff() {
       tableData={writtenedOffToDisplay}
       userInfo={userInfo}
       headers={headers}
+      title="Novi učenik"
     />
   );
 }
