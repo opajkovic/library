@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "./Singup.css";
 import imgSingup from "../../assets/login.png";
 import { FaAt, FaEnvelope, FaUserAlt, FaLock } from "react-icons/fa";
@@ -148,6 +148,11 @@ export default function Singup() {
       console.error(err)
     }
   };
+
+  useEffect(()=>{
+    localStorage.clear()
+    navigate('/login')
+  },[])
   return (
     <div className="singup">
       <section className="singupSection">
